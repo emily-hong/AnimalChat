@@ -1,7 +1,7 @@
 ---
 name: dev log
 about: Describe this issue template's purpose here.
-title: "[Dev Log + emoji] 이름 / yyyy-mm-dd"
+title: "[Dev Log + emoji] 이름 / yymmdd"
 labels: dev-log
 assignees: ''
 
