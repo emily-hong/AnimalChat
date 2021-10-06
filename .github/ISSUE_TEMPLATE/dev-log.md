@@ -1,5 +1,5 @@
 ---
-name: dev log
+name: Dev Log 템플릿
 about: Describe this issue template's purpose here.
 title: "[Dev Log{emoji}] 이름 / yymmdd"
 labels: dev-log

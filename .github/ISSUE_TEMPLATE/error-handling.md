@@ -1,8 +1,8 @@
 ---
-name: error handling
-about: Suggest an idea for this project
+name: Error Handling 템플릿
+about: Error Handling
 title: "[Error Handling\U0001F47E] error handling"
-labels: error
+labels: ''
 assignees: ''
 
 ---
