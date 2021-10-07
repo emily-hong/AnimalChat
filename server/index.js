@@ -21,7 +21,7 @@ app.get('/', function(req, res){
 })
 
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 4001;
+const HTTPS_PORT = process.env.HTTPS_PORT || 4002;
 
 let server;
 if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
