@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // 관계
       models.animal.belongsTo(models.user, {
         foreignkey: 'userId',
         targetKey: 'id'
