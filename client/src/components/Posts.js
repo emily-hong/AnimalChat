@@ -29,4 +29,3 @@ export default function Posts() {
 // TODO
 // 게시물 자료 배열에 map으로 <SinglePostOnBoard /> 적용
 // height를 어떻게 해야 할까
-// box모델

@@ -9,12 +9,9 @@ function App() {
   // testing
   return (
     <div className="App">
-      *** 헤더 시작 ***
       <Header />
       <Navigation />
-      네비게이션 props 테스트
       <Navigation isWriteButton={true} />
-      *** 헤더 끝 ***
       <Posts />
     </div>
   )
