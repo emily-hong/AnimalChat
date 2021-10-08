@@ -18,10 +18,12 @@ app.use(
 );
 
 app.use(cookieParser())
+
 //test
-// app.get('/', function(req, res){
-//     res.send('hello world!')
-// })
+app.get('/', (req, res) => {
+  res.status(201).send('Hello World');
+});
+
 // app.post('/commentsend', controllers.commentsend)
 // app.post('/postedit', controllers.postedit)
 // app.post('/postsend', controllers.postsend)
