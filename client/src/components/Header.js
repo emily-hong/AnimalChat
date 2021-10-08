@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 
 export default function Header() {
   // css styles
@@ -23,7 +24,9 @@ export default function Header() {
 
     <div className="headerTitleDesc" style={{...flex, ...flexColumn, ...alignCenter, ...borderRed}}>
       {/* header-title에 메인 페이지 링크 연결 */}
-      <h1 className="headerTitle" style={{...borderRed}}>Animal Chat🐱</h1>
+      <Link to="/board">
+        <h1 className="headerTitle" style={{...borderRed}}>Animal Chat🐱</h1>
+      </Link>
       <h2 className="headerDesc" style={{...borderRed}}>반려동물 집사 커뮤니티</h2>
     </div>
   </div>
