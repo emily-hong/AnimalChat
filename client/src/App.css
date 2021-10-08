@@ -36,3 +36,76 @@
     transform: rotate(360deg);
   }
 } */
+
+*{
+  margin: 0;
+}
+
+/* 상단바 */
+.navBar {
+  background-color: #FFFBEA;
+  margin: 0 auto;
+  border: 1px dotted red;
+}
+
+/* 2. Signup */
+div {
+  border: 1px solid orange;
+  /* margin-top: 5px; */
+  padding: 10px 0;
+  margin: 10px 0;
+}
+
+.entire {
+  border: 1px solid red;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.form {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  width: 60%;
+
+}
+
+.center{
+  background-color: #fff3b6;
+}
+
+/* 8. postRead */
+.postTitle {
+  display: flex;
+  justify-content: space-between;
+
+}
+.profilePic{
+  border: 1px solid blue;
+}
+
+.postPic{
+  align-items: center;
+}
+
+.postComment{
+  text-align: center;
+
+}
+
+.inputComment{
+  width: 70%;
+}
+
+li{
+  background-color: yellowgreen;
+  list-style: none;
+  margin-bottom: 5px;
+}
+.commentsList {
+  padding-left: 0;
+
+}
+.comment{
+  display: flex;
+  justify-content: space-between;
+}
