@@ -40,7 +40,7 @@ app.get('/postlist', controllers.commentlist)
 // app.delete('/userremove', controllers.userremove)
 
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 4002;
+const HTTPS_PORT = process.env.HTTPS_PORT || 80;
 
 let server;
 if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {
