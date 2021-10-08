@@ -48,4 +48,5 @@ export default function Header() {
 }
 
 // TODO
-// react-router-dom 적용 필요
+// [x] react-router-dom 적용 필요
+  // [] 진짜 라우트로 바꿔 넣기

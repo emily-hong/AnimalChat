@@ -37,5 +37,5 @@ export default function Navigation() {
 }
 
 // TODO
-// react-router-dom 적용 필요
+// [x] react-router-dom 적용 필요
 // 홈버튼과 게시판 버튼 그룹 사이에 공간 필요
