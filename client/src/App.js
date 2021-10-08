@@ -2,7 +2,8 @@ import React from "react"
 // import { Switch, Route, useHistory, Redirect } from "react-router-dom"
 import Header from "./components/Header"
 import Navigation from "./components/Navigation"
-import SinglePostOnBoard from "./components/SinglePostOnBoard"
+import Posts from "./components/Posts"
+// import SinglePostOnBoard from "./components/SinglePostOnBoard"
 
 function App() {
   // testing
@@ -14,7 +15,7 @@ function App() {
       네비게이션 props 테스트
       <Navigation isWriteButton={true} />
       *** 헤더 끝 ***
-      <SinglePostOnBoard />
+      <Posts />
     </div>
   )
 }
