@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import Main from "./Main";
+import Boards from "./Boards";
 import Hamster from "./5-1.hamster"
 import Chick from "./5-2.chick"
 import Parrot from "./5-3.parrot"
@@ -16,7 +16,7 @@ export default function MainPage(props) {
       <Switch>
         {/* 게시판 라우팅 */}
         <Route exact path="/board">
-          <Main />
+          <Boards />
         </Route>
         <Route path="/board/hamster">
           <Hamster />
