@@ -4,14 +4,6 @@ export default function Navigation({ isWriteButton }) {
   const borderRed = { border: '1px solid red' };
   const flex = { display: 'flex' };
   const seperateButtonGroups = { justifyContent: 'space-between' }
-  // const alignLeft = {
-  //   justifyContent: 'flex-end',
-  //   alignItems: 'center'
-  // };
-  // const alignRight = {
-  //   justifyContent: 'flex-start',
-  //   alignItems: 'center'
-  // };
 
   return (
     <div className="navigation">
@@ -25,12 +17,17 @@ export default function Navigation({ isWriteButton }) {
           }
         </div>
 
-        <div className="animalBoards">
-          <button className="boardButton">햄스터</button>
-          <button className="boardButton">병아리</button>
-          <button className="boardButton">앵무새</button>
-          <button className="boardButton">토끼</button>
-          <button className="boardButton">고슴도치</button>
+        <div className="pageButtons" style={{...flex}}>
+          <div className="homeButtonSpace">
+            <button className="homeButton">Home</button>
+          </div>
+          <div className="boardButtonsSpace">
+            <button className="boardButton">햄스터</button>
+            <button className="boardButton">병아리</button>
+            <button className="boardButton">앵무새</button>
+            <button className="boardButton">토끼</button>
+            <button className="boardButton">고슴도치</button>
+          </div>
         </div>
       </div>
     </div>
@@ -39,3 +36,4 @@ export default function Navigation({ isWriteButton }) {
 
 // TODO
 // react-router-dom 적용 필요
+// 홈버튼과 게시판 버튼 그룹 사이에 공간 필요
