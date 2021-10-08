@@ -1,18 +1,18 @@
 
-export default function SinglePostOnBoard() {
+export default function SinglePostOnBoard({ mockBgColor }) {
   // css styles
   const flex = { display: 'flex' }
   // const flexColumn = { flexDirection: 'column' }
   const grid = { display: 'grid' }
   const borderRed = { border: '1px solid red' }
-  const mockBgColorGreen = { backgroundColor: '#32a852' }
+  const mockBgColorStyle = { backgroundColor: mockBgColor }
   const mockBgColorBlue = { backgroundColor: '#4976bf' }
   const width200 = { width: '200px'}
   const height300 = { height: '300px' }
 
   return (
     <div className="singlePostOnBoard" style={{...borderRed, ...width200, ...height300, ...grid}}>
-      <div className="thumbnail" style={{boxSizing: 'border-box', ...mockBgColorGreen, height:'200px'}}>
+      <div className="thumbnail" style={{boxSizing: 'border-box', ...mockBgColorStyle, height:'200px'}}>
         {'사진 미리보기'}
       </div>
       <div className="titlePreview" style={{...flex ,...borderRed, height: '60px'}}>

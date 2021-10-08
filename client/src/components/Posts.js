@@ -1,6 +1,6 @@
 import SinglePostOnBoard from "./SinglePostOnBoard";
 
-export default function Posts() {
+export default function Posts({ mockBgColorPost }) {
   const outerStyle = {
     backgroundColor: '#D9D9D9'
   }
@@ -16,11 +16,11 @@ export default function Posts() {
   return (
     <div className="postsOuter" style={outerStyle}>
       <div className="postsInnerCore" style={innerCoreStyle}>
-        <SinglePostOnBoard />
-        <SinglePostOnBoard />
-        <SinglePostOnBoard />
-        <SinglePostOnBoard />
-        <SinglePostOnBoard />
+        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
+        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
+        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
+        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
+        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
       </div>
     </div>
   );

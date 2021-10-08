@@ -16,7 +16,7 @@ export default function Header() {
   return (
   <div className="header" style={{...flex, ...flexColumn}}>
     <div className="headerButtons" style={{...flex,...alignLeft, ...borderRed}}>
-      {/* 링크 연결 : 마이페이지, 로그아웃*/}
+      {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트*/}
       <button className="headerTopButtons">마이페이지</button>
       <button className="headerTopButtons">로그아웃</button>
     </div>
