@@ -29,7 +29,7 @@ export default function Header() {
       <Link to="/">
         <button 
           className="headerTopButtons"
-          onClick={ e => logoutEventListener() }
+          onClick={ (e) => logoutEventListener() }
         >
           로그아웃
         </button>
