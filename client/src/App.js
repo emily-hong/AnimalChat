@@ -1,4 +1,5 @@
 import React from "react"
+// import { Switch, Route } from "react-router"
 import './App.css'
 import MainPage from "./pages/4.mainPage"
 

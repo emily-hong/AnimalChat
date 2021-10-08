@@ -14,7 +14,8 @@ export default function MainPage(props) {
       <Header />
       <Navigation />
       <Switch>
-        <Route exact path="/board/all">
+        {/* 게시판 라우팅 */}
+        <Route exact path="/board">
           <Main />
         </Route>
         <Route path="/board/hamster">
@@ -33,6 +34,7 @@ export default function MainPage(props) {
           <Hedgehog />
         </Route>
 
+        {/* 게시판 외 페이지 라우팅 테스트 */}
         <Route exact path="/">
           <div>
             <h1>mock landing page component</h1>
@@ -41,7 +43,7 @@ export default function MainPage(props) {
         </Route>
         <Route exact path="/mypage">
           <div>
-            <h2>mock mypage component</h2>
+            <h1>mock mypage component</h1>
             <p>profile</p>
           </div>
         </Route>
