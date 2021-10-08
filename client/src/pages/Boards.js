@@ -1,6 +1,6 @@
 import Posts from '../components/Posts'
 
-export default function Boards() {
+export default function Boards({ boardName, mockBgColorPost }) {
   return (
     <div className="boards">
       <h1>boards</h1>

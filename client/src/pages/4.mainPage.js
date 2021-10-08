@@ -51,3 +51,8 @@ export default function MainPage(props) {
     </div>
   );
 }
+
+// TODO
+// 게시판 데이터 받아와서 라우팅된 페이지에 맞게 뿌리기
+// 라우팅
+// 전부 데이터 배열에 map 써서 할 수 있으면 멋있을텐데...
