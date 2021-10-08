@@ -9,7 +9,8 @@ export default function Posts() {
     display: 'grid',
     gap: '1.5rem',
     gridTemplateColumns: 'repeat(auto-fit, 200px)',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignContent: 'center'
   }
 
   return (
@@ -25,5 +26,7 @@ export default function Posts() {
   );
 }
 
+// TODO
 // 게시물 자료 배열에 map으로 <SinglePostOnBoard /> 적용
-// 게시물이 칸 맞춰서 배치되면 좋겠는데 잘 안 되어서 진도가 안 나감...
+// height를 어떻게 해야 할까
+// box모델

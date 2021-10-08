@@ -1,9 +1,9 @@
 import React from "react"
+import './App.css';
 // import { Switch, Route, useHistory, Redirect } from "react-router-dom"
 import Header from "./components/Header"
 import Navigation from "./components/Navigation"
 import Posts from "./components/Posts"
-// import SinglePostOnBoard from "./components/SinglePostOnBoard"
 
 function App() {
   // testing

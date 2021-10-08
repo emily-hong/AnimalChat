@@ -12,7 +12,7 @@ export default function SinglePostOnBoard() {
 
   return (
     <div className="singlePostOnBoard" style={{...borderRed, ...width200, ...height300, ...grid}}>
-      <div className="thumbnail" style={{...mockBgColorGreen, height:'200px'}}>
+      <div className="thumbnail" style={{boxSizing: 'border-box', ...mockBgColorGreen, height:'200px'}}>
         {'사진 미리보기'}
       </div>
       <div className="titlePreview" style={{...flex ,...borderRed, height: '60px'}}>
