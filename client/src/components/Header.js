@@ -14,12 +14,26 @@ export default function Header() {
     alignItems: 'center'
   };
 
+  // button event
+  const logoutEventListener = () => {
+    console.log('send logout request here')
+  }
+
   return (
   <div className="header" style={{...flex, ...flexColumn}}>
     <div className="headerButtons" style={{...flex,...alignLeft, ...borderRed}}>
-      {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트*/}
-      <button className="headerTopButtons">마이페이지</button>
-      <button className="headerTopButtons">로그아웃</button>
+      {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트, 랜딩페이지 라우팅*/}
+      <Link to="/mypage">
+        <button className="headerTopButtons">마이페이지</button>
+      </Link>
+      <Link to="/">
+        <button 
+          className="headerTopButtons"
+          onClick={ e => logoutEventListener() }
+        >
+          로그아웃
+        </button>
+      </Link>
     </div>
 
     <div className="headerTitleDesc" style={{...flex, ...flexColumn, ...alignCenter, ...borderRed}}>
