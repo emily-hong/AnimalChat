@@ -5,7 +5,6 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
-const controllers = require('./controllers');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -23,23 +22,6 @@ app.use(cookieParser())
 app.get('/', (req, res) => {
   res.status(201).send('Hello World');
 });
-
-// app.post('/commentsend', controllers.commentsend)
-// app.post('/postedit', controllers.postedit)
-// app.post('/postsend', controllers.postsend)
-// app.post('/pwchange', controllers.pwchange)
-// app.post('/signin', controllers.signin)
-// app.post('/signout', controllers.signout)
-// app.post('/signup', controllers.signup)
-// app.post('/userinfochange', controllers.userinfochange)
-
-// app.get('/userinfo', controllers.userinfo)
-// app.get('/postlist', controllers.postlist)
-// app.get('/postlist', controllers.commentlist)
-
-// app.delete('/commentdelete', controllers.commentdelete)
-// app.delete('/postdelete', controllers.postdelete)
-// app.delete('/userremove', controllers.userremove)
 
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 80;
