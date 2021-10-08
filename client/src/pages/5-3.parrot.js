@@ -4,7 +4,7 @@ export default function Parrot(props) {
   return (
     <div className="mainPage">
       <h1>parrot</h1>
-      <Posts mockBgColorPost={'#8236CB'} />
+      <Posts mockBgColorPost={'#96e0df'} />
     </div>
   );
 }
