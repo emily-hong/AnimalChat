@@ -14,7 +14,7 @@ export default function MainPage(props) {
       <Header />
       <Navigation />
       <Switch>
-        <Route exact path="/board">
+        <Route exact path="/board/all">
           <Main />
         </Route>
         <Route path="/board/hamster">
