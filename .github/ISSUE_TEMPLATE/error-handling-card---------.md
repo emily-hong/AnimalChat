@@ -1,7 +1,7 @@
 ---
 name: Error Handling Card 마크다운 템플릿
 about: Suggest an idea for this project
-title: ''
+title: "[Error Handling] 제목을 입력해 주세요"
 labels: error
 assignees: ''
 
