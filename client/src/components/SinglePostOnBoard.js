@@ -1,3 +1,4 @@
+
 export default function SinglePostOnBoard() {
   // css styles
   const flex = { display: 'flex' }
@@ -15,7 +16,7 @@ export default function SinglePostOnBoard() {
       </div>
       <div className="titlePreview" style={{...flex, ...borderRed, height: '80px'}}>
         <span className="profilePicture" style={{...mockBgColorBlue}}>
-          {'프로필 사진'}
+          {'프로필사진'}
         </span>
         <span className="writer">
           {'김코딩:'}
@@ -25,3 +26,7 @@ export default function SinglePostOnBoard() {
     </div>
   );
 }
+
+// TODO
+// props : 미리보기 사진, 프로필 사진, 글쓴이, 제목
+// react-router-dom 적용 필요, 게시글마다(고민)
