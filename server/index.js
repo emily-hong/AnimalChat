@@ -20,7 +20,7 @@ app.get("/", function (req, res) {
   res.send("hello world!")
 })
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 80
+const HTTPS_PORT = process.env.HTTPS_PORT || 81
 
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
