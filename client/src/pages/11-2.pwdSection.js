@@ -25,6 +25,16 @@ const StyledPwdArea = styled.div`
   // }
 `;
 
+const StyledRequirementsList = styled.ul`
+  & > li {
+    list-style-type: disc;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #d40000;
+    background-color: transparent;
+  }
+`;
+
 export default function PasswordChange() {
   // input states
   const [ inputs, setInputs ] = useState({
@@ -131,10 +141,10 @@ export default function PasswordChange() {
               value={newPwd}
               onChange={handleOnChange}
             />
-            <ul>
+            <StyledRequirementsList>
               {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
               {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
-            </ul>
+            </StyledRequirementsList>
           </StyledPwdArea>
         </StyledPwdInputsArea>
         <div>
