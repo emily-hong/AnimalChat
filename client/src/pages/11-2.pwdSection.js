@@ -26,7 +26,7 @@ const StyledPwdArea = styled.div`
 `;
 
 export default function PasswordChange() {
-  // states
+  // input states
   const [ inputs, setInputs ] = useState({
     curPwd: "",
     newPwd: ""
@@ -41,7 +41,24 @@ export default function PasswordChange() {
     });
   }
 
-  // curPwd 중복 검사
+  // old pwd validity check states
+  const [ curPwdValidity, setCurPwdValidity ] = useState({
+    isCurPwdInput: false,
+    isCurWrong: true
+  });
+  const { isCurPwdInput, isCurWrong } = curPwdValidity;
+
+  // new pwd validity check states
+  const [ newPwdValidity, setNewPwdValidityCheck ] = useState({
+    isNewPwdInput: false,
+    isTooShort: true,
+    isTooLong: false,
+    isAllNumbers: false,
+    isAllAlphabets: false
+  });
+  const { isNewPwdInput, isTooShort, isTooLong, isAllNumbers, isAllAlphabets } = newPwdValidityCheck;
+
+  // TODO curPwd 중복 검사 (axios 필요)
 
   // 비밀번호 유효성 검사용 정규식
   const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/; // 비밀번호 전체
@@ -53,20 +70,31 @@ export default function PasswordChange() {
     const isValidPwd = regPassword.test(newPwd);
       if (isValidPwd) {
         console.log('검사 통과');
+        // setNewPwdValidityCheck({
+        //   isNewPwdInput: true,
+        //   isTooShort: false,
+        //   isTooLong: false,
+        //   isAllNumbers: false,
+        //   isAllAlphabets: false
+        // })
       } else {
         const isOnlyNumber = regOnlyNumber.test(newPwd);
         const isOnlyAlphabets = regOnlyAlphabets.test(newPwd);
         if (isOnlyNumber) {
           console.log('문자를 포함해야 함');
+          setNewPwdValidityCheck({ ...newPwdValidity, isAllNumbers: true });
         }
         if (isOnlyAlphabets) {
           console.log('숫자를 포함해야 함');
+          setNewPwdValidityCheck({ ...newPwdValidity, isAllAlphabets: true });
         }
         if (newPwd.length < 4) {
           console.log('*비밀번호 길이는 4자 이상*');
+          setNewPwdValidityCheck({ ...newPwdValidity, isTooShort: true });
         }
         if (newPwd.length > 15) {
           console.log('*비밀번호 길이는 15자 이하*');
+          setNewPwdValidityCheck({ ...newPwdValidity, isTooLong: true });
         }
       }
   }, [newPwd]);
