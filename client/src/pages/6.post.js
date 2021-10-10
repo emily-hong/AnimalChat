@@ -78,12 +78,12 @@ const TitlePostDiv4 = styled.div`
   justify-content: space-around;
 `
 const PhotoSelectBtn = styled.div`
-  // border: 1px solid gray;
+  text-align: center;
+  font-size: 20px;
   width: 200px;
   height: 60px;
-  background-color: yellow;
-  display: flex;
-  flex-direction: row;
+  background-color: #ffe2cd;
+  color: palevioletred;
 `
 const PhotoSelectBtnMargin = styled.div`
   // border: 1px solid gray;
@@ -91,40 +91,68 @@ const PhotoSelectBtnMargin = styled.div`
   text-align: center;
   // width: 200px;
   // height: 60px;
-  // background-color: yellow;
+  // background-color: #ffe2cd;
 `
 const PhotoUpLoadBtn = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
+  font-size: 20px;
+  color: palevioletred;
+
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  background-color: yellow;
+  width: 200px;
+  height: 60px;
+  background-color: #ffe2cd;
 `
-const TitleBox = styled.div`
-  // border: 1px solid gray;
-  margin-bottom: 50px;
+const TitleBox = styled.input`
+  border: 1px solid #ececec;
+  margin-bottom: 40px;
   width: 650px;
   height: 50px;
   background-color: #ececec;
+  font-size: 30px;
+  color: palevioletred;
+  text-align: center;
 `
-const PostBox = styled.div`
-  // border: 1px solid gray;
+const PostBox = styled.textarea`
+  border: 1px solid #ececec;
   width: 650px;
-  height: 300px;
+  height: 350px;
   background-color: #ececec;
+  font-size: 30px;
+  color: palevioletred;
+  text-align: center;
 `
+
 const PostUploadBtn = styled.div`
   // border: 1px solid gray;
   width: 250px;
   height: 60px;
-  background-color: yellow;
+  background-color: #ffe2cd;
+  font-size: 20px;
+  color: palevioletred;
 `
 const CancelBtn = styled.div`
   // border: 1px solid gray;
   width: 250px;
   height: 60px;
-  background-color: yellow;
+  background-color: #ffe2cd;
+  font-size: 20px;
+  color: palevioletred;
+`
+const PostCompletionBtnMargin = styled.div`
+  // border: 1px solid gray;
+  margin-top: 15px;
+  text-align: center;
+  // width: 200px;
+  // height: 60px;
+  // background-color: #ffe2cd;
+`
+const PostCancelBtnMargin = styled.div`
+  // border: 1px solid gray;
+  margin-top: 15px;
+  text-align: center;
+  // width: 200px;
+  // height: 60px;
+  // background-color: #ffe2cd;
 `
 
 export const Post = (props) => {
@@ -142,16 +170,22 @@ export const Post = (props) => {
           <TitlePostDiv2>
             <PhotoSelectBtn>
               <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin>
-              <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
             </PhotoSelectBtn>
+            <PhotoUpLoadBtn>
+              <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
+            </PhotoUpLoadBtn>
           </TitlePostDiv2>
         </TitlePostDiv3>
         <TitlePostDiv>
-          <TitleBox>제목</TitleBox>
-          <PostBox>내용</PostBox>
+          <TitleBox placeholder="제목을 적으세요." type="text" />
+          <PostBox placeholder="글을 적으세요." type="text" />
           <TitlePostDiv4>
-            <PostUploadBtn>작성</PostUploadBtn>
-            <CancelBtn>취소</CancelBtn>
+            <PostUploadBtn>
+              <PostCompletionBtnMargin>작성</PostCompletionBtnMargin>
+            </PostUploadBtn>
+            <CancelBtn>
+              <PostCancelBtnMargin>취소</PostCancelBtnMargin>
+            </CancelBtn>
           </TitlePostDiv4>
         </TitlePostDiv>
       </ContentBox>
