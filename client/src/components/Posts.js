@@ -1,28 +1,27 @@
+import styled from 'styled-components'
 import SinglePostOnBoard from "./SinglePostOnBoard";
 
-const outerStyle = {
-  backgroundColor: '#D9D9D9'
-}
-
-const innerCoreStyle = {
-  display: 'grid',
-  gap: '1.5rem',
-  gridTemplateColumns: 'repeat(auto-fit, 200px)',
-  justifyContent: 'center',
-  alignContent: 'center'
-}
+// styled-components
+const StyledPosts = styled.div`
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, 200px);
+  justify-content: center;
+  align-content: center;
+  background-color: #D9D9D9;
+`;
 
 export default function Posts({ mockBgColorPost }) {
 
   return (
-    <div className="postsOuter" style={outerStyle}>
-      <div className="postsInnerCore" style={innerCoreStyle}>
+    <div className="postsComponent">
+      <StyledPosts>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-      </div>
+      </StyledPosts>
     </div>
   );
 }
