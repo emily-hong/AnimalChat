@@ -7,6 +7,7 @@ import Signup from "./pages/2.signUp"
 // import MainPage from "./pages/4.mainPage"
 import PostRead from "./pages/8.postRead"
 import Post from "./pages/6.post"
+import PostEdit from "./pages/7.postEdit"
 
 import "./App.css"
 
@@ -31,6 +32,9 @@ function App() {
 
           <Route exact path="/post">
             <Post />
+          </Route>
+          <Route exact path="/postedit">
+            <PostEdit />
           </Route>
 
           <Route path="/">
