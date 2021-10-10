@@ -161,7 +161,6 @@ export const Post = (props) => {
   return (
     <Body>
       <Header>Animal Chat🐣</Header>
-      {/* <Content> */}
       <ContentBox>
         <TitlePostDiv3>
           <PhotoBox>
@@ -189,7 +188,6 @@ export const Post = (props) => {
           </TitlePostDiv4>
         </TitlePostDiv>
       </ContentBox>
-      {/* </Content> */}
     </Body>
   )
 }
