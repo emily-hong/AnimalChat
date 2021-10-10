@@ -44,29 +44,31 @@ export default function PasswordChange() {
   // curPwd 중복 검사
 
   // 비밀번호 유효성 검사용 정규식
-  const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/;
-  const regOnlyNumber = /^[0-9]/g;
-  // const regOnlyAlphabets
+  const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/; // 비밀번호 전체
+  const regOnlyNumber = /^[0-9]/; // 숫자만
+  const regOnlyAlphabets = /^[a-zA-Z]*$/; // 문자만
 
   useEffect(() => {
     // newPwd 유효성검사
     const isValidPwd = regPassword.test(newPwd);
-    if (newPwd.length > 0) {
       if (isValidPwd) {
         console.log('검사 통과');
       } else {
         const isOnlyNumber = regOnlyNumber.test(newPwd);
+        const isOnlyAlphabets = regOnlyAlphabets.test(newPwd);
         if (isOnlyNumber) {
           console.log('문자를 포함해야 함');
         }
+        if (isOnlyAlphabets) {
+          console.log('숫자를 포함해야 함');
+        }
         if (newPwd.length < 4) {
-          console.log('옳지 않은 비밀번호입니다', '*비밀번호 길이는 4자 이상*');
+          console.log('*비밀번호 길이는 4자 이상*');
         }
         if (newPwd.length > 15) {
-          console.log('옳지 않은 비밀번호입니다', '*비밀번호 길이는 15자 이하*');
+          console.log('*비밀번호 길이는 15자 이하*');
         }
       }
-    }
   }, [newPwd]);
 
   // button event
