@@ -7,7 +7,7 @@ export default {
   component: Navigation,
 };
 
-const Template = (args) => <Navigation />;
+// const Template = (args) => <Navigation />;
 
 export const Primary = () => {
   const ButtonsArea = styled.div`

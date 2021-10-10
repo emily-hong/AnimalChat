@@ -7,7 +7,7 @@ export default {
   component: Header,
 };
 
-const Template = (args) => <Header />;
+// const Template = (args) => <Header />;
 
 // export const FirstStory = Template.bind({});
 
