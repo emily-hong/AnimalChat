@@ -26,14 +26,17 @@ const StyledSingleInputArea = styled.div`
 `;
 
 const StyledRequirementsList = styled.ul`
-
   & > li {
     list-style-type: disc;
     font-size: 0.8rem;
     font-weight: bold;
-    color: ${props => props.green ? "#018212" : "#d40000"};
+    color: #de0f00;
     background-color: transparent;
   }
+
+  // & > li.right {
+  //   color: #03a100;
+  // }
 `;
 
 export default function PasswordChange() {
