@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-require("dotenv").config()
-const fs = require("fs")
-const https = require("https")
-const cors = require("cors")
-const cookieParser = require("cookie-parser")
-const express = require("express")
-const app = express()
-=======
 require('dotenv').config();
 const fs = require('fs');
 const https = require('https');
@@ -15,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const express = require('express');
 const app = express();
 const controllers = require('./controllers');
->>>>>>> 751d55a2b73a0d8d557b3a4daa35d3e80ad8816a
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -25,24 +15,6 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
   })
-<<<<<<< HEAD
-)
-app.use(cookieParser())
-app.get("/", function (req, res) {
-  res.send("이게 보인다면 파이프라인 자동배포까지 모두 성공12345")
-})
-
-const HTTPS_PORT = process.env.HTTPS_PORT || 80
-
-let server
-if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
-  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
-  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
-  const credentials = { key: privateKey, cert: certificate }
-
-  server = https.createServer(credentials, app)
-  server.listen(HTTPS_PORT, () => console.log("https server runnning"))
-=======
 );
 
 app.use(cookieParser())
@@ -79,7 +51,6 @@ if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {  // https 프�
   const credentials = { key: privateKey, cert: certificate };
   server = https.createServer(credentials, app);
   server.listen(HTTPS_PORT, () => console.log('https server runnning'));
->>>>>>> 751d55a2b73a0d8d557b3a4daa35d3e80ad8816a
 } else {
   server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
 }
