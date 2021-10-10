@@ -2,13 +2,12 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function Header() {
-  // <div className="header" style={{...flex, ...flexColumn}}> [x]
+  // styled components
   const HeaderFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
   `;
 
-  // <div className="headerButtons" style={{...flex,...alignLeft, ...borderRed}}> [x]
   const TopButtonsArea = styled.div`
     display: flex;
     justify-content: flex-end;
@@ -16,7 +15,6 @@ export default function Header() {
     border: 1px solid red;
   `;
 
-  // <div className="headerTitleDesc" style={{...flex, ...flexColumn, ...alignCenter, ...borderRed}}> []
   const TitleArea = styled.div`
     display: flex;
     flex-direction: column;
@@ -24,9 +22,6 @@ export default function Header() {
     align-items: center;
     border: 1px solid red;
   `;
-
-  // css styles
-  const borderRed = { border: '1px solid red' };
 
   // button event
   const logoutEventListener = () => {
@@ -53,9 +48,9 @@ export default function Header() {
       <TitleArea>
         {/* header-title에 메인 페이지 링크 연결 */}
         <Link to="/board">
-          <h1 className="headerTitle" style={{...borderRed}}>Animal Chat🐱</h1>
+          <h1 className="headerTitle">Animal Chat🐱</h1>
         </Link>
-        <h2 className="headerDesc" style={{...borderRed}}>반려동물 집사 커뮤니티</h2>
+        <h2 className="headerDesc">반려동물 집사 커뮤니티</h2>
       </TitleArea>
     </HeaderFlexDiv>
   </div>
