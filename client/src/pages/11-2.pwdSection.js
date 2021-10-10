@@ -41,7 +41,7 @@ export default function PasswordChange() {
     });
   }
 
-  // old pwd validity check states
+  // TODO old pwd validity check states
   const [ curPwdValidity, setCurPwdValidity ] = useState({
     isCurPwdInput: false,
     isCurWrong: true
@@ -49,54 +49,57 @@ export default function PasswordChange() {
   const { isCurPwdInput, isCurWrong } = curPwdValidity;
 
   // new pwd validity check states
-  const [ newPwdValidity, setNewPwdValidityCheck ] = useState({
+  const [ newPwdValidity, setNewPwdValidity ] = useState({
     isNewPwdInput: false,
     isTooShort: true,
     isTooLong: false,
     isAllNumbers: false,
     isAllAlphabets: false
   });
-  const { isNewPwdInput, isTooShort, isTooLong, isAllNumbers, isAllAlphabets } = newPwdValidityCheck;
+  const { isNewPwdInput, isTooShort, isTooLong, isAllNumbers, isAllAlphabets } = newPwdValidity;
 
   // TODO curPwd 중복 검사 (axios 필요)
 
-  // 비밀번호 유효성 검사용 정규식
-  const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/; // 비밀번호 전체
-  const regOnlyNumber = /^[0-9]/; // 숫자만
-  const regOnlyAlphabets = /^[a-zA-Z]*$/; // 문자만
 
   useEffect(() => {
-    // newPwd 유효성검사
-    const isValidPwd = regPassword.test(newPwd);
-      if (isValidPwd) {
-        console.log('검사 통과');
-        // setNewPwdValidityCheck({
-        //   isNewPwdInput: true,
-        //   isTooShort: false,
-        //   isTooLong: false,
-        //   isAllNumbers: false,
-        //   isAllAlphabets: false
-        // })
-      } else {
-        const isOnlyNumber = regOnlyNumber.test(newPwd);
-        const isOnlyAlphabets = regOnlyAlphabets.test(newPwd);
-        if (isOnlyNumber) {
-          console.log('문자를 포함해야 함');
-          setNewPwdValidityCheck({ ...newPwdValidity, isAllNumbers: true });
+    function getValidity(str) {
+      // 비밀번호 유효성 검사용 정규식
+      const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/; // 비밀번호 전체
+      const regOnlyNumber = /^[0-9]/; // 숫자만
+      const regOnlyAlphabets = /^[a-zA-Z]*$/; // 문자만
+
+      // newPwd 유효성검사
+      if (str.length > 0) {
+        const isValidPwd = regPassword.test(str);
+        setNewPwdValidity({ ...newPwdValidity, isNewPwdInput: true });
+
+        if (isValidPwd) {
+          console.log('검사 통과');
+        } else {
+          let isOnlyNumber = regOnlyNumber.test(str);
+          let isOnlyAlphabets = regOnlyAlphabets.test(str);
+          if (isOnlyNumber) {
+            console.log('문자를 포함해야 함');
+            // setNewPwdValidity({ ...newPwdValidity, isAllNumbers: true });
+          }
+          if (isOnlyAlphabets) {
+            console.log('숫자를 포함해야 함');
+            // setNewPwdValidity({ ...newPwdValidity, isAllAlphabets: true });
+          }
+          if (str.length < 4) {
+            console.log('*비밀번호 길이는 4자 이상*');
+            // setNewPwdValidity({ ...newPwdValidity, isTooShort: true });
+          }
+          if (str.length > 15) {
+            console.log('*비밀번호 길이는 15자 이하*');
+            // setNewPwdValidity({ ...newPwdValidity, isTooLong: true });
+          }
         }
-        if (isOnlyAlphabets) {
-          console.log('숫자를 포함해야 함');
-          setNewPwdValidityCheck({ ...newPwdValidity, isAllAlphabets: true });
-        }
-        if (newPwd.length < 4) {
-          console.log('*비밀번호 길이는 4자 이상*');
-          setNewPwdValidityCheck({ ...newPwdValidity, isTooShort: true });
-        }
-        if (newPwd.length > 15) {
-          console.log('*비밀번호 길이는 15자 이하*');
-          setNewPwdValidityCheck({ ...newPwdValidity, isTooLong: true });
-        }
+      } else if (str.length === 0) {
+        // setNewPwdValidity({ ...newPwdValidity, isNewPwdInput: false });
       }
+    }
+    getValidity(newPwd);
   }, [newPwd]);
 
   // button event
@@ -129,11 +132,8 @@ export default function PasswordChange() {
               onChange={handleOnChange}
             />
             <ul>
-              <li>비밀번호를 입력해주세요.</li>
-              <li>길이가 4자 이상이어야 합니다.</li>
-              <li>길이가 15자 이하이어야 합니다.</li>
-              <li>숫자를 포함해야 합니다.</li>
-              <li>문자를 포함해야 합니다.</li>
+              {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
+              {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
             </ul>
           </StyledPwdArea>
         </StyledPwdInputsArea>
