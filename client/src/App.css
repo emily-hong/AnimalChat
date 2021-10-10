@@ -1,3 +1,176 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+*{
+  margin: 0;
+}
+
+/* 상단바 */
+.navBar {
+  background-color: #FFFBEA;
+  margin: 0 auto;
+  border: 1px dotted red;
+  height: 150px;
+}
+
+/* 2. Signup */
+.entire div { /* 배치확인용 */
+  /* border: 1px solid orange; */
+  /* margin-top: 20px; */
+}
+
+.entire {
+  border: 1px solid red;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+.form {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  width: 60%;
+  height: 600px;
+}
+
+.center{
+  background-color: #fff3b6;
+  height: 100%;
+}
+
+/* 8. postRead */
+/* 상단 제목 */
+.postTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin: 0 20px;
+}
+.postTitle_left{
+  display: flex;
+  padding: 5px 0;
+}
+.profilePic{
+  border: 1px solid blue;
+  margin-left: 20px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.postTitle_left .title{
+  margin-left: 10px;
+}
+.postTitle_left > p{
+  margin-left: 20px;
+  padding: 10px;
+}
+
+
+.postTitle_right{
+  padding: 10px 0;
+}
+.postTitle_right > button{
+  height: 30px;
+  width: 50px;
+}
+.postTitle_right > button:first-child {
+  margin-right: 5px;
+}
+
+/* 게시물 사진 */
+.postPic{
+  margin: 0 auto;
+  border: 1px solid purple;
+  width: 800px;
+  height: 500px;
+}
+/* 게시물 댓글 작성 */
+.postContent {
+  /* margin: 0 auto; */
+  margin: 20px 20px;
+  
+  /* width: 80%; */
+  text-align: center;
+}
+.postComment{
+  margin: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.inputComment{
+  width: 70%;
+  height: 30px;
+  /* border: none; */
+}
+.postComment > button {
+  width: 100px;
+  height: 30px;
+  margin-left: 50px;
+  background-color: #FFFFFF;
+  /* border: none; */
+}
+
+/* 게시물 댓글목록 */
+li{
+  background-color: yellowgreen;
+  list-style: none;
+  margin: 20px;
+  margin-bottom: 5px;
+}
+.commentsList {
+  padding-left: 0;
+}
+.comment{
+  display: flex;
+  justify-content: space-between;
+}
+.comment_left{
+  display: flex;
+  padding-left: 10px;
+}
+.comment_left > p:nth-child(2){
+  margin-left: 10px;
+}
+.comment_right{
+  width: 200px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 * {
   box-sizing: border-box,
 }
