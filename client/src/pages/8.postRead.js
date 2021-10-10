@@ -3,16 +3,6 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 export default function PostRead(){
-  // 내사진
-  // 게시물 제목
-  // 게시물 날짜
-  // 수정, 삭제 버튼
-  // 내 새끼 사진
-  // 게시물 내용
-  // 댓글작성칸, 작성버튼
-  // 댓글 목록 - 아이디, 내용, 날짜, 삭제버튼
-
-
   // 댓글
   const [userId, setUserId] = useState('')  // 댓글아이디는 작성안함
   const [reply, setReply] = useState('')  // 작성된 댓글
