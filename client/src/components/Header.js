@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export default function Header() {
   // styled components
   const HeaderFlexDiv = styled.div`
     display: flex;
@@ -28,6 +27,7 @@ export default function Header() {
     console.log('send logout request here')
   }
 
+export default function Header() {
   return (
   <div className="headerComponent">
     <HeaderFlexDiv>

@@ -1,34 +1,35 @@
 import styled from 'styled-components'
 
+// styled components
+const StyledSinglePost = styled.div`
+  box-sizing: border-box;
+  display: grid;
+  width: 200px;
+  height: 300px;
+  border: 1px solid red;
+`;
+
+const StyledThumbnail = styled.div`
+  height: 200px;
+  background-color: ${props => props.color};
+`;
+
+const StyledTitlePreview = styled.div`
+  display: flex;
+  height: 60px;
+  border: 1px solid red;
+`;
+
+const StyledProfilePictureArea = styled.span`
+  background-color: #4976bf;
+`;
+
 export default function SinglePostOnBoard({ mockBgColor }) {
-  // styled components
-  const StyledSinglePost = styled.div`
-    box-sizing: border-box;
-    display: grid;
-    width: 200px;
-    height: 300px;
-    border: 1px solid red;
-  `;
-
-  const StyledThumbnail = styled.div`
-    height: 200px;
-    background-color: ${mockBgColor};
-  `;
-
-  const StyledTitlePreview = styled.div`
-    display: flex;
-    height: 60px;
-    border: 1px solid red;
-  `;
-
-  const StyledProfilePictureArea = styled.span`
-    background-color: #4976bf;
-  `;
 
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail>
+        <StyledThumbnail color={mockBgColor}>
           {'사진 미리보기'}
         </StyledThumbnail>
         <StyledTitlePreview>

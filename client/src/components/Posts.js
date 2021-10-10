@@ -1,17 +1,18 @@
 import SinglePostOnBoard from "./SinglePostOnBoard";
 
-export default function Posts({ mockBgColorPost }) {
-  const outerStyle = {
-    backgroundColor: '#D9D9D9'
-  }
+const outerStyle = {
+  backgroundColor: '#D9D9D9'
+}
 
-  const innerCoreStyle = {
-    display: 'grid',
-    gap: '1.5rem',
-    gridTemplateColumns: 'repeat(auto-fit, 200px)',
-    justifyContent: 'center',
-    alignContent: 'center'
-  }
+const innerCoreStyle = {
+  display: 'grid',
+  gap: '1.5rem',
+  gridTemplateColumns: 'repeat(auto-fit, 200px)',
+  justifyContent: 'center',
+  alignContent: 'center'
+}
+
+export default function Posts({ mockBgColorPost }) {
 
   return (
     <div className="postsOuter" style={outerStyle}>
