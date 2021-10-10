@@ -50,9 +50,10 @@
 }
 
 /* 2. Signup */
-.entire div { /* 배치확인용 */
-  /* border: 1px solid orange; */
-  /* margin-top: 20px; */
+/* 배치확인용 */
+.entire div { 
+  border: 1px solid orange;
+  margin-top: 20px;
 }
 
 .entire {
@@ -145,11 +146,12 @@
 }
 
 /* 게시물 댓글목록 */
-li{
-  background-color: yellowgreen;
+.comment{
+  background-color: #FFFBEA;
   list-style: none;
   margin: 20px;
   margin-bottom: 5px;
+  padding: 5px 0;
 }
 .commentsList {
   padding-left: 0;
@@ -158,19 +160,23 @@ li{
   display: flex;
   justify-content: space-between;
 }
-.comment_left{
+.comment__left{
   display: flex;
   padding-left: 10px;
 }
-.comment_left > p:nth-child(2){
-  margin-left: 10px;
+.comment__userId{
+  font-weight: bold;
 }
-.comment_right{
-  width: 200px;
+.comment__left .comment__content{
+  margin-left: 15px;
+}
+.comment__right{
+  width: 150px;
   padding-right: 10px;
   display: flex;
   justify-content: space-between;
 }
+
 * {
   box-sizing: border-box,
 }
