@@ -1,31 +1,31 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-  // styled components
-  const HeaderFlexDiv = styled.div`
-    display: flex;
-    flex-direction: column;
-  `;
+// styled components
+const HeaderFlexDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-  const TopButtonsArea = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border: 1px solid red;
-  `;
+const TopButtonsArea = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border: 1px solid red;
+`;
 
-  const TitleArea = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid red;
-  `;
+const TitleArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+`;
 
-  // button event
-  const logoutEventListener = () => {
-    console.log('send logout request here')
-  }
+// button event
+const logoutEventListener = () => {
+  console.log('send logout request here')
+}
 
 export default function Header() {
   return (
