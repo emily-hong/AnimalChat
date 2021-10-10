@@ -15,7 +15,7 @@ const StyledPwdInputsArea = styled.div`
   justify-content: center;
 `;
 
-const StyledPwdArea = styled.div`
+const StyledSingleInputArea = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,11 +26,12 @@ const StyledPwdArea = styled.div`
 `;
 
 const StyledRequirementsList = styled.ul`
+
   & > li {
     list-style-type: disc;
     font-size: 0.8rem;
     font-weight: bold;
-    color: #d40000;
+    color: ${props => props.green ? "#018212" : "#d40000"};
     background-color: transparent;
   }
 `;
@@ -122,7 +123,7 @@ export default function PasswordChange() {
     <div className="passwordChangeComponent" style={{border: '1px solid red'}}>
       <StyledPwdChangeSection>
         <StyledPwdInputsArea>
-          <StyledPwdArea>
+          <StyledSingleInputArea>
             <p className="inputTitle">현재 비밀번호</p>
             <input
               type='password'
@@ -131,8 +132,8 @@ export default function PasswordChange() {
               value={curPwd}
               onChange={handleOnChange}
             />
-          </StyledPwdArea>
-          <StyledPwdArea>
+          </StyledSingleInputArea>
+          <StyledSingleInputArea>
             <p className="inputTitle">새 비밀번호</p>
             <input
               type='password'
@@ -145,7 +146,7 @@ export default function PasswordChange() {
               {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
               {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
             </StyledRequirementsList>
-          </StyledPwdArea>
+          </StyledSingleInputArea>
         </StyledPwdInputsArea>
         <div>
           <button onClick={handleButtonClick}>확인</button>
