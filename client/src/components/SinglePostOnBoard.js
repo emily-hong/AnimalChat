@@ -1,31 +1,48 @@
+import styled from 'styled-components'
 
 export default function SinglePostOnBoard({ mockBgColor }) {
-  // css styles
-  const flex = { display: 'flex' }
-  // const flexColumn = { flexDirection: 'column' }
-  const grid = { display: 'grid' }
-  const borderRed = { border: '1px solid red' }
-  const mockBgColorStyle = { backgroundColor: mockBgColor }
-  const mockBgColorBlue = { backgroundColor: '#4976bf' }
-  const width200 = { width: '200px'}
-  const height300 = { height: '300px' }
+  // styled components
+  const StyledSinglePost = styled.div`
+    box-sizing: border-box;
+    display: grid;
+    width: 200px;
+    height: 300px;
+    border: 1px solid red;
+  `;
+
+  const StyledThumbnail = styled.div`
+    height: 200px;
+    background-color: ${mockBgColor};
+  `;
+
+  const StyledTitlePreview = styled.div`
+    display: flex;
+    height: 60px;
+    border: 1px solid red;
+  `;
+
+  const StyledProfilePictureArea = styled.span`
+    background-color: #4976bf;
+  `;
 
   return (
-    <div className="singlePostOnBoard" style={{...borderRed, ...width200, ...height300, ...grid}}>
-      <div className="thumbnail" style={{boxSizing: 'border-box', ...mockBgColorStyle, height:'200px'}}>
-        {'사진 미리보기'}
-      </div>
-      <div className="titlePreview" style={{...flex ,...borderRed, height: '60px'}}>
-        <span className="profilePicture" style={{...mockBgColorBlue}}>
-          {'프로필사진'}
-        </span>
-        <div className="text">
-          <span className="writer">
-            {'김코딩:'}
-          </span>
-          <span className="title">{'만나서 반갑습니다.'}</span>
-        </div>
-      </div>
+    <div className="singlePostOnBoard">
+      <StyledSinglePost>
+        <StyledThumbnail>
+          {'사진 미리보기'}
+        </StyledThumbnail>
+        <StyledTitlePreview>
+          <StyledProfilePictureArea>
+            {'프로필사진'}
+          </StyledProfilePictureArea>
+          <div className="text">
+            <span className="writer">
+              {'김코딩:'}
+            </span>
+            <span className="title">{'만나서 반갑습니다.'}</span>
+          </div>
+        </StyledTitlePreview>
+      </StyledSinglePost>
     </div>
   );
 }
