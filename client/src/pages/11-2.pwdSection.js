@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 
 const StyledPwdChangeSection = styled.div`
@@ -41,6 +41,34 @@ export default function PasswordChange() {
     });
   }
 
+  // curPwd 중복 검사
+
+  // 비밀번호 유효성 검사용 정규식
+  const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/;
+  const regOnlyNumber = /^[0-9]/g;
+  // const regOnlyAlphabets
+
+  useEffect(() => {
+    // newPwd 유효성검사
+    const isValidPwd = regPassword.test(newPwd);
+    if (newPwd.length > 0) {
+      if (isValidPwd) {
+        console.log('검사 통과');
+      } else {
+        const isOnlyNumber = regOnlyNumber.test(newPwd);
+        if (isOnlyNumber) {
+          console.log('문자를 포함해야 함');
+        }
+        if (newPwd.length < 4) {
+          console.log('옳지 않은 비밀번호입니다', '*비밀번호 길이는 4자 이상*');
+        }
+        if (newPwd.length > 15) {
+          console.log('옳지 않은 비밀번호입니다', '*비밀번호 길이는 15자 이하*');
+        }
+      }
+    }
+  }, [newPwd]);
+
   // button event
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -52,7 +80,7 @@ export default function PasswordChange() {
       <StyledPwdChangeSection>
         <StyledPwdInputsArea>
           <StyledPwdArea>
-            <p>현재 비밀번호</p>
+            <p className="inputTitle">현재 비밀번호</p>
             <input
               type='password'
               name='curPwd'
@@ -62,7 +90,7 @@ export default function PasswordChange() {
             />
           </StyledPwdArea>
           <StyledPwdArea>
-            <p>새 비밀번호</p>
+            <p className="inputTitle">새 비밀번호</p>
             <input
               type='password'
               name='newPwd'
@@ -70,6 +98,13 @@ export default function PasswordChange() {
               value={newPwd}
               onChange={handleOnChange}
             />
+            <ul>
+              <li>비밀번호를 입력해주세요.</li>
+              <li>길이가 4자 이상이어야 합니다.</li>
+              <li>길이가 15자 이하이어야 합니다.</li>
+              <li>숫자를 포함해야 합니다.</li>
+              <li>문자를 포함해야 합니다.</li>
+            </ul>
           </StyledPwdArea>
         </StyledPwdInputsArea>
         <div>
