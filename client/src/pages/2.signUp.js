@@ -17,9 +17,11 @@ export default function Signup(){
     animalYob: ''
   })
 
-  const handleInputValue = (key) => (e) => {
-    setUserInfo({ ...userInfo, [key]: e.target.value });
-    // console.log(e.target.value);
+  const {userId, password, nickName} = userInfo
+
+  const handleInputValue = (e) => {
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
   
   // 반려동물 type 선택
@@ -33,55 +35,76 @@ export default function Signup(){
   // 반려동물 출생년도
   const [startDate, serStartDate] = useState(new Date())
 
-
+//////////////////////////////////////////
 
   // userId 유효성검사 test
   const [userCheck, setUserCheck] = useState(false)
-  // const [passwordCheck, setPasswordCheck] = useState(false)
-  // const [nickNameCheck, setNickNameCheck] = useState(false)
+  const [passwordCheck, setPasswordCheck] = useState(false)
+  const [nickNameCheck, setNickNameCheck] = useState(false)
 
   // 유효성 검사 (아이디, 비밀번호, 닉네임) , 중복 사용이 있는지 확인 필요
   let regUserId = /^[a-zA-z0-9]{6,12}$/ // 아이디
   let regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/ // 비밀번호
   let regNickName = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]{2,15}$/   // 닉네임, 2 ~ 15자 한글, 영문, 숫자
 
-  const checkUserId = (str) => {
-      // 영문 대소문자와 숫자 6~12자리
-    console.log('아이디 유효성 검사 : ', regUserId.test(str.target.value))
-    return regUserId.test(str)? setUserCheck(true) : setUserCheck(false)
-  }
+  // 아이디
+  useEffect(() => {
+    if(userId){
+      const checkId = regUserId.test(userId)
+      // console.log('아이디 유효성 검사 : ', checkId)
+      // console.log(userId);
+  
+      if(checkId){
+        setUserCheck(true)
+      }else{
+        setUserCheck(false)
+        
+      }
+    }
+  }, [userId])
 
   // 비밀번호
-  const checkPassword = (str) => { 
-    //  4 ~ 15자 영문, 숫자 조합
-    console.log('비밀번호 유효성 검사 : ', regPassword.test(str.target.value))
-    // regPassword.test(str)? setPasswordCheck(true) : setPasswordCheck(false)
-  }
+  useEffect(() => {
+    if(password){
+      const checkPassword = regPassword.test(password)
   
+      if(checkPassword){
+        setPasswordCheck(true)
+      }else{
+        setPasswordCheck(false)
+        
+      }
+    }
+  }, [password])
+
   // 닉네임
-  const checkNickname = (str) => {
-    console.log('닉네임 유효성 검사 : ', regNickName.test(str.target.value))
-    // regNickName.test(str)? setNickNameCheck(true) : setNickNameCheck(false)
-  }
+  useEffect(() => {
+    if(nickName){
+      const checkNickName = regNickName.test(nickName)
+  
+      if(checkNickName){
+        setNickNameCheck(true)
+      }else{
+        setNickNameCheck(false)
+        
+      }
+    }
+  }, [nickName])
 
 
   // 입력한 정보가 중복되지않았고 유효성 검사 true 가 나왔을경우의 조건
-  // 일단 아이디, 패스워드, 닉네임이 가능한지 확인필요
-  // Selected !== '선택하세요' -> 요건 동작됨
 
   // 회원가입 버튼
   const handleSubmit = () =>{
-    
 
-
-    if (userCheck){
+    if (userCheck && passwordCheck && nickNameCheck && (Selected !== '선택하세요')){
       alert('회원가입 완료')
-      // axios
+      console.log(userCheck);
+
     } else {  // 입력하지 않았을때
       alert('모든 항목은 필수입니다.');
-      console.log('userCheck', userCheck);
+      console.log('회원가입버튼 userCheck',userCheck);
     }
-
   }
 
   return (
@@ -92,17 +115,17 @@ export default function Signup(){
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
               <p>아이디</p>
-              <input type='userId' placeholder='6 ~ 12자, 영문 또는 숫자' onChange={handleInputValue} onBlur={checkUserId}  />
+              <input type='userId' name='userId' placeholder='6 ~ 12자, 영문 또는 숫자' onChange={handleInputValue}   />
             </div>
 
             <div>
               <p>비밀번호</p>
-              <input type='password' placeholder='4 ~ 15자, 영문과 숫자 포함' type='password' onChange={handleInputValue} />
+              <input type='password' name='password' placeholder='4 ~ 15자, 영문과 숫자 포함' type='password' onChange={handleInputValue} />
             </div>   
 
             <div>
               <p>닉네임(2글자 이상)</p>
-              <input placeholder="2 ~ 15자, 한글, 영문, 숫자" type='nickName' onChange={handleInputValue} />
+              <input placeholder="2 ~ 15자, 한글, 영문, 숫자" type='nickName' name='nickName' onChange={handleInputValue} />
             </div>         
 
             <div>
@@ -122,7 +145,7 @@ export default function Signup(){
             
             <div>
               <p>반려동물의 이름</p>
-              <input type='animalName' onChange={handleInputValue('animalName')} />
+              <input type='animalName' name='animalName' onChange={handleInputValue} />
             </div>
 
             <div>
