@@ -8,4 +8,8 @@ export default function App() {
       <PasswordChange />
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d2c6d69050b3780f0c29169d0709d4d787f2f5fc
