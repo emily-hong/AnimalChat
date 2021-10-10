@@ -14,26 +14,26 @@ export default function PostRead(){
 
 
   // 댓글
-  const [userIdInput, setUserIdInput] = useState('')  // 댓글아이디는 작성안함
-  const [comment, setComment] = useState('')  // 작성된 댓글
-  const [comments, setComments] = useState([])
+  const [userId, setUserId] = useState('')  // 댓글아이디는 작성안함
+  const [reply, setReply] = useState('')  // 작성된 댓글
+  const [comments, setComments] = useState([])  // 댓글 목록
   
-  // 댓글작성버튼
+  // 댓글작성 버튼
   const handleButtonClick = (event) => {
-    const comment = {
-      id: comment.length + 1,
-      userId: userIdInput,
-      comment: comment,
+    const comment = { // 새로작성된 댓글
+      id: comments.length + 1,
+      // userId: userId,
+      comment: reply,
       createdAt: new Date().toLocaleDateString('ko-kr'),
       updatedAt: new Date().toLocaleDateString('ko-kr'),
     }
+    setComments([reply, ...setComments])
   }
 
   // 댓글내용
   const handleChangeMsg = (event) => {
-    setComment(event.target.value)
+    setReply(event.target.value)
   }
-
 
   return (
     <div>
@@ -77,7 +77,7 @@ export default function PostRead(){
 
       {/* 댓글 작성 */}
       <div className='postComment'>
-        <input className='inputComment' type='text' placeholder='댓글을 작성해주세요.'/>
+        <input className='inputComment' type='text' placeholder='댓글을 작성해주세요.' onChange={handleChangeMsg}/>
         <button onClick={handleButtonClick}>작성</button>
       </div>
       
@@ -104,6 +104,10 @@ export default function PostRead(){
             <button>삭제</button>
           </div>
         </li>
+
+        {comments.map((el) => {
+          <li reply={el}></li>
+        })}
       </ul>
     </div>
   )
