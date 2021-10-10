@@ -2,14 +2,17 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 export default function Navigation() {
+  // styled components
   const ButtonsArea = styled.div`
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     border: 1px solid red;
   `;
 
   const HomeButtonArea = styled.div`
-    margin-right: 2rem; 
+    display: flex;
+    margin-right: 2rem;
   `;
 
   return (
