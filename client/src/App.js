@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { Switch, Route} from "react-router-dom"
-// import axios from "axios"
+import { Switch, Route } from "react-router-dom"
+import axios from "axios"
 import NavBar from "./pages/0.navBar"
 // import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
@@ -8,41 +8,36 @@ import Signup from "./pages/2.signUp"
 import PostRead from "./pages/8.postRead"
 
 import "./App.css"
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
-  // /// 서버배포정상 완료시 테스트 코드
-  // const [isLogin, setIsLogin] = useState(false)
-  // function onclickButton() {
-  //   axios
-  //     .get("http://localhost:4001/", { withCredentials: true })
-  //     .then(function (response) {
-  //       setIsLogin(true)
-  //     })
-  // }
-  // return (
-  //   <div className="App">
-  //     <button onClick={onclickButton}> 버튼 </button>
-  //     {isLogin ? "hello world" : "welcome hell world :)"}
-  //   </div>
-  // )
-  // ///
-
-  // const [isLogin, setIsLogin] = useState(false)
-
-  // 회원가입
-  // https://animalchat/signup
+  console.log(url)
+  const [login, setLogin] = useState(false)
+  function getAxios() {
+    axios({
+      url: url,
+      method: "get",
+      withCredentials: true,
+    }).then((res) => setLogin(true))
+  }
 
   return (
     <>
       <NavBar />
-      <div className='entire'>
-
+      {login ? (
+        <div>통신 후</div>
+      ) : (
+        <button onClick={getAxios}>통신이 안되었을경우</button>
+      )}
+      <div className="entire">
         <Switch>
-          <Route path='/signup'>
+          <Route path="/signup">
             <Signup />
           </Route>
 
-          <Route path='/postread'>
+          <Route path="/postread">
             <PostRead />
           </Route>
 
@@ -57,8 +52,9 @@ function App() {
           {/* <Route path="/">
             {isLogin ? <Redirect to="/firstpage" /> : <Redirect to="/mainpage" />}
           </Route> */}
-
         </Switch>
       </div>
     </>
-
+  )
+}
+export default App

@@ -1,28 +1,32 @@
-require('dotenv').config();
-const fs = require('fs');
-const https = require('https');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const express = require('express');
-const app = express();
-const controllers = require('./controllers');
+require("dotenv").config()
+const fs = require("fs")
+const https = require("https")
+const cors = require("cors")
+const cookieParser = require("cookie-parser")
+const express = require("express")
+const app = express()
+const controllers = require("./controllers")
+
+const url =
+  process.env.API_URL ||
+  "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ["url"],
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS']
+    methods: ["GET", "POST", "OPTIONS"],
   })
-);
+)
 
 app.use(cookieParser())
 
 //test
-app.get('/', (req, res) => {
-  res.status(201).send('Hello World');
-});
+app.get("/", (req, res) => {
+  res.status(201).send("Hello World2")
+})
 
 
 //get 
@@ -46,17 +50,17 @@ app.delete('/commentdelete', controllers.commentdelete) // postlist -> commentde
 app.delete('/postdelete', controllers.postdelete) // postlist -> postdelete 게시글에서 해당 게시글 삭제시(postRead.js)
 app.delete('/userremove', controllers.userremove) // userinfo -> userremove 마이페이지에서 회원탈퇴(myPage.js)
 
+const HTTPS_PORT = process.env.HTTPS_PORT || 80
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 80;
-
-let server;
-if (fs.existsSync('./key.pem') && fs.existsSync('./cert.pem')) {  // https 프로토콜 사용 시
-  const privateKey = fs.readFileSync(__dirname + '/key.pem', 'utf8');
-  const certificate = fs.readFileSync(__dirname + '/cert.pem', 'utf8');
-  const credentials = { key: privateKey, cert: certificate };
-  server = https.createServer(credentials, app);
-  server.listen(HTTPS_PORT, () => console.log('https server runnning'));
+let server
+if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
+  // https 프로토콜 사용 시
+  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
+  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
+  const credentials = { key: privateKey, cert: certificate }
+  server = https.createServer(credentials, app)
+  server.listen(HTTPS_PORT, () => console.log("https server runnning"))
 } else {
-  server = app.listen(HTTPS_PORT, () => console.log('http server runnning'));
+  server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
 }
-module.exports = server;
+module.exports = server
