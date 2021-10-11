@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import Calendar from 'react-calendar'
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -17,7 +16,7 @@ export default function Signup(){
     animalYob: ''
   })
 
-  const {userId, password, nickName} = userInfo
+  const {userId, password, nickName, animalName} = userInfo
 
   const handleInputValue = (e) => {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
@@ -35,9 +34,7 @@ export default function Signup(){
   // 반려동물 출생년도
   const [startDate, serStartDate] = useState(new Date())
 
-//////////////////////////////////////////
-
-  // userId 유효성검사 test
+  // userId 유효성검사
   const [userCheck, setUserCheck] = useState(false)
   const [passwordCheck, setPasswordCheck] = useState(false)
   const [nickNameCheck, setNickNameCheck] = useState(false)
@@ -53,12 +50,12 @@ export default function Signup(){
       const checkId = regUserId.test(userId)
       // console.log('아이디 유효성 검사 : ', checkId)
       // console.log(userId);
-  
+
       if(checkId){
         setUserCheck(true)
       }else{
         setUserCheck(false)
-        
+        // 유효하지않다는 메세지 띄우기
       }
     }
   }, [userId])
@@ -72,7 +69,7 @@ export default function Signup(){
         setPasswordCheck(true)
       }else{
         setPasswordCheck(false)
-        
+        // 유효하지않다는 메세지 띄우기
       }
     }
   }, [password])
@@ -86,18 +83,17 @@ export default function Signup(){
         setNickNameCheck(true)
       }else{
         setNickNameCheck(false)
-        
+        // 유효하지않다는 메세지 띄우기
       }
     }
   }, [nickName])
 
+  // * 추가필요 입력한 아이디, 닉네임이 중복되지 않아야함 : 입력후 회원가입버튼 눌렀을시 서버에 데이터가 보내지면서 기존 유저정보에서 중복검사
 
-  // 입력한 정보가 중복되지않았고 유효성 검사 true 가 나왔을경우의 조건
-
-  // 회원가입 버튼
+  // 회원가입 버튼  
   const handleSubmit = () =>{
 
-    if (userCheck && passwordCheck && nickNameCheck && (Selected !== '선택하세요')){
+    if (userCheck && passwordCheck && nickNameCheck && (Selected !== '선택하세요') && userInfo.animalName.length !== 0){
       alert('회원가입 완료')
       console.log(userCheck);
 
@@ -116,16 +112,19 @@ export default function Signup(){
             <div>
               <p>아이디</p>
               <input type='userId' name='userId' placeholder='6 ~ 12자, 영문 또는 숫자' onChange={handleInputValue}   />
+              {userCheck? null : <div style={{ color: "red", fontSize: "10px" }}>아이디 형식이 올바르지 않습니다.</div>}
             </div>
 
             <div>
               <p>비밀번호</p>
               <input type='password' name='password' placeholder='4 ~ 15자, 영문과 숫자 포함' type='password' onChange={handleInputValue} />
+              {passwordCheck? null : <div style={{ color: "red", fontSize: "10px" }}>비밀번호 형식이 올바르지 않습니다.</div>}
             </div>   
 
             <div>
               <p>닉네임(2글자 이상)</p>
               <input placeholder="2 ~ 15자, 한글, 영문, 숫자" type='nickName' name='nickName' onChange={handleInputValue} />
+              {nickNameCheck? null : <div style={{ color: "red", fontSize: "10px" }}>닉네임 형식이 올바르지 않습니다.</div>}
             </div>         
 
             <div>
@@ -140,6 +139,7 @@ export default function Signup(){
                   </option>
                 ))}
               </select>
+              {Selected !== '선택하세요' ? null :  <div style={{ color: "red", fontSize: "10px" }}>종류를 선택하세요.</div>}
 
             </div>
             
