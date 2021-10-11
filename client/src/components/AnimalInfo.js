@@ -5,6 +5,7 @@ const Outer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
+  padding: 1rem;
 `;
 
 const PictureAndText = styled.div`
@@ -52,6 +53,10 @@ const ButtonSpace = styled.div`
   align-items: center;
 `;
 
+const Button = styled.button`
+  margin: 1rem;
+`;
+
 export default function AnimalInfo() {
   return (
     <div className='singleAnimalInfo'>
@@ -65,15 +70,19 @@ export default function AnimalInfo() {
           </PictureSpace>
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
-            <h4>반려동물 이름</h4>
-            <p>{'햄찌'}</p>
-            <h4>출생년도</h4>
-            <p>{'2009. 2. 8.'}</p>
+            <div>
+              <h4>반려동물 이름</h4>
+              <p>{'햄찌'}</p>
+            </div>
+            <div>
+              <h4>출생년도</h4>
+              <p>{'2009. 2. 8.'}</p>
+            </div>
           </TextSpace>
         </PictureAndText>
         <ButtonSpace>
-          {/* TODO : 수정 페이지 연결 */}
-          <button>수정</button>
+          {/* TODO : 수정 페이지 Link, 라우팅 */}
+          <Button>수정</Button>
         </ButtonSpace>
       </Outer>
     </div>
