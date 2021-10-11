@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
 import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
@@ -15,7 +15,7 @@ import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
 // import MyPageEdit from "./pages/10.myPageEdit"
-// import PwdEdit from "./pages/11.pwdEdit"
+import PasswordChange from "./pages/11-2.pwdSection"
 
 import "./App.css"
 const url =
@@ -24,12 +24,11 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-  function getAxios() {
-    axios({
-      url: url,
-      method: "post",
-      withCredentials: true,
-    }).then((res) => setIsLogin(true))
+  const history = useHistory()
+
+  function loginFunc() {
+    setIsLogin(!isLogin)
+    history.push("/")
   }
 
   return (
@@ -41,7 +40,7 @@ function App() {
             <FirstPage />
           </Route>
           <Route exact path="/signup">
-            <Signup />
+            <Signup loginFunc={loginFunc} />
           </Route>
           <Route exact path="/mainpage">
             <MainPage />
@@ -76,10 +75,10 @@ function App() {
 
           {/* <Route path="/mypageedit">
             <MyPageEdit />
-          </Route>
-          <Route path="/pwdedit">
-            <PwdEdit />
           </Route> */}
+          <Route path="/pwdedit">
+            <PasswordChange />
+          </Route>
 
           <Route path="/">
             {isLogin ? (
