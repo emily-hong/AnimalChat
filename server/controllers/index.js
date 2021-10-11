@@ -10,7 +10,7 @@ module.exports={
   signup: require('./users/signup'),
   userinfo: require('./users/userinfo'),
   userinfochange: require('./users/userinfochange'),
-  // commentdelete: require('./del/commentdelete'),
-  // postdelete: require('./del/postdelete'),
-  // userremove: require('./del/userremove')
+  commentdelete: require('./del/commentdelete'),
+  postdelete: require('./del/postdelete'),
+  userremove: require('./del/userremove')
 }
