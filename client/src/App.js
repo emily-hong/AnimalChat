@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Switch, Route } from "react-router-dom"
-// import axios from "axios"
+import axios from "axios"
 import NavBar from "./pages/0.navBar"
 // import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
@@ -14,9 +14,23 @@ const url =
 
 function App() {
   console.log(url)
+  const [login, setLogin] = useState(false)
+  function getAxios() {
+    axios({
+      url: url,
+      method: "get",
+      withCredentials: true,
+    }).then((res) => setLogin(true))
+  }
+
   return (
     <>
       <NavBar />
+      {login ? (
+        <div>통신 후</div>
+      ) : (
+        <button onClick={getAxios}>통신이 안되었을경우</button>
+      )}
       <div className="entire">
         <Switch>
           <Route path="/signup">
