@@ -5,6 +5,11 @@ import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
 import MainPage from "./pages/4-2.mainPage"
+import Hamster from "./pages/5-1.hamster"
+import Chick from "./pages/5-2.chick"
+import Parrot from "./pages/5-3.parrot"
+import Rabbit from "./pages/5-4.rabbit"
+import Hedgehog from "./pages/5-5.hedgehog"
 import Post from "./pages/6.post"
 import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
@@ -30,21 +35,31 @@ function App() {
   return (
     <>
       <NavBar />
-      {isLogin ? (
-        <div>통신 후</div>
-      ) : (
-        <button onClick={getAxios}>통신이 안되었을경우</button>
-      )}
       <div className="entire">
         <Switch>
-          <Route path="/firstpage">
+          <Route exact path="/firstpage">
             <FirstPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <Signup />
           </Route>
           <Route exact path="/mainpage">
             <MainPage />
+          </Route>
+          <Route exact path="/board/hamster">
+            <Hamster />
+          </Route>
+          <Route exact path="/board/chick">
+            <Chick />
+          </Route>
+          <Route exact path="/board/parrot">
+            <Parrot />
+          </Route>
+          <Route exact path="/board/rabbit">
+            <Rabbit />
+          </Route>
+          <Route exact path="/board/hedgehog">
+            <Hedgehog />
           </Route>
           <Route path="/post">
             <Post />
@@ -58,6 +73,7 @@ function App() {
           <Route path="/mypage">
             <MyPage />
           </Route>
+
           {/* <Route path="/mypageedit">
             <MyPageEdit />
           </Route>
