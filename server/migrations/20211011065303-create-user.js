@@ -17,15 +17,6 @@ module.exports = {
       nickname: {
         type: Sequelize.STRING
       },
-      animaltype: {
-        type: Sequelize.STRING
-      },
-      animalname: {
-        type: Sequelize.STRING
-      },
-      animalyob: {
-        type: Sequelize.INTEGER
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
