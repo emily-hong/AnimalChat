@@ -11,12 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    
     }
   };
   post_user.init({
     post_id: DataTypes.STRING,
-    userId: DataTypes.STRING
+    userId: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'post_user',

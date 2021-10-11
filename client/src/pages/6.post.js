@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
+import axios from "axios"
 
 const Body = styled.div`
   box-sizing: border-box;
@@ -154,9 +155,63 @@ const PostCancelBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
+const url = 
+  process.env.REACT_APP_URL ||
+  'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
 
 export const Post = (props) => {
-  //   const history = useHistory()
+  const history = useHistory()
+
+  // 1. input title, content 
+  // 2. 제목과 내용 필수, 사진은 선택으로 함
+  const [inputTitle, setInputTitle] = useState('')
+  const [inputContent, setInputContent] = useState('')
+    // const [inputImg, setInputImg] = useState() // 사진 수정했을때
+
+  // 작성되어지는 제목, 내용
+  const handleInputValue = (e) => {
+    if(e.target.name === 'title'){
+      setInputTitle(e.target.value)
+    }else if(e.target.name === 'content'){
+      setInputContent(e.target.value)
+    }
+    console.log(e.target.value)
+  }
+
+  // 작성 버튼
+  // 수정된 게시물 정보 -> 서버로
+  // 수정 페이지 postread에서 보여야함
+  const postSendButton = () => {
+    if ( inputTitle.length > 0 && inputContent.length > 0 ){ // 제목, 내용 작성했을 때
+      console.log('작성완료 쪽')
+      axios({
+        url: url + '/postsend',
+        method: 'post',
+        data: {
+          post_title: inputTitle,
+          post_content: inputContent,
+          // post_img: inputImg,
+        },
+        withCredentials: true,
+      })
+      .then(() => {
+        alert('작성 완료')
+        // 작성 완료
+        history.push('/postread')
+      })
+      .catch(err => console.log(err))
+
+    }else{
+      alert('제목과 내용은 필수사항 입니다.')
+    }
+  }
+
+  // 취소 버튼
+  const cancleButton = () => {
+    // 해당 동물의 게시판으로 가야함
+    history.goBack()
+  }
+
 
   return (
     <Body>
@@ -176,14 +231,14 @@ export const Post = (props) => {
           </TitlePostDiv2>
         </TitlePostDiv3>
         <TitlePostDiv>
-          <TitleBox placeholder="제목을 적으세요." type="text" />
-          <PostBox placeholder="글을 적으세요." type="text" />
+          <TitleBox placeholder="제목을 적으세요." type="text" name='title' onChange={handleInputValue} />
+          <PostBox placeholder="글을 적으세요." type="text" name='content' onChange={handleInputValue} />
           <TitlePostDiv4>
             <PostUploadBtn>
-              <PostCompletionBtnMargin>작성</PostCompletionBtnMargin>
+              <PostCompletionBtnMargin onClick={postSendButton} >작성</PostCompletionBtnMargin>
             </PostUploadBtn>
             <CancelBtn>
-              <PostCancelBtnMargin>취소</PostCancelBtnMargin>
+              <PostCancelBtnMargin onClick={cancleButton}>취소</PostCancelBtnMargin>
             </CancelBtn>
           </TitlePostDiv4>
         </TitlePostDiv>
