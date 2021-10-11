@@ -27,7 +27,6 @@ function App() {
     }).then((res) => setIsLogin(true))
   }
 
-export default function App () {
   return (
     <>
       <NavBar />
@@ -66,13 +65,13 @@ export default function App () {
             <PwdEdit />
           </Route> */}
 
-          {/* <Route path="/">
+          <Route path="/">
             {isLogin ? (
               <Redirect to="/mainpage" />
             ) : (
               <Redirect to="/firstpage" />
             )}
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </>
