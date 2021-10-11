@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import Navigation from './components/Navigation'
-import UserInformationSection from './pages/9-2.myPageSection'
+import UserInformationSection from './pages/9.myPageSection'
 
 export default function App () {
   return (
