@@ -65,13 +65,13 @@ function App() {
             <PwdEdit />
           </Route> */}
 
-          {/* <Route path="/">
+          <Route path="/">
             {isLogin ? (
               <Redirect to="/mainpage" />
             ) : (
               <Redirect to="/firstpage" />
             )}
-          </Route> */}
+          </Route>
         </Switch>
       </div>
     </>

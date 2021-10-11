@@ -1,8 +1,8 @@
-import { useHistory } from "react-router-dom"
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import DatePicker, { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+// import { useHistory } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
+import DatePicker, { registerLocale } from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 axios.defaults.withCredentials = true
 
@@ -59,6 +59,8 @@ export default function Signup() {
   // 반려동물 출생년도
   const [startDate, serStartDate] = useState(new Date())
   console.log(dateFormat(startDate))
+  // console.log(getMonth())
+  // console.log(getDate())
 
   function dateFormat(date) {
     let month = date.getMonth() + 1
@@ -232,10 +234,11 @@ export default function Signup() {
               <DatePicker
                 selected={startDate}
                 onChange={(date) => {
-                  serStartDate(dateFormat(date))
+                  console.log(dateFormat(date))
+                  serStartDate(date)
                   setUserInfo({
                     ...userInfo,
-                    animalYob: startDate,
+                    animalYob: dateFormat(date),
                   })
                 }}
               />
@@ -247,10 +250,9 @@ export default function Signup() {
               </button>
               <button>취소</button>
             </div>
-
           </form>
         </center>
       </div>
     </>
-  );
+  )
 }
