@@ -26,6 +26,7 @@ app.use(logger("dev")) //서버요청 로그
 app.use(cookieParser())
 
 //get
+app.get("/auth", controllers.auth)
 app.get("/postlist", controllers.postlist) //signin, signout, signup,
 app.get("/userinfo", controllers.userinfo) // postlist -> userinfo 마이페이지에서 반려동물 정보 확인할 때(myPage.js)
 app.get("/commentlist", controllers.commentlist) // postlist -> commentlist 게시글 볼 때 다른 사용자가 남긴 댓글 보기(postRead.js)

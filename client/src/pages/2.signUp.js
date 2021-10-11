@@ -1,7 +1,6 @@
-// import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import DatePicker, { registerLocale } from "react-datepicker"
+import DatePicker, { registerLocale, useHistory } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 axios.defaults.withCredentials = true
@@ -10,9 +9,7 @@ const url =
   process.env.REACT_APP_URL ||
   "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
-export default function Signup() {
-  // const history = useHistory();
-
+export default function Signup(props) {
   const [userInfo, setUserInfo] = useState({
     userId: "",
     password: "",
@@ -141,6 +138,7 @@ export default function Signup() {
       }).then((res) => {
         if (res.status === 201) {
           alert("회원가입 완료")
+          props.loginFunc()
         } else if (res.status === 202) {
           alert("아이디 중복입니다.")
         } else if (res.status === 203) {
