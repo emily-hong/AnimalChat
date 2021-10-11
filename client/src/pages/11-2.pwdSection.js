@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const StyledPwdChangeSection = styled.div`
   display: flex;
@@ -25,18 +25,17 @@ const StyledSingleInputArea = styled.div`
   // }
 `;
 
-const StyledRequirementsList = styled.ul`
-  & > li {
-    list-style-type: disc;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: #de0f00;
-    background-color: transparent;
+const StyledList = styled.li`
+  ${props => 
+    props.hide &&
+    css`display: none;`
   }
-
-  // & > li.right {
-  //   color: #03a100;
-  // }
+  flex-direction: column;
+  list-style-type: disc;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #de0f00;
+  background-color: transparent;
 `;
 
 export default function PasswordChange() {
@@ -144,13 +143,15 @@ export default function PasswordChange() {
               value={newPwd}
               onChange={handleOnChange}
             />
-            <StyledRequirementsList>
+            <ul className="validityRequirements">
               {/* {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
               {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
               {isAllNumbers? <li>문자를 포함해야 합니다</li> : null}
               {isTooShort? <li>4자 이상이어야 합니다</li> : null}
               {isTooLong? <li>15자 이하이어야 합니다</li> : null} */}
-            </StyledRequirementsList>
+              <StyledList hide>하이드 테스트</StyledList>
+              <StyledList>하이드 테스트 2</StyledList>
+            </ul>
           </StyledSingleInputArea>
         </StyledPwdInputsArea>
         <div>
