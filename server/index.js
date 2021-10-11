@@ -1,20 +1,19 @@
 require("dotenv").config()
-const fs = require('fs')
+const fs = require("fs")
+const https = require("https")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const express = require("express")
 const app = express()
 const controllers = require("./controllers")
 
-const logger = require('morgan')
-const { sequelize } = require("./models")
-const port = 80
+const logger = require("morgan")
 
 const url =
   process.env.API_URL ||
   "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com/"
 
-app.use(express.json()) 
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
@@ -23,13 +22,8 @@ app.use(
     methods: ["GET", "POST", "OPTIONS"],
   })
 )
-app.use(logger('dev')) //서버요청 로그
+app.use(logger("dev")) //서버요청 로그
 app.use(cookieParser())
-
-//test
-app.get("/", (req, res) => {
-  res.status(201).send("Hello World2")
-})
 
 //get
 app.get("/postlist", controllers.postlist) //signin, signout, signup,
@@ -50,17 +44,6 @@ app.post("/userinfochange", controllers.userinfochange) // postlist -> userinfoc
 app.delete("/commentdelete", controllers.commentdelete) // postlist -> commentdelete 게시글에서 댓글 삭제시(postRead.js)
 app.delete("/postdelete", controllers.postdelete) // postlist -> postdelete 게시글에서 해당 게시글 삭제시(postRead.js)
 app.delete("/userremove", controllers.userremove) // userinfo -> userremove 마이페이지에서 회원탈퇴(myPage.js)
-
-//데이터베이스 연결 
-sequelize.sync({ force: false })
-.then(() => {
-  console.log('데이터베이스 연결 성공')
-})
-.catch((err) => {
-  console.log(err)
-})
-
-module.exports = app;
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 80
 

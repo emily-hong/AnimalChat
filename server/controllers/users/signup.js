@@ -1,5 +1,5 @@
 const { user } = require("../../models")
-//const { generateAccessToken, generateRefreshToken } = require('../tokenFunctions');
+const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
   console.log(req.body)
@@ -22,21 +22,27 @@ module.exports = async (req, res) => {
     //id가 조회
     const userInfo = await user.findOne({
       where: {
-        userId,
+        user_id: userId,
       },
     })
-
-    //id가 이미 있는 사람인 경우
+    // console.log(userInfo)
+    // id가 이미 있는 사람인 경우
     if (userInfo) {
       res.status(402).send("이미 가입되어 있는 회원입니다.")
     }
     //id가 없는 사람인경우 아이디 만들어줌
     else {
       const userCreate = await user.create({
-        userId,
-        password,
-        nickname,
+        user_id: userId,
+        password: password,
+        nickname: nickName,
       })
+      res
+        .cookie("jwt", generateAccessToken(userCreate.dataValues), {
+          httpOnly: true,
+        })
+        .status(201)
+        .send({ message: "ok" })
     }
   }
 
