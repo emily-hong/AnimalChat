@@ -1,4 +1,5 @@
 require("dotenv").config()
+const fs = require('fs')
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const express = require("express")
@@ -56,27 +57,22 @@ sequelize.sync({ force: false })
   console.log('데이터베이스 연결 성공')
 })
 .catch((err) => {
-  console.logo(err)
-})
-
-app.listen(port, () => {
-  console.log(`🚀 Server is starting on ${port}`)
+  console.log(err)
 })
 
 module.exports = app;
 
+const HTTPS_PORT = process.env.HTTPS_PORT || 80
 
-//const HTTPS_PORT = process.env.HTTPS_PORT || 80
-
-// let server
-// if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
-//   // https 프로토콜 사용 시
-//   const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
-//   const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
-//   const credentials = { key: privateKey, cert: certificate }
-//   server = https.createServer(credentials, app)
-//   server.listen(HTTPS_PORT, () => console.log("https server runnning"))
-// } else {
-//   server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
-// }
-// module.exports = server
+let server
+if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
+  // https 프로토콜 사용 시
+  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
+  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
+  const credentials = { key: privateKey, cert: certificate }
+  server = https.createServer(credentials, app)
+  server.listen(HTTPS_PORT, () => console.log("https server runnning"))
+} else {
+  server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
+}
+module.exports = server
