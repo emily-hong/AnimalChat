@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom"
 import React, { useState } from "react"
 import styled from "styled-components"
+import axios from "axios"
 
 const Container = styled.div`
   /* box-sizing: border-box; */
@@ -78,38 +79,55 @@ export const SignInModalForm = styled.div`
   height: 500px; */
 `
 
+axios.defaults.withCredentials = true
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
+
+
 export const FirstPage = (props) => {
+
   const [isOpen, setIsOpen] = useState(false)
-  const [loginInfo, setLoginInfo] = useState(null)
+  const [loginInfo, setLoginInfo] = useState({ id: '', password: '' })
   const [errMessage, setErrMessage] = useState(false)
   const history = useHistory()
+
   function signup() {
     history.push("/signup")
   }
   function openSignInModalHandler() {
     setIsOpen(!isOpen)
-    console.log(isOpen)
-    // history.push("/signup")
+    //console.log(isOpen)
+    //history.push("/signup")
   }
 
   const handleInputValue = (key) => (e) => {
-    console.log({ [key]: e.target.value })
+    //console.log({ [key]: e.target.value })
     setLoginInfo({ ...loginInfo, [key]: e.target.value })
   }
 
-  function signUpHandler() {
-    console.log("로그인 버튼클릭시 콘솔")
-    console.log(loginInfo)
+  function signUpHandler() { //로그인시 
+    //console.log("로그인 버튼클릭시 콘솔")
+    //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
+    //로그인 정보를 입력하지 않았을 때 
     if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
       setErrMessage(" 아이디와 패스워드를 입력하세요.")
-    } else {
-      console.log("서버로 로그인 악시오스 보낼준비 완료")
-      setErrMessage(" 로그인 로딩중 ...")
+    } 
+    else { //로그인 정보를 모두 입력했을 때 
+      axios({
+        url: url + "/signin",
+        method: "post",
+        data: { id: loginInfo.id, password: loginInfo.password },
+        withCredentials: true,
+      })
+      .then((res) => alert("로그인 완료") )
+
     }
   }
+
   function socialSignUpHandler() {
-    console.log("소셜로그인 준비완료")
+    //console.log("소셜로그인 준비완료")
   }
 
   return (
