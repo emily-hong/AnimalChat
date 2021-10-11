@@ -11,14 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // models.post.hasMany(models.comment, {
-      //   foreignKey: 'id', 
-      //   sourceKey: 'comment_user_id'
-      // })
-      // models.post.hasMany(models.post_user, {
-      //   foreignKey: 'id', 
-      //   sourceKey: 'userId'
-      // })
+  
+      post.hasMany(models.comment, {
+        foreignKey: 'comment_user_id'
+      })
+      post.hasMany(models.post_user, {
+        foreignKey: 'userId'
+      })
     }
   };
   post.init({
