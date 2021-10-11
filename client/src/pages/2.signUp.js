@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DatePicker, { registerLocale } from "react-datepicker";
@@ -6,7 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 axios.defaults.withCredentials = true;
 
 export default function Signup(){
-  // const history = useHistory();
+  const history = useHistory();
+  
   const [userInfo, setUserInfo] = useState({
     userId: '',
     password: '',
@@ -92,11 +94,10 @@ export default function Signup(){
 
   // 회원가입 버튼  
   const handleSubmit = () =>{
-
     if (userCheck && passwordCheck && nickNameCheck && (Selected !== '선택하세요') && userInfo.animalName.length !== 0){
       alert('회원가입 완료')
+      history.push('/mainpage')
       console.log(userCheck);
-
     } else {  // 입력하지 않았을때
       alert('모든 항목은 필수입니다.');
       console.log('회원가입버튼 userCheck',userCheck);
@@ -158,25 +159,9 @@ export default function Signup(){
               <button>취소</button>
             </div>
 
-            {/* <div className='alert-box'>{errorMessage}</div> */}
           </form>
         </center>
       </div>
     </>
   );
 }
-
-
-
-/*
-  Input
-    아이디(유효성검사)
-    비밀번호(유효성검사)
-    닉네임(유효성검사, 2글자 이상)
-    반려동물 종류(드롭박스 선택)
-    반려동물 이름
-    반려동물 나이(출생년도 선택)
-  버튼
-    회원가입
-    취소
-*/
