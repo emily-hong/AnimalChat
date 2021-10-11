@@ -94,19 +94,18 @@ export default function PasswordChange() {
           let isOnlyAlphabets = regOnlyAlphabets.test(str);
           if (isOnlyNumber) {
             console.log('문자를 포함해야 함');
-            // setNewPwdValidity({ ...newPwdValidity, isAllNumbers: true });
-          }
-          if (isOnlyAlphabets) {
+            setNewPwdValidity({ ...newPwdValidity, isAllNumbers: true, isAllAlphabets: false });
+          } else if (isOnlyAlphabets) {
             console.log('숫자를 포함해야 함');
-            // setNewPwdValidity({ ...newPwdValidity, isAllAlphabets: true });
+            setNewPwdValidity({ ...newPwdValidity, isAllAlphabets: true, isAllNumbers: false });
           }
+
           if (str.length < 4) {
             console.log('*비밀번호 길이는 4자 이상*');
-            // setNewPwdValidity({ ...newPwdValidity, isTooShort: true });
-          }
-          if (str.length > 15) {
+            setNewPwdValidity({ ...newPwdValidity, isTooShort: true, isTooLong: false });
+          } else if (str.length > 15) {
             console.log('*비밀번호 길이는 15자 이하*');
-            // setNewPwdValidity({ ...newPwdValidity, isTooLong: true });
+            setNewPwdValidity({ ...newPwdValidity, isTooLong: true, isTooShort: false });
           }
         }
       } else if (str.length === 0) {
@@ -146,8 +145,11 @@ export default function PasswordChange() {
               onChange={handleOnChange}
             />
             <StyledRequirementsList>
-              {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
+              {/* {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
               {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
+              {isAllNumbers? <li>문자를 포함해야 합니다</li> : null}
+              {isTooShort? <li>4자 이상이어야 합니다</li> : null}
+              {isTooLong? <li>15자 이하이어야 합니다</li> : null} */}
             </StyledRequirementsList>
           </StyledSingleInputArea>
         </StyledPwdInputsArea>
