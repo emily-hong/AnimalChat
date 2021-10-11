@@ -46,13 +46,15 @@ const QuitButton = styled.button`
   color: #AAAAAA;
 `;
 
-export default function UserInformationSection () {
+export default function MyPageSection () {
   return (
-    <div className="UserInformationSection">
+    <div className="MyPageSection">
       <IdDisplay>
+        {/* TODO : axios 요청 -> 회원정보 -> id */}
         <span>아이디 : {'axios 요청해서 로그인한 회원 id 넣기'}</span>
       </IdDisplay>
       <AnimalsList>
+        {/* TODO : axios 요청 -> 동물 정보 -> map */}
         <AnimalInfo />
         <AnimalInfo />
         <AnimalInfo />
@@ -69,4 +71,3 @@ export default function UserInformationSection () {
 // id 넣는 부분 : 회원 정보 요청
 // 동물 정보 넣는 부분 : axios 요청 받아서 map으로 뿌리기
   // 별도 컴포넌트 필요할듯
-// 
