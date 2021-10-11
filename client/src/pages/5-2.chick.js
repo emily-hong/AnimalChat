@@ -1,9 +1,13 @@
 import Posts from "../components/Posts";
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 
 export default function Chick(props) {
   return (
     <div className="mainPage">
-      <h1>chick</h1>
+      <Header />
+      <Navigation />
+      <h2>병아리</h2>
       <Posts mockBgColorPost={'#D9CAB3'} />
     </div>
   );
