@@ -15,7 +15,7 @@ const StyledPwdInputsArea = styled.div`
   justify-content: center;
 `;
 
-const StyledSingleInputArea = styled.div`
+const StyledPwdFieldset = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,16 +26,12 @@ const StyledSingleInputArea = styled.div`
 `;
 
 const StyledList = styled.li`
-  ${props => 
-    props.hide &&
-    css`display: none;`
-  }
-  flex-direction: column;
   list-style-type: disc;
+  flex-direction: column;
   font-size: 0.8rem;
-  font-weight: bold;
   color: #de0f00;
   background-color: transparent;
+  margin: 0;
 `;
 
 export default function PasswordChange() {
@@ -69,7 +65,6 @@ export default function PasswordChange() {
     isAllNumbers: false,
     isAllAlphabets: false
   });
-  const { isNewPwdInput, isTooShort, isTooLong, isAllNumbers, isAllAlphabets } = newPwdValidity;
 
   // TODO curPwd 중복 검사 (axios 필요)
 
@@ -83,8 +78,8 @@ export default function PasswordChange() {
 
       // newPwd 유효성검사
       if (str.length > 0) {
-        const isValidPwd = regPassword.test(str);
         setNewPwdValidity({ ...newPwdValidity, isNewPwdInput: true });
+        const isValidPwd = regPassword.test(str);
 
         if (isValidPwd) {
           console.log('검사 통과');
@@ -107,8 +102,6 @@ export default function PasswordChange() {
             setNewPwdValidity({ ...newPwdValidity, isTooLong: true, isTooShort: false });
           }
         }
-      } else if (str.length === 0) {
-        // setNewPwdValidity({ ...newPwdValidity, isNewPwdInput: false });
       }
     }
     getValidity(newPwd);
@@ -124,7 +117,7 @@ export default function PasswordChange() {
     <div className="passwordChangeComponent" style={{border: '1px solid red'}}>
       <StyledPwdChangeSection>
         <StyledPwdInputsArea>
-          <StyledSingleInputArea>
+          <StyledPwdFieldset>
             <p className="inputTitle">현재 비밀번호</p>
             <input
               type='password'
@@ -133,8 +126,8 @@ export default function PasswordChange() {
               value={curPwd}
               onChange={handleOnChange}
             />
-          </StyledSingleInputArea>
-          <StyledSingleInputArea>
+          </StyledPwdFieldset>
+          <StyledPwdFieldset>
             <p className="inputTitle">새 비밀번호</p>
             <input
               type='password'
@@ -144,15 +137,23 @@ export default function PasswordChange() {
               onChange={handleOnChange}
             />
             <ul className="validityRequirements">
-              {/* {isNewPwdInput? null : <li>비밀번호를 입력해주세요</li>}
-              {isAllAlphabets? <li>숫자를 포함해야 합니다</li> : null}
-              {isAllNumbers? <li>문자를 포함해야 합니다</li> : null}
-              {isTooShort? <li>4자 이상이어야 합니다</li> : null}
-              {isTooLong? <li>15자 이하이어야 합니다</li> : null} */}
-              <StyledList hide>하이드 테스트</StyledList>
-              <StyledList>하이드 테스트 2</StyledList>
+              {newPwd.length !== 0 ? '' : <StyledList>비밀번호를 입력해주세요</StyledList>}
+              {newPwd.length < 4 ? <StyledList>4 이상</StyledList> : ''}
+              {newPwd.length > 15 ? <StyledList>15 이하</StyledList> : ''}
+              {
+                (newPwd) => {
+                  const regOnlyNumber = /^[0-9]/; // 숫자만
+                  regOnlyNumber.test(newPwd) ? <StyledList>문자를 포함해야 합니다</StyledList> : '';
+                }
+              }
+              {
+                (newPwd) => {
+                  const regOnlyAlphabets = /^[a-zA-Z]*$/; // 문자만
+                  regOnlyAlphabets.test(newPwd) ? <StyledList>숫자를 포함해야 합니다</StyledList> : '';
+                }
+              }
             </ul>
-          </StyledSingleInputArea>
+          </StyledPwdFieldset>
         </StyledPwdInputsArea>
         <div>
           <button onClick={handleButtonClick}>확인</button>
