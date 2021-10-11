@@ -54,12 +54,7 @@ module.exports = async (req, res) => {
         animalname: animalName,
         animalyob: animalYob,
       })
-      res
-        .cookie("jwt", generateAccessToken(userCreate.dataValues), {
-          httpOnly: true,
-        })
-        .status(201)
-        .send({ message: "ok" })
+      res.status(201).send({ message: "ok" })
     }
   }
 
