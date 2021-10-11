@@ -58,9 +58,6 @@ export default function Signup() {
 
   // 반려동물 출생년도
   const [startDate, serStartDate] = useState(new Date())
-  console.log(dateFormat(startDate))
-  // console.log(getMonth())
-  // console.log(getDate())
 
   function dateFormat(date) {
     let month = date.getMonth() + 1
@@ -141,7 +138,15 @@ export default function Signup() {
         method: "post",
         data: userInfo,
         withCredentials: true,
-      }).then((res) => alert("회원가입 완료"))
+      }).then((res) => {
+        if (res.status === 201) {
+          alert("회원가입 완료")
+        } else if (res.status === 202) {
+          alert("아이디 중복입니다.")
+        } else if (res.status === 203) {
+          alert("닉네임 중복입니다.")
+        }
+      })
     } else {
       // 입력하지 않았을때
       alert("모든 항목은 필수입니다.")
