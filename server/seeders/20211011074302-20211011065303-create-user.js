@@ -21,8 +21,9 @@ module.exports = {
     /**
      * Add commands to revert seed here.
      *
-     * Example:
+     * Example: 유저 데이터 삭제할 때 
      * await queryInterface.bulkDelete('People', null, {});
      */
+     await queryInterface.bulkDelete('users', null, {});
   },
 }

@@ -27,6 +27,7 @@ function App() {
     }).then((res) => setIsLogin(true))
   }
 
+export default function App () {
   return (
     <>
       <NavBar />
