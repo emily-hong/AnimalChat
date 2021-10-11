@@ -1,7 +1,6 @@
-// import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import DatePicker, { registerLocale } from "react-datepicker"
+import DatePicker, { registerLocale, useHistory } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 axios.defaults.withCredentials = true
@@ -10,9 +9,7 @@ const url =
   process.env.REACT_APP_URL ||
   "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
-export default function Signup() {
-  // const history = useHistory();
-
+export default function Signup(props) {
   const [userInfo, setUserInfo] = useState({
     userId: "",
     password: "",
@@ -58,9 +55,6 @@ export default function Signup() {
 
   // 반려동물 출생년도
   const [startDate, serStartDate] = useState(new Date())
-  console.log(dateFormat(startDate))
-  // console.log(getMonth())
-  // console.log(getDate())
 
   function dateFormat(date) {
     let month = date.getMonth() + 1
@@ -141,7 +135,16 @@ export default function Signup() {
         method: "post",
         data: userInfo,
         withCredentials: true,
-      }).then((res) => alert("회원가입 완료"))
+      }).then((res) => {
+        if (res.status === 201) {
+          alert("회원가입 완료")
+          props.loginFunc()
+        } else if (res.status === 202) {
+          alert("아이디 중복입니다.")
+        } else if (res.status === 203) {
+          alert("닉네임 중복입니다.")
+        }
+      })
     } else {
       // 입력하지 않았을때
       alert("모든 항목은 필수입니다.")
