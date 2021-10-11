@@ -163,49 +163,50 @@ const url =
 export const PostEdit = (props) => {
   const history = useHistory()
 
-  // const [inputTitle, setInputTitle] = useState("")
-  // const [inputContent, setInputContent] = useState("")
+  const [inputTitle, setInputTitle] = useState('')
+  const [inputContent, setInputContent] = useState('')
   // const [inputImg, setInputImg] = useState() // 사진 수정했을때
-  const [inputContent, setInputContent] = useState({
-    postTitle: '',
-    postContent: '',
-    // postImg: ''
-  })
 
-  const {postTitle, postContent} = inputContent
 
   // 수정되어지는 제목, 내용
   const handleInputValue = (e) => {
-    setInputContent({ ...inputContent, [e.target.name]: e.target.value });
+    if(e.target.name === 'title'){
+      setInputTitle(e.target.value)
+    }else if(e.target.name === 'content'){
+      setInputContent(e.target.value)
+    }
     console.log(e.target.value);
   };
 
   // 수정 버튼
-  const editDoneButton = (event) => {
+  const editDoneButton = () => {
     alert('수정하시겠습니까?')
     // 수정된 게시물 정보 -> 서버로
     // 수정 페이지 postread에서 보여야함
+    if(inputTitle.length > 0 && inputContent > 0){
       axios({
         url: url + '/postedit',
         method: 'post',
         data: {
           // 수정된 title, content,image 보내야함
-          postTitle,
-          postContent,
-
+          post_title: inputTitle,
+          post_content: inputContent,
         },
         withCredentials: true,
       })
-      .then((res) => {
+      .then(() => {
         // 수정성공
         history.push('/postread')
       })
       .catch(err => console.log(err))
+    }else{
+      alert('제목과 내용은 필수사항 입니다.')
+    }
   }
 
   // 취소 버튼
   const cancleButton = (event) => {
-    history.push('/postRead')
+    history.goBack()
   }
 
   return (
@@ -227,8 +228,8 @@ export const PostEdit = (props) => {
         </TitlePostDiv3>
         <TitlePostDiv>
           {/* defaultValue 에 기존 게시물 내용이 들어가야할듯함.. */}
-          <TitleBox placeholder="제목을 수정하세요." type="text" defaultValue={props.title} onChange={handleInputValue}/>
-          <PostBox placeholder="글을 수정하세요." type="text" defaultValue={props.content} onChange={handleInputValue}/>
+          <TitleBox placeholder="제목을 수정하세요." type="text" name='title' defaultValue={props.title} onChange={handleInputValue}/>
+          <PostBox placeholder="글을 수정하세요." type="text" name='content' defaultValue={props.content} onChange={handleInputValue}/>
           <TitlePostDiv4>
             <PostUploadBtn>
               <PostCompletionBtnMargin onClick={editDoneButton}>수정</PostCompletionBtnMargin>
