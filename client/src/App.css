@@ -50,8 +50,7 @@
 }
 
 /* 2. Signup */
-/* 배치확인용 */
-.entire div { 
+.entire div { /* 배치확인용 */
   border: 1px solid orange;
   margin-top: 20px;
 }
