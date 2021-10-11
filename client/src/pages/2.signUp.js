@@ -134,6 +134,7 @@ export default function Signup(props) {
         url: url + "/signup",
         method: "post",
         data: userInfo,
+        "Content-Type": "application/json",
         withCredentials: true,
       }).then((res) => {
         if (res.status === 201) {
