@@ -1,16 +1,21 @@
 import React, { useState } from "react"
-import { Switch, Route, Redirect } from "react-router-dom"
+import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
 import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
 import MainPage from "./pages/4-2.mainPage"
+import Hamster from "./pages/5-1.hamster"
+import Chick from "./pages/5-2.chick"
+import Parrot from "./pages/5-3.parrot"
+import Rabbit from "./pages/5-4.rabbit"
+import Hedgehog from "./pages/5-5.hedgehog"
 import Post from "./pages/6.post"
 import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
 // import MyPageEdit from "./pages/10.myPageEdit"
-// import PwdEdit from "./pages/11.pwdEdit"
+import PasswordChange from "./pages/11-2.pwdSection"
 
 import "./App.css"
 const url =
@@ -19,32 +24,41 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-  function getAxios() {
-    axios({
-      url: url,
-      method: "post",
-      withCredentials: true,
-    }).then((res) => setIsLogin(true))
+  const history = useHistory()
+
+  function loginFunc() {
+    setIsLogin(!isLogin)
+    history.push("/")
   }
 
   return (
     <>
       <NavBar />
-      {isLogin ? (
-        <div>통신 후</div>
-      ) : (
-        <button onClick={getAxios}>통신이 안되었을경우</button>
-      )}
       <div className="entire">
         <Switch>
-          <Route path="/firstpage">
+          <Route exact path="/firstpage">
             <FirstPage />
           </Route>
-          <Route path="/signup">
-            <Signup />
+          <Route exact path="/signup">
+            <Signup loginFunc={loginFunc} />
           </Route>
           <Route exact path="/mainpage">
             <MainPage />
+          </Route>
+          <Route exact path="/board/hamster">
+            <Hamster />
+          </Route>
+          <Route exact path="/board/chick">
+            <Chick />
+          </Route>
+          <Route exact path="/board/parrot">
+            <Parrot />
+          </Route>
+          <Route exact path="/board/rabbit">
+            <Rabbit />
+          </Route>
+          <Route exact path="/board/hedgehog">
+            <Hedgehog />
           </Route>
           <Route path="/post">
             <Post />
@@ -58,12 +72,13 @@ function App() {
           <Route path="/mypage">
             <MyPage />
           </Route>
+
           {/* <Route path="/mypageedit">
             <MyPageEdit />
-          </Route>
-          <Route path="/pwdedit">
-            <PwdEdit />
           </Route> */}
+          <Route path="/pwdedit">
+            <PasswordChange />
+          </Route>
 
           <Route path="/">
             {isLogin ? (

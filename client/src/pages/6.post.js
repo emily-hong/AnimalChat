@@ -166,6 +166,7 @@ export const Post = (props) => {
   // 2. 제목과 내용 필수, 사진은 선택으로 함
   const [inputTitle, setInputTitle] = useState('')
   const [inputContent, setInputContent] = useState('')
+    // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
   // 작성되어지는 제목, 내용
   const handleInputValue = (e) => {
@@ -181,13 +182,15 @@ export const Post = (props) => {
   // 수정된 게시물 정보 -> 서버로
   // 수정 페이지 postread에서 보여야함
   const postSendButton = () => {
-    if(inputTitle && inputContent){ // 제목, 내용 작성했을 때
+    if ( inputTitle.length > 0 && inputContent.length > 0 ){ // 제목, 내용 작성했을 때
+      console.log('작성완료 쪽')
       axios({
         url: url + '/postsend',
         method: 'post',
         data: {
           post_title: inputTitle,
           post_content: inputContent,
+          // post_img: inputImg,
         },
         withCredentials: true,
       })
