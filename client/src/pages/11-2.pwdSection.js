@@ -140,7 +140,7 @@ export default function PasswordChange() {
               {newPwd.length !== 0 ? '' : <StyledList>비밀번호를 입력해주세요</StyledList>}
               {newPwd.length < 4 ? <StyledList>4 이상</StyledList> : ''}
               {newPwd.length > 15 ? <StyledList>15 이하</StyledList> : ''}
-              {
+              {/* {
                 (newPwd) => {
                   const regOnlyNumber = /^[0-9]/; // 숫자만
                   regOnlyNumber.test(newPwd) ? <StyledList>문자를 포함해야 합니다</StyledList> : '';
@@ -151,7 +151,7 @@ export default function PasswordChange() {
                   const regOnlyAlphabets = /^[a-zA-Z]*$/; // 문자만
                   regOnlyAlphabets.test(newPwd) ? <StyledList>숫자를 포함해야 합니다</StyledList> : '';
                 }
-              }
+              } */}
             </ul>
           </StyledPwdFieldset>
         </StyledPwdInputsArea>
