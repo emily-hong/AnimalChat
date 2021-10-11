@@ -7,10 +7,10 @@ const {
 
 
 module.exports = async(req, res) => {
-  //console.log(req.body) //{ id: 'kimcoding3', password: 'a123' }
+  console.log(req.body) //{ id: 'kimcoding3', password: 'a123' }
     user.findOne({
       where: {
-        id: req.body.id,
+        user_id: req.body.id,
         password: req.body.password
       }
     })

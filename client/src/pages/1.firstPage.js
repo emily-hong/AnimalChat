@@ -95,6 +95,8 @@ export const FirstPage = (props) => {
   function signup() {
     history.push("/signup")
   }
+   
+
   function openSignInModalHandler() {
     setIsOpen(!isOpen)
     //console.log(isOpen)
@@ -122,8 +124,8 @@ export const FirstPage = (props) => {
         withCredentials: true,
       })
       .then((res) => alert("로그인 완료") )
-
     }
+    history.push('/');
   }
 
   function socialSignUpHandler() {
