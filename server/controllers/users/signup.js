@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
         user_id: userId,
       },
     })
+
     const userNickInfo = await user.findOne({
       where: {
         nickname: nickName,
@@ -41,20 +42,22 @@ module.exports = async (req, res) => {
       res.status(203).send({ message: "닉네임을 다른사용자가 사용중인경우" })
     }
     //id도 중복아니고, 닉네임도 중복이 아닌경우 생성해준다.
-    else {
-      //users테이블에 가입정보 추가
-      const userCreate = await user.create({
-        user_id: userId,
-        password: password,
-        nickname: nickName,
-      })
-      await animal.create({
-        userId: userId,
-        animaltype: selectType,
-        animalname: animalName,
-        animalyob: animalYob,
-      })
-      res.status(201).send({ message: "ok" })
-    }
+
+    //users테이블에 가입정보 추가
+    await user.create({
+      user_id: userId,
+      password: password,
+      nickname: nickName,
+    })
+
+    await animal.create({
+      userId: userId,
+      animaltype: selectType,
+      animalname: animalName,
+      animalyob: animalYob,
+    })
+
+    res.status(201).send({ message: "ok" })
   }
+  res.status(555).send({ message: "ok" })
 }
