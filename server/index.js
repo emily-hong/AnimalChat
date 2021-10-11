@@ -7,11 +7,15 @@ const express = require("express")
 const app = express()
 const controllers = require("./controllers")
 
+const url =
+  process.env.API_URL ||
+  "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
-    origin: ["https://localhost:3000"],
+    origin: ["url"],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
   })
