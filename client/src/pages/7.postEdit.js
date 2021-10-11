@@ -187,7 +187,7 @@ export const PostEdit = (props) => {
         method: 'post',
         data: {
           // 수정된 title, content,image 보내야함
-          post_title: inputTitle,
+          post_tile: inputTitle,
           post_content: inputContent,
           // post_img: inputImg,
         },
