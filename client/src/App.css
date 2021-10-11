@@ -36,3 +36,147 @@
     transform: rotate(360deg);
   }
 } */
+
+*{
+  margin: 0;
+}
+
+/* 상단바 */
+.navBar {
+  background-color: #FFFBEA;
+  margin: 0 auto;
+  border: 1px dotted red;
+  height: 150px;
+}
+
+/* 2. Signup */
+
+.entire div{ /* 배치확인용 */
+  border: 1px solid orange;
+  margin-top: 20px
+}
+
+.entire {
+  border: 1px solid red;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+.form {
+  margin: 0 auto;
+  padding-bottom: 20px;
+  width: 60%;
+  height: 600px;
+}
+
+.center{
+  background-color: #fff3b6;
+  height: 100%;
+}
+
+/* 8. postRead */
+/* 상단 제목 */
+.postTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  margin: 0 20px;
+}
+.postTitle_left{
+  display: flex;
+  padding: 5px 0;
+}
+.profilePic{
+  border: 1px solid blue;
+  margin-left: 20px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+.postTitle_left .title{
+  margin-left: 10px;
+}
+.postTitle_left > p{
+  margin-left: 20px;
+  padding: 10px;
+}
+
+
+.postTitle_right{
+  padding: 10px 0;
+}
+.postTitle_right > button{
+  height: 30px;
+  width: 50px;
+}
+.postTitle_right > button:first-child {
+  margin-right: 5px;
+}
+
+/* 게시물 사진 */
+.postPic{
+  margin: 0 auto;
+  border: 1px solid purple;
+  width: 800px;
+  height: 500px;
+}
+/* 게시물 댓글 작성 */
+.postContent {
+  /* margin: 0 auto; */
+  margin: 20px 20px;
+  
+  /* width: 80%; */
+  text-align: center;
+}
+.postComment{
+  margin: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.inputComment{
+  width: 70%;
+  height: 30px;
+  /* border: none; */
+}
+.postComment > button {
+  width: 100px;
+  height: 30px;
+  margin-left: 50px;
+  background-color: #FFFFFF;
+  /* border: none; */
+}
+
+/* 게시물 댓글목록 */
+.comment{
+  background-color: #FFFBEA;
+  list-style: none;
+  margin: 20px;
+  margin-bottom: 5px;
+  padding: 5px 0;
+}
+.commentsList {
+  padding-left: 0;
+}
+.comment{
+  display: flex;
+  justify-content: space-between;
+}
+.comment__left{
+  display: flex;
+  padding-left: 10px;
+}
+.comment__userId{
+  font-weight: bold;
+}
+.comment__left .comment__content{
+  margin-left: 15px;
+}
+.comment__right{
+  width: 150px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+* {
+  box-sizing: border-box,
+}
