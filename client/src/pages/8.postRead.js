@@ -1,12 +1,25 @@
+import { useHistory } from "react-router-dom"
 import React, { useState } from 'react';
 import axios from 'axios';
 import Comment from './8.postRead-comment'
 axios.defaults.withCredentials = true;
 
 // 삭제버튼들 확인창 띄우기
-
 // 댓글 : content
 export default function PostRead(){
+  // title - 수정버튼 : history.push
+  const history = useHistory()
+  const editPostButton = (event) => {
+    alert('수정하시겠습니까?')
+    history.push('/postedit')
+  }
+
+  // title - 삭제 : 
+  const deletPostButton = (event) => {
+    alert('게시물을 삭제하시겠습니까?')
+    // 데이터베이스 게시물 삭제
+  }
+
   // 댓글
   const [contentInput, setContentInput] = useState('')  // 작성되어지는 댓글 (input)
   const [cotentList, setContentList] = useState([])  // 댓글 목록
@@ -40,7 +53,7 @@ export default function PostRead(){
         </div>
 
         <div className='postTitle_right'>
-          <button>수정</button>
+          <button onClick={editPostButton}>수정</button>
           <button>삭제</button> 
         </div>
       </div>

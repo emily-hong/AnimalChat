@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom"
 import React, { useState } from "react"
 import styled from "styled-components"
+import axios from "axios"
 
 const Body = styled.div`
   box-sizing: border-box;
@@ -155,8 +156,58 @@ const PostCancelBtnMargin = styled.div`
   // background-color: #ffe2cd;
 `
 
+const url = 
+  process.env.REACT_APP_URL ||
+  'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
+
 export const PostEdit = (props) => {
-  //   const history = useHistory()
+  const history = useHistory()
+
+  const [inputTitle, setInputTitle] = useState('')
+  const [inputContent, setInputContent] = useState('')
+  // const [inputImg, setInputImg] = useState() // 사진 수정했을때
+
+
+  // 수정되어지는 제목, 내용
+  const handleInputValue = (e) => {
+    if(e.target.name === 'title'){
+      setInputTitle(e.target.value)
+    }else if(e.target.name === 'content'){
+      setInputContent(e.target.value)
+    }
+    console.log(e.target.value);
+  };
+
+  // 수정 버튼
+  const editDoneButton = () => {
+    alert('수정하시겠습니까?')
+    // 수정된 게시물 정보 -> 서버로
+    // 수정 페이지 postread에서 보여야함
+    if(inputTitle.length > 0 && inputContent > 0){
+      axios({
+        url: url + '/postedit',
+        method: 'post',
+        data: {
+          // 수정된 title, content,image 보내야함
+          post_title: inputTitle,
+          post_content: inputContent,
+        },
+        withCredentials: true,
+      })
+      .then(() => {
+        // 수정성공
+        history.push('/postread')
+      })
+      .catch(err => console.log(err))
+    }else{
+      alert('제목과 내용은 필수사항 입니다.')
+    }
+  }
+
+  // 취소 버튼
+  const cancleButton = (event) => {
+    history.goBack()
+  }
 
   return (
     <Body>
@@ -164,7 +215,7 @@ export const PostEdit = (props) => {
       <ContentBox>
         <TitlePostDiv3>
           <PhotoBox>
-            <PhotoBoxDiv>아래 파일 추가를 눌러 수정해주세요.</PhotoBoxDiv>
+            <PhotoBoxDiv>아래 파일 변경을 눌러 수정해주세요.</PhotoBoxDiv>
           </PhotoBox>
           <TitlePostDiv2>
             <PhotoSelectBtn>
@@ -176,14 +227,15 @@ export const PostEdit = (props) => {
           </TitlePostDiv2>
         </TitlePostDiv3>
         <TitlePostDiv>
-          <TitleBox placeholder="제목을 수정하세요." type="text" />
-          <PostBox placeholder="글을 수정하세요." type="text" />
+          {/* defaultValue 에 기존 게시물 내용이 들어가야할듯함.. */}
+          <TitleBox placeholder="제목을 수정하세요." type="text" name='title' defaultValue={props.title} onChange={handleInputValue}/>
+          <PostBox placeholder="글을 수정하세요." type="text" name='content' defaultValue={props.content} onChange={handleInputValue}/>
           <TitlePostDiv4>
             <PostUploadBtn>
-              <PostCompletionBtnMargin>수정</PostCompletionBtnMargin>
+              <PostCompletionBtnMargin onClick={editDoneButton}>수정</PostCompletionBtnMargin>
             </PostUploadBtn>
             <CancelBtn>
-              <PostCancelBtnMargin>취소</PostCancelBtnMargin>
+              <PostCancelBtnMargin onClick={cancleButton}>취소</PostCancelBtnMargin>
             </CancelBtn>
           </TitlePostDiv4>
         </TitlePostDiv>
