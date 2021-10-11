@@ -161,10 +161,12 @@
 }
 .comment__userId{
   font-weight: bold;
+
 }
 .comment__left .comment__content{
   margin-left: 15px;
 }
+
 .comment__right{
   width: 150px;
   padding-right: 10px;
