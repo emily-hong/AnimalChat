@@ -8,9 +8,6 @@ import MainPage from "./pages/4-2.mainPage"
 import Post from "./pages/6.post"
 import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
-import MyPage from "./pages/9.myPage"
-import MyPageEdit from "./pages/10.myPageEdit"
-import PwdEdit from "./pages/11.pwdEdit"
 
 import "./App.css"
 const url =
@@ -54,15 +51,6 @@ function App() {
           </Route>
           <Route path="/postread">
             <PostRead />
-          </Route>
-          <Route path="/mypage">
-            <MyPage />
-          </Route>
-          <Route path="/mypageedit">
-            <MyPageEdit />
-          </Route>
-          <Route path="/pwdedit">
-            <PwdEdit />
           </Route>
 
           <Route path="/">
