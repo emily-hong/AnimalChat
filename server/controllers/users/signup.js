@@ -1,4 +1,5 @@
 const { user } = require("../../models")
+const { animal } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
@@ -25,24 +26,35 @@ module.exports = async (req, res) => {
         user_id: userId,
       },
     })
+    const userNickInfo = await user.findOne({
+      where: {
+        nickname: nickName,
+      },
+    })
     // console.log(userInfo)
     // id가 이미 있는 사람인 경우
     if (userInfo) {
-      res.status(402).send("이미 가입되어 있는 회원입니다.")
+      res.status(202).send({ message: "이미 가입되어 있는 회원의 경우" })
     }
-    //id가 없는 사람인경우 아이디 만들어줌
+    //id중복이 아니지만, 닉이 중복인경우
+    else if (!userInfo && userNickInfo) {
+      res.status(203).send({ message: "닉네임을 다른사용자가 사용중인경우" })
+    }
+    //id도 중복아니고, 닉네임도 중복이 아닌경우 생성해준다.
     else {
+      //users테이블에 가입정보 추가
       const userCreate = await user.create({
         user_id: userId,
         password: password,
         nickname: nickName,
       })
-      res
-        .cookie("jwt", generateAccessToken(userCreate.dataValues), {
-          httpOnly: true,
-        })
-        .status(201)
-        .send({ message: "ok" })
+      await animal.create({
+        userId: userId,
+        animaltype: selectType,
+        animalname: animalName,
+        animalyob: animalYob,
+      })
+      res.status(201).send({ message: "ok" })
     }
   }
 
