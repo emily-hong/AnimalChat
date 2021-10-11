@@ -22,7 +22,7 @@ function App() {
   function getAxios() {
     axios({
       url: url,
-      method: "get",
+      method: "post",
       withCredentials: true,
     }).then((res) => setIsLogin(true))
   }
