@@ -6,10 +6,9 @@ module.exports = {
       "users",
       [
         {
-          user_id: "park",
-          password: 1,
+          user_id: "parkhacker",
+          password: "hacker1",
           nickname: "hacker",
-          password: 1,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
