@@ -1,7 +1,7 @@
 import { Switch, Route } from "react-router-dom"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import Boards from "./4-1.boards";
+import Boards from "./4-1.boards"
 import Hamster from "./5-1.hamster"
 import Chick from "./5-2.chick"
 import Parrot from "./5-3.parrot"
@@ -18,7 +18,7 @@ export default function MainPage(props) {
         <Route exact path="/board">
           <Boards />
         </Route>
-        <Route path="/board/hamster">
+        <Route exact path="/board/hamster">
           <Hamster />
         </Route>
         <Route path="/board/chick">
@@ -35,7 +35,7 @@ export default function MainPage(props) {
         </Route>
 
         {/* 게시판 외 페이지 라우팅 테스트 */}
-        <Route exact path="/">
+        {/* <Route exact path="/">
           <div>
             <h1>mock landing page component</h1>
             <p>hello!</p>
@@ -46,10 +46,10 @@ export default function MainPage(props) {
             <h1>mock mypage component</h1>
             <p>profile</p>
           </div>
-        </Route>
+        </Route> */}
       </Switch>
     </div>
-  );
+  )
 }
 
 // TODO
@@ -59,12 +59,12 @@ export default function MainPage(props) {
 // 위 두 가지 전부 데이터 배열에 map 써서 할 수 있으면 멋있을텐데...
 // 수도코드
 // {
-  // data.map(obj => {
-  //   return (
-  //     <Route path={`/board/${obj.animalType}`}>
-  //       <h1 key={uuid something}>{obj.animalType}</h1>
-  //       <Posts key={uuid something} data={obj.posts} />
-  //     </Route>
-  //   );
-  // })}
+// data.map(obj => {
+//   return (
+//     <Route path={`/board/${obj.animalType}`}>
+//       <h1 key={uuid something}>{obj.animalType}</h1>
+//       <Posts key={uuid something} data={obj.posts} />
+//     </Route>
+//   );
+// })}
 // }

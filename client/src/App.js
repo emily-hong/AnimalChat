@@ -22,7 +22,7 @@ function App() {
   function getAxios() {
     axios({
       url: url,
-      method: "get",
+      method: "post",
       withCredentials: true,
     }).then((res) => setIsLogin(true))
   }
@@ -65,13 +65,13 @@ function App() {
             <PwdEdit />
           </Route> */}
 
-          <Route path="/">
+          {/* <Route path="/">
             {isLogin ? (
               <Redirect to="/mainpage" />
             ) : (
               <Redirect to="/firstpage" />
             )}
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </>
