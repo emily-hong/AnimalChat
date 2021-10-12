@@ -21,12 +21,11 @@ module.exports = async(req, res) => {
       const postEdit = await post.update(
         {
           post_title: req.body.editTitle, 
-          post_content: req.body.editContent,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          post_content: req.body.editContent
         }, 
         { where: { 
-            id: 20
+            post_title ,
+            post_content
           }
         }  // where 를 기준으로 해당게시글을 찾아서 지워야할듯함
       )

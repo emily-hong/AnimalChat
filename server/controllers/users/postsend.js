@@ -2,12 +2,7 @@ const { post } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
-<<<<<<< HEAD
-    // console.log(req.params);
-    const { post_title, post_content } = req.body
-=======
   console.log(req.body)
->>>>>>> Dev
 
   console.log(req.file)
   //   console.log(req)
