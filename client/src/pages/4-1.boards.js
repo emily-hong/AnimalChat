@@ -1,14 +1,20 @@
 import Board from '../components/Board'
 import styled from 'styled-components'
 
+const Background = styled.div`
+  box-sizing: content-box;
+  background-color: #EFEEED;
+  padding: 1rem;
+`;
+
 const BoardInGrid = styled.div`
+  box-sizing: content-box;
   display: grid;
-  padding: 2rem;
+  padding: 1rem;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
-  background-color: #EFEEED;
 `;
 
 export default function Boards() {
@@ -22,13 +28,16 @@ export default function Boards() {
 
   return (
     <div className="boards">
-      <BoardInGrid>
-        {
-          pairsPathAndName.map(pair => {
-            return <Board boardName={pair.name} />;
-          })
-        }
-      </BoardInGrid>
+      <Background>
+        <h2>게시판</h2>
+        <BoardInGrid>
+          {
+            pairsPathAndName.map(pair => {
+              return <Board boardName={pair.name} />;
+            })
+          }
+        </BoardInGrid>
+      </Background>
     </div>
   );
 }
