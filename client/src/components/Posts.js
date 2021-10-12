@@ -11,10 +11,21 @@ const StyledPosts = styled.div`
   background-color: #D9D9D9;
 `;
 
-export default function Posts({ mockBgColorPost }) {
+export default function Posts({ mockBgColorPost, writeButtonHandler }) {
+  const handleClickButton = () => {
+    writeButtonHandler();
+  }
 
   return (
     <div className="postsComponent">
+      {
+        writeButtonHandler?
+          <div>
+            <button onClick={handleClickButton}>글쓰기</button>
+          </div>
+        :
+          ''
+      }
       <StyledPosts>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>

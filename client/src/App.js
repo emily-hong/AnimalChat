@@ -11,6 +11,7 @@ import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
 // import MyPageEdit from "./pages/10.myPageEdit"
 // import PwdEdit from "./pages/11.pwdEdit"
+import Hamster from "./pages/5-1.hamster"
 
 import "./App.css"
 const url =
@@ -29,6 +30,8 @@ function App() {
 
   return (
     <>
+      <MainPage />
+      <Hamster />
       <NavBar />
       {isLogin ? (
         <div>통신 후</div>
