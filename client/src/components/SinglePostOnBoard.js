@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const StyledSinglePost = styled.div`
   display: grid;
   place-items: center center;
+  padding: .35rem;
   width: 220px;
   height: 300px;
   background-color: #FFF9EE;
