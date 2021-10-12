@@ -196,14 +196,15 @@ export const Post = (props) => {
         },
         withCredentials: true,
       })
-        .then(() => {
-          alert("작성 완료")
-          // 작성 완료
-          history.push("/postread")
-        })
-        .catch((err) => console.log(err))
-    } else {
-      alert("제목과 내용은 필수사항 입니다.")
+      .then(() => {
+        alert('작성 완료')
+        // 작성 완료
+        history.goBack() // 이전페이지로 돌아가야함
+      })
+      .catch(err => console.log(err))
+
+    }else{
+      alert('제목과 내용은 필수사항 입니다.')
     }
   }
   // 취소 버튼
