@@ -3,6 +3,7 @@ const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
   console.log(req.body)
+
   console.log(req.file)
   //   console.log(req)
   const { post_title, post_content } = req.body
@@ -26,4 +27,5 @@ module.exports = async (req, res) => {
     res.status(200).send({ message: "ok" })
   }
   //////////////////여기서 부터 사진 업로드 구현/////////////////
+
 }

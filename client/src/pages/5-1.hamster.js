@@ -4,9 +4,11 @@ import Navigation from "../components/Navigation"
 import React, { useEffect } from "react"
 
 export default function Hamster(props) {
+
   useEffect(() => {
     props.curAnimalChange("hamster")
   }, [])
+
   return (
     <div className="mainPage">
       <Header />

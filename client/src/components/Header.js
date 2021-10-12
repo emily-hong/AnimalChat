@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom'
+import React, { useState } from "react"
+import axios from "axios"
+import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 // styled components
@@ -22,12 +24,30 @@ const TitleArea = styled.div`
   border: 1px solid red;
 `;
 
-// button event
-const logoutEventListener = () => {
-  console.log('send logout request here')
-}
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
 export default function Header() {
+  const [isLogin, setIsLogin] = useState(false)
+  const [userinfo, setUserinfo] = useState(null)
+
+  // button event
+  function logoutEventListener() {
+  // console.log('send logout request here')
+  axios({
+    url: url + "/signout",
+    method: "post",
+    withCredentials: true,
+  })
+  //확인필요
+  .then((res) => { 
+    setUserinfo(null)
+    setIsLogin(false)
+  })
+}
+  
+
   return (
     <div className="headerComponent">
       <HeaderFlexDiv>
@@ -36,10 +56,10 @@ export default function Header() {
           <Link to="/mypage">
             <button className="headerTopButtons">마이페이지</button>
           </Link>
-          <Link to="/">
+          <Link to="/firstpage">
             <button 
               className="headerTopButtons"
-              onClick={ (e) => logoutEventListener() }
+              onClick={logoutEventListener}
             >
               로그아웃
             </button>

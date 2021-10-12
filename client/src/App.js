@@ -15,7 +15,8 @@ import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
 // import MyPageEdit from "./pages/10.myPageEdit"
-import PasswordChange from "./pages/11-2.pwdSection"
+// import PasswordChange from "./pages/11-2.pwdSection"
+import PwdEditPage from "./pages/11-1.pwdEdit"
 
 import "./App.css"
 const url =
@@ -25,10 +26,13 @@ const url =
 function App() {
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("")
+  const [userinfo, setUserinfo] = useState(null)
+
   const history = useHistory()
 
   function loginFunc() {
     setIsLogin(!isLogin)
+    authorization()
     history.push("/")
   }
   function SignUpFin() {
@@ -39,19 +43,36 @@ function App() {
     setCurAnimal(animaltype)
   }
 
+  function authorization() {
+    axios({
+      url: url + "/auth",
+      method: "get",
+      withCredentials: true,
+    })
+    .then((res) => {
+      //console.log(res)
+      setUserinfo(res.data) 
+      setIsLogin(true)
+      history.push("/")
+    })
+  }
+
+
   return (
     <>
       <NavBar />
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
-            <FirstPage loginFunc={loginFunc} />
+
+            <FirstPage isLogin={isLogin} loginFunc={loginFunc} />
+
           </Route>
           <Route exact path="/signup">
             <Signup SignUpFin={SignUpFin} />
           </Route>
           <Route exact path="/mainpage">
-            <MainPage />
+            <MainPage userinfo={userinfo} />
           </Route>
           <Route exact path="/board/hamster">
             <Hamster curAnimalChange={curAnimalChange} />
@@ -85,7 +106,7 @@ function App() {
             <MyPageEdit />
           </Route> */}
           <Route path="/pwdedit">
-            <PasswordChange />
+            <PwdEditPage />
           </Route>
 
           <Route path="/">
