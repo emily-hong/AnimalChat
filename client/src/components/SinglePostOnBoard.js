@@ -40,14 +40,15 @@ const StyledProfilePictureArea = styled.div`
 export default function SinglePostOnBoard({ mockBgColor, post, url }) {
   /* src: ${(props) => "" + props.url + props.post.post_img}; */
   /* src: aasd; */
-  console.log(post.post_img)
-  console.log(url)
-  console.log(url + post.post_img)
+  // console.log(post.post_img)
+  // console.log(url)
+  // console.log(url + post.post_img)
+
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail src={url + post.post_img} />
-        {post.post_title}
+        <StyledThumbnail src={''} /> {/*이미지 소스*/}
+        {''} {/*글 제목*/}
         <StyledTitlePreview>
           <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
