@@ -37,7 +37,7 @@ export default function Header() {
             <button className="headerTopButtons">마이페이지</button>
           </Link>
           <Link to="/">
-            <button 
+            <button
               className="headerTopButtons"
               onClick={ (e) => logoutEventListener() }
             >

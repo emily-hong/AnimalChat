@@ -50,5 +50,17 @@ export default function SinglePostOnBoard({ mockBgColor }) {
 
 // TODO
 // props : 미리보기 사진, 프로필 사진, 글쓴이, 제목, 링크(?)
+  // { postImg ,userId, postTitle }
+// get/postlist
+// {
+//     "id" : "id",
+//     "userId" : "userId",
+//     "postTitle" : "postTitle",
+//     "postImg" : "postImg",
+//     "postContent" : "postContent",
+//     "animalCategory" : "animalCategory",
+//     "createdAt" : "createdAt",
+//     "updatedAt" : "updatedAt"
+// }
 // react-router-dom 적용 필요, 게시글마다(고민), 사진과 제목에 게시글로 연결시킬 링크가 필요하긴 하다
 // 사이즈 문제

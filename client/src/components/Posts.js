@@ -12,7 +12,9 @@ const StyledPosts = styled.div`
   background-color: #D9D9D9;
 `;
 
-export default function Posts({ mockBgColorPost, title }) {
+// dotenv : process.env.REACT_APP_URL
+
+export default function Posts({ mockBgColorPost, title, postsDataList }) {
   return (
     <div className="postsComponent">
       <h2>{title}</h2>
@@ -23,6 +25,11 @@ export default function Posts({ mockBgColorPost, title }) {
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
       </StyledPosts>
+      {/* {
+        postsDataList.map((data) => {
+
+        })
+      } */}
     </div>
   );
 }
