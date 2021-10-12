@@ -7,7 +7,7 @@ export default function Rabbit(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts mockBgColorPost={'#96abe0'} title='토끼' />
+      <Posts title="토끼"/>
     </div>
   );
 }

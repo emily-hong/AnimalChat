@@ -10,7 +10,7 @@ export default function Hamster(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts mockBgColorPost={'#6D9886'} title='햄스터' />
+      <Posts title="햄스터"/>
     </div>
   );
 }

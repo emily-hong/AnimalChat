@@ -2,7 +2,8 @@ import axios from "axios";
 import styled from "styled-components";
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import Boards from "./4-1.boards";
+import Posts from "../components/Posts"
+// import Boards from "./4-1.boards";
 // import Hamster from "./5-1.hamster"
 // import Chick from "./5-2.chick"
 // import Parrot from "./5-3.parrot"
@@ -19,7 +20,7 @@ export default function MainPage(props) {
     <Outer className="mainPage">
       <Header />
       <Navigation />
-      <Boards />
+      <Posts title="전체 게시물"/>
     </Outer>
   )
 }

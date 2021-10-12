@@ -1,38 +1,37 @@
 import styled from 'styled-components'
-import SinglePostOnBoard from "./SinglePostOnBoard";
-import { Link } from 'react-router-dom';
+import SinglePostOnBoard from '../components/SinglePostOnBoard';
 
-// styled-components
-const StyledPosts = styled.div`
+const Background = styled.div`
+  box-sizing: content-box;
+  background-color: #FEEFD5;
+  padding: 1rem;
+`;
+
+const BoardInGrid = styled.div`
+  box-sizing: content-box;
   display: grid;
+  padding: 1rem;
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
-  background-color: #D9D9D9;
 `;
 
-// dotenv : process.env.REACT_APP_URL
+export default function Posts({ title }) {
 
-export default function Posts({ mockBgColorPost, title, postsDataList }) {
   return (
-    <div className="postsComponent">
-      <h2>{title}</h2>
-      <StyledPosts>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-      </StyledPosts>
-      {/* {
-        postsDataList.map((data) => {
-
-        })
-      } */}
+    <div className="boards">
+      <Background>
+        <h2>{title}</h2>
+        <BoardInGrid>
+          <SinglePostOnBoard />
+        </BoardInGrid>
+      </Background>
     </div>
   );
 }
+
+// TODO : 게시물 없을 때의 메시지
 
 // TODO
 // [] 게시물 자료 배열에 map으로 <SinglePostOnBoard /> 적용

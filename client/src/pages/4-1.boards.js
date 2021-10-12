@@ -17,7 +17,7 @@ const BoardInGrid = styled.div`
   align-content: center;
 `;
 
-export default function Boards() {
+export default function Posts() {
 
   return (
     <div className="boards">

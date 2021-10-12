@@ -7,7 +7,7 @@ export default function Hedgehog() {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts mockBgColorPost={'#B97A95'} title='고슴도치' />
+      <Posts title="고슴도치"/>
     </div>
   );
 }
