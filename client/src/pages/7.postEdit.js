@@ -181,12 +181,11 @@ export const PostEdit = (props) => {
   const editDoneButton = () => {
     if(inputTitle.length > 0 && inputContent.length > 0){
       alert('수정하시겠습니까?')
-      console.log('수정완료 쪽');
       axios({
         url: url + '/postedit',
         method: 'post',
         data: {
-          // 수정된 title, content,image 보내야함
+          
           post_title: inputTitle,
           post_content: inputContent,
           // post_img: inputImg,

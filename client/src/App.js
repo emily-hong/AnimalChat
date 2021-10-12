@@ -25,12 +25,29 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
+  const [userinfo, setUserinfo] = useState(null)
   const history = useHistory()
 
   function loginFunc() {
     setIsLogin(!isLogin)
+    authorization()
     history.push("/")
   }
+
+  function authorization() {
+    axios({
+      url: url + "/auth",
+      method: "get",
+      withCredentials: true,
+    })
+    .then((res) => {
+      //console.log(res)
+      setUserinfo(res.data) 
+      setIsLogin(true)
+      history.push("/")
+    })
+  }
+
 
   return (
     <>
@@ -38,13 +55,13 @@ function App() {
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
-            <FirstPage />
+            <FirstPage isLogin={isLogin} loginFunc={loginFunc} />
           </Route>
           <Route exact path="/signup">
             <Signup loginFunc={loginFunc} />
           </Route>
           <Route exact path="/mainpage">
-            <MainPage />
+            <MainPage userinfo={userinfo} />
           </Route>
           <Route exact path="/board/hamster">
             <Hamster />
