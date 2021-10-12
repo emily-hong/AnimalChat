@@ -125,7 +125,7 @@ export const FirstPage = (props) => {
       })
       .then((res) => alert("로그인 완료") )
     }
-    history.push('/');
+    props.mianPageFunc()
   }
 
   function socialSignUpHandler() {
