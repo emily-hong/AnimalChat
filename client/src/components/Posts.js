@@ -12,9 +12,10 @@ const StyledPosts = styled.div`
   background-color: #D9D9D9;
 `;
 
-export default function Posts({ mockBgColorPost }) {
+export default function Posts({ mockBgColorPost, title }) {
   return (
     <div className="postsComponent">
+      <h2>{title}</h2>
       <StyledPosts>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>

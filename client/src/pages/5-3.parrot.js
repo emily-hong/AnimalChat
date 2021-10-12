@@ -7,8 +7,7 @@ export default function Parrot(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <h2>앵무새</h2>
-      <Posts mockBgColorPost={'#96e0df'} isLinkToWritePage />
+      <Posts mockBgColorPost={'#96e0df'} title='앵무새' />
     </div>
   );
 }
