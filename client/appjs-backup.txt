@@ -13,7 +13,7 @@ import Hedgehog from "./pages/5-5.hedgehog"
 function App() {
   return (
     <>
-      <h1>css test</h1>
+      {/* <h1>css test</h1> */}
       {/* <FirstPage /> */}
       {/* <Signup /> */}
       {/* <MainPage /> */}
