@@ -2,9 +2,7 @@ import styled from "styled-components"
 import SinglePostOnBoard from "./SinglePostOnBoard"
 import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
+const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
 
 // styled-components
 const StyledPosts = styled.div`
