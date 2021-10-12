@@ -30,11 +30,6 @@ function App() {
     setIsLogin(!isLogin)
     history.push("/")
   }
-  
-  function mianPageFunc() {
-    setIsLogin(isLogin)
-    history.push("/mainpage")
-  }
 
   return (
     <>
@@ -42,7 +37,7 @@ function App() {
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
-            <FirstPage mianPageFunc={mianPageFunc} />
+            <FirstPage />
           </Route>
           <Route exact path="/signup">
             <Signup loginFunc={loginFunc} />
