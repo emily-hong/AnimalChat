@@ -1,7 +1,7 @@
 import React from "react"
 import "./App.css"
 import FirstPage from "./pages/1.firstPage"
-// import Signup from "./pages/2.signUp"
+import Signup from "./pages/2.signUp"
 
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <h1>css test</h1>
       <FirstPage />
-      {/* <Signup /> */}
+      <Signup />
     </>
   );
 }

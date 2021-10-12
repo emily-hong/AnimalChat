@@ -20,12 +20,12 @@ const Outer = styled.div`
   width: 100vw;
   height: auto;
   border: 1px solid red;
-  background-color: #F0F0F0;
+  background-color: #FEEFD5;
 `;
 
 const FormSpace = styled.div`
   width: 300px;
-  background-color: #FCEDC5;
+  background-color: #FFF9EE;
 `;
 
 const PageTitle = styled.h1`
