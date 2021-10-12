@@ -28,6 +28,7 @@ module.exports = async(req, res) => {
         return res.status(404).send('invalid user')
       }
       else{
+      delete data.dataValues.password;
       const accessToken = generateAccessToken(data.dataValues)
       //console.log(data.dataValues)
       //console.log(accessToken) //토큰 잘발급되고 
