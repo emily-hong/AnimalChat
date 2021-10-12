@@ -50,7 +50,6 @@ function App() {
 
   return (
     <>
-      <Hamster />
       <NavBar />
       <div className="entire">
         <Switch>
