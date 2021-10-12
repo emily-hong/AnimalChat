@@ -18,7 +18,7 @@ module.exports = async(req, res) => {
   if (!accessTokenData) {
     return res.json({ data: null, message: 'not authorized' });
   }
- 
+
   const { user_id, nickname } = accessTokenData
   const userInfoData = await user.findOne({
     where: {

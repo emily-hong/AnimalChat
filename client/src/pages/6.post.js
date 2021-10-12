@@ -197,8 +197,9 @@ export const Post = (props) => {
         withCredentials: true,
       })
       .then(() => {
+        
+
         alert('작성 완료')
-        // 작성 완료
         history.goBack() // 이전페이지로 돌아가야함
       })
       .catch(err => console.log(err))

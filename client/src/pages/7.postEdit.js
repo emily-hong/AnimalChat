@@ -185,9 +185,8 @@ export const PostEdit = (props) => {
         url: url + '/postedit',
         method: 'post',
         data: {
-          
-          post_title: inputTitle,
-          post_content: inputContent,
+          editTitle: inputTitle,
+          editContent: inputContent,
           // post_img: inputImg,
         },
         withCredentials: true,
