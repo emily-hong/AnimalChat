@@ -31,7 +31,6 @@ const url =
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false)
   const [userinfo, setUserinfo] = useState(null)
-  const history = useHistory()
 
   // button event
   function logoutEventListener() {
