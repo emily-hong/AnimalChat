@@ -7,10 +7,7 @@
 
 button {
   cursor: pointer;
-}
-
-Link {
-  color: black;
+  border: none;
 }
 
 /* 상단바 */

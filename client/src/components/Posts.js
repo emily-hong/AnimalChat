@@ -1,10 +1,21 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import SinglePostOnBoard from '../components/SinglePostOnBoard';
 
 const Background = styled.div`
   box-sizing: content-box;
   background-color: #FEEFD5;
   padding: 1rem;
+  border-bottom: 1px solid red;
+`;
+
+const WriteButton = styled.button`
+  border: none;
+  margin: 1rem auto;
+  padding: .5rem;
+  background-color: #FFA200;
+  font-weight: bold;
+  font-size: 1.05rem;
 `;
 
 const BoardInGrid = styled.div`
@@ -17,12 +28,22 @@ const BoardInGrid = styled.div`
   align-content: center;
 `;
 
-export default function Posts({ title }) {
+export default function Posts({ title, isLinkToWritePage }) {
 
   return (
     <div className="boards">
       <Background>
         <h2>{title}</h2>
+        <div>
+          {
+            isLinkToWritePage?
+              <Link to='/post'>
+                <WriteButton>글쓰기</WriteButton>
+              </Link>
+            :
+              ''
+          }
+        </div>
         <BoardInGrid>
           <SinglePostOnBoard />
         </BoardInGrid>

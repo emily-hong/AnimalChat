@@ -10,7 +10,7 @@ export default function Hamster(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="햄스터"/>
+      <Posts title="햄스터" isLinkToWritePage />
     </div>
   );
 }

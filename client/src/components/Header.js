@@ -22,6 +22,7 @@ const TopButtonsArea = styled.div`
   // border: 1px solid red;
 
   & button {
+    font-size: 1.05rem;
     font-weight: bold;
     border: none;
     margin: auto .5rem;
@@ -39,13 +40,13 @@ const TitleArea = styled.div`
   // border: 1px solid red;
 
   & button {
-    font-size: 1rem;
+    font-size: 1.2rem;
     background-color: transparent;
     border: none;
   }
   & h2 {
     margin-top: .5rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 `;
 

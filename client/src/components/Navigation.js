@@ -19,6 +19,7 @@ const ButtonsArea = styled.div`
     margin: auto .5rem;
     padding: .5rem 1rem;
     background-color: #FFB83E;
+    font-size: 1.05rem;
   }
 `
 
@@ -35,7 +36,7 @@ const HomeButtonArea = styled.div`
   }
 `
 
-export default function Navigation({ isLinkToWritePage }) {
+export default function Navigation() {
   return (
     <Outer className="navigation">
       <ButtonsArea>
@@ -62,16 +63,6 @@ export default function Navigation({ isLinkToWritePage }) {
           </Link>
         </div>
       </ButtonsArea>
-      <div>
-      {
-        isLinkToWritePage?
-          <Link to='/post'>
-            <button>글쓰기</button>
-          </Link>
-        :
-          ''
-      }
-      </div>
     </Outer>
   )
 }

@@ -7,7 +7,7 @@ export default function Hedgehog() {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="고슴도치"/>
+      <Posts title="고슴도치" isLinkToWritePage />
     </div>
   );
 }
