@@ -24,45 +24,52 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
+  const [curAnimal, setCurAnimal] = useState("")
   const history = useHistory()
 
   function loginFunc() {
     setIsLogin(!isLogin)
     history.push("/")
   }
+  function SignUpFin() {
+    setIsLogin(!isLogin)
+    history.push("/")
+  }
+  function curAnimalChange(animaltype) {
+    setCurAnimal(animaltype)
+  }
 
   return (
     <>
-      <Hamster />
       <NavBar />
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
-            <FirstPage />
+            <FirstPage loginFunc={loginFunc} />
           </Route>
           <Route exact path="/signup">
-            <Signup loginFunc={loginFunc} />
+            <Signup SignUpFin={SignUpFin} />
           </Route>
           <Route exact path="/mainpage">
             <MainPage />
           </Route>
           <Route exact path="/board/hamster">
-            <Hamster />
+            <Hamster curAnimalChange={curAnimalChange} />
           </Route>
           <Route exact path="/board/chick">
-            <Chick />
+            <Chick curAnimalChange={curAnimalChange} />
           </Route>
           <Route exact path="/board/parrot">
-            <Parrot />
+            <Parrot curAnimalChange={curAnimalChange} />
           </Route>
           <Route exact path="/board/rabbit">
-            <Rabbit />
+            <Rabbit curAnimalChange={curAnimalChange} />
           </Route>
           <Route exact path="/board/hedgehog">
-            <Hedgehog />
+            <Hedgehog curAnimalChange={curAnimalChange} />
           </Route>
           <Route path="/post">
-            <Post />
+            <Post curAnimal={curAnimal} />
           </Route>
           <Route path="/postedit">
             <PostEdit />

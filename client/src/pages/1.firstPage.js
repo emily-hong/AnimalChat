@@ -120,9 +120,11 @@ export const FirstPage = (props) => {
         method: "post",
         data: { id: loginInfo.id, password: loginInfo.password },
         withCredentials: true,
-      }).then((res) => alert("로그인 완료"))
+      }).then((res) => {
+        alert("로그인 완료")
+        props.loginFunc()
+      })
     }
-    history.push("/")
   }
 
   function socialSignUpHandler() {
