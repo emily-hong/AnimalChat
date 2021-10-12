@@ -2,7 +2,7 @@ import React from "react"
 import "./App.css"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
-import MainPage from "./pages/4-2.mainPage"
+import MainPage from "./pages/4.mainPage"
 
 
 function App() {
