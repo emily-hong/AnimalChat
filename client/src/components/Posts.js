@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import SinglePostOnBoard from "./SinglePostOnBoard";
+import { Link } from 'react-router-dom';
 
 // styled-components
 const StyledPosts = styled.div`
@@ -12,7 +13,6 @@ const StyledPosts = styled.div`
 `;
 
 export default function Posts({ mockBgColorPost }) {
-
   return (
     <div className="postsComponent">
       <StyledPosts>

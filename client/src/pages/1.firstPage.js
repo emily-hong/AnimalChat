@@ -84,18 +84,15 @@ const url =
   process.env.REACT_APP_URL ||
   "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
-
 export const FirstPage = (props) => {
-
   const [isOpen, setIsOpen] = useState(false)
-  const [loginInfo, setLoginInfo] = useState({ id: '', password: '' })
+  const [loginInfo, setLoginInfo] = useState({ id: "", password: "" })
   const [errMessage, setErrMessage] = useState(false)
   const history = useHistory()
 
   function signup() {
     history.push("/signup")
   }
-   
 
   function openSignInModalHandler() {
     setIsOpen(!isOpen)
@@ -108,24 +105,24 @@ export const FirstPage = (props) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value })
   }
 
-  function signUpHandler() { //로그인시 
+  function signUpHandler() {
+    //로그인시
     //console.log("로그인 버튼클릭시 콘솔")
     //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
-    //로그인 정보를 입력하지 않았을 때 
+    //로그인 정보를 입력하지 않았을 때
     if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
       setErrMessage(" 아이디와 패스워드를 입력하세요.")
-    } 
-    else { //로그인 정보를 모두 입력했을 때 
+    } else {
+      //로그인 정보를 모두 입력했을 때
       axios({
         url: url + "/signin",
         method: "post",
         data: { id: loginInfo.id, password: loginInfo.password },
         withCredentials: true,
-      })
-      .then((res) => alert('로그인 완료'))
+      }).then((res) => alert("로그인 완료"))
     }
-    history.push('/');
+    history.push("/")
   }
 
   function socialSignUpHandler() {
