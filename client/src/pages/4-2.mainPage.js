@@ -8,7 +8,7 @@ import Boards from "./4-1.boards";
 // import Parrot from "./5-3.parrot"
 // import Rabbit from "./5-4.rabbit"
 // import Hedgehog from "./5-5.hedgehog"
- 
+
 export default function MainPage(props) {
   return (
     <div className="mainPage">

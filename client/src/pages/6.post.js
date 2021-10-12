@@ -197,7 +197,7 @@ export const Post = (props) => {
       .then(() => {
         alert('작성 완료')
         // 작성 완료
-        history.push('/postread')
+        history.goBack() // 이전페이지로 돌아가야함
       })
       .catch(err => console.log(err))
 

@@ -179,23 +179,24 @@ export const PostEdit = (props) => {
 
   // 수정 버튼
   const editDoneButton = () => {
-    alert('수정하시겠습니까?')
     if(inputTitle.length > 0 && inputContent.length > 0){
+      alert('수정하시겠습니까?')
       console.log('수정완료 쪽');
       axios({
         url: url + '/postedit',
         method: 'post',
         data: {
           // 수정된 title, content,image 보내야함
-          post_tile: inputTitle,
+          post_title: inputTitle,
           post_content: inputContent,
           // post_img: inputImg,
         },
         withCredentials: true,
       })
       .then(() => {
-        // 수정성공
-        history.push('/postread')
+        console.log('수정성공')
+        history.goBack()  // 뒤로가기해도 업데이트된 게시물이 보여야함
+        // history.push('/postread')
       })
       .catch(err => console.log(err))
     }else{
