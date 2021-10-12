@@ -11,6 +11,7 @@ const url =
   "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
 // styled-component
+// TODO 필요시 height 수정
 const Outer = styled.div`
   display: flex;
   flex-direction: column;
