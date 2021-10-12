@@ -65,14 +65,28 @@ export const SignInModalView = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 3rem;
-  font-weight: bold;
-  color: palevioletred;
   border-radius: 20px;
   background-color: #FEEFD5;
   min-width: 400px;
   width: 80vw;
   height: 90vw;
+
+  & h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: palevioletred;
+  }
+  & button.close {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    padding: .5rem 2rem;
+    font-size: 1rem;
+    text-decoration: underline;
+    color: #7B7B7B;
+    border: none;
+    background-color: transparent;
+  }
 `
 
 // input과 input 제목, 비밀번호 경고
@@ -94,13 +108,11 @@ const InputSet = styled.div`
   & h4 {
     color: #424242;
   }
-
   & input {
     width: 40%;
     padding: .33rem;
     margin: .5rem;
   }
-
   & .errorMessage {
     font-size: 1rem;
     font-weight: normal;
@@ -196,7 +208,7 @@ export const FirstPage = (props) => {
           <SignInModalContainer>
             <SignInModalBackdrop>
               <SignInModalView>
-                Animal Chat🐣
+                <h1>Animal Chat🐣</h1>
                 <SignInModalForm>
                   <InputSet className="inputSection">
                     <h4>아이디</h4>
@@ -224,6 +236,7 @@ export const FirstPage = (props) => {
                     구글 소셜 로그인
                   </button>
                 </LoginButtons>
+                <button className="close" onClick={()=>{setIsOpen(false)}}>닫기</button>
               </SignInModalView>
             </SignInModalBackdrop>
           </SignInModalContainer>
