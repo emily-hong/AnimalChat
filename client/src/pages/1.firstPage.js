@@ -80,7 +80,9 @@ export const SignInModalForm = styled.div`
 `
 
 axios.defaults.withCredentials = true
-const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const FirstPage = (props) => {
   const [isOpen, setIsOpen] = useState(false)
