@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid';
 import Board from '../components/Board'
 
 const Background = styled.div`
@@ -33,9 +34,9 @@ export default function Boards() {
         <h2>게시판</h2>
         <BoardInGrid>
           {
-            pairsPathAndName.map(pair => {
+            pairsPathAndName.map((pair,idx) => {
               return (
-                <Link to={pair.path}>
+                <Link to={pair.path} key={idx}>
                   <Board boardName={pair.name} />
                 </Link>
               );

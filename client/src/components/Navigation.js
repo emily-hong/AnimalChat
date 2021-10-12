@@ -6,7 +6,7 @@ const ButtonsArea = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid red;
+  // border: 1px solid red;
   background-color: #FFD489;
   padding: 1rem;
 
@@ -23,6 +23,7 @@ const HomeButtonArea = styled.div`
   margin-right: 2rem;
 
   & button {
+    font-weight: bold;
     border: none;
     margin: auto .5rem;
     padding: .5rem;

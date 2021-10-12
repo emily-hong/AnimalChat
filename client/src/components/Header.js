@@ -15,9 +15,10 @@ const TopButtonsArea = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
-  border: 1px solid red;
+  // border: 1px solid red;
 
   & button {
+    font-weight: bold;
     border: none;
     margin: auto .5rem;
     padding: .5rem;
@@ -27,13 +28,15 @@ const TopButtonsArea = styled.div`
 
 const TitleArea = styled.div`
   display: flex;
+  padding: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  // border: 1px solid red;
 
-  & Link {
+  & h1 {
     text-decoration: none;
+    color: black;
   }
 `;
 
@@ -76,7 +79,7 @@ export default function Header() {
         </TopButtonsArea>
         <TitleArea>
           <Link to="/board">
-            <h1 className="headerTitle">Animal Chat🐱</h1>
+            <h1 className="headerTitle">Animal Chat 🐣</h1>
           </Link>
           <h2 className="headerDesc">반려동물 집사 커뮤니티</h2>
         </TitleArea>
