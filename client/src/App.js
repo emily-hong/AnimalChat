@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       <h1>css test</h1>
-      <FirstPage />
-      <Signup />
+      {/* <FirstPage /> */}
+      {/* <Signup /> */}
       <MainPage />
     </>
   );

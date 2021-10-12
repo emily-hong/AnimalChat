@@ -6,8 +6,10 @@ const StyledBoard = styled.div`
   width: 200px;
   height: 250px;
   padding: 1rem;
-  background-color: #FFF4DA;
-  border: 1px solid red;
+  background-color: #FFF9EE;
+  color: black;
+  // text-decoration: none;
+  // border: 1px solid red;
 `;
 
 const PictureAndText = styled.div`

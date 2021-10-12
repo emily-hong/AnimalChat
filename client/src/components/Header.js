@@ -4,6 +4,10 @@ import { Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 // styled components
+const Outer = styled.div`
+  width: 100vw;
+`;
+
 const HeaderFlexDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,9 +38,14 @@ const TitleArea = styled.div`
   align-items: center;
   // border: 1px solid red;
 
-  & h1 {
-    text-decoration: none;
-    color: black;
+  & button {
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+  }
+  & h2 {
+    margin-top: .5rem;
+    font-size: 1rem;
   }
 `;
 
@@ -64,7 +73,7 @@ export default function Header() {
 }
 
   return(
-    <div className="headerComponent">
+    <Outer className="headerComponent">
       <HeaderFlexDiv>
         <TopButtonsArea className="topButtonsArea">
           {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트, 랜딩페이지 라우팅*/}
@@ -79,11 +88,13 @@ export default function Header() {
         </TopButtonsArea>
         <TitleArea>
           <Link to="/board">
-            <h1 className="headerTitle">Animal Chat 🐣</h1>
+            <button>
+              <h1 className="headerTitle">Animal Chat 🐣</h1>
+            </button>
           </Link>
           <h2 className="headerDesc">반려동물 집사 커뮤니티</h2>
         </TitleArea>
       </HeaderFlexDiv>
-    </div>
+    </Outer>
   );
 }

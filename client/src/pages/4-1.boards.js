@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid';
 import Board from '../components/Board'
 
 const Background = styled.div`
   box-sizing: content-box;
-  background-color: #EFEEED;
+  background-color: #FEEFD5;
   padding: 1rem;
 `;
 

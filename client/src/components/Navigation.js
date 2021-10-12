@@ -2,6 +2,10 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 // styled components
+const Outer = styled.div`
+  width: 100vw;
+`;
+
 const ButtonsArea = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -33,7 +37,7 @@ const HomeButtonArea = styled.div`
 
 export default function Navigation({ isLinkToWritePage }) {
   return (
-    <div className="navigation">
+    <Outer className="navigation">
       <ButtonsArea>
         <HomeButtonArea>
           <Link to="/mainpage">
@@ -68,7 +72,7 @@ export default function Navigation({ isLinkToWritePage }) {
           ''
       }
       </div>
-    </div>
+    </Outer>
   )
 }
 

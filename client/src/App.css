@@ -9,6 +9,10 @@ button {
   cursor: pointer;
 }
 
+Link {
+  color: black;
+}
+
 /* 상단바 */
 .navBar {
   background-color: #FFFBEA;
