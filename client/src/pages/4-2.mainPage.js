@@ -4,7 +4,9 @@ import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import React, { useEffect, useState } from "react"
 import Boards from "./4-1.boards"
-const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MainPage(props) {
   useEffect(() => {

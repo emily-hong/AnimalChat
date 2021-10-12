@@ -3,7 +3,9 @@ import React, { useState } from "react"
 import axios from "axios"
 import Comment from "./8.postRead-comment"
 axios.defaults.withCredentials = true
-const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 // 삭제버튼들 확인창 띄우기
 // 댓글 : content
