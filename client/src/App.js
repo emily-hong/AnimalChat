@@ -18,7 +18,9 @@ import MyPageEdit from "./pages/10.myPageEdit"
 import PwdEditPage from "./pages/11-1.pwdEdit"
 
 import "./App.css"
-const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
