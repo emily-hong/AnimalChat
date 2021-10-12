@@ -44,13 +44,13 @@ module.exports = async (req, res) => {
     //id도 중복아니고, 닉네임도 중복이 아닌경우 생성해준다.
 
     //users테이블에 가입정보 추가
-    user.create({
+    await user.create({
       user_id: userId,
       password: password,
       nickname: nickName,
     })
 
-    animal.create({
+    await animal.create({
       userId: userId,
       animaltype: selectType,
       animalname: animalName,
@@ -59,5 +59,4 @@ module.exports = async (req, res) => {
 
     res.status(201).send({ message: "ok" })
   }
-  res.status(555).send({ message: "ok" })
 }
