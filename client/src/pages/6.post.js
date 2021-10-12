@@ -64,7 +64,7 @@ const TitlePostDiv2 = styled.div`
   justify-content: space-around;
   // align-items: flex-end;
 `
-const TitlePostDiv3 = styled.div`
+const TitlePostDiv3 = styled.form`
   // border: 1px solid gray;
   display: flex;
   flex-direction: column;
@@ -78,7 +78,7 @@ const TitlePostDiv4 = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `
-const PhotoSelectBtn = styled.div`
+const PhotoSelectBtn = styled.input`
   text-align: center;
   font-size: 20px;
   width: 200px;
@@ -87,16 +87,17 @@ const PhotoSelectBtn = styled.div`
   color: palevioletred;
 `
 const PhotoSelectBtnMargin = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
+  /* border: 1px solid gray; */
+  /* margin-top: 15px; */
   text-align: center;
   // width: 200px;
   // height: 60px;
   // background-color: #ffe2cd;
 `
-const PhotoUpLoadBtn = styled.div`
+const PhotoUpLoadBtn = styled.button`
   font-size: 20px;
   color: palevioletred;
+  /* margin-top: 15px; */
 
   text-align: center;
   width: 200px;
@@ -155,24 +156,24 @@ const PostCancelBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
-const url = 
+const url =
   process.env.REACT_APP_URL ||
-  'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
+  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
 
 export const Post = (props) => {
   const history = useHistory()
 
-  // 1. input title, content 
+  // 1. input title, content
   // 2. 제목과 내용 필수, 사진은 선택으로 함
-  const [inputTitle, setInputTitle] = useState('')
-  const [inputContent, setInputContent] = useState('')
-    // const [inputImg, setInputImg] = useState() // 사진 수정했을때
+  const [inputTitle, setInputTitle] = useState("")
+  const [inputContent, setInputContent] = useState("")
+  // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
   // 작성되어지는 제목, 내용
   const handleInputValue = (e) => {
-    if(e.target.name === 'title'){
+    if (e.target.name === "title") {
       setInputTitle(e.target.value)
-    }else if(e.target.name === 'content'){
+    } else if (e.target.name === "content") {
       setInputContent(e.target.value)
     }
     console.log(e.target.value)
@@ -182,11 +183,12 @@ export const Post = (props) => {
   // 수정된 게시물 정보 -> 서버로
   // 수정 페이지 postread에서 보여야함
   const postSendButton = () => {
-    if ( inputTitle.length > 0 && inputContent.length > 0 ){ // 제목, 내용 작성했을 때
-      console.log('작성완료 쪽')
+    if (inputTitle.length > 0 && inputContent.length > 0) {
+      // 제목, 내용 작성했을 때
+      console.log("작성완료 쪽")
       axios({
-        url: url + '/postsend',
-        method: 'post',
+        url: url + "/postsend",
+        method: "post",
         data: {
           post_title: inputTitle,
           post_content: inputContent,
@@ -194,51 +196,100 @@ export const Post = (props) => {
         },
         withCredentials: true,
       })
-      .then(() => {
-        alert('작성 완료')
-        // 작성 완료
-        history.push('/postread')
-      })
-      .catch(err => console.log(err))
-
-    }else{
-      alert('제목과 내용은 필수사항 입니다.')
+        .then(() => {
+          alert("작성 완료")
+          // 작성 완료
+          history.push("/postread")
+        })
+        .catch((err) => console.log(err))
+    } else {
+      alert("제목과 내용은 필수사항 입니다.")
     }
   }
-
   // 취소 버튼
   const cancleButton = () => {
     // 해당 동물의 게시판으로 가야함
     history.goBack()
   }
+  ///////////////////여기서부터 사진업로드 기능구현////////////////
+  const [photo, setPhoto] = useState("")
+  const [uploadedImg, setUploadedImg] = useState({
+    fileName: "",
+    fillPath: "",
+  })
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append("img", photo)
+    axios
+      .post(url + "/postsend", formData, {
+        "Content-Type": "application/json",
+        withCredentials: true,
+      })
+      .then((res) => {
+        const { fileName } = res.data
+        setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+        alert("사진을 성공적으로 업로드 하였습니다.")
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
+  const addFile = (e) => {
+    console.log(e.target.files[0])
+    setPhoto(e.target.files[0])
+  }
 
   return (
     <Body>
       <Header>Animal Chat🐣</Header>
       <ContentBox>
-        <TitlePostDiv3>
+        {/* /////////////////// */}
+        <TitlePostDiv3 onSubmit={onSubmit}>
           <PhotoBox>
-            <PhotoBoxDiv>아래 파일 추가를 눌러주세요.</PhotoBoxDiv>
+            {uploadedImg ? (
+              <>
+                <img src={uploadedImg.filePath} alt="" />
+                {/* <h3>{uploadedImg.fileName}</h3> */}
+              </>
+            ) : (
+              <PhotoBoxDiv>아래 파일 추가를 눌러주세요.</PhotoBoxDiv>
+            )}
           </PhotoBox>
           <TitlePostDiv2>
-            <PhotoSelectBtn>
-              <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin>
-            </PhotoSelectBtn>
-            <PhotoUpLoadBtn>
+            <PhotoSelectBtn type="file" onChange={addFile} />
+            {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
+            <PhotoUpLoadBtn type="submit">
               <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
             </PhotoUpLoadBtn>
           </TitlePostDiv2>
         </TitlePostDiv3>
+        {/* /////////////////// */}
         <TitlePostDiv>
-          <TitleBox placeholder="제목을 적으세요." type="text" name='title' onChange={handleInputValue} />
-          <PostBox placeholder="글을 적으세요." type="text" name='content' onChange={handleInputValue} />
+          <TitleBox
+            placeholder="제목을 적으세요."
+            type="text"
+            name="title"
+            onChange={handleInputValue}
+          />
+          <PostBox
+            placeholder="글을 적으세요."
+            type="text"
+            name="content"
+            onChange={handleInputValue}
+          />
           <TitlePostDiv4>
             <PostUploadBtn>
-              <PostCompletionBtnMargin onClick={postSendButton} >작성</PostCompletionBtnMargin>
+              <PostCompletionBtnMargin onClick={postSendButton}>
+                작성
+              </PostCompletionBtnMargin>
             </PostUploadBtn>
             <CancelBtn>
-              <PostCancelBtnMargin onClick={cancleButton}>취소</PostCancelBtnMargin>
+              <PostCancelBtnMargin onClick={cancleButton}>
+                취소
+              </PostCancelBtnMargin>
             </CancelBtn>
           </TitlePostDiv4>
         </TitlePostDiv>
