@@ -2,11 +2,24 @@ import styled from 'styled-components'
 
 const Outer = styled.div`
   box-sizing: content-box;
+  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  height: 80vh;
   background-color: #D6DBDF;
+`;
+
+const Inner = styled.div`
+  box-sizing: content-box;
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem;
+  width: 80vw;
+  height: 40vh;
+  // border: 1px solid red;
 `;
 
 const PictureEditSection = styled.section`
@@ -14,6 +27,10 @@ const PictureEditSection = styled.section`
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  // border: 1px solid red;
 `;
 
 const EditSection = styled.section`
@@ -21,34 +38,46 @@ const EditSection = styled.section`
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: inherit;
+  // border: 1px solid red;
 `;
 
 const PictureDisplay = styled.div`
+  // border: 1px solid red;
   box-sizing: content-box;
 `;
 
 const MockPicture = styled.div`
   box-sizing: content-box;
   background-color: #5D6D7E;
-  width: 20vw;
-  height: 20vw;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
 `;
 
 const PitureEditButtons = styled.div`
+  // border: 1px solid red;
   box-sizing: content-box;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 const EditTextInput = styled.div`
   box-sizing: content-box;
   padding: .5rem;
+  margin: .5rem;
   display: flex;
   flex-direction: column;
+  // border: 1px solid red;
 `;
 
 const FinishButtonSection = styled.div`
+  box-sizing: content-box;
+  margin: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,8 +85,8 @@ const FinishButtonSection = styled.div`
 
 export default function MyPageEditSection () {
   return (
-    <div>
-      <Outer>
+    <Outer>
+      <Inner>
         <PictureEditSection>
           <PictureDisplay>
             <MockPicture>
@@ -82,7 +111,7 @@ export default function MyPageEditSection () {
             <button>완료</button>
           </FinishButtonSection>
         </EditSection>
-      </Outer>
-    </div>
+      </Inner>
+    </Outer>
   );
 }
