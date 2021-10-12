@@ -27,13 +27,12 @@ const TopButtonsArea = styled.div`
 
 const TitleArea = styled.div`
   display: flex;
-  padding: 2rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border: 1px solid red;
 
-  & h1 {
+  & Link {
     text-decoration: none;
   }
 `;
@@ -60,9 +59,8 @@ export default function Header() {
     setIsLogin(false)
   })
 }
-  
 
-  return (
+  return(
     <div className="headerComponent">
       <HeaderFlexDiv>
         <TopButtonsArea className="topButtonsArea">
@@ -71,18 +69,14 @@ export default function Header() {
             <button className="headerTopButtons">마이페이지</button>
           </Link>
           <Link to="/firstpage">
-            <button 
-              className="headerTopButtons"
-              onClick={logoutEventListener}
-            >
+            <button className="headerTopButtons" onClick={logoutEventListener} >
               로그아웃
             </button>
           </Link>
         </TopButtonsArea>
         <TitleArea>
-          {/* header-title에 메인 페이지 링크 연결 */}
           <Link to="/board">
-            <h1 className="headerTitle">Animal Chat 🐣</h1>
+            <h1 className="headerTitle">Animal Chat🐱</h1>
           </Link>
           <h2 className="headerDesc">반려동물 집사 커뮤니티</h2>
         </TitleArea>
@@ -90,7 +84,3 @@ export default function Header() {
     </div>
   );
 }
-
-// TODO
-// [x] react-router-dom 적용 필요
-  // [] 진짜 라우트로 바꿔 넣기
