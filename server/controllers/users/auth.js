@@ -9,6 +9,7 @@ module.exports = async(req, res) => {
 //     id: 3,
 //     user_id: 'kimcoco',
 //     nickname: 'kim',
+//     password: 'a123',
 //     createdAt: '2021-10-12T04:05:10.000Z',
 //     updatedAt: '2021-10-12T04:05:10.000Z',
 //     iat: 1634022850,
