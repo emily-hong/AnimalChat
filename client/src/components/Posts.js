@@ -6,7 +6,7 @@ const Background = styled.div`
   box-sizing: content-box;
   background-color: #FEEFD5;
   padding: 1rem;
-  border-bottom: 1px solid red;
+  // border-bottom: 1px solid red;
 `;
 
 const WriteButton = styled.button`
@@ -22,7 +22,7 @@ const BoardInGrid = styled.div`
   box-sizing: content-box;
   display: grid;
   padding: 1rem;
-  gap: 1.5rem;
+  gap: 3rem;
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
@@ -45,6 +45,11 @@ export default function Posts({ title, isLinkToWritePage }) {
           }
         </div>
         <BoardInGrid>
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
           <SinglePostOnBoard />
         </BoardInGrid>
       </Background>
