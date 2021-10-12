@@ -4,15 +4,25 @@ const { isAuthorized } = require('../tokenFunc');
 module.exports = async(req, res) => {
   //console.log(req.headers)
   const accessTokenData = isAuthorized(req);
-  //console.log(accessTokenData)
+//  console.log(accessTokenData)
+//   {
+//     id: 3,
+//     user_id: 'kimcoco',
+//     nickname: 'kim',
+//     createdAt: '2021-10-12T04:05:10.000Z',
+//     updatedAt: '2021-10-12T04:05:10.000Z',
+//     iat: 1634022850,
+//     exp: 1634109250
+//   }
   if (!accessTokenData) {
     return res.json({ data: null, message: 'not authorized' });
   }
  
-  const { id } = accessTokenData
+  const { user_id, nickname } = accessTokenData
   const userInfoData = await user.findOne({
     where: {
-      user_id: id
+      user_id: user_id, 
+      nickname : nickname
     }
   })
   if(!userInfoData){
