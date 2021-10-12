@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 // styled components
 const ButtonsArea = styled.div`
@@ -7,20 +7,19 @@ const ButtonsArea = styled.div`
   justify-content: flex-end;
   align-items: center;
   border: 1px solid red;
-`;
+`
 
 const HomeButtonArea = styled.div`
   display: flex;
   margin-right: 2rem;
-`;
+`
 
 export default function Navigation() {
-
   return (
     <div className="navigation">
       <ButtonsArea>
         <HomeButtonArea>
-          <Link to="/board">
+          <Link to="/mainpage">
             <button className="homeButton">Home</button>
           </Link>
         </HomeButtonArea>
@@ -43,7 +42,7 @@ export default function Navigation() {
         </div>
       </ButtonsArea>
     </div>
-  );
+  )
 }
 
 // TODO

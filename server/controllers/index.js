@@ -1,4 +1,5 @@
 module.exports={
+  auth: require('./users/auth'),
   commentlist: require('./users/commentlist'),
   commentsend: require('./users/commentsend'),
   postedit: require('./users/postedit'),

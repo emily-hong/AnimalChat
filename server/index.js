@@ -1,19 +1,19 @@
 require("dotenv").config()
+const fs = require("fs")
+const https = require("https")
 const cors = require("cors")
 const cookieParser = require("cookie-parser")
 const express = require("express")
 const app = express()
 const controllers = require("./controllers")
 
-const logger = require('morgan')
-const { sequelize } = require("./models")
-const port = 80
+const logger = require("morgan")
 
 const url =
   process.env.API_URL ||
   "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com/"
 
-app.use(express.json()) 
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
@@ -22,15 +22,11 @@ app.use(
     methods: ["GET", "POST", "OPTIONS"],
   })
 )
-app.use(logger('dev')) //서버요청 로그
+app.use(logger("dev")) //서버요청 로그
 app.use(cookieParser())
 
-//test
-app.get("/", (req, res) => {
-  res.status(201).send("Hello World2")
-})
-
 //get
+app.get("/auth", controllers.auth)
 app.get("/postlist", controllers.postlist) //signin, signout, signup,
 app.get("/userinfo", controllers.userinfo) // postlist -> userinfo 마이페이지에서 반려동물 정보 확인할 때(myPage.js)
 app.get("/commentlist", controllers.commentlist) // postlist -> commentlist 게시글 볼 때 다른 사용자가 남긴 댓글 보기(postRead.js)
@@ -50,33 +46,17 @@ app.delete("/commentdelete", controllers.commentdelete) // postlist -> commentde
 app.delete("/postdelete", controllers.postdelete) // postlist -> postdelete 게시글에서 해당 게시글 삭제시(postRead.js)
 app.delete("/userremove", controllers.userremove) // userinfo -> userremove 마이페이지에서 회원탈퇴(myPage.js)
 
-//데이터베이스 연결 
-sequelize.sync({ force: false })
-.then(() => {
-  console.log('데이터베이스 연결 성공')
-})
-.catch((err) => {
-  console.logo(err)
-})
+const HTTPS_PORT = process.env.HTTPS_PORT || 80
 
-app.listen(port, () => {
-  console.log(`🚀 Server is starting on ${port}`)
-})
-
-module.exports = app;
-
-
-//const HTTPS_PORT = process.env.HTTPS_PORT || 80
-
-// let server
-// if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
-//   // https 프로토콜 사용 시
-//   const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
-//   const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
-//   const credentials = { key: privateKey, cert: certificate }
-//   server = https.createServer(credentials, app)
-//   server.listen(HTTPS_PORT, () => console.log("https server runnning"))
-// } else {
-//   server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
-// }
-// module.exports = server
+let server
+if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
+  // https 프로토콜 사용 시
+  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
+  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
+  const credentials = { key: privateKey, cert: certificate }
+  server = https.createServer(credentials, app)
+  server.listen(HTTPS_PORT, () => console.log("https server runnning"))
+} else {
+  server = app.listen(HTTPS_PORT, () => console.log("http server runnning"))
+}
+module.exports = server

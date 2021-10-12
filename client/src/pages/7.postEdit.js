@@ -167,7 +167,6 @@ export const PostEdit = (props) => {
   const [inputContent, setInputContent] = useState('')
   // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
-
   // 수정되어지는 제목, 내용
   const handleInputValue = (e) => {
     if(e.target.name === 'title'){
@@ -181,16 +180,16 @@ export const PostEdit = (props) => {
   // 수정 버튼
   const editDoneButton = () => {
     alert('수정하시겠습니까?')
-    // 수정된 게시물 정보 -> 서버로
-    // 수정 페이지 postread에서 보여야함
-    if(inputTitle.length > 0 && inputContent > 0){
+    if(inputTitle.length > 0 && inputContent.length > 0){
+      console.log('수정완료 쪽');
       axios({
         url: url + '/postedit',
         method: 'post',
         data: {
           // 수정된 title, content,image 보내야함
-          post_title: inputTitle,
+          post_tile: inputTitle,
           post_content: inputContent,
+          // post_img: inputImg,
         },
         withCredentials: true,
       })
@@ -205,7 +204,7 @@ export const PostEdit = (props) => {
   }
 
   // 취소 버튼
-  const cancleButton = (event) => {
+  const cancleButton = () => {
     history.goBack()
   }
 
