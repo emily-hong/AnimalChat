@@ -4,39 +4,39 @@ import styled from "styled-components"
 import axios from "axios"
 
 const Container = styled.div`
-  /* box-sizing: border-box; */
-  /* margin-top: -320px; */
-  margin-top: -96px;
-  width: 1920px;
-  height: 1080px;
-  /* background-color: papayawhip; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
   background-color: #ffefd5;
 `
 
 const Header = styled.h1`
-  /* border-top: 4em;
-  margin-bottom: 4em; */
-  padding-top: 1em;
-  padding-bottom: 1em;
-  font-size: 9em;
+  font-size: 7rem;
+  margin: 2.5rem;
   text-align: center;
   color: palevioletred;
 `
+
 const SigninBtn = styled.h1`
-  font-size: 4em;
-  /* font-size: 200px; */
+  margin: 1rem;
+  font-size: 2rem;
   text-align: center;
   color: palevioletred;
 
-  /* &:hover {
-    background: gold;
-  } */
+  &:hover {
+    // background: gold;
+    color: #892847;
+  }
 `
+
 export const SignInModalContainer = styled.div`
   height: 15rem;
   text-align: center;
   margin: 120px auto;
 `
+
 export const SignInModalBackdrop = styled.div`
   position: fixed;
   z-index: 999;
@@ -62,12 +62,12 @@ export const SingInModalBtn = styled.button`
 export const SignInModalView = styled.div`
   font-size: 4em;
   color: palevioletred;
-
   border-radius: 20px;
   background-color: #fffdea;
   width: 800px;
   height: 500px;
 `
+
 export const SignInModalForm = styled.div`
   padding-top: 3em;
   font-size: 0.5em;
@@ -133,9 +133,11 @@ export const FirstPage = (props) => {
 
   return (
     <Container>
-      <Header>Animal Chat🐣</Header>
-      <SigninBtn onClick={openSignInModalHandler}>로그인</SigninBtn>
-      <SigninBtn onClick={signup}>회원가입</SigninBtn>
+      <Header>Animal Chat 🐣</Header>
+      <div>
+        <SigninBtn onClick={openSignInModalHandler}>로그인</SigninBtn>
+        <SigninBtn onClick={signup}>회원가입</SigninBtn>
+      </div>
       {isOpen === false ? null : (
         <div>
           <SignInModalContainer>

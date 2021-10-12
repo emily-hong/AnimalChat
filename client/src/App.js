@@ -1,12 +1,15 @@
 import React from "react"
 import "./App.css"
-import Signup from "./pages/2.signUp"
+import FirstPage from "./pages/1.firstPage"
+// import Signup from "./pages/2.signUp"
+
 
 function App() {
   return (
     <>
-      css test
-      <Signup />
+      <h1>css test</h1>
+      <FirstPage />
+      {/* <Signup /> */}
     </>
   );
 }
