@@ -3,7 +3,7 @@ const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 const multer = require("multer")
 
 module.exports = async (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
   //   const { post_title, post_content } = req.body
 
   // post_users의 id, post_id, userid, createdAt, updatedAt 가져와야함
