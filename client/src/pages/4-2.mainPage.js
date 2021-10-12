@@ -1,23 +1,31 @@
 // import { Switch, Route } from "react-router-dom"
-import axios from "axios";
+import axios from "axios"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-
-import Boards from "./4-1.boards";
-// import Hamster from "./5-1.hamster"
-// import Chick from "./5-2.chick"
-// import Parrot from "./5-3.parrot"
-// import Rabbit from "./5-4.rabbit"
-// import Hedgehog from "./5-5.hedgehog"
+import React, { useEffect, useState } from "react"
+import Boards from "./4-1.boards"
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MainPage(props) {
-  //console.log(props)
+  useEffect(() => {
+    axios({
+      url: url + "/postlist",
+      method: "get",
+      withCredentials: true,
+    }).then((res) => {
+      // setPostList(res.data)
+      props.getPostList(res.data)
+    })
+  }, [])
+
   return (
     <div className="mainPage">
       <Header />
       <Navigation />
       <h2>게시판</h2>
-      <Boards />
+      <Boards postList={props.postList} />
     </div>
   )
 }

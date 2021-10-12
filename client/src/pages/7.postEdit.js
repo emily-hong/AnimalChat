@@ -155,50 +155,49 @@ const PostCancelBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
-
-const url = 
+const url =
   process.env.REACT_APP_URL ||
-  'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const PostEdit = (props) => {
   const history = useHistory()
 
-  const [inputTitle, setInputTitle] = useState('')
-  const [inputContent, setInputContent] = useState('')
+  const [inputTitle, setInputTitle] = useState("")
+  const [inputContent, setInputContent] = useState("")
   // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
   // 수정되어지는 제목, 내용
   const handleInputValue = (e) => {
-    if(e.target.name === 'title'){
+    if (e.target.name === "title") {
       setInputTitle(e.target.value)
-    }else if(e.target.name === 'content'){
+    } else if (e.target.name === "content") {
       setInputContent(e.target.value)
     }
-    console.log(e.target.value);
-  };
+    console.log(e.target.value)
+  }
 
   // 수정 버튼
   const editDoneButton = () => {
-    if(inputTitle.length > 0 && inputContent.length > 0){
-      alert('수정하시겠습니까?')
+    if (inputTitle.length > 0 && inputContent.length > 0) {
+      alert("수정하시겠습니까?")
       axios({
-        url: url + '/postedit',
-        method: 'post',
+        url: url + "/postedit",
+        method: "post",
         data: {
-          editTitle: inputTitle,
-          editContent: inputContent,
+          post_title: inputTitle,
+          post_content: inputContent,
           // post_img: inputImg,
         },
         withCredentials: true,
       })
-      .then(() => {
-        console.log('수정성공')
-        history.goBack()  // 뒤로가기해도 업데이트된 게시물이 보여야함
-        // history.push('/postread')
-      })
-      .catch(err => console.log(err))
-    }else{
-      alert('제목과 내용은 필수사항 입니다.')
+        .then(() => {
+          console.log("수정성공")
+          history.goBack() // 뒤로가기해도 업데이트된 게시물이 보여야함
+          // history.push('/postread')
+        })
+        .catch((err) => console.log(err))
+    } else {
+      alert("제목과 내용은 필수사항 입니다.")
     }
   }
 
@@ -226,14 +225,30 @@ export const PostEdit = (props) => {
         </TitlePostDiv3>
         <TitlePostDiv>
           {/* defaultValue 에 기존 게시물 내용이 들어가야할듯함.. */}
-          <TitleBox placeholder="제목을 수정하세요." type="text" name='title' defaultValue={props.title} onChange={handleInputValue}/>
-          <PostBox placeholder="글을 수정하세요." type="text" name='content' defaultValue={props.content} onChange={handleInputValue}/>
+          <TitleBox
+            placeholder="제목을 수정하세요."
+            type="text"
+            name="title"
+            defaultValue={props.title}
+            onChange={handleInputValue}
+          />
+          <PostBox
+            placeholder="글을 수정하세요."
+            type="text"
+            name="content"
+            defaultValue={props.content}
+            onChange={handleInputValue}
+          />
           <TitlePostDiv4>
             <PostUploadBtn>
-              <PostCompletionBtnMargin onClick={editDoneButton}>수정</PostCompletionBtnMargin>
+              <PostCompletionBtnMargin onClick={editDoneButton}>
+                수정
+              </PostCompletionBtnMargin>
             </PostUploadBtn>
             <CancelBtn>
-              <PostCancelBtnMargin onClick={cancleButton}>취소</PostCancelBtnMargin>
+              <PostCancelBtnMargin onClick={cancleButton}>
+                취소
+              </PostCancelBtnMargin>
             </CancelBtn>
           </TitlePostDiv4>
         </TitlePostDiv>
