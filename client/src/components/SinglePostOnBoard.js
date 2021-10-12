@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 // styled components
 const StyledSinglePost = styled.div`
@@ -33,22 +33,23 @@ const StyledTitlePreview = styled.div`
   }
 `;
 
-const StyledProfilePictureArea = styled.span`
+const StyledProfilePictureArea = styled.div`
   background-color: #4976bf;
-`;
+`
 
-export default function SinglePostOnBoard({ mockBgColor }) {
-
+export default function SinglePostOnBoard({ mockBgColor, post, url }) {
+  /* src: ${(props) => "" + props.url + props.post.post_img}; */
+  /* src: aasd; */
+  console.log(post.post_img)
+  console.log(url)
+  console.log(url + post.post_img)
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail color={mockBgColor}>
-          {'사진 미리보기'}
-        </StyledThumbnail>
+        <StyledThumbnail src={url + post.post_img} />
+        {post.post_title}
         <StyledTitlePreview>
-          <StyledProfilePictureArea>
-            {'프로필사진'}
-          </StyledProfilePictureArea>
+          <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
             <p className="title">{'만나서 반갑습니다.'}</p>
             <p className="writer">{'김코딩'}</p>
@@ -56,7 +57,23 @@ export default function SinglePostOnBoard({ mockBgColor }) {
         </StyledTitlePreview>
       </StyledSinglePost>
     </div>
-  );
+  )
+  // return (
+  //   <div className="singlePostOnBoard">
+  //     <StyledSinglePost>
+  //       <StyledThumbnail color={mockBgColor}>
+  //         {/* {"사진 미리보기"} */}
+  //       </StyledThumbnail>
+  //       <StyledTitlePreview>
+  //         <StyledProfilePictureArea></StyledProfilePictureArea>
+  //         <div className="text">
+  //           <span className="writer">{"김코딩:"}</span>
+  //           <span className="title">{"만나서 반갑습니다."}</span>
+  //         </div>
+  //       </StyledTitlePreview>
+  //     </StyledSinglePost>
+  //   </div>
+  // )
 }
 
 // TODO

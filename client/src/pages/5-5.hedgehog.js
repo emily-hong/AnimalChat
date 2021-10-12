@@ -1,13 +1,17 @@
-import Posts from "../components/Posts";
+import Posts from "../components/Posts"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
+import React, { useEffect } from "react"
 
-export default function Hedgehog() {
+export default function Hedgehog(props) {
+  useEffect(() => {
+    props.curAnimalChange("hedgehog")
+  }, [])
   return (
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
       <Posts title="고슴도치" isLinkToWritePage />
     </div>
-  );
+  )
 }

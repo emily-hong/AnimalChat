@@ -54,7 +54,7 @@ export default function Posts({ title, isLinkToWritePage }) {
         </BoardInGrid>
       </Background>
     </div>
-  );
+  )
 }
 
 // TODO : 게시물 없을 때의 메시지

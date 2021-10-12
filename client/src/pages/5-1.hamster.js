@@ -1,10 +1,12 @@
-import Posts from "../components/Posts";
+import Posts from "../components/Posts"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
+import React, { useEffect, useState } from "react"
 
 export default function Hamster(props) {
-  // 햄스터의 게시글 목록
-  // 카테고리를 이용?
+  useEffect(() => {
+    props.curAnimalChange("hamster")
+  }, [])
 
   return (
     <div className="mainPage">
@@ -12,5 +14,5 @@ export default function Hamster(props) {
       <Navigation isLinkToWritePage />
       <Posts title="햄스터" isLinkToWritePage />
     </div>
-  );
+  )
 }
