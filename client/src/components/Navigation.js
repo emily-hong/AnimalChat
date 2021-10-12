@@ -7,11 +7,27 @@ const ButtonsArea = styled.div`
   justify-content: flex-end;
   align-items: center;
   border: 1px solid red;
+  background-color: #FFD489;
+  padding: 1rem;
+
+  & button {
+    border: none;
+    margin: auto .5rem;
+    padding: .5rem 1rem;
+    background-color: #FFB83E;
+  }
 `
 
 const HomeButtonArea = styled.div`
   display: flex;
   margin-right: 2rem;
+
+  & button {
+    border: none;
+    margin: auto .5rem;
+    padding: .5rem;
+    background-color: #FFA200;
+  }
 `
 
 export default function Navigation({ isLinkToWritePage }) {

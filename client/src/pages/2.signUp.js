@@ -24,7 +24,8 @@ const Outer = styled.div`
 `;
 
 const FormSpace = styled.div`
-  width: 300px;
+  min-width: 300px;
+  width: 50vw;
   background-color: #FFF9EE;
 `;
 
