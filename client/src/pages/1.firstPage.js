@@ -96,9 +96,9 @@ export const SignInModalForm = styled.div`
   padding: 1rem;
   font-size: 1.33rem;
   color: palevioletred;
-  // border: 1px solid red;
 `
 
+// input과 input 제목, 비밀번호 경고
 const InputSet = styled.div`
   display: flex;
   flex-direction: column;
@@ -193,7 +193,7 @@ export const FirstPage = (props) => {
   }
 
   function socialSignUpHandler() {
-    //console.log("소셜로그인 준비완료")
+    // console.log("소셜로그인 준비완료")
   }
 
   return (
@@ -203,12 +203,14 @@ export const FirstPage = (props) => {
         <SigninBtn onClick={openSignInModalHandler}>로그인</SigninBtn>
         <SigninBtn onClick={signup}>회원가입</SigninBtn>
       </div>
+
       {isOpen === false ? null : (
         <div>
           <SignInModalContainer>
             <SignInModalBackdrop>
               <SignInModalView>
                 <h1>Animal Chat🐣</h1>
+
                 <SignInModalForm>
                   <InputSet className="inputSection">
                     <h4>아이디</h4>
@@ -218,32 +220,29 @@ export const FirstPage = (props) => {
                     <h4>패스워드</h4>
                     <input type="password" onChange={handleInputValue("password")} />
                     <div className="errorMessage">
-                      {`에러메시지 테스트${errMessage}`}
+                      {errMessage}
                     </div>
                   </InputSet>
                 </SignInModalForm>
+
                 <LoginButtons className="loginModalButtons">
-                  <button
-                    onClick={signUpHandler}
-                    className="justLogin"
-                  >
+                  <button onClick={signUpHandler} className="justLogin">
                     로그인
                   </button>
-                  <button
-                    onClick={socialSignUpHandler}
-                    className="socialLogin"
-                  >
+                  <button className="socialLogin" onClick={socialSignUpHandler}>
                     구글 소셜 로그인
                   </button>
                 </LoginButtons>
+
                 <button className="close" onClick={()=>{setIsOpen(false)}}>닫기</button>
+
               </SignInModalView>
             </SignInModalBackdrop>
           </SignInModalContainer>
         </div>
       )}
     </Container>
-  )
+  );
 }
 
-export default FirstPage
+export default FirstPage;
