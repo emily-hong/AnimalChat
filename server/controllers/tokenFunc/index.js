@@ -26,19 +26,20 @@ module.exports = {
 //   },
 
   isAuthorized: (req) => {   
-     //console.log(req.headers.cookie)
+    //console.log(req.headers)
     
-     const authorization = req.headers.cookie
-     if(!authorization){
-        return null;
-     }
-    // const token = authorization.split(' ')[1];
-    const token = authorization.substring(4).split(' ')[1]
-     try {
-        return verify(token, process.env.ACCESS_SECRET)
-     }catch(err){
-        return null;
-     }
+    const authorization = req.headers.cookie
+    if(!authorization){
+      return null;
+    }
+    //const token = authorization.split(' ')[1];
+    const token = authorization.split('=')[1].split(',')[0]
+    //console.log(token)
+    try {
+      return verify(token, process.env.ACCESS_SECRET)
+    }catch(err){
+      return null;
+    }
   },
 
 //   checkRefreshToken: (refreshToken) => {

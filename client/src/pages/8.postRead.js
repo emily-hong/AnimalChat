@@ -4,13 +4,28 @@ import axios from 'axios';
 import Comment from './8.postRead-comment'
 axios.defaults.withCredentials = true;
 
-// 삭제버튼들 확인창 띄우기
+const url = 
+  process.env.REACT_APP_URL ||
+  'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
+
 // 댓글 : content
-export default function PostRead(){
-  // title - 수정버튼 : history.push
+export default function PostRead(props){
+
   const history = useHistory()
   const editPostButton = (event) => {
     alert('수정하시겠습니까?')
+
+    // 작성중인 부분
+    // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
+    axios({
+      url: url + '/postedit',
+      method: 'post',
+      data: {
+        // 해당 게시물의 id를 보내서 일치하는 것 수정(update)
+        
+      }
+    })
+
     history.push('/postedit')
   }
 
@@ -18,6 +33,8 @@ export default function PostRead(){
   const deletPostButton = (event) => {
     alert('게시물을 삭제하시겠습니까?')
     // 데이터베이스 게시물 삭제
+    
+
   }
 
   // 댓글
@@ -53,8 +70,8 @@ export default function PostRead(){
         </div>
 
         <div className='postTitle_right'>
-          <button onClick={editPostButton}>수정</button>
-          <button>삭제</button> 
+          <button onClick={editPostButton} >수정</button>
+          <button onClick={deletPostButton}>삭제</button> 
         </div>
       </div>
 
