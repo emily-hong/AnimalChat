@@ -14,8 +14,7 @@ import Post from "./pages/6.post"
 import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
-// import MyPageEdit from "./pages/10.myPageEdit"
-// import PasswordChange from "./pages/11-2.pwdSection"
+import MyPageEdit from "./pages/10.myPageEdit"
 import PwdEditPage from "./pages/11-1.pwdEdit"
 
 import "./App.css"
@@ -27,6 +26,7 @@ function App() {
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("")
   const [userinfo, setUserinfo] = useState(null)
+  const [postList, setPostList] = useState([])
 
   const history = useHistory()
 
@@ -48,15 +48,16 @@ function App() {
       url: url + "/auth",
       method: "get",
       withCredentials: true,
-    })
-    .then((res) => {
+    }).then((res) => {
       //console.log(res)
-      setUserinfo(res.data) 
+      setUserinfo(res.data)
       setIsLogin(true)
       history.push("/")
     })
   }
-
+  function getPostList(data) {
+    setPostList(data)
+  }
 
   return (
     <>
@@ -64,15 +65,17 @@ function App() {
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
-
             <FirstPage isLogin={isLogin} loginFunc={loginFunc} />
-
           </Route>
           <Route exact path="/signup">
             <Signup SignUpFin={SignUpFin} />
           </Route>
           <Route exact path="/mainpage">
-            <MainPage userinfo={userinfo} />
+            <MainPage
+              userinfo={userinfo}
+              getPostList={getPostList}
+              postList={postList}
+            />
           </Route>
           <Route exact path="/board/hamster">
             <Hamster curAnimalChange={curAnimalChange} />
@@ -102,9 +105,9 @@ function App() {
             <MyPage />
           </Route>
 
-          {/* <Route path="/mypageedit">
+          <Route path="/mypageedit">
             <MyPageEdit />
-          </Route> */}
+          </Route>
           <Route path="/pwdedit">
             <PwdEditPage />
           </Route>

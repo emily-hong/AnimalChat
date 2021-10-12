@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 // styled components
 const StyledSinglePost = styled.div`
@@ -7,45 +7,46 @@ const StyledSinglePost = styled.div`
   width: 200px;
   height: 300px;
   border: 1px solid red;
-`;
+`
 
 const StyledThumbnail = styled.div`
   height: 200px;
-  background-color: ${props => props.color};
-`;
+  background-color: ${(props) => props.color};
+`
 
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
   border: 1px solid red;
-`;
+`
 
-const StyledProfilePictureArea = styled.span`
+const StyledProfilePictureArea = styled.img`
   background-color: #4976bf;
-`;
+  src: ${(props) => "" + props.url + props.post.post_img};
+  /* src: aasd; */
+`
 
-export default function SinglePostOnBoard({ mockBgColor }) {
+export default function SinglePostOnBoard({ mockBgColor, post, url }) {
+  console.log(post.post_img)
+  console.log(url)
+  console.log(url + post.post_img)
 
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
         <StyledThumbnail color={mockBgColor}>
-          {'사진 미리보기'}
+          {/* {"사진 미리보기"} */}
         </StyledThumbnail>
         <StyledTitlePreview>
-          <StyledProfilePictureArea>
-            {'프로필사진'}
-          </StyledProfilePictureArea>
+          <StyledProfilePictureArea post={post} url={url} />
           <div className="text">
-            <span className="writer">
-              {'김코딩:'}
-            </span>
-            <span className="title">{'만나서 반갑습니다.'}</span>
+            <span className="writer">{"김코딩:"}</span>
+            <span className="title">{"만나서 반갑습니다."}</span>
           </div>
         </StyledTitlePreview>
       </StyledSinglePost>
     </div>
-  );
+  )
 }
 
 // TODO
