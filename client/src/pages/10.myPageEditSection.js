@@ -84,6 +84,21 @@ const FinishButtonSection = styled.div`
 `;
 
 export default function MyPageEditSection () {
+  const pictureChangeBtnHandler = () => {
+    // TODO axios 요청 : 서버로 사진 보내기
+    console.log('정보수정페이지 * (프로필사진바꾸기) 버튼 동작 확인');
+  }
+
+  const checkBtnHandler = () => {
+    // TODO axios 요청 : 서버에서 사진 받기?
+    console.log('정보수정페이지 * (확인) 버튼 동작 확인');
+  }
+
+  const finishBtnHandler = () => {
+    // TODO axios 요청 : 서버로 수정된 정보 보내기
+    console.log('정보수정페이지 * (완료) 버튼 동작 확인');
+  }
+
   return (
     <Outer>
       <Inner>
@@ -94,8 +109,8 @@ export default function MyPageEditSection () {
             </MockPicture>
           </PictureDisplay>
           <PitureEditButtons>
-            <button>프로필 사진 바꾸기</button>
-            <button>확인</button>
+            <button onClick={pictureChangeBtnHandler}>프로필 사진 바꾸기</button>
+            <button onClick={checkBtnHandler}>확인</button>
           </PitureEditButtons>
         </PictureEditSection>
         <EditSection>
@@ -108,7 +123,7 @@ export default function MyPageEditSection () {
             <input type="text"/>
           </EditTextInput>
           <FinishButtonSection>
-            <button>완료</button>
+            <button onClick={finishBtnHandler}>완료</button>
           </FinishButtonSection>
         </EditSection>
       </Inner>
