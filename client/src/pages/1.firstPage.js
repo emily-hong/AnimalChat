@@ -32,21 +32,22 @@ const SigninBtn = styled.h1`
 `
 
 export const SignInModalContainer = styled.div`
-  height: 15rem;
   text-align: center;
-  margin: 120px auto;
 `
 
+// 모달 배경
 export const SignInModalBackdrop = styled.div`
   position: fixed;
-  z-index: 999;
+  display: grid;
+  place-items: center;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  display: grid;
-  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 `
 
 export const SingInModalBtn = styled.button`
@@ -59,25 +60,77 @@ export const SingInModalBtn = styled.button`
   cursor: grab;
 `
 
+// 모달 창
 export const SignInModalView = styled.div`
-  font-size: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
   color: palevioletred;
   border-radius: 20px;
-  background-color: #fffdea;
-  width: 800px;
-  height: 500px;
+  background-color: #FEEFD5;
+  min-width: 400px;
+  width: 80vw;
+  height: 90vw;
 `
 
+// input과 input 제목, 비밀번호 경고
 export const SignInModalForm = styled.div`
-  padding-top: 3em;
-  font-size: 0.5em;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: 1.33rem;
   color: palevioletred;
-
-  border-radius: 20px;
-  background-color: #fffdea;
-  /* width: 800px;
-  height: 500px; */
+  // border: 1px solid red;
 `
+
+const InputSet = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & h4 {
+    color: #424242;
+  }
+
+  & input {
+    width: 40%;
+    padding: .33rem;
+    margin: .5rem;
+  }
+
+  & .errorMessage {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #E00000;
+  }
+`;
+
+// 로그인 버튼 2개
+const LoginButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+
+  & button{ // 공통
+    margin: .5rem;
+    padding: .5rem;
+    width: 30%;
+    font-size: 1rem;
+    border: none;
+    color: white;
+  }
+  & button.justLogin { // 자체
+    background-color: #419300;
+  }
+  & button.socialLogin { // 소셜
+    background-color: #EA4335;
+  }
+`;
 
 axios.defaults.withCredentials = true
 const url =
@@ -145,22 +198,32 @@ export const FirstPage = (props) => {
               <SignInModalView>
                 Animal Chat🐣
                 <SignInModalForm>
-                  <div>
-                    <div>아이디12</div>
+                  <InputSet className="inputSection">
+                    <h4>아이디</h4>
                     <input type="id" onChange={handleInputValue("id")} />
-                  </div>
-                  <div></div>
-                  <div>
-                    <div>패스워드</div>
-                    <input
-                      type="password"
-                      onChange={handleInputValue("password")}
-                    />
-                  </div>
-                  <div>{errMessage}</div>
+                  </InputSet>
+                  <InputSet className="inputSection">
+                    <h4>패스워드</h4>
+                    <input type="password" onChange={handleInputValue("password")} />
+                    <div className="errorMessage">
+                      {`에러메시지 테스트${errMessage}`}
+                    </div>
+                  </InputSet>
                 </SignInModalForm>
-                <button onClick={signUpHandler}>로그인</button>
-                <button onClick={socialSignUpHandler}>구글 소셜 로그인</button>
+                <LoginButtons className="loginModalButtons">
+                  <button
+                    onClick={signUpHandler}
+                    className="justLogin"
+                  >
+                    로그인
+                  </button>
+                  <button
+                    onClick={socialSignUpHandler}
+                    className="socialLogin"
+                  >
+                    구글 소셜 로그인
+                  </button>
+                </LoginButtons>
               </SignInModalView>
             </SignInModalBackdrop>
           </SignInModalContainer>
