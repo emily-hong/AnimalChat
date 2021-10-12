@@ -80,9 +80,7 @@ export const SignInModalForm = styled.div`
 `
 
 axios.defaults.withCredentials = true
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
+const url = process.env.REACT_APP_URL || process.env.REACT_EC2_URL
 
 export const FirstPage = (props) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -113,16 +111,15 @@ export const FirstPage = (props) => {
     //로그인 정보를 입력하지 않았을 때
     if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
       setErrMessage(" 아이디와 패스워드를 입력하세요.")
-    }else { //로그인 정보를 모두 입력했을 때 
+    } else {
+      //로그인 정보를 모두 입력했을 때
       axios({
         url: url + "/signin",
         method: "post",
         data: { id: loginInfo.id, password: loginInfo.password },
         withCredentials: true,
-
-      }) 
-      .then((res) => {
-        alert('로그인 완료')
+      }).then((res) => {
+        alert("로그인 완료")
 
         props.loginFunc()
       })
