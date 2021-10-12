@@ -5,16 +5,19 @@ const Outer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
   background-color: #D6DBDF;
 `;
 
 const PictureEditSection = styled.section`
   box-sizing: content-box;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
 `;
 
 const EditSection = styled.section`
+  padding: 1rem;
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
@@ -35,12 +38,20 @@ const MockPicture = styled.div`
 const PitureEditButtons = styled.div`
   box-sizing: content-box;
   display: flex;
+  justify-content: space-between;
 `;
 
 const EditTextInput = styled.div`
   box-sizing: content-box;
+  padding: .5rem;
   display: flex;
   flex-direction: column;
+`;
+
+const FinishButtonSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export default function MyPageEditSection () {
@@ -67,9 +78,9 @@ export default function MyPageEditSection () {
             <h4>출생년도 수정</h4>
             <input type="text"/>
           </EditTextInput>
-          <div>
+          <FinishButtonSection>
             <button>완료</button>
-          </div>
+          </FinishButtonSection>
         </EditSection>
       </Outer>
     </div>
