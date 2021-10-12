@@ -1,9 +1,9 @@
-import Posts from '../components/Posts'
+import Posts from "../components/Posts"
 
-export default function Boards({ boardName, mockBgColorPost }) {
+export default function Boards({ boardName, mockBgColorPost, postList }) {
   return (
     <div className="boards">
-      <Posts mockBgColorPost={'#907FA4'} />
+      <Posts postList={postList} mockBgColorPost={"#907FA4"} />
     </div>
-  );
+  )
 }

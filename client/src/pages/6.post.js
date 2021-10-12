@@ -158,7 +158,7 @@ const PostCancelBtnMargin = styled.div`
 `
 const url =
   process.env.REACT_APP_URL ||
-  "http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com"
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const Post = (props) => {
   const history = useHistory()

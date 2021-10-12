@@ -1,6 +1,10 @@
-import styled from 'styled-components'
-import SinglePostOnBoard from "./SinglePostOnBoard";
-import { Link } from 'react-router-dom';
+import styled from "styled-components"
+import SinglePostOnBoard from "./SinglePostOnBoard"
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 // styled-components
 const StyledPosts = styled.div`
@@ -9,21 +13,30 @@ const StyledPosts = styled.div`
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
-  background-color: #D9D9D9;
-`;
+  background-color: #d9d9d9;
+`
 
-export default function Posts({ mockBgColorPost }) {
+export default function Posts({ postList, mockBgColorPost }) {
+  // useEffect(() => {
+  // }, [])
+  console.log(Array.isArray(postList))
+  console.log(typeof postList)
+  console.log(postList)
+
   return (
     <div className="postsComponent">
       <StyledPosts>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
-        <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
+        {postList.map((post) => (
+          <SinglePostOnBoard
+            key={post.id}
+            mockBgColor={mockBgColorPost}
+            post={post}
+            url={url}
+          />
+        ))}
       </StyledPosts>
     </div>
-  );
+  )
 }
 
 // TODO
