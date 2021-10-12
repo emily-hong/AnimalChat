@@ -1,5 +1,6 @@
-import Board from '../components/Board'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import Board from '../components/Board'
 
 const Background = styled.div`
   box-sizing: content-box;
@@ -33,7 +34,11 @@ export default function Boards() {
         <BoardInGrid>
           {
             pairsPathAndName.map(pair => {
-              return <Board boardName={pair.name} />;
+              return (
+                <Link to={pair.path}>
+                  <Board boardName={pair.name} />
+                </Link>
+              );
             })
           }
         </BoardInGrid>
