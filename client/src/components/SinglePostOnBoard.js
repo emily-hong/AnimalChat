@@ -2,22 +2,34 @@ import styled from 'styled-components'
 
 // styled components
 const StyledSinglePost = styled.div`
-  box-sizing: border-box;
   display: grid;
-  width: 200px;
+  place-items: center center;
+  width: 220px;
   height: 300px;
-  border: 1px solid red;
+  background-color: #FFF9EE;
+  // border: 1px solid red;
 `;
 
 const StyledThumbnail = styled.div`
-  height: 200px;
-  background-color: ${props => props.color};
+  width: 175px;
+  height: 175px;
+  background-color: #FFD000;
 `;
 
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
   border: 1px solid red;
+  padding: .25rem;
+  font-size: .9rem;
+  color: #424242;
+
+  & p {
+    padding: .25rem;
+  }
+  & .writer {
+    font-size: .8rem;
+  }
 `;
 
 const StyledProfilePictureArea = styled.span`
@@ -37,10 +49,8 @@ export default function SinglePostOnBoard({ mockBgColor }) {
             {'프로필사진'}
           </StyledProfilePictureArea>
           <div className="text">
-            <span className="writer">
-              {'김코딩:'}
-            </span>
-            <span className="title">{'만나서 반갑습니다.'}</span>
+            <p className="title">{'만나서 반갑습니다.'}</p>
+            <p className="writer">{'김코딩'}</p>
           </div>
         </StyledTitlePreview>
       </StyledSinglePost>

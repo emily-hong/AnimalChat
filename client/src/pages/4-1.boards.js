@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import Board from '../components/Board'
+import SinglePostOnBoard from '../components/SinglePostOnBoard';
 
 const Background = styled.div`
   box-sizing: content-box;
@@ -19,30 +18,17 @@ const BoardInGrid = styled.div`
 `;
 
 export default function Boards() {
-  const pairsPathAndName = [
-    { path:'', name: '햄스터' },
-    { path:'', name: '병아리' },
-    { path:'', name: '앵무새' },
-    { path:'', name: '토끼' },
-    { path:'', name: '고슴도치' }
-  ]
 
   return (
     <div className="boards">
       <Background>
-        <h2>게시판</h2>
+        <h2>전체 게시물</h2>
         <BoardInGrid>
-          {
-            pairsPathAndName.map((pair,idx) => {
-              return (
-                <Link to={pair.path} key={idx}>
-                  <Board boardName={pair.name} />
-                </Link>
-              );
-            })
-          }
+          <SinglePostOnBoard />
         </BoardInGrid>
       </Background>
     </div>
   );
 }
+
+// TODO : 게시물 없을 때의 메시지
