@@ -7,9 +7,9 @@ export default function Chick(props) {
   return (
     <div className="mainPage">
       <Header />
-      <Navigation />
+      <Navigation isLinkToWritePage />
       <h2>병아리</h2>
-      <Posts mockBgColorPost={'#D9CAB3'} isLinkToWritePage />
+      <Posts mockBgColorPost={'#D9CAB3'} />
     </div>
   );
 }

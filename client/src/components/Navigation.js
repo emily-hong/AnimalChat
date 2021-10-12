@@ -14,7 +14,7 @@ const HomeButtonArea = styled.div`
   margin-right: 2rem;
 `
 
-export default function Navigation() {
+export default function Navigation({ isLinkToWritePage }) {
   return (
     <div className="navigation">
       <ButtonsArea>
@@ -41,6 +41,16 @@ export default function Navigation() {
           </Link>
         </div>
       </ButtonsArea>
+      <div>
+      {
+        isLinkToWritePage?
+          <Link to='/post'>
+            <button>글쓰기</button>
+          </Link>
+        :
+          ''
+      }
+      </div>
     </div>
   )
 }
