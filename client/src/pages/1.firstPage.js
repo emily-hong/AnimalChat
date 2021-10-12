@@ -123,6 +123,7 @@ export const FirstPage = (props) => {
         data: { id: loginInfo.id, password: loginInfo.password },
         withCredentials: true,
       })
+      .then((res) => alert('로그인 완료'))
     }
     history.push('/');
   }
