@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 // styled components
 const StyledSinglePost = styled.div`
@@ -7,45 +7,66 @@ const StyledSinglePost = styled.div`
   width: 200px;
   height: 300px;
   border: 1px solid red;
-`;
+`
 
-const StyledThumbnail = styled.div`
+const StyledThumbnail = styled.img`
   height: 200px;
-  background-color: ${props => props.color};
-`;
+  width: 200px;
+
+  background-size: cover;
+  background-color: ${(props) => props.color};
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 20%;
+  border: 1px solid black;
+`
 
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
   border: 1px solid red;
-`;
+`
 
-const StyledProfilePictureArea = styled.span`
+const StyledProfilePictureArea = styled.div`
   background-color: #4976bf;
-`;
+`
 
-export default function SinglePostOnBoard({ mockBgColor }) {
-
+export default function SinglePostOnBoard({ mockBgColor, post, url }) {
+  /* src: ${(props) => "" + props.url + props.post.post_img}; */
+  /* src: aasd; */
+  console.log(post.post_img)
+  console.log(url)
+  console.log(url + post.post_img)
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail color={mockBgColor}>
-          {'사진 미리보기'}
-        </StyledThumbnail>
+        <StyledThumbnail src={url + post.post_img} />
+        {post.post_title}
         <StyledTitlePreview>
-          <StyledProfilePictureArea>
-            {'프로필사진'}
-          </StyledProfilePictureArea>
+          <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
-            <span className="writer">
-              {'김코딩:'}
-            </span>
-            <span className="title">{'만나서 반갑습니다.'}</span>
+            <span className="title">{post.post_content.substring(0, 10)}</span>
           </div>
         </StyledTitlePreview>
       </StyledSinglePost>
     </div>
-  );
+  )
+  // return (
+  //   <div className="singlePostOnBoard">
+  //     <StyledSinglePost>
+  //       <StyledThumbnail color={mockBgColor}>
+  //         {/* {"사진 미리보기"} */}
+  //       </StyledThumbnail>
+  //       <StyledTitlePreview>
+  //         <StyledProfilePictureArea></StyledProfilePictureArea>
+  //         <div className="text">
+  //           <span className="writer">{"김코딩:"}</span>
+  //           <span className="title">{"만나서 반갑습니다."}</span>
+  //         </div>
+  //       </StyledTitlePreview>
+  //     </StyledSinglePost>
+  //   </div>
+  // )
 }
 
 // TODO
