@@ -30,7 +30,6 @@ function App() {
 
   return (
     <>
-      <MainPage />
       <Hamster />
       <NavBar />
       {isLogin ? (

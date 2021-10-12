@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import SinglePostOnBoard from "./SinglePostOnBoard";
+import { Link } from 'react-router-dom';
 
 // styled-components
 const StyledPosts = styled.div`
@@ -11,21 +12,19 @@ const StyledPosts = styled.div`
   background-color: #D9D9D9;
 `;
 
-export default function Posts({ mockBgColorPost, writeButtonHandler }) {
-  const handleClickButton = () => {
-    writeButtonHandler();
-  }
-
+export default function Posts({ mockBgColorPost, isLinkToWritePage }) {
   return (
     <div className="postsComponent">
+      <div>
       {
-        writeButtonHandler?
-          <div>
-            <button onClick={handleClickButton}>글쓰기</button>
-          </div>
+        isLinkToWritePage?
+          <Link to='/post'>
+            <button>글쓰기</button>
+          </Link>
         :
           ''
       }
+      </div>
       <StyledPosts>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
         <SinglePostOnBoard mockBgColor={mockBgColorPost}/>
