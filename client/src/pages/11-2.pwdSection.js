@@ -153,7 +153,7 @@ export default function PasswordChange() {
             <input
               type='password'
               name='newPwd'
-              placeholder='원하는 비밀번호를 입력하세요'
+              placeholder='4 ~ 15자, 영문과 숫자 포함'
               value={newPwd}
               onChange={handleOnChange}
             />
