@@ -12,8 +12,7 @@ export default function Hamster(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <h2>햄스터</h2>
-      <Posts mockBgColorPost={"#6D9886"} />
+      <Posts title="햄스터" isLinkToWritePage />
     </div>
   )
 }

@@ -2,30 +2,36 @@ import styled from "styled-components"
 
 // styled components
 const StyledSinglePost = styled.div`
-  box-sizing: border-box;
   display: grid;
-  width: 200px;
+  place-items: center center;
+  padding: .35rem;
+  width: 220px;
   height: 300px;
-  border: 1px solid red;
-`
+  background-color: #FFF9EE;
+  // border: 1px solid red;
+`;
 
-const StyledThumbnail = styled.img`
-  height: 200px;
-  width: 200px;
-
-  background-size: cover;
-  background-color: ${(props) => props.color};
-  background-repeat: no-repeat;
-  background-position: center center;
-  border-radius: 20%;
-  border: 1px solid black;
-`
+const StyledThumbnail = styled.div`
+  width: 175px;
+  height: 175px;
+  background-color: #FFD000;
+`;
 
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
   border: 1px solid red;
-`
+  padding: .25rem;
+  font-size: .9rem;
+  color: #424242;
+
+  & p {
+    padding: .25rem;
+  }
+  & .writer {
+    font-size: .8rem;
+  }
+`;
 
 const StyledProfilePictureArea = styled.div`
   background-color: #4976bf;
@@ -34,18 +40,20 @@ const StyledProfilePictureArea = styled.div`
 export default function SinglePostOnBoard({ mockBgColor, post, url }) {
   /* src: ${(props) => "" + props.url + props.post.post_img}; */
   /* src: aasd; */
-  console.log(post.post_img)
-  console.log(url)
-  console.log(url + post.post_img)
+  // console.log(post.post_img)
+  // console.log(url)
+  // console.log(url + post.post_img)
+
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail src={url + post.post_img} />
-        {post.post_title}
+        <StyledThumbnail src={''} /> {/*이미지 소스*/}
+        {''} {/*글 제목*/}
         <StyledTitlePreview>
           <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
-            <span className="title">{post.post_content.substring(0, 10)}</span>
+            <p className="title">{'만나서 반갑습니다.'}</p>
+            <p className="writer">{'김코딩'}</p>
           </div>
         </StyledTitlePreview>
       </StyledSinglePost>
@@ -71,5 +79,17 @@ export default function SinglePostOnBoard({ mockBgColor, post, url }) {
 
 // TODO
 // props : 미리보기 사진, 프로필 사진, 글쓴이, 제목, 링크(?)
+  // { postImg ,userId, postTitle }
+// get/postlist
+// {
+//     "id" : "id",
+//     "userId" : "userId",
+//     "postTitle" : "postTitle",
+//     "postImg" : "postImg",
+//     "postContent" : "postContent",
+//     "animalCategory" : "animalCategory",
+//     "createdAt" : "createdAt",
+//     "updatedAt" : "updatedAt"
+// }
 // react-router-dom 적용 필요, 게시글마다(고민), 사진과 제목에 게시글로 연결시킬 링크가 필요하긴 하다
 // 사이즈 문제

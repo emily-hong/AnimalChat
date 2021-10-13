@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import styled from 'styled-components'
 import axios from "axios"
 import DatePicker, { registerLocale, useHistory } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -8,6 +9,94 @@ axios.defaults.withCredentials = true
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
+// styled-component
+// TODO 필요시 height 수정
+const Outer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: auto;
+  border: 1px solid red;
+  background-color: #FEEFD5;
+`;
+
+const FormSpace = styled.div`
+  min-width: 300px;
+  width: 50vw;
+  background-color: #FFF9EE;
+`;
+
+const PageTitle = styled.h1`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+`;
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const InputsSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem auto;
+
+  & h3 {
+    margin-bottom: .5rem;
+  }
+`;
+
+const SingleInputSection = styled.div`
+  margin: .3rem auto;
+  & p {
+    font-weight: bold;
+  }
+  & input {
+    margin: .25rem auto;
+    padding: .25rem;
+    width: 10rem;
+  }
+  & select {
+    margin: .25rem auto;
+    padding: .25rem;
+    width: 10rem;
+  }
+  & div.validityWarning {
+    color: red;
+    font-size: .8rem;
+  }
+`;
+
+const ButtonsArea = styled.div`
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  & button {
+    padding: .5rem;
+    border-radius: none;
+    border: none;
+    background-color: #E00000;
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  & button[type=submit] {
+    border: none;
+    width: 40%;
+    background-color: #419300;
+    color: white;
+  }
+`;
+
 
 export default function Signup(props) {
   const [userInfo, setUserInfo] = useState({
@@ -154,109 +243,112 @@ export default function Signup(props) {
   }
 
   return (
-    <>
-      <div className="form">
-        <center className="center">
-          <h1>회원가입</h1>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <p>아이디</p>
-              <input
-                type="userId"
-                name="userId"
-                placeholder="6 ~ 12자, 영문 또는 숫자"
-                onChange={handleInputValue}
-              />
-              {userCheck ? null : (
-                <div style={{ color: "red", fontSize: "10px" }}>
-                  아이디 형식이 올바르지 않습니다.
-                </div>
-              )}
-            </div>
+    <Outer>
+      <FormSpace>
+          <PageTitle>회원가입</PageTitle>
+          <StyledForm onSubmit={(e) => e.preventDefault()}>
+            <InputsSection className="humanInputs">
+              <h3>회원 정보</h3>
 
-            <div>
-              <p>비밀번호</p>
-              <input
-                type="password"
-                name="password"
-                placeholder="4 ~ 15자, 영문과 숫자 포함"
-                type="password"
-                onChange={handleInputValue}
-              />
-              {passwordCheck ? null : (
-                <div style={{ color: "red", fontSize: "10px" }}>
-                  비밀번호 형식이 올바르지 않습니다.
-                </div>
-              )}
-            </div>
+              <SingleInputSection>
+                <p>아이디</p>
+                <input
+                  type="userId"
+                  name="userId"
+                  placeholder="6 ~ 12자, 영문 또는 숫자"
+                  onChange={handleInputValue}
+                />
+                {userCheck ? null : (
+                  <div className="validityWarning">
+                    아이디 형식이 올바르지 않습니다.
+                  </div>
+                )}
+              </SingleInputSection>
 
-            <div>
-              <p>닉네임(2글자 이상)</p>
-              <input
-                placeholder="2 ~ 15자, 한글, 영문, 숫자"
-                type="nickName"
-                name="nickName"
-                onChange={handleInputValue}
-              />
-              {nickNameCheck ? null : (
-                <div style={{ color: "red", fontSize: "10px" }}>
-                  닉네임 형식이 올바르지 않습니다.
-                </div>
-              )}
-            </div>
+              <SingleInputSection>
+                <p>비밀번호</p>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="4 ~ 15자, 영문과 숫자 포함"
+                  type="password"
+                  onChange={handleInputValue}
+                />
+                {passwordCheck ? null : (
+                  <div className="validityWarning">
+                    비밀번호 형식이 올바르지 않습니다.
+                  </div>
+                )}
+              </SingleInputSection>
 
-            <div>
+              <SingleInputSection>
+                <p>닉네임(2글자 이상)</p>
+                <input
+                  placeholder="2 ~ 15자, 한글, 영문, 숫자"
+                  type="nickName"
+                  name="nickName"
+                  onChange={handleInputValue}
+                />
+                {nickNameCheck ? null : (
+                  <div className="validityWarning">
+                    닉네임 형식이 올바르지 않습니다.
+                  </div>
+                )}
+              </SingleInputSection>
+            </InputsSection>
+
+            <InputsSection className="animalInputs">
               <h3>반려동물 정보</h3>
+              <SingleInputSection>
+                <p>반려동물의 종류</p>
+                <select onChange={handleSelect} value={Selected}>
+                  {selectList.map((item) => (
+                    <option value={item} key={item}>
+                      {item}
+                      {console.log(Selected)}
+                    </option>
+                  ))}
+                </select>
+                {Selected !== "선택하세요" ? null : (
+                  <div className="validityWarning">
+                    종류를 선택하세요.
+                  </div>
+                )}
+              </SingleInputSection>
 
-              <p>반려동물의 종류</p>
-              <select onChange={handleSelect} value={Selected}>
-                {selectList.map((item) => (
-                  <option value={item} key={item}>
-                    {item}
-                    {console.log(Selected)}
-                  </option>
-                ))}
-              </select>
-              {Selected !== "선택하세요" ? null : (
-                <div style={{ color: "red", fontSize: "10px" }}>
-                  종류를 선택하세요.
-                </div>
-              )}
-            </div>
+              <SingleInputSection>
+                <p>반려동물의 이름</p>
+                <input
+                  type="animalName"
+                  name="animalName"
+                  onChange={handleInputValue}
+                />
+              </SingleInputSection>
 
-            <div>
-              <p>반려동물의 이름</p>
-              <input
-                type="animalName"
-                name="animalName"
-                onChange={handleInputValue}
-              />
-            </div>
+              <SingleInputSection>
+                <p>반려동물의 생년월일</p>
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => {
+                    console.log(dateFormat(date))
+                    serStartDate(date)
+                    setUserInfo({
+                      ...userInfo,
+                      animalYob: dateFormat(date),
+                    })
+                  }}
+                />
+              </SingleInputSection>
+            </InputsSection>
 
-            <div>
-              <p>반려동물의 생년월일</p>
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => {
-                  console.log(dateFormat(date))
-                  serStartDate(date)
-                  setUserInfo({
-                    ...userInfo,
-                    animalYob: dateFormat(date),
-                  })
-                }}
-              />
-            </div>
-
-            <div>
+            <ButtonsArea>
               <button type="submit" onClick={handleSubmit}>
                 회원가입
               </button>
               <button>취소</button>
-            </div>
-          </form>
-        </center>
-      </div>
-    </>
+            </ButtonsArea>
+          </StyledForm>
+      </FormSpace>
+    </Outer>
   )
 }

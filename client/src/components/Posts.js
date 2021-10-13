@@ -1,43 +1,63 @@
-import styled from "styled-components"
-import SinglePostOnBoard from "./SinglePostOnBoard"
-import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import SinglePostOnBoard from '../components/SinglePostOnBoard';
 
-// styled-components
-const StyledPosts = styled.div`
+const Background = styled.div`
+  box-sizing: content-box;
+  background-color: #FEEFD5;
+  padding: 1rem;
+  // border-bottom: 1px solid red;
+`;
+
+const WriteButton = styled.button`
+  border: none;
+  margin: 1rem auto;
+  padding: .5rem;
+  background-color: #FFA200;
+  font-weight: bold;
+  font-size: 1.05rem;
+`;
+
+const BoardInGrid = styled.div`
+  box-sizing: content-box;
   display: grid;
-  gap: 1.5rem;
+  padding: 1rem;
+  gap: 3rem;
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
-  background-color: #d9d9d9;
-`
+`;
 
-export default function Posts({ postList, mockBgColorPost }) {
-  // useEffect(() => {
-  // }, [])
-  console.log(Array.isArray(postList))
-  console.log(typeof postList)
-  console.log(postList)
+export default function Posts({ title, isLinkToWritePage }) {
 
   return (
-    <div className="postsComponent">
-      <StyledPosts>
-        {postList.map((post) => (
-          <SinglePostOnBoard
-            key={post.id}
-            mockBgColor={mockBgColorPost}
-            post={post}
-            url={url}
-          />
-        ))}
-      </StyledPosts>
+    <div className="boards">
+      <Background>
+        <h2>{title}</h2>
+        <div>
+          {
+            isLinkToWritePage?
+              <Link to='/post'>
+                <WriteButton>글쓰기</WriteButton>
+              </Link>
+            :
+              ''
+          }
+        </div>
+        <BoardInGrid>
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+          <SinglePostOnBoard />
+        </BoardInGrid>
+      </Background>
     </div>
   )
 }
+
+// TODO : 게시물 없을 때의 메시지
 
 // TODO
 // [] 게시물 자료 배열에 map으로 <SinglePostOnBoard /> 적용

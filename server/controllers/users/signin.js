@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     })
     .then((data) => {
       // console.log(data)
-      // dataValues: {
+      // // dataValues: {
       //   id: 3,
       //   user_id: 'kimcoco',
       //   password: 'a123',
