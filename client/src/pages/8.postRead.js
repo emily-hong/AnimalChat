@@ -11,22 +11,9 @@ const url =
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
+  console.log(props.curPost)
   const history = useHistory()
-  const editPostButton = (event) => {
-    alert("수정하시겠습니까?")
-
-    // 작성중인 부분
-    // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
-    axios({
-      url: url + "/postedit",
-      method: "post",
-      data: {
-        // 해당 게시물의 id나 title,content를 보내서 일치하는 것 수정(update)
-        post_title: "기존 작성된 제목 입니다.",
-        post_content: "기존 작성된 내용 입니다.",
-      },
-    })
-
+  function editPostButton(event) {
     history.push("/postedit")
   }
 
@@ -65,8 +52,8 @@ export default function PostRead(props) {
       <div className="postTitle">
         <div className="postTitle_left">
           <img className="profilePic" alt="프로필사진" />
-          <h1 className="title">우리집 애기 봐주세요</h1>
-          <p>2030.09.0811:03</p>
+          <h1 className="title">{props.curPost.post_title}</h1>
+          <p>{props.curPost.updatedAt}</p>
         </div>
 
         <div className="postTitle_right">
@@ -77,7 +64,11 @@ export default function PostRead(props) {
 
       {/* 게시물 사진 */}
       <div className="postPic">
-        <img className="picture" alt="게시물 사진"></img>
+        <img
+          className="picture"
+          src={url + props.curPost.post_img}
+          alt="게시물 사진"
+        />
       </div>
 
       {/* 게시물 내용 */}
