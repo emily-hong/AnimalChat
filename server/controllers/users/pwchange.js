@@ -6,7 +6,7 @@ const {
 } = require('../tokenFunc');
 
 module.exports = async(req, res) => {
-    //비밀번호 변경 
+    //비밀번호 변경 !!
     //기존에 있는 정보인지 확인하고 
     //인증을 한번 해야되는것 같음 
     //여기서 다시 토큰 발급
