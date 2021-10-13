@@ -57,7 +57,7 @@ const Button = styled.button`
   margin: 1rem;
 `
 
-export default function AnimalInfo() {
+export default function AddAnimalInfo() {
   return (
     <div className="singleAnimalInfo">
       <Outer>
@@ -72,15 +72,15 @@ export default function AnimalInfo() {
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
               <h4>반려동물 종류</h4>
-              <p>{"햄스터"}</p>
+              <input type="text" placeholder="종류" />
             </div>
             <div>
               <h4>반려동물 이름</h4>
-              <p>{"햄찌"}</p>
+              <input type="text" placeholder="햄찌" />
             </div>
             <div>
               <h4>출생년도</h4>
-              <p>{"2009. 2. 8."}</p>
+              <input type="text" placeholder="" />
             </div>
           </TextSpace>
         </PictureAndText>
