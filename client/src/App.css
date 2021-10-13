@@ -20,16 +20,18 @@ button {
 
 /* 2. Signup */
 
-.entire div{ /* 배치확인용 */
+/* .entire div{
   border: 1px solid orange;
   margin-top: 20px
-}
+} */
 
-.entire {
+/* .entire {
   border: 1px solid red;
   width: 100%;
   background-color: #FFFFFF;
-}
+} */
+
+
 .form {
   margin: 0 auto;
   padding-bottom: 20px;

@@ -3,12 +3,14 @@ import axios from "axios"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import React, { useEffect, useState } from "react"
-import Boards from "./4-1.boards"
+// import Boards from "./4-1.boards"
+import Posts from "../components/Posts"
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-export default function MainPage(props) {
+export default function MainPage({ getPostList, postList }) {
   useEffect(() => {
     axios({
       url: url + "/postlist",
@@ -16,7 +18,7 @@ export default function MainPage(props) {
       withCredentials: true,
     }).then((res) => {
       // setPostList(res.data)
-      props.getPostList(res.data)
+      getPostList(res.data)
     })
   }, [])
 
@@ -25,7 +27,8 @@ export default function MainPage(props) {
       <Header />
       <Navigation />
       <h2>게시판</h2>
-      <Boards postList={props.postList} />
+      <Boards postList={postList} />
+      <Posts boardTitle={'전체 게시물'}  />
     </div>
   )
 }

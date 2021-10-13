@@ -28,12 +28,12 @@ const BoardInGrid = styled.div`
   align-content: center;
 `;
 
-export default function Posts({ title, isLinkToWritePage }) {
+export default function Posts({ boardTitle, isLinkToWritePage, postListData }) {
 
   return (
     <div className="boards">
       <Background>
-        <h2>{title}</h2>
+        <h2>{boardTitle}</h2>
         <div>
           {
             isLinkToWritePage?
@@ -51,6 +51,15 @@ export default function Posts({ title, isLinkToWritePage }) {
           <SinglePostOnBoard />
           <SinglePostOnBoard />
           <SinglePostOnBoard />
+          {/*
+            응답 받은 후
+            postListData.map
+            <SinglePostOnBoard 
+              postImg={postListData.xxx}
+              userId={postListData.xxx}
+              postTitle={postListData.xxx}
+            />
+          */}
         </BoardInGrid>
       </Background>
     </div>
