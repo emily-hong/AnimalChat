@@ -30,15 +30,16 @@ const ContentBox = styled.div`
 
 const PhotoUploadSection = styled.form`
   // border: 2px solid yellow;
-  margin: auto 1rem;
+  margin: auto 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 `
 
 const PhotoBox = styled.div`
   min-width: 300px;
-  width: 40vw;
+  width: 30vh;
   height: 30vh;
   background-color: #ececec;
   font-size: 30px;
@@ -61,7 +62,7 @@ const PhotoUploadButtons = styled.div`
   display: flex;
   justify-content: space-around;
   background-color: #FFB83E;
-  margin-top: 1rem;
+  margin-top: 5rem;
 `
 
 const PhotoSelectBtn = styled.input`
@@ -83,8 +84,7 @@ const PhotoUpLoadBtn = styled.button`
 
 // 타이틀, 글 작성 버튼 2개 포함
 const TitlePostDiv = styled.div`
-  margin: auto 1rem;
-  // border: 1px solid red;
+  margin: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,7 +146,7 @@ const PostCompletionBtnMargin = styled.div`
   text-align: center;
   background-color: #419300;
   color: white;
-  padding: .5rem 5rem;
+  padding: .5rem 10rem;
 `
 
 const PostCancelBtnMargin = styled.div`
