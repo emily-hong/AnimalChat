@@ -1,43 +1,48 @@
 import styled from "styled-components"
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 // styled components
 const StyledSinglePost = styled.div`
   display: grid;
   place-items: center center;
-  padding: .35rem;
+  padding: 0.35rem;
   width: 220px;
   height: 300px;
-  background-color: #FFF9EE;
+  background-color: #fff9ee;
   // border: 1px solid red;
-`;
+`
 
-const StyledThumbnail = styled.div`
+const StyledThumbnail = styled.img`
   width: 175px;
   height: 175px;
-  background-color: #FFD000;
-`;
+  background-color: #ffd000;
+
+  border-radius: 10%;
+`
 
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
   border: 1px solid red;
-  padding: .25rem;
-  font-size: .9rem;
+  padding: 0.25rem;
+  font-size: 0.9rem;
   color: #424242;
 
   & p {
-    padding: .25rem;
+    padding: 0.25rem;
   }
   & .writer {
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
-`;
+`
 
 const StyledProfilePictureArea = styled.div`
   background-color: #4976bf;
 `
 
-export default function SinglePostOnBoard({ mockBgColor, post, url }) {
+export default function SinglePostOnBoard({ mockBgColor, post }) {
   /* src: ${(props) => "" + props.url + props.post.post_img}; */
   /* src: aasd; */
   // console.log(post.post_img)
@@ -47,13 +52,14 @@ export default function SinglePostOnBoard({ mockBgColor, post, url }) {
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail src={''} /> {/*이미지 소스*/}
-        {''} {/*글 제목*/}
+        <StyledThumbnail src={url + post.post_img} />
+        {post.post_title}
         <StyledTitlePreview>
           <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
-            <p className="title">{'만나서 반갑습니다.'}</p>
-            <p className="writer">{'김코딩'}</p>
+            <p className="title">{`${
+              post.user_id
+            } : ${post.post_content.substring(1, 6)}...`}</p>
           </div>
         </StyledTitlePreview>
       </StyledSinglePost>
@@ -79,7 +85,7 @@ export default function SinglePostOnBoard({ mockBgColor, post, url }) {
 
 // TODO
 // props : 미리보기 사진, 프로필 사진, 글쓴이, 제목, 링크(?)
-  // { postImg ,userId, postTitle }
+// { postImg ,userId, postTitle }
 // get/postlist
 // {
 //     "id" : "id",

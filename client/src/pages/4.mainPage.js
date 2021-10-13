@@ -1,27 +1,41 @@
-import axios from "axios";
-import styled from "styled-components";
+import axios from "axios"
+import styled from "styled-components"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import Posts from "../components/Posts"
-// import Boards from "./4-1.boards";
-// import Hamster from "./5-1.hamster"
-// import Chick from "./5-2.chick"
-// import Parrot from "./5-3.parrot"
-// import Rabbit from "./5-4.rabbit"
-// import Hedgehog from "./5-5.hedgehog"
+import React, { useEffect, useState } from "react"
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 const Outer = styled.div`
   width: 100vw;
-`;
-
+`
 export default function MainPage(props) {
-  //console.log(props)
+  useEffect(() => {
+    props.curAnimalChange("home")
+  }, [])
+
+  useEffect(() => {
+    axios({
+      url: url + "/postlist",
+      method: "get",
+      withCredentials: true,
+    }).then((res) => {
+      // setPostList(res.data)
+      props.getPostList(res.data)
+    })
+  }, [])
+
   return (
     <Outer className="mainPage">
       <Header />
       <Navigation />
-      <Posts title="전체 게시물"/>
+      <Posts
+        title="전체 게시물"
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </Outer>
   )
 }
-
