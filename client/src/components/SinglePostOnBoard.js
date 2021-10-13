@@ -69,6 +69,8 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
       </StyledSinglePost>
     </div>
   )
+
+
   // return (
   //   <div className="singlePostOnBoard">
   //     <StyledSinglePost>

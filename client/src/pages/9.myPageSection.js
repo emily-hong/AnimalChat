@@ -8,6 +8,11 @@ const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
+const Outer = styled.div`
+  background-color: #FEEFD5;
+  height: 100vh;
+`;
+
 const IdDisplay = styled.div`
   box-sizing: content-box;
   padding: 1rem;
@@ -37,9 +42,12 @@ const ButtonsArea = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border: 1px solid red;
 
   & > button {
+    font-size: 1rem;
+    background-color: #DB7092;
+    color: white;
+    font-weight: bold;
     box-sizing: content-box;
     margin: 0.5rem;
   }
@@ -111,7 +119,7 @@ export default function MyPageSection(props) {
   }
 
   return (
-    <div className="MyPageSection">
+    <Outer className="MyPageSection">
       <IdDisplay>
         {/* TODO : axios 요청 -> 회원정보 -> id */}
         <span>아이디 : {"sss"}</span>
@@ -125,7 +133,7 @@ export default function MyPageSection(props) {
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
         <button>비밀번호 수정</button>
-        <QuitButton>회원탈퇴</QuitButton>
+        <button className="deleteUserInfo">회원탈퇴</button>
       </ButtonsArea>
 
       {isOpen === false ? null : (
@@ -137,7 +145,7 @@ export default function MyPageSection(props) {
           </AddAnimalModalBackDrop>
         </AddAnimalModalContainer>
       )}
-    </div>
+    </Outer>
   )
 }
 

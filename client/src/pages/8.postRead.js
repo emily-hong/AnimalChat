@@ -1,7 +1,110 @@
 import { useHistory } from "react-router-dom"
 import React, { useState } from "react"
 import axios from "axios"
+import styled from "styled-components"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
+
+// styled-component
+const Outer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Contents = styled.div`
+  background-color: #FEEFD5;
+`;
+
+const PostReadSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    margin: 1rem;
+  }
+
+  & .postContent {
+    font-size: 1.2rem;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+`;
+
+const PostTitleLeft = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const PostButtons = styled.div`
+  margin-left: 10rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  & button {
+    font-size: 1rem;
+    padding: .5rem;
+    color: white;
+    margin: 0;
+  }
+  & .editPost {
+    background-color: #4876BF;
+    color: white;
+  }
+  & .deletePost {
+    background-color: #E00000;
+  }
+`;
+
+const CommentSection = styled.div`
+  & li {
+    padding: 1rem;
+  }
+`;
+
+const PostComment = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+
+  & input {
+    width: 80%;
+    padding: .5rem;
+    font-size: 1rem;
+  }
+  & button {
+    background-color: #419300;
+    color: white;
+    height: 3rem;
+  }
+`;
+
+const CommentList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  & li {
+    display: flex;
+    align-items: center;
+  }
+  & .comment__createdAt {
+    margin: auto 1rem;
+  }
+  & button {
+    padding: .5rem;
+    background-color: #FFC257;
+  }
+`;
+
+// axios
 axios.defaults.withCredentials = true
 const url =
   process.env.REACT_APP_URL ||
@@ -47,6 +150,7 @@ export default function PostRead(props) {
   }
 
   return (
+
     <div>
       {/* 내사진, 제목, 날짜, 버튼 */}
       <div className="postTitle">
@@ -101,5 +205,6 @@ export default function PostRead(props) {
         ))}
       </ul>
     </div>
+
   )
 }
