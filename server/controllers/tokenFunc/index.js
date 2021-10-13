@@ -29,30 +29,18 @@ module.exports = {
 
   isAuthorized: (req) => {
     //console.log(req.headers)
-<<<<<<< HEAD
-    
-    const authorization = req.headers.cookie
-    if(!authorization){
-      return null;
-=======
 
     const authorization = req.headers.cookie
     if (!authorization) {
       return null
->>>>>>> 209df3cdb45d44d47b2c6e84c16ee9cc351b4983
     }
     //const token = authorization.split(' ')[1];
     const token = authorization.split("=")[1].split(",")[0]
     //console.log(token)
     try {
       return verify(token, process.env.ACCESS_SECRET)
-<<<<<<< HEAD
-    }catch(err){
-      return null;
-=======
     } catch (err) {
       return null
->>>>>>> 209df3cdb45d44d47b2c6e84c16ee9cc351b4983
     }
   },
 
