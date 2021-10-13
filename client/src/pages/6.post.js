@@ -7,29 +7,35 @@ import Navigation from "../components/Navigation"
 
 // 화면에 보이는 부분 전체
 const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #FEEFD5;
   width: 100vw;
+  height: 100vh;
 `
 
 // 사진 업로드, 글 수정 전체
 const ContentBox = styled.div`
   background-color: #FFF9EE;
   padding: 2rem;
-  width: 100vw;
+  width: 80vw;
+  height: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid blue;
+  justify-content: center;
+  // border: 1px solid blue;
 `
 
 const PhotoUploadSection = styled.form`
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
+  margin: auto 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `
 
-// 사진만 들어있는 박스
 const PhotoBox = styled.div`
   min-width: 300px;
   width: 40vw;
@@ -37,12 +43,11 @@ const PhotoBox = styled.div`
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
-  border: 1px solid green;
+  border: 1px solid #B5B5B5;
 `
 
-// 업로드 경고 메시지 - 현재 비활성화 상태
 const PhotoUploadWarning = styled.div`
-  border: 10px solid black;
+  border: 1px solid black;
   margin-top: 200px;
   background-color: #ececec;
   font-size: 30px;
@@ -51,45 +56,35 @@ const PhotoUploadWarning = styled.div`
 `
 
 const PhotoUploadButtons = styled.div`
-  border: 1px solid red;
-  // margin-top: 25px;
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-around;
-  // align-items: flex-end;
+  // border: 1px solid red;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFB83E;
+  margin-top: 1rem;
 `
 
 const PhotoSelectBtn = styled.input`
   text-align: center;
   font-size: 20px;
   width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
-  color: palevioletred;
-`
-
-const PhotoSelectBtnMargin = styled.div`
-  border: 1px solid gray;
-  // margin-top: 15px;
-  text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  background-color: #FFB83E;
+  color: black;
 `
 
 const PhotoUpLoadBtn = styled.button`
   font-size: 20px;
-  color: palevioletred;
-  margin-top: 15px;
+  padding: .5rem;
+  color: white;
   text-align: center;
   width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
+  background-color: #419300;
 `
 
 // 타이틀, 글 작성 버튼 2개 포함
 const TitlePostDiv = styled.div`
-  border: 1px solid red;
+  margin: auto 1rem;
+  // border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,18 +93,8 @@ const TitlePostDiv = styled.div`
   height: 35vh;
 `
 
-const TitlePostButtons = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: inherit;
-  text-align: center;
-  margin-top: 2rem;
-  border: 1px solid red;
-`
-
 const TitleBox = styled.input`
-  border: 1px solid red;
+  border: 1px solid #B5B5B5;
   margin-bottom: 40px;
   width: inherit;
   height: 50px;
@@ -117,16 +102,17 @@ const TitleBox = styled.input`
   font-size: 30px;
   color: palevioletred;
   text-align: center;
+  padding: .5rem;
 `
 
 const PostBox = styled.textarea`
-  border: 1px solid red;
+  border: 1px solid #B5B5B5;
   width: inherit;
   height: 400px;
   background-color: #ececec;
   font-size: 30px;
-  color: palevioletred;
-  text-align: center;
+  color: #424242;
+  padding: .5rem;
 `
 
 // const PostUploadBtn = styled.div`
@@ -147,24 +133,27 @@ const PostBox = styled.textarea`
 //   color: palevioletred;
 // `
 
-const PostCompletionBtnMargin = styled.div`
-  border: 1px solid gray;
-  margin-top: 15px;
+const TitlePostButtons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: inherit;
   text-align: center;
-  // width: auto;
-  // height: inherit;
+  margin-top: 2rem;
+`
+
+const PostCompletionBtnMargin = styled.div`
+  text-align: center;
   background-color: #419300;
   color: white;
+  padding: .5rem 5rem;
 `
 
 const PostCancelBtnMargin = styled.div`
-  border: 1px solid gray;
-  margin-top: 15px;
   text-align: center;
-  // width: auto;
-  // height: inherit;
   background-color: #E00000;
   color: white;
+  padding: .5rem 2rem;
 `
 
 const url =
@@ -281,7 +270,7 @@ export const Post = (props) => {
             <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
             {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
             <PhotoUpLoadBtn type="submit" className="photoButton">
-              <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
+              업로드
             </PhotoUpLoadBtn>
           </PhotoUploadButtons>
         </PhotoUploadSection>
