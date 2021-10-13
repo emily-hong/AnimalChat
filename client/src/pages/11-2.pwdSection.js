@@ -153,7 +153,7 @@ export default function PasswordChange() {
       })
       .then((res) => {
         alert("비밀번호 변경이 완료되었습니다.")
-        history.push("/")
+        history.push("/mainpage")
       })
     //}
   }
