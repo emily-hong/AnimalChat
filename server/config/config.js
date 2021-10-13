@@ -3,7 +3,7 @@ require("dotenv").config()
 module.exports = {
   development: {
     username: "root",
-    password: "1234",
+    password: "animalchat",
     database: "animalchat",
     host: "127.0.0.1",
     dialect: "mysql",
