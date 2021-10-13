@@ -190,8 +190,8 @@ export const Post = (props) => {
   const postSendButton = () => {
     if (
       inputTitle.length > 0 &&
-      inputContent.length > 0 &&
-      uploadedImg.fileName
+      inputContent.length > 0 
+      && uploadedImg.fileName
     ) {
       // 제목, 내용 작성했을 때
       console.log("작성완료 쪽")
@@ -214,7 +214,7 @@ export const Post = (props) => {
         })
         .catch((err) => console.log(err))
     } else {
-      alert("제목과 내용은 필수사항 입니다.")
+      alert("이미지와 제목, 내용 모두 필수사항 입니다.")
     }
   }
   // 취소 버튼
