@@ -26,6 +26,28 @@ const PostReadSection = styled.div`
 
 const CommentSection = styled.div`
   border: 1px solid green;
+
+  & li {
+    border: 1px solid green;
+    padding: 1rem;
+  }
+`;
+
+const CommentList = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  & li {
+    display: flex;
+    align-items: center;
+  }
+  & .comment__createdAt {
+    margin: auto 1rem;
+  }
+  & button {
+    padding: .5rem;
+    background-color: #FFC257;
+  }
 `;
 
 // axios
@@ -136,12 +158,12 @@ export default function PostRead(props) {
           </div>
 
           {/* 댓글 목록 */}
-          <ul className="commentsList">
+          <CommentList className="commentsList">
             {/* 작성된 댓글 보여주기 */}
             {cotentList.map((el) => (
               <Comment key={el.id} comment={el} />
             ))}
-          </ul>
+          </CommentList>
         </CommentSection>
       </Contents>
     </Outer>
