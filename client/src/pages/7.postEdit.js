@@ -2,81 +2,82 @@ import { useHistory } from "react-router-dom"
 import React, { useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 
 const Body = styled.div`
-  box-sizing: border-box;
-  width: 1920px;
-  height: 1080px;
-  background-color: #ffe2cd;
-  // border: 1px solid gray;
-`
-
-const Header = styled.div`
-  padding-bottom: 0.5em;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  font-size: 6em;
-  text-align: left;
-  color: palevioletred;
-  background: #fdf7c5;
-  // border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FEEFD5;
+  width: 100vw;
+  height: 100vh;
 `
 
 const ContentBox = styled.div`
-  margin: 60px;
-  margin-left: 300px;
-  width: 1320px;
-  height: 750px;
-  background-color: #fdf7c5;
-  // border: 1px solid red;
+  padding: 2rem;
+  width: 90vw;
+  height: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  // border: 1px solid blue;
 `
+
 const PhotoBox = styled.div`
-  // border: 1px solid gray;
-  width: 450px;
-  height: 450px;
+  min-width: 300px;
+  width: 30vh;
+  height: 30vh;
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
+  border: 1px solid #B5B5B5;
 `
+
 const PhotoBoxDiv = styled.div`
-  // border: 1px solid gray;
   margin-top: 200px;
   background-color: #ececec;
   font-size: 30px;
   text-align: center;
   color: palevioletred;
 `
+
 const TitlePostDiv = styled.div`
-  // border: 1px solid gray;
+  margin: 3rem;
   display: flex;
   flex-direction: column;
-  // justify-content: space-around;
-  // align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 35vh;
 `
+
+// 사진 업로드 버튼들
 const TitlePostDiv2 = styled.div`
-  // border: 1px solid gray;
-  margin-top: 25px;
+  // border: 1px solid yellow;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  // align-items: flex-end;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFB83E;
+  margin-top: 5rem;
 `
 const TitlePostDiv3 = styled.form`
   // border: 1px solid gray;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+
 `
+
 const TitlePostDiv4 = styled.div`
-  // border: 1px solid gray;
   text-align: center;
-  margin-top: 25px;
+  padding: 1rem;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  background-color: #FFB83E;
+  margin-top: 5rem;
 `
 const PhotoSelectBtn = styled.input`
   text-align: center;
@@ -86,13 +87,15 @@ const PhotoSelectBtn = styled.input`
   background-color: #ffe2cd;
   color: palevioletred;
 `
+
+// here
 const PhotoSelectBtnMargin = styled.div`
   /* border: 1px solid gray; */
   /* margin-top: 15px; */
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  font-size: 20px;
+  width: 200px;
+  color: black;
 `
 const PhotoUpLoadBtn = styled.button`
   font-size: 20px;
@@ -101,61 +104,65 @@ const PhotoUpLoadBtn = styled.button`
 
   text-align: center;
   width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
+  background-color: #419300;
+  padding: 1rem;
 `
+
 const TitleBox = styled.input`
-  border: 1px solid #ececec;
+  border: 1px solid #B5B5B5;
   margin-bottom: 40px;
-  width: 650px;
+  width: inherit;
   height: 50px;
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
   text-align: center;
+  padding: .5rem;
 `
+
 const PostBox = styled.textarea`
-  border: 1px solid #ececec;
-  width: 650px;
-  height: 350px;
+  border: 1px solid #B5B5B5;
+  width: inherit;
+  height: 400px;
   background-color: #ececec;
   font-size: 30px;
-  color: palevioletred;
-  text-align: center;
+  color: #424242;
+  padding: .5rem;
 `
 
 const PostUploadBtn = styled.div`
   // border: 1px solid gray;
-  width: 250px;
-  height: 60px;
-  background-color: #ffe2cd;
-  font-size: 20px;
-  color: palevioletred;
+  // width: 250px;
+  // height: 60px;
+  // background-color: #ffe2cd;
+  // font-size: 20px;
+  // color: palevioletred;
 `
+
 const CancelBtn = styled.div`
   // border: 1px solid gray;
-  width: 250px;
-  height: 60px;
-  background-color: #ffe2cd;
-  font-size: 20px;
-  color: palevioletred;
+  // width: 250px;
+  // height: 60px;
+  // background-color: #ffe2cd;
+  // font-size: 20px;
+  // color: palevioletred;
 `
+
 const PostCompletionBtnMargin = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  background-color: #4876BF;
+  color: white;
+  padding: .5rem 8rem;
+  margin: auto 1rem;
 `
+
 const PostCancelBtnMargin = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  background-color: #E00000;
+  color: white;
+  padding: .5rem 2rem;
 `
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -253,7 +260,8 @@ export const Post = (props) => {
 
   return (
     <Body>
-      <Header>Animal Chat🐣</Header>
+      <Header />
+      <Navigation />
       <ContentBox>
         {/* /////////////////// */}
         <TitlePostDiv3 onSubmit={onSubmit}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Comment = ({comment}) => {
   const parsedDate = new Date(comment.createdAt).toLocaleTimeString('ko-kr')
@@ -19,7 +20,6 @@ const Comment = ({comment}) => {
           <button className='comment__removeBtn'>
             삭제
           </button>
-          
       </div>
     </li>
   )
