@@ -71,7 +71,7 @@ function App() {
           </Route>
           <Route exact path="/mainpage">
             <MainPage
-              userinfo={userinfo}
+              // userinfo={userinfo}
               getPostList={getPostList}
               postList={postList}
             />
