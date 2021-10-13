@@ -8,7 +8,6 @@ import Comment from "./8.postRead-comment"
 
 // styled-component
 const Outer = styled.div`
-  border: 1px solid green;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,26 +15,81 @@ const Outer = styled.div`
 `;
 
 const Contents = styled.div`
-  border: 5px solid brown;
   background-color: #FEEFD5;
 `;
 
 const PostReadSection = styled.div`
-  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > div {
+    margin: 1rem;
+  }
+
+  & .postContent {
+    font-size: 1.2rem;
+    padding: 1rem;
+    width: 90%;
+    margin-bottom: 2rem;
+  }
+`;
+
+const PostTitleLeft = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const PostButtons = styled.div`
+  margin-left: 10rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+
+  & button {
+    font-size: 1rem;
+    padding: .5rem;
+    color: white;
+    margin: 0;
+  }
+  & .editPost {
+    background-color: #4876BF;
+    color: white;
+  }
+  & .deletePost {
+    background-color: #E00000;
+  }
 `;
 
 const CommentSection = styled.div`
-  border: 1px solid green;
-
   & li {
-    border: 1px solid green;
     padding: 1rem;
+  }
+`;
+
+const PostComment = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+
+  & input {
+    width: 80%;
+    padding: .5rem;
+    font-size: 1rem;
+  }
+  & button {
+    background-color: #419300;
+    color: white;
+    height: 3rem;
   }
 `;
 
 const CommentList = styled.ul`
   display: flex;
   flex-direction: column;
+  margin-bottom: 2rem;
 
   & li {
     display: flex;
@@ -116,16 +170,15 @@ export default function PostRead(props) {
         <PostReadSection className="postReadSection">
           {/* 내사진, 제목, 날짜, 버튼 */}
           <div className="postTitle">
-            <div className="postTitle_left">
+            <PostTitleLeft className="postTitle_left">
               <img className="profilePic" alt="프로필사진" />
               <h1 className="title">우리집 애기 봐주세요</h1>
-              <p>2030.09.0811:03</p>
-            </div>
-
-            <div className="postTitle_right">
-              <button onClick={editPostButton}>수정</button>
-              <button>삭제</button>
-            </div>
+              <p>2030.09.08 11:03</p>
+            </PostTitleLeft>
+            <PostButtons className="postTitle_right">
+              <button className="editPost" onClick={editPostButton}>수정</button>
+              <button className="deletePost">삭제</button>
+            </PostButtons>
           </div>
 
           {/* 게시물 사진 */}
@@ -147,7 +200,7 @@ export default function PostRead(props) {
 
         {/* 댓글 작성 */}
         <CommentSection className="commentSection">
-          <div className="postComment">
+          <PostComment className="postComment">
             <input
               className="inputComment"
               type="text"
@@ -155,7 +208,7 @@ export default function PostRead(props) {
               onChange={handleChangeMsg}
             />
             <button onClick={handleButtonClick}>작성</button>
-          </div>
+          </PostComment>
 
           {/* 댓글 목록 */}
           <CommentList className="commentsList">

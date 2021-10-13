@@ -96,8 +96,9 @@ button {
   margin: 20px 20px;
   
   /* width: 80%; */
-  text-align: center;
+  /* text-align: center; */
 }
+
 .postComment{
   margin: 20px;
   text-align: center;
