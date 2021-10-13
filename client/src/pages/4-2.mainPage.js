@@ -1,10 +1,15 @@
 // import { Switch, Route } from "react-router-dom"
 import axios from "axios"
+import styled from "styled-components"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import React, { useEffect, useState } from "react"
 // import Boards from "./4-1.boards"
 import Posts from "../components/Posts"
+
+const Outer = styled.div`
+  width: 100vw;
+`;
 
 const url =
   process.env.REACT_APP_URL ||
@@ -23,13 +28,11 @@ export default function MainPage({ getPostList, postList }) {
   }, [])
 
   return (
-    <div className="mainPage">
+    <Outer className="mainPage">
       <Header />
       <Navigation />
-      <h2>게시판</h2>
-      <Boards postList={postList} />
-      <Posts boardTitle={'전체 게시물'}  />
-    </div>
+      <Posts boardTitle={'전체 게시물'} postListData={postList} />
+    </Outer>
   )
 }
 
