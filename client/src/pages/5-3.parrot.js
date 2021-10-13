@@ -11,7 +11,12 @@ export default function Parrot(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="앵무새" isLinkToWritePage />
+      <Posts
+        title="앵무새"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </div>
   )
 }

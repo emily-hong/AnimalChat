@@ -24,16 +24,15 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-  const [curAnimal, setCurAnimal] = useState("")
+  const [curAnimal, setCurAnimal] = useState("home")
   const [userinfo, setUserinfo] = useState(null)
   const [postList, setPostList] = useState([])
 
   const history = useHistory()
 
   function loginFunc() {
-    setIsLogin(!isLogin)
+    // setIsLogin(!isLogin)
     authorization()
-    history.push("/")
   }
   function SignUpFin() {
     history.push("/")
@@ -48,14 +47,19 @@ function App() {
       method: "get",
       withCredentials: true,
     }).then((res) => {
-      //console.log(res)
-      setUserinfo(res.data)
+      // console.log(res.data.data.userInfo)
+      setUserinfo(res.data.data.userInfo)
       setIsLogin(true)
       history.push("/")
     })
   }
   function getPostList(data) {
-    setPostList(data)
+    function date_descending(a, b) {
+      var dateA = new Date(a["updatedAt"]).getTime()
+      var dateB = new Date(b["updatedAt"]).getTime()
+      return dateA < dateB ? 1 : -1
+    }
+    setPostList(data.sort(date_descending))
   }
 
   return (
@@ -71,25 +75,46 @@ function App() {
           </Route>
           <Route exact path="/mainpage">
             <MainPage
-              userinfo={userinfo}
+              curAnimalChange={curAnimalChange}
               getPostList={getPostList}
               postList={postList}
+              curAnimal={curAnimal}
             />
           </Route>
           <Route exact path="/board/hamster">
-            <Hamster curAnimalChange={curAnimalChange} />
+            <Hamster
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/chick">
-            <Chick curAnimalChange={curAnimalChange} />
+            <Chick
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/parrot">
-            <Parrot curAnimalChange={curAnimalChange} />
+            <Parrot
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/rabbit">
-            <Rabbit curAnimalChange={curAnimalChange} />
+            <Rabbit
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/hedgehog">
-            <Hedgehog curAnimalChange={curAnimalChange} />
+            <Hedgehog
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route path="/post">
             <Post curAnimal={curAnimal} />
@@ -101,7 +126,7 @@ function App() {
             <PostRead />
           </Route>
           <Route path="/mypage">
-            <MyPage />
+            <MyPage userinfo={userinfo} />
           </Route>
 
           <Route path="/mypageedit">
