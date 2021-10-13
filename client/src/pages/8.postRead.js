@@ -12,29 +12,43 @@ export default function PostRead(props) {
   // title - 수정버튼 : history.push
   const history = useHistory()
   const editPostButton = (event) => {
-    alert("수정하시겠습니까?")
-
-    // 작성중인 부분
-    // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
-    axios({
-      url: url + "/postedit",
-      method: "post",
-      data: {
-        // 해당 게시물의 id나 title,content를 보내서 일치하는 것 수정(update)
-        post_title: "기존 작성된 제목 입니다.",
-        post_content: "기존 작성된 내용 입니다.",
-      },
-    })
-
-    history.push("/postedit")
+    if(window.confirm("수정하시겠습니까?")){
+      // 작성중인 부분
+      // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
+      axios({
+        url: url + "/postedit",
+        method: "post",
+        data: {
+          // 수정페이지에서 먼저 기존 제목, 내용이 보여야함(데이터가 넘어온다면)
+          post_title: "기존 작성된 제목 입니다.",
+          post_content: "기존 작성된 내용 입니다.",
+        },
+      })
+      history.push("/postedit")
+    }
   }
 
   // title - 삭제 :
   const deletPostButton = (event) => {
-    alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
-    
-
+    if(window.confirm("게시물을 삭제하시겠습니까?")){
+      axios({
+        url: url + "/post",
+        method: "delete",
+        data: {
+          // 삭제될 게시물 정보들
+          // user_id,
+          // post_title,
+          // post_content,
+          // post_img,
+          // animalcategory
+        }
+      })
+      .then(() => {
+        alert("게시물 삭제 완료")
+        history.push("/mainpage") // 또는 board/{해당동물} 페이지로
+      })
+    }
   }
 
   // 댓글
@@ -72,7 +86,7 @@ export default function PostRead(props) {
 
         <div className="postTitle_right">
           <button onClick={editPostButton}>수정</button>
-          <button>삭제</button>
+          <button onClick={deletPostButton}>삭제</button>
         </div>
       </div>
 

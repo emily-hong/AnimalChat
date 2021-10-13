@@ -1,6 +1,7 @@
 const { post } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
+
 module.exports = async (req, res) => {
   console.log(req.body)
 
