@@ -3,12 +3,17 @@ import { useHistory } from "react-router-dom"
 import axios from "axios"
 import styled, { css } from 'styled-components'
 
+const Outer = styled.div`
+  height: 100vh;
+  background-color: #FEEFD5;
+`;
+
 const StyledPwdChangeSection = styled.div`
   display: flex;
+  padding: 5rem;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  background-color: #FEEFD5;
 `;
 
 const StyledPwdInputsArea = styled.div`
@@ -21,14 +26,21 @@ const StyledPwdFieldset = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 1.5rem;
 
-  // & > p {
-  //   font-weight: bold;
-  // }
+  & input {
+    width: 100%;
+    padding: .5rem;
+    font-size: 1rem;
+  }
+
+  & ul {
+    margin-top: .5rem;
+  }
 `;
 
 const StyledList = styled.li`
-  list-style-type: disc;
+  list-style-type: none;
   flex-direction: column;
   font-size: 0.8rem;
   color: #de0f00;
@@ -36,9 +48,19 @@ const StyledList = styled.li`
   margin: 0;
 `;
 
+const SubmitButtonArea = styled.div`
+  & > button {
+    padding: .5rem 2rem;
+    color: white;
+    background-color: #419300;
+    margin: 2rem auto;
+  }
+`;
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
 
 export default function PasswordChange() {
   const history = useHistory()
@@ -137,11 +159,11 @@ export default function PasswordChange() {
   }
 
   return (
-    <div className="passwordChangeComponent" style={{border: '1px solid red'}}>
+    <Outer className="passwordChangeComponent">
       <StyledPwdChangeSection>
         <StyledPwdInputsArea>
           <StyledPwdFieldset>
-            <p className="inputTitle">현재 비밀번호</p>
+            <h4 className="inputTitle">현재 비밀번호</h4>
             <input
               type='password'
               name='curPwd'
@@ -151,7 +173,7 @@ export default function PasswordChange() {
             />
           </StyledPwdFieldset>
           <StyledPwdFieldset>
-            <p className="inputTitle">새 비밀번호</p>
+            <h4 className="inputTitle">새 비밀번호</h4>
             <input
               type='password'
               name='newPwd'
@@ -160,9 +182,9 @@ export default function PasswordChange() {
               onChange={handleOnChange}
             />
             <ul className="validityRequirements">
-              {newPwd.length !== 0 ? '' : <StyledList>비밀번호를 입력해주세요</StyledList>}
-              {newPwd.length < 4 ? <StyledList>4 이상</StyledList> : ''}
-              {newPwd.length > 15 ? <StyledList>15 이하</StyledList> : ''}
+              {newPwd.length !== 0 ? '' : <StyledList>비밀번호를 입력해주세요.</StyledList>}
+              {newPwd.length < 4 ? <StyledList>4글자 이상으로 입력해주세요.</StyledList> : ''}
+              {newPwd.length > 15 ? <StyledList>15글자 이하로 입력해주세요.</StyledList> : ''}
               {/* {
                 (newPwd) => {
                   const regOnlyNumber = /^[0-9]/; // 숫자만
@@ -178,10 +200,10 @@ export default function PasswordChange() {
             </ul>
           </StyledPwdFieldset>
         </StyledPwdInputsArea>
-        <div>
+        <SubmitButtonArea className="submitButtonArea">
           <button onClick={handleButtonClick}>확인</button>
-        </div>
+        </SubmitButtonArea>
       </StyledPwdChangeSection>
-    </div>
+    </Outer>
   );
 }

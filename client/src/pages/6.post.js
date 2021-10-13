@@ -2,160 +2,159 @@ import { useHistory } from "react-router-dom"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 
+// 화면에 보이는 부분 전체
 const Body = styled.div`
-  box-sizing: border-box;
-  width: 1920px;
-  height: 1080px;
-  background-color: #ffe2cd;
-  // border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FEEFD5;
+  width: 100vw;
+  height: 100vh;
 `
 
-const Header = styled.div`
-  padding-bottom: 0.5em;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  font-size: 6em;
-  text-align: left;
-  color: palevioletred;
-  background: #fdf7c5;
-  // border: 1px solid gray;
-`
-
+// 사진 업로드, 글 수정 전체
 const ContentBox = styled.div`
-  margin: 60px;
-  margin-left: 300px;
-  width: 1320px;
-  height: 750px;
-  background-color: #fdf7c5;
-  // border: 1px solid red;
+  background-color: #FFF9EE;
+  padding: 2rem;
+  width: 80vw;
+  height: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  // border: 1px solid blue;
 `
+
+const PhotoUploadSection = styled.form`
+  // border: 2px solid yellow;
+  margin: auto 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const PhotoBox = styled.div`
-  // border: 1px solid gray;
-  width: 450px;
-  height: 450px;
+  min-width: 300px;
+  width: 30vh;
+  height: 30vh;
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
+  border: 1px solid #B5B5B5;
 `
-const PhotoBoxDiv = styled.div`
-  // border: 1px solid gray;
+
+const PhotoUploadWarning = styled.div`
   margin-top: 200px;
   background-color: #ececec;
   font-size: 30px;
   text-align: center;
-  color: palevioletred;
+  color: #E00000;
 `
-const TitlePostDiv = styled.div`
-  // border: 1px solid gray;
+
+const PhotoUploadButtons = styled.div`
+  // border: 1px solid red;
+  padding: 1rem;
   display: flex;
-  flex-direction: column;
-  // justify-content: space-around;
-  // align-items: flex-end;
-`
-const TitlePostDiv2 = styled.div`
-  // border: 1px solid gray;
-  margin-top: 25px;
-  display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  // align-items: flex-end;
+  background-color: #FFB83E;
+  margin-top: 5rem;
 `
-const TitlePostDiv3 = styled.form`
-  // border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-const TitlePostDiv4 = styled.div`
-  // border: 1px solid gray;
-  text-align: center;
-  margin-top: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`
+
 const PhotoSelectBtn = styled.input`
   text-align: center;
   font-size: 20px;
   width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
-  color: palevioletred;
+  background-color: #FFB83E;
+  color: black;
 `
-const PhotoSelectBtnMargin = styled.div`
-  /* border: 1px solid gray; */
-  /* margin-top: 15px; */
-  text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
-`
+
 const PhotoUpLoadBtn = styled.button`
   font-size: 20px;
-  color: palevioletred;
-  /* margin-top: 15px; */
-
+  padding: .5rem;
+  color: white;
   text-align: center;
   width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
+  background-color: #419300;
 `
+
+// 타이틀, 글 작성 버튼 2개 포함
+const TitlePostDiv = styled.div`
+  margin: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 35vh;
+`
+
 const TitleBox = styled.input`
-  border: 1px solid #ececec;
+  border: 1px solid #B5B5B5;
   margin-bottom: 40px;
-  width: 650px;
+  width: inherit;
   height: 50px;
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
   text-align: center;
-`
-const PostBox = styled.textarea`
-  border: 1px solid #ececec;
-  width: 650px;
-  height: 350px;
-  background-color: #ececec;
-  font-size: 30px;
-  color: palevioletred;
-  text-align: center;
+  padding: .5rem;
 `
 
-const PostUploadBtn = styled.div`
-  // border: 1px solid gray;
-  width: 250px;
-  height: 60px;
-  background-color: #ffe2cd;
-  font-size: 20px;
-  color: palevioletred;
+const PostBox = styled.textarea`
+  border: 1px solid #B5B5B5;
+  width: inherit;
+  height: 400px;
+  background-color: #ececec;
+  font-size: 30px;
+  color: #424242;
+  padding: .5rem;
 `
-const CancelBtn = styled.div`
-  // border: 1px solid gray;
-  width: 250px;
-  height: 60px;
-  background-color: #ffe2cd;
-  font-size: 20px;
-  color: palevioletred;
+
+// const PostUploadBtn = styled.div`
+//   // border: 1px solid gray;
+//   width: 250px;
+//   height: 60px;
+//   background-color: #ffe2cd;
+//   font-size: 20px;
+//   color: palevioletred;
+// `
+
+// const CancelBtn = styled.div`
+//   border: 1px solid gray;
+//   width: 250px;
+//   height: 60px;
+//   background-color: #ffe2cd;
+//   font-size: 20px;
+//   color: palevioletred;
+// `
+
+const TitlePostButtons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: inherit;
+  text-align: center;
+  margin-top: 2rem;
 `
+
 const PostCompletionBtnMargin = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  background-color: #419300;
+  color: white;
+  padding: .5rem 10rem;
 `
+
 const PostCancelBtnMargin = styled.div`
-  // border: 1px solid gray;
-  margin-top: 15px;
   text-align: center;
-  // width: 200px;
-  // height: 60px;
-  // background-color: #ffe2cd;
+  background-color: #E00000;c
+  color: white;
+  padding: .5rem 2rem;
 `
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -254,28 +253,29 @@ export const Post = (props) => {
 
   return (
     <Body>
-      <Header>Animal Chat🐣</Header>
-      <ContentBox>
+      <Header />
+      <Navigation />
+      <ContentBox className="contentBox">
         {/* /////////////////// */}
-        <TitlePostDiv3 onSubmit={onSubmit}>
+        <PhotoUploadSection onSubmit={onSubmit} className="photoUploadSection">
           <PhotoBox>
             {uploadedImg ? (
-              <>
+              <div className="uploadedImage">
                 <img src={uploadedImg.filePath} alt="" />
                 {/* <h3>{uploadedImg.fileName}</h3> */}
-              </>
+              </div>
             ) : (
-              <PhotoBoxDiv>아래 파일 추가를 눌러주세요.</PhotoBoxDiv>
+              <PhotoUploadWarning className="photoUploadWarning">아래 파일 추가를 눌러주세요.</PhotoUploadWarning>
             )}
           </PhotoBox>
-          <TitlePostDiv2>
-            <PhotoSelectBtn type="file" onChange={addFile} />
+          <PhotoUploadButtons className="photoSelectButtons">
+            <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
             {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
-            <PhotoUpLoadBtn type="submit">
-              <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
+            <PhotoUpLoadBtn type="submit" className="photoButton">
+              업로드
             </PhotoUpLoadBtn>
-          </TitlePostDiv2>
-        </TitlePostDiv3>
+          </PhotoUploadButtons>
+        </PhotoUploadSection>
         {/* /////////////////// */}
         <TitlePostDiv>
           <TitleBox
@@ -290,18 +290,14 @@ export const Post = (props) => {
             name="content"
             onChange={handleInputValue}
           />
-          <TitlePostDiv4>
-            <PostUploadBtn>
-              <PostCompletionBtnMargin onClick={postSendButton}>
-                작성
-              </PostCompletionBtnMargin>
-            </PostUploadBtn>
-            <CancelBtn>
-              <PostCancelBtnMargin onClick={cancleButton}>
-                취소
-              </PostCancelBtnMargin>
-            </CancelBtn>
-          </TitlePostDiv4>
+          <TitlePostButtons>
+            <PostCompletionBtnMargin onClick={postSendButton}>
+              작성
+            </PostCompletionBtnMargin>
+            <PostCancelBtnMargin onClick={cancleButton}>
+              취소
+            </PostCancelBtnMargin>
+          </TitlePostButtons>
         </TitlePostDiv>
       </ContentBox>
     </Body>
