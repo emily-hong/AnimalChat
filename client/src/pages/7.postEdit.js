@@ -251,31 +251,6 @@ export const Post = (props) => {
     setPhoto(e.target.files[0])
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append("img", photo)
-    console.log(formData)
-    axios
-      .post(url + "/postsend", formData, {
-        "Content-Type": "application/json",
-        withCredentials: true,
-      })
-      .then((res) => {
-        const { fileName } = res.data
-        setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
-        alert("사진을 성공적으로 업로드 하였습니다.")
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
-
-  const addFile = (e) => {
-    console.log(e.target.files[0])
-    setPhoto(e.target.files[0])
-  }
-
   return (
     <Body>
       <Header>Animal Chat🐣</Header>

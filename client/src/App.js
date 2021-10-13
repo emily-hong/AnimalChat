@@ -48,6 +48,7 @@ function App() {
       withCredentials: true,
     }).then((res) => {
       // console.log(res.data.data.userInfo)
+      //console.log(res.data)
       setUserinfo(res.data.data.userInfo)
       setIsLogin(true)
       history.push("/")
