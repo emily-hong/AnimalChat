@@ -65,6 +65,8 @@ export default function SinglePostOnBoard({ mockBgColor, post }) {
       </StyledSinglePost>
     </div>
   )
+
+
   // return (
   //   <div className="singlePostOnBoard">
   //     <StyledSinglePost>
