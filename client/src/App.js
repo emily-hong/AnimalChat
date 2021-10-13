@@ -25,7 +25,7 @@ const url =
 function App() {
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("home")
-  const [userinfo, setUserinfo] = useState(null)
+  // const [userinfo, setUserinfo] = useState(null)
   const [postList, setPostList] = useState([])
 
   const history = useHistory()
@@ -48,8 +48,7 @@ function App() {
       withCredentials: true,
     }).then((res) => {
       // console.log(res.data.data.userInfo)
-      //console.log(res.data)
-      setUserinfo(res.data.data.userInfo)
+      // setUserinfo(res.data.data.userInfo)
       setIsLogin(true)
       history.push("/")
     })
@@ -127,7 +126,9 @@ function App() {
             <PostRead />
           </Route>
           <Route path="/mypage">
-            <MyPage userinfo={userinfo} />
+            <MyPage 
+              // userinfo={userinfo} 
+            />
           </Route>
 
           <Route path="/mypageedit">
