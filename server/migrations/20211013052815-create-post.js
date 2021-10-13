@@ -11,7 +11,7 @@ module.exports = {
       user_id: {
         type: Sequelize.STRING
       },
-      post_tile: {
+      post_title: {
         type: Sequelize.STRING
       },
       post_content: {

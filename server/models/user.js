@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId'
       })
       user.hasMany(models.comment, {
-        foreignKey: 'id'
+        foreignKey: 'user_id'
       })
-      user.hasMany(models.post_user, {
-        foreignKey: 'post_id'
-      })
+      user.hasMany(models.post, {
+        foreignKey: 'user_id'
+      }) 
     }
   };
   user.init({
