@@ -66,7 +66,7 @@ export const SignInModalView = styled.div`
   flex-direction: column;
   justify-content: center;
   border-radius: 20px;
-  background-color: #FEEFD5;
+  background-color: #feefd5;
   min-width: 400px;
   width: 80vw;
   height: 90vw;
@@ -80,10 +80,10 @@ export const SignInModalView = styled.div`
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
-    padding: .5rem 2rem;
+    padding: 0.5rem 2rem;
     font-size: 1rem;
     text-decoration: underline;
-    color: #7B7B7B;
+    color: #7b7b7b;
     border: none;
     background-color: transparent;
   }
@@ -110,15 +110,15 @@ const InputSet = styled.div`
   }
   & input {
     width: 40%;
-    padding: .33rem;
-    margin: .5rem;
+    padding: 0.33rem;
+    margin: 0.5rem;
   }
   & .errorMessage {
     font-size: 1rem;
     font-weight: normal;
-    color: #E00000;
+    color: #e00000;
   }
-`;
+`
 
 // 로그인 버튼 2개
 const LoginButtons = styled.div`
@@ -128,21 +128,24 @@ const LoginButtons = styled.div`
   align-items: center;
   margin: 1rem;
 
-  & button{ // 공통
-    margin: .5rem;
-    padding: .5rem;
+  & button {
+    // 공통
+    margin: 0.5rem;
+    padding: 0.5rem;
     width: 30%;
     font-size: 1rem;
     border: none;
     color: white;
   }
-  & button.justLogin { // 자체
+  & button.justLogin {
+    // 자체
     background-color: #419300;
   }
-  & button.socialLogin { // 소셜
-    background-color: #EA4335;
+  & button.socialLogin {
+    // 소셜
+    background-color: #ea4335;
   }
-`;
+`
 
 axios.defaults.withCredentials = true
 const url =
@@ -172,7 +175,7 @@ export const FirstPage = (props) => {
 
   function signUpHandler() {
     //로그인시
-    //console.log("로그인 버튼클릭시 콘솔")
+    // console.log("로그인 버튼클릭시 콘솔")
     //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
     //로그인 정보를 입력하지 않았을 때
@@ -184,6 +187,7 @@ export const FirstPage = (props) => {
         url: url + "/signin",
         method: "post",
         data: { id: loginInfo.id, password: loginInfo.password },
+        "Content-Type": "application/json",
         withCredentials: true,
       }).then((res) => {
         alert("로그인 완료")
@@ -219,10 +223,11 @@ export const FirstPage = (props) => {
                   </InputSet>
                   <InputSet className="inputSection">
                     <h4>패스워드</h4>
-                    <input type="password" onChange={handleInputValue("password")} />
-                    <div className="errorMessage">
-                      {errMessage}
-                    </div>
+                    <input
+                      type="password"
+                      onChange={handleInputValue("password")}
+                    />
+                    <div className="errorMessage">{errMessage}</div>
                   </InputSet>
                 </SignInModalForm>
 
@@ -235,15 +240,21 @@ export const FirstPage = (props) => {
                   </button>
                 </LoginButtons>
 
-                <button className="close" onClick={()=>{setIsOpen(false)}}>닫기</button>
-
+                <button
+                  className="close"
+                  onClick={() => {
+                    setIsOpen(false)
+                  }}
+                >
+                  닫기
+                </button>
               </SignInModalView>
             </SignInModalBackdrop>
           </SignInModalContainer>
         </div>
       )}
     </Container>
-  );
+  )
 }
 
-export default FirstPage;
+export default FirstPage
