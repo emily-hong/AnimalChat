@@ -192,8 +192,6 @@ export const FirstPage = (props) => {
       }).then((res) => {
         alert("로그인 완료")
         props.loginFunc()
-      }).catch((err) => { // 입력정보가 틀렸을때
-        alert("아이디 또는 비밀번호를 확인해주세요.")
       })
     }
   }
