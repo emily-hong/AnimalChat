@@ -6,6 +6,7 @@ const Outer = styled.div`
   flex-direction: column;
   width: 300px;
   padding: 1rem;
+  background-color: #FFF9EE;
 `
 
 const PictureAndText = styled.div`

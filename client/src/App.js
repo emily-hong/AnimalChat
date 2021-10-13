@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
+import AnimalInfo from "./components/AnimalInfo"
 import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
@@ -64,6 +65,7 @@ function App() {
 
   return (
     <>
+      <AnimalInfo />
       {/* <NavBar /> */}
       <div className="entire">
         <Switch>
