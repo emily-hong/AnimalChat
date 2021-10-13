@@ -33,8 +33,10 @@ export default function Posts({
   isLinkToWritePage,
   postList,
   curAnimal,
+  curPostRead,
 }) {
   console.log(postList)
+
   return (
     <div className="boards">
       <Background>
@@ -50,7 +52,11 @@ export default function Posts({
         <BoardInGrid>
           {curAnimal === "home"
             ? postList.map((post) => (
-                <SinglePostOnBoard key={post.id} post={post} />
+                <SinglePostOnBoard
+                  key={post.id}
+                  post={post}
+                  curPostRead={curPostRead}
+                />
               ))
             : postList
                 .filter((post) => curAnimal === post.animalcategory)

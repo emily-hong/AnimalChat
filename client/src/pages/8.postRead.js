@@ -114,22 +114,9 @@ const url =
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
+  console.log(props.curPost)
   const history = useHistory()
-  const editPostButton = (event) => {
-    alert("수정하시겠습니까?")
-
-    // 작성중인 부분
-    // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
-    axios({
-      url: url + "/postedit",
-      method: "post",
-      data: {
-        // 해당 게시물의 id나 title,content를 보내서 일치하는 것 수정(update)
-        post_title: "기존 작성된 제목 입니다.",
-        post_content: "기존 작성된 내용 입니다.",
-      },
-    })
-
+  function editPostButton(event) {
     history.push("/postedit")
   }
 
@@ -163,62 +150,61 @@ export default function PostRead(props) {
   }
 
   return (
-    <Outer>
-      <Header />
-      <Navigation />
-      <Contents className="contents">
-        <PostReadSection className="postReadSection">
-          {/* 내사진, 제목, 날짜, 버튼 */}
-          <div className="postTitle">
-            <PostTitleLeft className="postTitle_left">
-              <img className="profilePic" alt="프로필사진" />
-              <h1 className="title">우리집 애기 봐주세요</h1>
-              <p>2030.09.08 11:03</p>
-            </PostTitleLeft>
-            <PostButtons className="postTitle_right">
-              <button className="editPost" onClick={editPostButton}>수정</button>
-              <button className="deletePost">삭제</button>
-            </PostButtons>
-          </div>
 
-          {/* 게시물 사진 */}
-          <div className="postPic">
-            <img className="picture" alt="게시물 사진"></img>
-          </div>
+    <div>
+      {/* 내사진, 제목, 날짜, 버튼 */}
+      <div className="postTitle">
+        <div className="postTitle_left">
+          <img className="profilePic" alt="프로필사진" />
+          <h1 className="title">{props.curPost.post_title}</h1>
+          <p>{props.curPost.updatedAt}</p>
+        </div>
 
-          {/* 게시물 내용 */}
-          <div className="postContent">
-            안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠 ,,,,
-            ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠
-            ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청
-            귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데
-            엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에
-            목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ
-            이번에 목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ
-          </div>
-        </PostReadSection>
+        <div className="postTitle_right">
+          <button onClick={editPostButton}>수정</button>
+          <button>삭제</button>
+        </div>
+      </div>
 
-        {/* 댓글 작성 */}
-        <CommentSection className="commentSection">
-          <PostComment className="postComment">
-            <input
-              className="inputComment"
-              type="text"
-              placeholder="댓글을 작성해주세요."
-              onChange={handleChangeMsg}
-            />
-            <button onClick={handleButtonClick}>작성</button>
-          </PostComment>
+      {/* 게시물 사진 */}
+      <div className="postPic">
+        <img
+          className="picture"
+          src={url + props.curPost.post_img}
+          alt="게시물 사진"
+        />
+      </div>
 
-          {/* 댓글 목록 */}
-          <CommentList className="commentsList">
-            {/* 작성된 댓글 보여주기 */}
-            {cotentList.map((el) => (
-              <Comment key={el.id} comment={el} />
-            ))}
-          </CommentList>
-        </CommentSection>
-      </Contents>
-    </Outer>
+      {/* 게시물 내용 */}
+      <div className="postContent">
+        안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠 ,,,,
+        ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠
+        ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청
+        귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데
+        엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에
+        목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ
+        이번에 목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ
+      </div>
+
+      {/* 댓글 작성 */}
+      <div className="postComment">
+        <input
+          className="inputComment"
+          type="text"
+          placeholder="댓글을 작성해주세요."
+          onChange={handleChangeMsg}
+        />
+        <button onClick={handleButtonClick}>작성</button>
+      </div>
+
+      {/* 댓글 목록 */}
+      <ul className="commentsList">
+        {/* 작성된 댓글 보여주기 */}
+        {cotentList.map((el) => (
+          <Comment key={el.id} comment={el} />
+        ))}
+      </ul>
+    </div>
+
   )
 }
