@@ -48,7 +48,6 @@ const PhotoBox = styled.div`
 `
 
 const PhotoUploadWarning = styled.div`
-  border: 1px solid black;
   margin-top: 200px;
   background-color: #ececec;
   font-size: 30px;
@@ -151,7 +150,7 @@ const PostCompletionBtnMargin = styled.div`
 
 const PostCancelBtnMargin = styled.div`
   text-align: center;
-  background-color: #E00000;
+  background-color: #E00000;c
   color: white;
   padding: .5rem 2rem;
 `
