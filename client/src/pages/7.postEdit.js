@@ -2,37 +2,43 @@ import { useHistory } from "react-router-dom"
 import React, { useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 
 const Body = styled.div`
-  box-sizing: border-box;
-  width: 1920px;
-  height: 1080px;
-  background-color: #ffe2cd;
-  // border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FEEFD5;
+  width: 100vw;
+  // height: 100vh;
 `
 
-const Header = styled.div`
-  padding-bottom: 0.5em;
-  padding-left: 0.5em;
-  padding-top: 0.5em;
-  font-size: 6em;
-  text-align: left;
-  color: palevioletred;
-  background: #fdf7c5;
-  // border: 1px solid gray;
-`
+// const Header = styled.div`
+//   padding-bottom: 0.5em;
+//   padding-left: 0.5em;
+//   padding-top: 0.5em;
+//   font-size: 6em;
+//   text-align: left;
+//   color: palevioletred;
+//   background: #fdf7c5;
+//   // border: 1px solid gray;
+// `
 
 const ContentBox = styled.div`
-  margin: 60px;
-  margin-left: 300px;
-  width: 1320px;
-  height: 750px;
-  background-color: #fdf7c5;
-  // border: 1px solid red;
+  // margin: 60px;
+  // margin-left: 300px;
+  background-color: #FFF9EE;
+  padding: 2rem;
+  width: 80vw;
+  height: inherit;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+  border: 1px solid blue;
 `
+
 const PhotoBox = styled.div`
   // border: 1px solid gray;
   width: 450px;
@@ -41,6 +47,7 @@ const PhotoBox = styled.div`
   font-size: 30px;
   color: palevioletred;
 `
+
 const PhotoBoxDiv = styled.div`
   // border: 1px solid gray;
   margin-top: 200px;
@@ -49,6 +56,7 @@ const PhotoBoxDiv = styled.div`
   text-align: center;
   color: palevioletred;
 `
+
 const TitlePostDiv = styled.div`
   // border: 1px solid gray;
   display: flex;
@@ -56,6 +64,7 @@ const TitlePostDiv = styled.div`
   // justify-content: space-around;
   // align-items: flex-end;
 `
+
 const TitlePostDiv2 = styled.div`
   // border: 1px solid gray;
   margin-top: 25px;
@@ -64,12 +73,14 @@ const TitlePostDiv2 = styled.div`
   justify-content: space-around;
   // align-items: flex-end;
 `
+
 const TitlePostDiv3 = styled.div`
   // border: 1px solid gray;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `
+
 const TitlePostDiv4 = styled.div`
   // border: 1px solid gray;
   text-align: center;
@@ -78,6 +89,7 @@ const TitlePostDiv4 = styled.div`
   flex-direction: row;
   justify-content: space-around;
 `
+
 const PhotoSelectBtn = styled.div`
   text-align: center;
   font-size: 20px;
@@ -86,6 +98,7 @@ const PhotoSelectBtn = styled.div`
   background-color: #ffe2cd;
   color: palevioletred;
 `
+
 const PhotoSelectBtnMargin = styled.div`
   // border: 1px solid gray;
   margin-top: 15px;
@@ -94,6 +107,7 @@ const PhotoSelectBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
+
 const PhotoUpLoadBtn = styled.div`
   font-size: 20px;
   color: palevioletred;
@@ -103,6 +117,7 @@ const PhotoUpLoadBtn = styled.div`
   height: 60px;
   background-color: #ffe2cd;
 `
+
 const TitleBox = styled.input`
   border: 1px solid #ececec;
   margin-bottom: 40px;
@@ -113,6 +128,7 @@ const TitleBox = styled.input`
   color: palevioletred;
   text-align: center;
 `
+
 const PostBox = styled.textarea`
   border: 1px solid #ececec;
   width: 650px;
@@ -131,6 +147,7 @@ const PostUploadBtn = styled.div`
   font-size: 20px;
   color: palevioletred;
 `
+
 const CancelBtn = styled.div`
   // border: 1px solid gray;
   width: 250px;
@@ -139,6 +156,7 @@ const CancelBtn = styled.div`
   font-size: 20px;
   color: palevioletred;
 `
+
 const PostCompletionBtnMargin = styled.div`
   // border: 1px solid gray;
   margin-top: 15px;
@@ -147,6 +165,7 @@ const PostCompletionBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
+
 const PostCancelBtnMargin = styled.div`
   // border: 1px solid gray;
   margin-top: 15px;
@@ -155,6 +174,7 @@ const PostCancelBtnMargin = styled.div`
   // height: 60px;
   // background-color: #ffe2cd;
 `
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -208,7 +228,8 @@ export const PostEdit = (props) => {
 
   return (
     <Body>
-      <Header>Animal Chat🐣</Header>
+      <Header />
+      <Navigation />
       <ContentBox>
         <TitlePostDiv3>
           <PhotoBox>
