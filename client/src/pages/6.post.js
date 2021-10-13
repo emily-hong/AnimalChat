@@ -188,6 +188,7 @@ export const Post = (props) => {
   // 수정된 게시물 정보 -> 서버로
   // 수정 페이지 postread에서 보여야함
   const postSendButton = () => {
+    console.log(props);
     if (
       inputTitle.length > 0 &&
       inputContent.length > 0 && 

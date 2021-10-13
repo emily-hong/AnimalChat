@@ -193,7 +193,7 @@ export const PostEdit = (props) => {
             url: url + "/postedit",
             method: "post",
             data: {
-              user_id: 1,
+              // user_id: 1,
               post_title: inputTitle,
               post_content: inputContent,
               post_img: "/img/" + uploadedImg.fileName,
@@ -204,7 +204,7 @@ export const PostEdit = (props) => {
           .then(() => {
             console.log("수정성공")
             alert("수정 완료")
-            history.goBack() // 뒤로가기해도 업데이트된 게시물이 보여야함
+            history.goBack()
             // history.push('/postread')
           })
           .catch((err) => console.log(err))

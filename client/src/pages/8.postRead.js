@@ -11,8 +11,24 @@ const url =
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
   const history = useHistory()
+
+  
+
+  // 해당게시물 정보 띄우기(get)
+  axios({
+    url: url + "/postlist",
+    method: "get",
+    withCredentials: true,
+  }).then((res) => {
+
+  })
+
+
+
+  // 수정버튼
   const editPostButton = (event) => {
     if(window.confirm("수정하시겠습니까?")){
+      /*
       // 작성중인 부분
       // 수정버튼 누를때 해당 게시물의 id가 /postedit 으로 가게할 수 있는지?
       axios({
@@ -24,6 +40,7 @@ export default function PostRead(props) {
           post_content: "기존 작성된 내용 입니다.",
         },
       })
+      */
       history.push("/postedit")
     }
   }
