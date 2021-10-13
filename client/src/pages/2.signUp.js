@@ -19,7 +19,6 @@ const Outer = styled.div`
   align-items: center;
   width: 100vw;
   height: auto;
-  border: 1px solid red;
   background-color: #FEEFD5;
 `;
 
