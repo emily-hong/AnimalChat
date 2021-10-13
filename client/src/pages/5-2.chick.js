@@ -16,6 +16,7 @@ export default function Chick(props) {
         isLinkToWritePage
         postList={props.postList}
         curAnimal={props.curAnimal}
+        curPostRead={props.curPostRead}
       />
     </div>
   )
