@@ -1,22 +1,22 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import SinglePostOnBoard from '../components/SinglePostOnBoard';
+import styled from "styled-components"
+import { Link } from "react-router-dom"
+import SinglePostOnBoard from "../components/SinglePostOnBoard"
 
 const Background = styled.div`
   box-sizing: content-box;
-  background-color: #FEEFD5;
+  background-color: #feefd5;
   padding: 1rem;
   // border-bottom: 1px solid red;
-`;
+`
 
 const WriteButton = styled.button`
   border: none;
   margin: 1rem auto;
-  padding: .5rem;
-  background-color: #FFA200;
+  padding: 0.5rem;
+  background-color: #ffa200;
   font-weight: bold;
   font-size: 1.05rem;
-`;
+`
 
 const BoardInGrid = styled.div`
   box-sizing: content-box;
@@ -26,31 +26,36 @@ const BoardInGrid = styled.div`
   grid-template-columns: repeat(auto-fit, 200px);
   justify-content: center;
   align-content: center;
-`;
+`
 
-export default function Posts({ title, isLinkToWritePage }) {
-
+export default function Posts({
+  title,
+  isLinkToWritePage,
+  postList,
+  curAnimal,
+}) {
+  console.log(postList)
   return (
     <div className="boards">
       <Background>
         <h2>{title}</h2>
         <div>
-          {
-            isLinkToWritePage?
-              <Link to='/post'>
-                <WriteButton>글쓰기</WriteButton>
-              </Link>
-            :
-              ''
-          }
+          {isLinkToWritePage ? (
+            <Link to="/post">
+              <WriteButton>글쓰기</WriteButton>
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
         <BoardInGrid>
-          <SinglePostOnBoard />
-          <SinglePostOnBoard />
-          <SinglePostOnBoard />
-          <SinglePostOnBoard />
-          <SinglePostOnBoard />
-          <SinglePostOnBoard />
+          {curAnimal === "home"
+            ? postList.map((post) => (
+                <SinglePostOnBoard key={post.id} post={post} />
+              ))
+            : postList
+                .filter((post) => curAnimal === post.animalcategory)
+                .map((post) => <SinglePostOnBoard key={post.id} post={post} />)}
         </BoardInGrid>
       </Background>
     </div>

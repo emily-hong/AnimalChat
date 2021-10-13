@@ -9,23 +9,27 @@ const url =
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MainPage(props) {
-  useEffect(() => {
-    axios({
-      url: url + "/postlist",
-      method: "get",
-      withCredentials: true,
-    }).then((res) => {
-      // setPostList(res.data)
-      props.getPostList(res.data)
-    })
-  }, [])
+  console.log("메인 렌더")
+
+  // useEffect(() => {
+  //   console.log("메인이펙트")
+  //   axios({
+  //     url: url + "/postlist",
+  //     method: "get",
+  //     withCredentials: true,
+  //   }).then((res) => {
+  //     // setPostList(res.data)
+  //     props.getPostList(res.data)
+  //   })
+  // }, [])
 
   return (
     <div className="mainPage">
       <Header />
       <Navigation />
       <h2>게시판</h2>
-      <Boards postList={props.postList} />
+      {/* <Boards postList={props.postList} /> */}
+      {/* <Boards postList={props.postList} /> */}
     </div>
   )
 }

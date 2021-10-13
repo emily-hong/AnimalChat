@@ -11,7 +11,12 @@ export default function Chick(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="병아리" isLinkToWritePage />
+      <Posts
+        title="병아리"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </div>
   )
 }

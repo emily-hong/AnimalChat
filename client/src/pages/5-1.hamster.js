@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 
 export default function Hamster(props) {
   useEffect(() => {
+    console.log("햄스터게시판")
     props.curAnimalChange("hamster")
   }, [])
 
@@ -12,7 +13,14 @@ export default function Hamster(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="햄스터" isLinkToWritePage />
+      <Posts
+        title="햄스터"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
+
+      {/* <Posts title="전체 게시물" postList={props.postList} /> */}
     </div>
   )
 }
