@@ -23,7 +23,9 @@ export default function MyPage({ userinfo }) {
     <div className="MyPage">
       <Header />
       <Navigation />
-      <MyPageSection userinfo={userinfo} />
+      <MyPageSection 
+      userinfo={userinfo}
+       />
     </div>
   )
 }
