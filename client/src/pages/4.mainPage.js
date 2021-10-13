@@ -37,6 +37,7 @@ export default function MainPage(props) {
         title="전체 게시물"
         postList={props.postList}
         curAnimal={props.curAnimal}
+        curPostRead={props.curPostRead}
       />
     </Outer>
   )

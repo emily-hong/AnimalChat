@@ -1,4 +1,7 @@
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
+import React, { useState } from "react"
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -42,17 +45,18 @@ const StyledProfilePictureArea = styled.div`
   background-color: #4976bf;
 `
 
-export default function SinglePostOnBoard({ mockBgColor, post }) {
-  /* src: ${(props) => "" + props.url + props.post.post_img}; */
-  /* src: aasd; */
-  // console.log(post.post_img)
-  // console.log(url)
-  // console.log(url + post.post_img)
+export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
+  const history = useHistory()
+
+  function postRead() {
+    curPostRead(post)
+    history.push("/postread")
+  }
 
   return (
     <div className="singlePostOnBoard">
       <StyledSinglePost>
-        <StyledThumbnail src={url + post.post_img} />
+        <StyledThumbnail src={url + post.post_img} onClick={postRead} />
         {post.post_title}
         <StyledTitlePreview>
           <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
