@@ -36,7 +36,6 @@ function App() {
     history.push("/")
   }
   function SignUpFin() {
-    setIsLogin(!isLogin)
     history.push("/")
   }
   function curAnimalChange(animaltype) {
