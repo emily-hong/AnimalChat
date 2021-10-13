@@ -16,6 +16,7 @@ export default function Parrot(props) {
         isLinkToWritePage
         postList={props.postList}
         curAnimal={props.curAnimal}
+        curPostRead={props.curPostRead}
       />
     </div>
   )
