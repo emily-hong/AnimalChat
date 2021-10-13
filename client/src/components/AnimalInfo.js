@@ -6,6 +6,7 @@ const Outer = styled.div`
   flex-direction: column;
   width: 300px;
   padding: 1rem;
+  background-color: #FFF9EE;
 `;
 
 const PictureAndText = styled.div`
@@ -51,6 +52,12 @@ const ButtonSpace = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  & button {
+    padding: .5rem 1rem;
+    color: white;
+    background-color: #4876BF;
+  }
 `;
 
 const Button = styled.button`
@@ -59,33 +66,31 @@ const Button = styled.button`
 
 export default function AnimalInfo() {
   return (
-    <div className='singleAnimalInfo'>
-      <Outer>
-        <PictureAndText>
-          <PictureSpace>
-            <RoundPicture>
-              {/* TODO : 사진 props, 악시오스 요청 */}
-              사진
-            </RoundPicture>
-          </PictureSpace>
-          <TextSpace>
-            {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
-            <div>
-              <h4>반려동물 이름</h4>
-              <p>{'햄찌'}</p>
-            </div>
-            <div>
-              <h4>출생년도</h4>
-              <p>{'2009. 2. 8.'}</p>
-            </div>
-          </TextSpace>
-        </PictureAndText>
-        <ButtonSpace>
-          {/* TODO : 수정 페이지 Link, 라우팅 */}
-          <Button>수정</Button>
-        </ButtonSpace>
-      </Outer>
-    </div>
+    <Outer className='singleAnimalInfo'>
+      <PictureAndText>
+        <PictureSpace>
+          <RoundPicture>
+            {/* TODO : 사진 props, 악시오스 요청 */}
+            사진
+          </RoundPicture>
+        </PictureSpace>
+        <TextSpace>
+          {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
+          <div>
+            <h4>반려동물 이름</h4>
+            <p>{'햄찌'}</p>
+          </div>
+          <div>
+            <h4>출생년도</h4>
+            <p>{'2009. 2. 8.'}</p>
+          </div>
+        </TextSpace>
+      </PictureAndText>
+      <ButtonSpace>
+        {/* TODO : 수정 페이지 Link, 라우팅 */}
+        <Button>수정</Button>
+      </ButtonSpace>
+    </Outer>
   );
 }
 

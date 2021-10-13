@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import AnimalInfo from '../components/AnimalInfo';
 
+const Outer = styled.div`
+  background-color: #FEEFD5;
+  height: 100vh;
+`;
+
 const IdDisplay = styled.div`
   box-sizing: content-box;
   padding: 1rem;
@@ -16,11 +21,6 @@ const AnimalsList = styled.div`
   grid-template-columns: repeat(auto-fit, 350px);
   justify-content: center;
   align-content: center;
-
-  & > div {
-    // border: 1px solid red;
-    background-color: #FFEC99;
-  }
 `;
 
 const ButtonsArea = styled.div`
@@ -30,25 +30,28 @@ const ButtonsArea = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  border: 1px solid red;
 
   & > button {
+    font-size: 1rem;
+    background-color: #DB7092;
+    color: white;
+    font-weight: bold;
     box-sizing: content-box;
+    padding: .5rem 2rem;
     margin: .5rem;
   }
-`;
-
-const QuitButton = styled.button`
-  background-color: transparent;
-  border-radius: none;
-  text-decoration: underline;
-  border: none;
-  color: #AAAAAA;
+  & .deleteUserInfo {
+    background-color: transparent;
+    border-radius: none;
+    text-decoration: underline;
+    border: none;
+    color: #AAAAAA;
+  }
 `;
 
 export default function MyPageSection () {
   return (
-    <div className="MyPageSection">
+    <Outer className="MyPageSection">
       <IdDisplay>
         {/* TODO : axios 요청 -> 회원정보 -> id */}
         <span>아이디 : {'axios 요청해서 로그인한 회원 id 넣기'}</span>
@@ -62,9 +65,9 @@ export default function MyPageSection () {
       <ButtonsArea>
         <button>동물 추가하기</button>
         <button>비밀번호 수정</button>
-        <QuitButton>회원탈퇴</QuitButton>
+        <button className="deleteUserInfo">회원탈퇴</button>
       </ButtonsArea>
-    </div>
+    </Outer>
   );
 }
 
