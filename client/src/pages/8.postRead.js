@@ -36,28 +36,42 @@ const PostReadSection = styled.div`
   }
 `;
 
+const PostTitle = styled.div`
+  display: flex;
+  border: 1px solid green;
+  width: calc(100% - 2rem);
+`;
+
 const PostTitleLeft = styled.div`
   display: flex;
+  flex-grow: 8;
+  // justify-content: space-around;
   align-items: center;
+  border: 1px solid red;
 `;
 
 const PostButtons = styled.div`
-  margin-left: 10rem;
   padding: 0;
   display: flex;
+  flex-grow: 2;
   align-items: center;
 
   & button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     font-size: 1rem;
     padding: .5rem;
+    margin: .5rem;
     color: white;
-    margin: 0;
   }
   & .editPost {
+    flex-grow: 2;
     background-color: #4876BF;
     color: white;
   }
   & .deletePost {
+    flex-grow: 1;
     background-color: #E00000;
   }
 `;
@@ -102,6 +116,16 @@ const CommentList = styled.ul`
     padding: .5rem;
     background-color: #FFC257;
   }
+`;
+
+const BackButton = styled.button`
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #7B7B7B;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: .8rem;
 `;
 
 // axios
@@ -169,7 +193,7 @@ export default function PostRead(props) {
       <Contents className="contents">
         <PostReadSection className="postReadSection">
           {/* 내사진, 제목, 날짜, 버튼 */}
-          <div className="postTitle">
+          <PostTitle className="postTitle">
             <PostTitleLeft className="postTitle_left">
               <img className="profilePic" alt="프로필사진" />
               <h1 className="title">우리집 애기 봐주세요</h1>
@@ -179,7 +203,7 @@ export default function PostRead(props) {
               <button className="editPost" onClick={editPostButton}>수정</button>
               <button className="deletePost">삭제</button>
             </PostButtons>
-          </div>
+          </PostTitle>
 
           {/* 게시물 사진 */}
           <div className="postPic">
@@ -196,6 +220,7 @@ export default function PostRead(props) {
             목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ
             이번에 목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ
           </div>
+          <BackButton className="backButton">뒤로</BackButton>
         </PostReadSection>
 
         {/* 댓글 작성 */}

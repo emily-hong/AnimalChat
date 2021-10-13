@@ -140,14 +140,14 @@ const TitlePostButtons = styled.div`
   margin-top: 2rem;
 `
 
-const PostCompletionBtnMargin = styled.div`
+const PostCompletionBtnMargin = styled.button`
   text-align: center;
   background-color: #419300;
   color: white;
   padding: .5rem 10rem;
 `
 
-const PostCancelBtnMargin = styled.div`
+const PostCancelBtnMargin = styled.button`
   text-align: center;
   background-color: #E00000;c
   color: white;
