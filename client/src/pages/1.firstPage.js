@@ -172,7 +172,7 @@ export const FirstPage = (props) => {
 
   function signUpHandler() {
     //로그인시
-    //console.log("로그인 버튼클릭시 콘솔")
+    // console.log("로그인 버튼클릭시 콘솔")
     //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
     //로그인 정보를 입력하지 않았을 때
