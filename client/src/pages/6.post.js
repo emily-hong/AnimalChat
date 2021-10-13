@@ -214,7 +214,7 @@ export const Post = (props) => {
         })
         .catch((err) => console.log(err))
     } else {
-      alert("제목과 내용은 필수사항 입니다.")
+      alert("이미지와 제목, 내용 모두 필수사항 입니다.")
     }
   }
   // 취소 버튼
