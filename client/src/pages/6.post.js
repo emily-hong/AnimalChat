@@ -209,7 +209,9 @@ export const Post = (props) => {
         .then(() => {
           alert("작성 완료")
           // 작성 완료
+          history.push("/mainpage")
           history.goBack() // 이전페이지로 돌아가야함
+          history.goBack()
         })
         .catch((err) => console.log(err))
     } else {

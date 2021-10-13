@@ -11,8 +11,12 @@ export default function Rabbit(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="토끼" isLinkToWritePage />
-      {/* TODO : Posts - postListData 프롭스에 악시오스로 받은 데이터 추가 */}
+      <Posts
+        title="토끼"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </div>
   )
 }
