@@ -158,9 +158,14 @@ export default function PostRead(props) {
   }
 
   // title - 삭제 :
-  const deletPostButton = (event) => {
+  const deletePostButton = (event) => {
     alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
+  }
+
+  // 뒤로 버튼
+  const backButtonHandler = () => {
+    history.goBack();
   }
 
   // 댓글
@@ -220,7 +225,7 @@ export default function PostRead(props) {
             목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ
             이번에 목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ
           </div>
-          <BackButton className="backButton">뒤로</BackButton>
+          <BackButton className="backButton" onClick={backButtonHandler}>뒤로</BackButton>
         </PostReadSection>
 
         {/* 댓글 작성 */}
