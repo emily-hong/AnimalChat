@@ -12,6 +12,7 @@ export default function Chick(props) {
       <Header />
       <Navigation isLinkToWritePage />
       <Posts title="병아리" isLinkToWritePage />
+      {/* TODO : Posts - postListData 프롭스에 악시오스로 받은 데이터 추가 */}
     </div>
   )
 }
