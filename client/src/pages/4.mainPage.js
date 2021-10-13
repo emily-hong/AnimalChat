@@ -4,6 +4,7 @@ import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import Posts from "../components/Posts"
 import React, { useEffect, useState } from "react"
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -31,11 +32,12 @@ export default function MainPage(props) {
     <Outer className="mainPage">
       <Header />
       <Navigation />
-      <Posts
+      <Posts 
         title="전체 게시물"
         postList={props.postList}
         curAnimal={props.curAnimal}
       />
+      {/* <button>게시물</button> */}
     </Outer>
   )
 }
