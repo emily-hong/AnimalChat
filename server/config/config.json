@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "animalchat",
+    "password": "",
     "database": "animalchat",
     "host": "127.0.0.1",
     "dialect": "mysql"

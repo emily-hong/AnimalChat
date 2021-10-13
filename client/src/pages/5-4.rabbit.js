@@ -11,7 +11,12 @@ export default function Rabbit(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="토끼" isLinkToWritePage />
+      <Posts
+        title="토끼"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </div>
   )
 }

@@ -11,7 +11,12 @@ export default function Hedgehog(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <Posts title="고슴도치" isLinkToWritePage />
+      <Posts
+        title="고슴도치"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+      />
     </div>
   )
 }
