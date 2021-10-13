@@ -103,7 +103,6 @@ function App() {
           <Route path="/mypage">
             <MyPage />
           </Route>
-
           <Route path="/mypageedit">
             <MyPageEdit />
           </Route>
