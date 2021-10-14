@@ -12,15 +12,17 @@ const multer = require("multer")
 const logger = require("morgan")
 
 const url =
-  process.env.API_URL ||
-  "https://animal-chat.vercel.app"
+  process.env.API_URL || "https://animal-chat.vercel.app"
+  // "https://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
+
+
+ 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
     origin: [url],
-//     origin: "*",
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
   })
