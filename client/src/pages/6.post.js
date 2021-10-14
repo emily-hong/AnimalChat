@@ -149,7 +149,7 @@ const PostCompletionBtnMargin = styled.button`
 
 const PostCancelBtnMargin = styled.button`
   text-align: center;
-  background-color: #E00000;c
+  background-color: #E00000;
   color: white;
   padding: .5rem 2rem;
 `
@@ -186,6 +186,7 @@ export const Post = (props) => {
   // 수정된 게시물 정보 -> 서버로
   // 수정 페이지 postread에서 보여야함
   const postSendButton = () => {
+    console.log(props);
     if (
       inputTitle.length > 0 &&
       inputContent.length > 0 
@@ -215,7 +216,7 @@ export const Post = (props) => {
         })
         .catch((err) => console.log(err))
     } else {
-      alert("제목과 내용은 필수사항 입니다.")
+      alert("이미지와 제목, 내용 모두 필수사항 입니다.")
     }
   }
   // 취소 버튼

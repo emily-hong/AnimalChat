@@ -139,7 +139,8 @@ function App() {
             <PostRead curPost={curPost} />
           </Route>
           <Route path="/mypage">
-            <MyPage userinfo={userinfo} />
+            <MyPage userinfo={userinfo} 
+            />
           </Route>
 
           <Route path="/mypageedit">
