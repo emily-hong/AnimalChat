@@ -2,7 +2,7 @@ import axios from "axios"
 import styled from "styled-components"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import { useEffect, useState } from "react"
+import { useEffect } from "react" // useState
 // import Boards from "./4-1.boards"
 import Posts from "../components/Posts"
 import React from "react"

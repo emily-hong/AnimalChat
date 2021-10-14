@@ -1,7 +1,7 @@
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import MyPageSection from "./9.myPageSection"
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react" // useEffect
 import axios from "axios"
 
 
