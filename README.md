@@ -1,7 +1,7 @@
 # Animal Chat
 
 ## LOGO
-로고 이미지.png
+[logo](https://ifh.cc/g/PUysD3.jpg)
 
 ## About
 - 주로 많이 키우는 반려동물(ex:강아지,고양이)이 아닌 조금은 특별한 반려동물을 위한 커뮤니티 제공
