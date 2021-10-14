@@ -9,4 +9,4 @@
 - 마이페이지에 반려동물의 이름과 출생일을 기록 및 저장하여 조회가능.
 
 ## Tech Stacks
-<img src="https://i.imgur.com/ArRsNWW.jpg" title="animal-chat-tech.jpg" width=80% height=80% />
+<img src="https://i.imgur.com/eHNpYFs.jpg" title="animal-chat-tech (1).jpg" width="80%" height="80%" />
