@@ -12,11 +12,13 @@ const Outer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 `
 
 const Contents = styled.div`
-  width: 100vw;
-  height: 100vh;
+  // width: 100vw;
+  // height: 100vh;
   background-color: #feefd5;
 `
 
@@ -148,21 +150,25 @@ export default function PostRead(props) {
 
   // title - 삭제 :
   const deletePostButton = (event) => {
-    alert("게시물을 삭제하시겠습니까?")
+    // alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
     if (window.confirm("게시물을 삭제하시겠습니까?")) {
       axios({
-        url: url + "/post",
+        url: url + "/postdelete",
         method: "delete",
-        data: {
-          // 삭제될 게시물 정보들
-          // user_id,
-          // post_title,
-          // post_content,
-          // post_img,
-          // animalcategory
-        },
-      }).then(() => {
+
+        // data: {
+        //   // 삭제될 게시물 정보들
+        //   // user_id,
+        //   // post_title,
+        //   // post_content,
+        //   // post_img,
+        //   // animalcategory
+        // }
+        withCredentials: true
+      })
+      .then(() => {
+
         alert("게시물 삭제 완료")
         history.push("/mainpage") // 또는 board/{해당동물} 페이지로
       })
@@ -233,10 +239,10 @@ export default function PostRead(props) {
             </PostTitleLeft>
 
             <PostButtons className="postTitle_right">
-              <button className="editPost" onClick={editPostButton}>
-                수정
-              </button>
-              <button className="deletePost">삭제</button>
+
+              <button className="editPost" onClick={editPostButton}>수정</button>
+              <button className="deletePost" onClick={deletePostButton} >삭제</button>
+
             </PostButtons>
           </PostTitle>
 

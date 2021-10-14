@@ -2,7 +2,7 @@ const { user } = require("../../models")
 const { isAuthorized } = require('../tokenFunc');
 
 module.exports = (req, res) => {
-  // console.log(req.body)
+  //console.log(req.body)
   //res.send()
   //회원정보확인하고 
   //토큰삭제 
@@ -11,8 +11,8 @@ module.exports = (req, res) => {
   if(!accessTokenData){
     return res.json({ data: null, message: '회원정보가 일치하지 않습니다.' })
   }
-  
-  // const { user_id, nickname } = req.body
+  //console.log(accessTokenData)
+  //const { user_id, nickname } = req.body
   const { user_id, nickname } = accessTokenData
   user.destroy({
     where: {
