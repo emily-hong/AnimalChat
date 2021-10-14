@@ -148,7 +148,9 @@ const BackButton = styled.button`
   margin: 1rem;
   padding: 0.8rem;
 `
-
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
