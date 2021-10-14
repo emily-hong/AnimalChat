@@ -85,8 +85,8 @@ export default function AddAnimalInfo() {
           </TextSpace>
         </PictureAndText>
         <ButtonSpace>
-          {/* TODO : 수정 페이지 Link, 라우팅 */}
-          <Button>수정</Button>
+          {/* TODO : 악시오스 요청일까요? */}
+          <Button>삭제</Button>
         </ButtonSpace>
       </Outer>
     </div>

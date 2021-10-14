@@ -18,6 +18,7 @@ export default function Hamster(props) {
         isLinkToWritePage
         postList={props.postList}
         curAnimal={props.curAnimal}
+        curPostRead={props.curPostRead}
       />
 
       {/* <Posts title="전체 게시물" postList={props.postList} /> */}

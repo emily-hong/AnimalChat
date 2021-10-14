@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
-import NavBar from "./pages/0.navBar"
+// import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
 import MainPage from "./pages/4.mainPage"
@@ -26,9 +26,15 @@ function App() {
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("home")
   const [userinfo, setUserinfo] = useState(null)
+  console.log(userinfo)
   const [postList, setPostList] = useState([])
-
+  const [curPost, setCurPost] = useState("")
   const history = useHistory()
+
+  function curPostRead(post) {
+    setCurPost(post)
+    history.push("/postread")
+  }
 
   function loginFunc() {
     // setIsLogin(!isLogin)
@@ -47,6 +53,7 @@ function App() {
       method: "get",
       withCredentials: true,
     }).then((res) => {
+      console.log(res.data.data.userInfo)
       // console.log(res.data.data.userInfo)
       setUserinfo(res.data.data.userInfo)
       setIsLogin(true)
@@ -78,6 +85,7 @@ function App() {
               curAnimalChange={curAnimalChange}
               getPostList={getPostList}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -85,6 +93,7 @@ function App() {
             <Hamster
               curAnimalChange={curAnimalChange}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -92,6 +101,7 @@ function App() {
             <Chick
               curAnimalChange={curAnimalChange}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -99,6 +109,7 @@ function App() {
             <Parrot
               curAnimalChange={curAnimalChange}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -106,6 +117,7 @@ function App() {
             <Rabbit
               curAnimalChange={curAnimalChange}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -113,6 +125,7 @@ function App() {
             <Hedgehog
               curAnimalChange={curAnimalChange}
               postList={postList}
+              curPostRead={curPostRead}
               curAnimal={curAnimal}
             />
           </Route>
@@ -120,10 +133,10 @@ function App() {
             <Post curAnimal={curAnimal} />
           </Route>
           <Route path="/postedit">
-            <PostEdit />
+            <PostEdit curAnimal={curAnimal} userinfo={userinfo} />
           </Route>
           <Route path="/postread">
-            <PostRead />
+            <PostRead curPost={curPost} />
           </Route>
           <Route path="/mypage">
             <MyPage userinfo={userinfo} />

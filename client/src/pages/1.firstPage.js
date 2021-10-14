@@ -68,8 +68,8 @@ export const SignInModalView = styled.div`
   border-radius: 20px;
   background-color: #feefd5;
   min-width: 400px;
-  width: 80vw;
-  height: 90vw;
+  width: 30vw;
+  height: 60vh;
 
   & h1 {
     font-size: 3rem;
@@ -190,7 +190,7 @@ export const FirstPage = (props) => {
         "Content-Type": "application/json",
         withCredentials: true,
       }).then((res) => {
-        alert("로그인 완료")
+        alert("로그인이 완료되었습니다.")
 
         props.loginFunc()
       })
