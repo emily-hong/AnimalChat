@@ -2,8 +2,8 @@ import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-import Header from "../components/Header"
-import Navigation from "../components/Navigation"
+// import Header from "../components/Header"
+// import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 // styled-component
@@ -15,6 +15,8 @@ const Outer = styled.div`
 `
 
 const Contents = styled.div`
+  width: 100vw;
+  height: 100vh;
   background-color: #feefd5;
 `
 
@@ -38,7 +40,6 @@ const PostReadSection = styled.div`
 
 const PostTitle = styled.div`
   display: flex;
-  border: 1px solid green;
   width: calc(100% - 2rem);
 `
 
@@ -47,7 +48,6 @@ const PostTitleLeft = styled.div`
   flex-grow: 8;
   // justify-content: space-around;
   align-items: center;
-  border: 1px solid red;
 `
 
 const PostButtons = styled.div`
@@ -180,9 +180,8 @@ export default function PostRead(props) {
 
   // 댓글작성 버튼
   function handleButtonClick() {
-    // createdAt: new Date().toLocaleDateString("ko-kr"),
-    // updatedAt: new Date().toLocaleDateString("ko-kr"),
-    console.log("글작성버튼 클릭")
+    // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
+    // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
     axios({
       url: url + "/commentsend",
       method: "post",
@@ -222,52 +221,64 @@ export default function PostRead(props) {
   console.log(cotentList)
 
   return (
-    <div>
+    <Outer>
       {/* 내사진, 제목, 날짜, 버튼 */}
-      <div className="postTitle">
-        <div className="postTitle_left">
-          <img className="profilePic" alt="프로필사진" />
-          <h1 className="title">{props.curPost.post_title}</h1>
-          <p>{props.curPost.updatedAt}</p>
-        </div>
+      <Contents>
+        <PostReadSection>
+          <PostTitle className="postTitle">
+            <PostTitleLeft className="postTitle_left">
+              <img className="profilePic" alt="프로필사진" />
+              <h1 className="title">{props.curPost.post_title}</h1>
+              <p>{props.curPost.updatedAt}</p>
+            </PostTitleLeft>
 
-        <div className="postTitle_right">
-          <button onClick={editPostButton}>수정</button>
-          <button>삭제</button>
-        </div>
-      </div>
+            <PostButtons className="postTitle_right">
+              <button className="editPost" onClick={editPostButton}>
+                수정
+              </button>
+              <button className="deletePost">삭제</button>
+            </PostButtons>
+          </PostTitle>
 
-      {/* 게시물 사진 */}
-      <div className="postPic">
-        <img
-          className="picture"
-          src={url + props.curPost.post_img}
-          alt="게시물 사진"
-        />
-      </div>
+          {/* 게시물 사진 */}
+          <div className="postPic">
+            <img
+              className="picture"
+              src={url + props.curPost.post_img}
+              alt="게시물 사진"
+            />
+          </div>
 
-      {/* 게시물 내용 */}
-      <div className="postContent">{props.curPost.post_content}</div>
+          {/* 게시물 내용 */}
+          <div className="postContent">{props.curPost.post_content}</div>
 
-      {/* 댓글 작성 */}
+          {/* 뒤로 버튼 */}
+          <BackButton className="backButton" onClick={backButtonHandler}>
+            뒤로
+          </BackButton>
+        </PostReadSection>
+        {/* 댓글 작성 */}
 
-      <div className="postComment">
-        <div>{props.userinfo.user_id} 댓글달기:</div>
-        <input
-          className="inputComment"
-          type="text"
-          placeholder="댓글을 작성해주세요."
-          onChange={handleChangeMsg}
-        />
-        <button onClick={handleButtonClick}>작성</button>
-      </div>
+        <CommentSection>
+          <PostComment className="postComment">
+            <div>{props.userinfo.user_id} 댓글달기:</div>
+            <input
+              className="inputComment"
+              type="text"
+              placeholder="댓글을 작성해주세요."
+              onChange={handleChangeMsg}
+            />
+            <button onClick={handleButtonClick}>작성</button>
+          </PostComment>
 
-      {/* 댓글 목록 */}
-      <ul className="commentsList">
-        {cotentList.map((content) => (
-          <Comment content={content} />
-        ))}
-      </ul>
-    </div>
+          {/* 댓글 목록 */}
+          <CommentList className="commentsList">
+            {cotentList.map((content) => (
+              <Comment content={content} />
+            ))}
+          </CommentList>
+        </CommentSection>
+      </Contents>
+    </Outer>
   )
 }
