@@ -48,7 +48,20 @@ const PostTitle = styled.div`
 const PostTitleLeft = styled.div`
   display: flex;
   flex-grow: 8;
+  // justify-content:
   align-items: center;
+  border: 1px solid red;
+
+  & > img {
+    border: 1px solid red;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 1rem;
+  }
+
+  & > h1 {
+    margin-right: 2rem;
+  }
 `
 
 const PostButtons = styled.div`
