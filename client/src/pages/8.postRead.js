@@ -214,26 +214,26 @@ export default function PostRead(props) {
   function handleButtonClick() {
     // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
     // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
-    // axios({
-    //   url: url + "/commentsend",
-    //   method: "post",
-    //   data: {
-    //     post_id: props.curPost.id,
-    //     comment_user_id: props.userinfo.user_id,
-    //     comment_content: contentMsg,
-    //   },
-    //   withCredentials: true,
-    // }).then((res) => {
-    //   return axios({
-    //     url: url + "/commentlist",
-    //     method: "post",
-    //     data: {
-    //       post_id: props.curPost.id,
-    //       comment_user_id: props.userinfo.user_id,
-    //     },
-    //     withCredentials: true,
-    //   }).then((res) => setContentList(res.data))
-    // })
+    axios({
+      url: url + "/commentsend",
+      method: "post",
+      data: {
+        post_id: props.curPost.id,
+        comment_user_id: props.userinfo.user_id,
+        comment_content: contentMsg,
+      },
+      withCredentials: true,
+    }).then((res) => {
+      return axios({
+        url: url + "/commentlist",
+        method: "post",
+        data: {
+          post_id: props.curPost.id,
+          comment_user_id: props.userinfo.user_id,
+        },
+        withCredentials: true,
+      }).then((res) => setContentList(res.data))
+    })
   }
 
   // 댓글내용
@@ -252,10 +252,8 @@ export default function PostRead(props) {
           <PostTitle className="postTitle">
             <PostTitleLeft className="postTitle_left">
               <img className="profilePic" alt="프로필사진" />
-              <h1 className="title">제목 테스트</h1>
-              <p>2000. 00. 00.</p>
-              {/* <h1 className="title">{props.curPost.post_title}</h1>
-              <p>{props.curPost.updatedAt}</p> */}
+              <h1 className="title">{props.curPost.post_title}</h1>
+              <p>{props.curPost.updatedAt}</p>
             </PostTitleLeft>
 
             <PostButtons className="postTitle_right">
@@ -268,15 +266,13 @@ export default function PostRead(props) {
           <div className="postPic">
             <img
               className="picture"
-              // src={url + props.curPost.post_img}
-              src={'testing'}
+              src={url + props.curPost.post_img}
               alt="게시물 사진"
             />
           </div>
 
           {/* 게시물 내용 */}
-          {/* <div className="postContent">{props.curPost.post_content}</div> */}
-          <div className="postContent">{'글 내용 테스트'}</div>
+          <div className="postContent">{props.curPost.post_content}</div>
 
           {/* 뒤로 버튼 */}
           <BackButton className="backButton" onClick={backButtonHandler}>뒤로</BackButton>
@@ -285,9 +281,8 @@ export default function PostRead(props) {
 
         <CommentSection>
           <PostComment className="postComment">
-            {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
             <div className="commentUsername">
-              <span className="username">{'유저이름 테스트'}</span>
+              <span className="username">{props.userinfo.user_id}</span>
               <span className="inputTitle">댓글달기</span>
             </div>
             <input
@@ -301,13 +296,9 @@ export default function PostRead(props) {
 
           {/* 댓글 목록 */}
           <CommentList className="commentsList">
-            {/* {cotentList.map((content) => (
+            {cotentList.map((content) => (
               <Comment content={content} />
-            ))} */}
-            <Comment content={'댓글1'} />
-            <Comment content={'댓글2'} />
-            <Comment content={'댓글3'} />
-            <Comment content={'댓글4'} />
+            ))}
           </CommentList>
         </CommentSection>
       </Contents>
