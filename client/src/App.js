@@ -69,7 +69,7 @@ function App() {
       })
       .then((res2) => {
         setIsLogin(true)
-        history.push("/")
+        history.push("/mainpage")
       })
   }
   function getPostList(data) {
