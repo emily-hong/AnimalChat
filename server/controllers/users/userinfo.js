@@ -6,7 +6,6 @@ module.exports = (req, res) => {
   //   console.log(req.query.serchAnimalInfo)
   const { serchAnimalInfo } = req.query
   // console.log(serchAnimalInfo)
-
   animal
     .findAll({
       where: { userId: serchAnimalInfo },

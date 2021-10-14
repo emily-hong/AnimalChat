@@ -1,6 +1,6 @@
-import styled from "styled-components"
 import axios from "axios"
-
+import { useEffect } from "react"
+import styled from "styled-components"
 import { useHistory } from "react-router-dom"
 
 const Outer = styled.div`
@@ -92,6 +92,8 @@ export default function AnimalInfo(props) {
       // setUserAnimalInfo(res.data)
     })
   }
+
+  
 
   return (
     <div className="singleAnimalInfo">
