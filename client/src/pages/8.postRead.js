@@ -150,7 +150,7 @@ export default function PostRead(props) {
   const deletePostButton = (event) => {
     alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
-    if(window.confirm("게시물을 삭제하시겠습니까?")){
+    if (window.confirm("게시물을 삭제하시겠습니까?")) {
       axios({
         url: url + "/post",
         method: "delete",
@@ -161,9 +161,8 @@ export default function PostRead(props) {
           // post_content,
           // post_img,
           // animalcategory
-        }
-      })
-      .then(() => {
+        },
+      }).then(() => {
         alert("게시물 삭제 완료")
         history.push("/mainpage") // 또는 board/{해당동물} 페이지로
       })
@@ -183,6 +182,7 @@ export default function PostRead(props) {
   function handleButtonClick() {
     // createdAt: new Date().toLocaleDateString("ko-kr"),
     // updatedAt: new Date().toLocaleDateString("ko-kr"),
+    console.log("글작성버튼 클릭")
     axios({
       url: url + "/commentsend",
       method: "post",
@@ -193,16 +193,26 @@ export default function PostRead(props) {
       },
       withCredentials: true,
     }).then((res) => {
-      return axios({
-        url: url + "/commentlist",
-        method: "post",
-        data: {
-          post_id: props.curPost.id,
-          comment_user_id: props.userinfo.user_id,
-        },
-        withCredentials: true,
-      }).then((res) => setContentList(res.data))
+      // setContentList(res.data)
+      console.log("댓글작성완료")
+      handleButtonClick2()
     })
+  }
+
+  function handleButtonClick2() {
+    console.log("handleButtonClick2")
+
+    axios({
+      url: url + "/commentlist",
+      method: "post",
+      data: {
+        post_id: props.curPost.id,
+        comment_user_id: props.userinfo.user_id,
+      },
+      withCredentials: true,
+    }).then((res) => setContentList(res.data))
+    console.log("handleButtonClick2끝")
+    console.log(cotentList)
   }
 
   // 댓글내용
