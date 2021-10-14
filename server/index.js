@@ -20,7 +20,7 @@ app.use(
   cors({
     origin: [url],
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["GET", "POST", "DELETE", "OPTIONS"],
   })
 )
 app.use(logger("dev")) //서버요청 로그
