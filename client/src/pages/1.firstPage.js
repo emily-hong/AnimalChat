@@ -173,12 +173,13 @@ export const FirstPage = (props) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value })
   }
 
-  function signUpHandler() {
+  function signUpHandler(e) {
     //로그인시
     // console.log("로그인 버튼클릭시 콘솔")
     //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
     //로그인 정보를 입력하지 않았을 때
+    e.preventDefault()
     if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
       setErrMessage(" 아이디와 패스워드를 입력하세요.")
     } else {
@@ -190,9 +191,9 @@ export const FirstPage = (props) => {
         "Content-Type": "application/json",
         withCredentials: true,
       }).then((res) => {
-        alert("로그인이 완료되었습니다.")
-
-        props.loginFunc()
+        console.log(res)
+        props.loginFunc(res)
+        alert("로그인 완료")
       })
     }
   }
@@ -232,7 +233,10 @@ export const FirstPage = (props) => {
                 </SignInModalForm>
 
                 <LoginButtons className="loginModalButtons">
-                  <button onClick={signUpHandler} className="justLogin">
+                  <button
+                    onClick={(e) => signUpHandler(e)}
+                    className="justLogin"
+                  >
                     로그인
                   </button>
                   <button className="socialLogin" onClick={socialSignUpHandler}>

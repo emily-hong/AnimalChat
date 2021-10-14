@@ -134,6 +134,9 @@ const url =
 
 export default function MyPageSection(props) {
   // console.log(props.userinfo)
+  const infoAnimal = props.userinfo
+  console.log('마이페이지 animalInfo : ', infoAnimal);
+
   const [isOpen, setIsOpen] = useState(false)
   const [removeUsers, setremoveUsers] = useState(false)
   const [pwdEdit, setPwdEdit] = useState(false)
@@ -170,11 +173,17 @@ export default function MyPageSection(props) {
   }
  
 
+  // 모달창 닫히는 함수
+  const addButtonHandler = () => {
+    // console.log('addButtonHandler 함수실행')
+    setIsOpen(false)
+  }
+
   return (
     <Outer className="MyPageSection">
       <IdDisplay>
         {/* TODO : axios 요청 -> 회원정보 -> id */}
-        <span>아이디 : {"sss"}</span>
+        <span>아이디 : {props.userinfo.user_id}</span>
       </IdDisplay>
       <AnimalsList>
         {/* TODO : axios 요청 -> 동물 정보 -> map */}
@@ -191,13 +200,13 @@ export default function MyPageSection(props) {
       {isOpen === false ? null : (
         <AddAnimalModalContainer>
           <AddAnimalModalBackDrop>
-            <AddAnimalModalView onClick={addAnimal}>
-              <AddAnimalInfo>나는 모달</AddAnimalInfo>
+            <AddAnimalModalView  >
+              <AddAnimalInfo infoAnimal={infoAnimal} addButtonHandler={addButtonHandler}>나는 모달</AddAnimalInfo>
             </AddAnimalModalView>
           </AddAnimalModalBackDrop>
         </AddAnimalModalContainer>
       )}
-       {removeUsers === false ? null : (
+      {removeUsers === false ? null : (
         <AddAnimalModalContainer>
           <AddAnimalModalBackDrop>
             <AddAnimalModalView onClick={deleteUserInfo}>
