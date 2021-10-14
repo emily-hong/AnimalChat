@@ -15,6 +15,8 @@ const Outer = styled.div`
 `
 
 const Contents = styled.div`
+  width: 100vw;
+  height: 100vh;
   background-color: #feefd5;
 `
 
@@ -126,6 +128,7 @@ const BackButton = styled.button`
   font-size: 1rem;
   margin: 1rem;
   padding: 0.8rem;
+  border: none;
 `
 
 // axios
@@ -212,57 +215,65 @@ export default function PostRead(props) {
   console.log(cotentList)
 
   return (
-    <div>
+    <Outer>
       {/* 내사진, 제목, 날짜, 버튼 */}
-      <div className="postTitle">
-        <div className="postTitle_left">
-          <img className="profilePic" alt="프로필사진" />
-          <h1>post_title 테스트중</h1>
-          {/* <h1 className="title">{props.curPost.post_title}</h1> */}
-          <p>updated_at 테스트중</p>
-          {/* <p>{props.curPost.updatedAt}</p> */}
-        </div>
+      <Contents>
+        <PostReadSection>
+          <PostTitle className="postTitle">
+            <PostTitleLeft className="postTitle_left">
+              <img className="profilePic" alt="프로필사진" />
+              <h1>post_title 테스트중</h1>
+              {/* <h1 className="title">{props.curPost.post_title}</h1> */}
+              <p>updated_at 테스트중</p>
+              {/* <p>{props.curPost.updatedAt}</p> */}
+            </PostTitleLeft>
 
-        <div className="postTitle_right">
-          <button onClick={editPostButton}>수정</button>
-          <button>삭제</button>
-        </div>
-      </div>
+            <PostButtons className="postTitle_right">
+              <button className="editPost" onClick={editPostButton}>수정</button>
+              <button className="deletePost">삭제</button>
+            </PostButtons>
+          </PostTitle>
 
-      {/* 게시물 사진 */}
-      <div className="postPic">
-        <img
-          className="picture"
-          // src={url + props.curPost.post_img}
-          src={'img 테스트용'}
-          alt="게시물 사진"
-        />
-      </div>
+          {/* 게시물 사진 */}
+          <div className="postPic">
+            <img
+              className="picture"
+              // src={url + props.curPost.post_img}
+              src={'img 테스트용'}
+              alt="게시물 사진"
+            />
+          </div>
 
-      {/* 게시물 내용 */}
-      {/* <div className="postContent">{props.curPost.post_content}</div> */}
-      <div className="postContent">{'postContent 테스트중'}</div>
+          {/* 게시물 내용 */}
+          {/* <div className="postContent">{props.curPost.post_content}</div> */}
+          <div className="postContent">{'postContent 테스트중'}</div>
 
-      {/* 댓글 작성 */}
+          {/* 뒤로 버튼 */}
+          <BackButton>뒤로</BackButton>
+        </PostReadSection>
+        {/* 댓글 작성 */}
 
-      <div className="postComment">
-        {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
-        <div>{'userid 테스트용'}</div>
-        <input
-          className="inputComment"
-          type="text"
-          placeholder="댓글을 작성해주세요."
-          onChange={handleChangeMsg}
-        />
-        <button onClick={handleButtonClick}>작성</button>
-      </div>
+        <CommentSection>
+          <PostComment className="postComment">
+            {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
+            <div>{'userid 테스트용'}</div>
+            <input
+              className="inputComment"
+              type="text"
+              placeholder="댓글을 작성해주세요."
+              onChange={handleChangeMsg}
+            />
+            <button onClick={handleButtonClick}>작성</button>
+          </PostComment>
 
-      {/* 댓글 목록 */}
-      <ul className="commentsList">
-        {cotentList.map((content) => (
-          <Comment content={content} />
-        ))}
-      </ul>
-    </div>
+          {/* 댓글 목록 */}
+          <CommentList className="commentsList">
+            {cotentList.map((content) => (
+              <Comment content={content} />
+            ))}
+          </CommentList>
+        </CommentSection>
+      </Contents>
+    </Outer>
   )
 }

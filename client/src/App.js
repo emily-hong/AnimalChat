@@ -1,4 +1,5 @@
 import PostRead from "./pages/8.postRead"
+import "./App.css"
 
 export default function App () {
   return (
