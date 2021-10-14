@@ -1,15 +1,15 @@
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import MyPageSection from "./9.myPageSection"
-import React, { useState } from "react" // useEffect
+import React, { useState, useEffect } from "react" // useEffect
 import axios from "axios"
-
 
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPage({ userinfo }) {
+<<<<<<< HEAD
   // console.log(userinfo)
   const [userAnimalinfo, setUserAnimalInfo] = useState("")
   axios({
@@ -23,13 +23,13 @@ export default function MyPage({ userinfo }) {
 
   // console.log('9.myPage.js : ', userAnimalinfo);
 
+=======
+>>>>>>> Dev
   return (
     <div className="MyPage">
       <Header />
       <Navigation />
-      <MyPageSection 
-      userinfo={userinfo}
-      />
+      <MyPageSection userinfo={userinfo} />
     </div>
   )
 }

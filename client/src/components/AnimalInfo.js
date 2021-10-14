@@ -1,6 +1,9 @@
 import axios from "axios"
 import { useEffect } from "react"
 import styled from "styled-components"
+import axios from "axios"
+
+import { useHistory } from "react-router-dom"
 
 const url =
   process.env.REACT_APP_URL ||
@@ -13,7 +16,7 @@ const Outer = styled.div`
   flex-direction: column;
   width: 300px;
   padding: 1rem;
-  background-color: #FFF9EE;
+  background-color: #fff9ee;
 `
 
 const PictureAndText = styled.div`
@@ -70,7 +73,11 @@ const ButtonSpace = styled.div`
 const Button = styled.button`
   margin: 1rem;
 `
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
+<<<<<<< HEAD
 export default function AnimalInfo({ userOfAnimal}) {
   // console.log('AnimalInfo.js : ', userOfAnimal);  // user_id
 
@@ -78,6 +85,29 @@ export default function AnimalInfo({ userOfAnimal}) {
   const deleteButtonHandler = () => {
     console.log('동물정보 삭제 버튼 동작 확인');
     // 동물삭제해야함
+=======
+export default function AnimalInfo(props) {
+  const history = useHistory()
+  console.log(props)
+  const deleteButtonHandler = () => {
+    console.log("동물정보 삭제 버튼 동작 확인")
+    axios({
+      url: url + `/animaldel`,
+      method: "delete",
+      data: {
+        userId: props.animalcard.userId,
+        id: props.animalcard.id,
+      },
+      withCredentials: true,
+    }).then((res) => {
+      console.log(res)
+      history.push("/")
+
+      history.push("/mypage")
+
+      // setUserAnimalInfo(res.data)
+    })
+>>>>>>> Dev
   }
 
   
@@ -96,15 +126,15 @@ export default function AnimalInfo({ userOfAnimal}) {
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
               <h4>반려동물 종류</h4>
-              <p>{"햄스터"}</p>
+              <p>{props.animalcard.animaltype}</p>
             </div>
             <div>
               <h4>반려동물 이름</h4>
-              <p>{"햄찌"}</p>
+              <p>{props.animalcard.animalname}</p>
             </div>
             <div>
               <h4>출생년도</h4>
-              <p>{"2009. 2. 8."}</p>
+              <p>{props.animalcard.animalyob}</p>
             </div>
           </TextSpace>
         </PictureAndText>
