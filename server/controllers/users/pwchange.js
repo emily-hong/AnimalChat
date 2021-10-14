@@ -6,8 +6,8 @@ module.exports = async(req, res) => {
     //비밀번호 변경 
     //기존에 있는 정보인지 확인하고 (토큰에 있는 정보인지 확인하고)
     //update로 데이터베이스 수정 
-    const accessTokenData = isAuthorized(req);
-    //console.log(accessTokenData)
+    // const accessTokenData = isAuthorized(req);
+    console.log(accessTokenData)
     if (!accessTokenData) {
          res.json({ data: null, message: 'not authorized' });
       }
