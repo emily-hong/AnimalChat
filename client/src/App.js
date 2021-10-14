@@ -55,10 +55,10 @@ function App() {
       method: "get",
       withCredentials: true,
     })
-      .then((res) =>
-        console.log(res)
+      .then((res) => {
+        console.log(res.data.data.userInfo)
         setUserinfo(res.data.data.userInfo)
-      )
+      })
       .then((res2) => {
         setIsLogin(true)
         history.push("/")
