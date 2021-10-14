@@ -68,13 +68,13 @@ const Button = styled.button`
   margin: 1rem;
 `
 
-export default function AddAnimalInfo({userOfAnimal , addButtonHandler}) {
+export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
   const history = useHistory()
-  console.log('animalInfo : ', userOfAnimal.user_id);
+  console.log('animalInfo : ', infoAnimal.user_id);
 
   // console.log('AddAnimalInfo', props.props.userinfo);
   const [animalInfo, setAnimalInfo] = useState({
-    userId: userOfAnimal.user_id,
+    userId: infoAnimal.user_id,
     animalName: "",
     animalYob: ""
   })
@@ -148,12 +148,6 @@ export default function AddAnimalInfo({userOfAnimal , addButtonHandler}) {
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
-          <PictureSpace>
-            <RoundPicture>
-              {/* TODO : 사진 props, 악시오스 요청 */}
-              사진
-            </RoundPicture>
-          </PictureSpace>
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>

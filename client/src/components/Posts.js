@@ -61,7 +61,7 @@ export default function Posts({
               ))
             : postList
                 .filter((post) => curAnimal === post.animalcategory)
-                .map((post) => <SinglePostOnBoard key={post.id} post={post} />)}
+                .map((post) => <SinglePostOnBoard key={post.id} post={post} curPostRead={curPostRead}/>)}
         </BoardInGrid>
       </Background>
     </div>

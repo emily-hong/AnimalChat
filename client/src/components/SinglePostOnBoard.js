@@ -28,7 +28,6 @@ const StyledThumbnail = styled.img`
 const StyledTitlePreview = styled.div`
   display: flex;
   height: 60px;
-  border: 1px solid red;
   padding: 0.25rem;
   font-size: 0.9rem;
   color: #424242;
@@ -41,11 +40,7 @@ const StyledTitlePreview = styled.div`
   }
 `
 
-const StyledProfilePictureArea = styled.div`
-  background-color: #4976bf;
-`
-
-export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
+export default function SinglePostOnBoard({ post, curPostRead }) {
   const history = useHistory()
 
   function postRead() {
@@ -59,7 +54,6 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
         <StyledThumbnail src={url + post.post_img} onClick={postRead} />
         {post.post_title}
         <StyledTitlePreview>
-          <StyledProfilePictureArea>{"프로필사진"}</StyledProfilePictureArea>
           <div className="text">
             <p className="title">{`${
               post.user_id
