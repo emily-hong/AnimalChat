@@ -326,6 +326,7 @@ export const PostEdit = (props) => {
             type="text"
             name="title"
             onChange={handleInputValue}
+            // 수정 전의 제목이 들어와야함
           />
           <PostBox
             placeholder="글을 적으세요."

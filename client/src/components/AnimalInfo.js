@@ -6,6 +6,7 @@ const Outer = styled.div`
   flex-direction: column;
   width: 300px;
   padding: 1rem;
+  background-color: #FFF9EE;
 `
 
 const PictureAndText = styled.div`
@@ -51,6 +52,12 @@ const ButtonSpace = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  & > button {
+    background-color: transparent;
+    color: red;
+    text-decoration: underline;
+  }
 `
 
 const Button = styled.button`
@@ -58,6 +65,10 @@ const Button = styled.button`
 `
 
 export default function AnimalInfo() {
+  const deleteButtonHandler = () => {
+    console.log('동물정보 삭제 버튼 동작 확인');
+  }
+
   return (
     <div className="singleAnimalInfo">
       <Outer>
@@ -86,7 +97,7 @@ export default function AnimalInfo() {
         </PictureAndText>
         <ButtonSpace>
           {/* TODO : 수정 페이지 Link, 라우팅 */}
-          <Button>수정</Button>
+          <Button onClick={deleteButtonHandler}>삭제</Button>
         </ButtonSpace>
       </Outer>
     </div>

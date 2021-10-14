@@ -1,5 +1,6 @@
+const { user } = require("../../models")
 const { post } = require("../../models")
-const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
+const { isAuthorized } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
   console.log(req.body)

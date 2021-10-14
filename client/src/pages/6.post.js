@@ -18,7 +18,10 @@ const Body = styled.div`
 
 // 사진 업로드, 글 수정 전체
 const ContentBox = styled.div`
+<<<<<<< HEAD
   background-color: #fff9ee;
+=======
+>>>>>>> 63d92f4a1db3b57bd56d86c6f37074f03bae065e
   padding: 2rem;
   width: 80vw;
   height: inherit;
@@ -141,14 +144,14 @@ const TitlePostButtons = styled.div`
   margin-top: 2rem;
 `
 
-const PostCompletionBtnMargin = styled.div`
+const PostCompletionBtnMargin = styled.button`
   text-align: center;
   background-color: #419300;
   color: white;
   padding: 0.5rem 10rem;
 `
 
-const PostCancelBtnMargin = styled.div`
+const PostCancelBtnMargin = styled.button`
   text-align: center;
   background-color: #e00000;
   color: white;
@@ -190,8 +193,9 @@ export const Post = (props) => {
   const postSendButton = () => {
     if (
       inputTitle.length > 0 &&
-      inputContent.length > 0 &&
-      uploadedImg.fileName
+      inputContent.length > 0 
+      // &&
+      // uploadedImg.fileName
     ) {
       // 제목, 내용 작성했을 때
       console.log("작성완료 쪽")

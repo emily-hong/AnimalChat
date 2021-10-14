@@ -6,13 +6,16 @@ import { useEffect, useState } from "react"
 // import Boards from "./4-1.boards"
 import Posts from "../components/Posts"
 import React from "react"
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 const Outer = styled.div`
   width: 100vw;
 `
+
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
+
 export default function MainPage(props) {
   useEffect(() => {
     props.curAnimalChange("home")
@@ -33,12 +36,13 @@ export default function MainPage(props) {
     <Outer className="mainPage">
       <Header />
       <Navigation />
-      <Posts
+      <Posts 
         title="전체 게시물"
         postList={props.postList}
         curAnimal={props.curAnimal}
         curPostRead={props.curPostRead}
       />
+      {/* <button>게시물</button> */}
     </Outer>
   )
 }

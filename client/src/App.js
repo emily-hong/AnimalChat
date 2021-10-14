@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
-import NavBar from "./pages/0.navBar"
+// import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
 import MainPage from "./pages/4.mainPage"

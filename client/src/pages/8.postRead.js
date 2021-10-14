@@ -36,28 +36,42 @@ const PostReadSection = styled.div`
   }
 `
 
+const PostTitle = styled.div`
+  display: flex;
+  border: 1px solid green;
+  width: calc(100% - 2rem);
+`
+
 const PostTitleLeft = styled.div`
   display: flex;
+  flex-grow: 8;
+  // justify-content: space-around;
   align-items: center;
+  border: 1px solid red;
 `
 
 const PostButtons = styled.div`
-  margin-left: 10rem;
   padding: 0;
   display: flex;
+  flex-grow: 2;
   align-items: center;
 
   & button {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     font-size: 1rem;
     padding: 0.5rem;
+    margin: 0.5rem;
     color: white;
-    margin: 0;
   }
   & .editPost {
+    flex-grow: 2;
     background-color: #4876bf;
     color: white;
   }
   & .deletePost {
+    flex-grow: 1;
     background-color: #e00000;
   }
 `
@@ -104,6 +118,16 @@ const CommentList = styled.ul`
   }
 `
 
+const BackButton = styled.button`
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #7b7b7b;
+  font-size: 1rem;
+  margin: 1rem;
+  padding: 0.8rem;
+`
+
 // axios
 axios.defaults.withCredentials = true
 const url =
@@ -124,9 +148,14 @@ export default function PostRead(props) {
   }, [])
 
   // title - 삭제 :
-  const deletPostButton = (event) => {
+  const deletePostButton = (event) => {
     alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
+  }
+
+  // 뒤로 버튼
+  const backButtonHandler = () => {
+    history.goBack()
   }
 
   // 댓글

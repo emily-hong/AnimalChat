@@ -19,9 +19,14 @@ const Outer = styled.div`
   align-items: center;
   width: 100vw;
   height: auto;
+<<<<<<< HEAD
   border: 1px solid red;
   background-color: #feefd5;
 `
+=======
+  background-color: #FEEFD5;
+`;
+>>>>>>> 63d92f4a1db3b57bd56d86c6f37074f03bae065e
 
 const FormSpace = styled.div`
   min-width: 300px;
