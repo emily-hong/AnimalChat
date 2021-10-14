@@ -2,24 +2,22 @@ import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-// import Header from "../components/Header"
-// import Navigation from "../components/Navigation"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 // styled-component
 const Outer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
 `
 
 const Contents = styled.div`
-  // width: 100vw;
-  // height: 100vh;
+  width: 100vw;
   background-color: #feefd5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const PostReadSection = styled.div`
@@ -30,6 +28,12 @@ const PostReadSection = styled.div`
 
   & > div {
     margin: 1rem;
+  }
+
+  & .postPic {
+    width: 50vw;
+    height: 50vw;
+    border: 1px solid grey;
   }
 
   & .postContent {
@@ -43,13 +47,22 @@ const PostReadSection = styled.div`
 const PostTitle = styled.div`
   display: flex;
   width: calc(100% - 2rem);
+
+  & h1 {
+    margin: auto 1rem;
+  }
 `
 
 const PostTitleLeft = styled.div`
   display: flex;
   flex-grow: 8;
-  // justify-content: space-around;
   align-items: center;
+
+  & img {
+    border: 1px solid black;
+    width: 3rem;
+    height: 3rem;
+  }
 `
 
 const PostButtons = styled.div`
@@ -79,8 +92,12 @@ const PostButtons = styled.div`
 `
 
 const CommentSection = styled.div`
+  width: inherit;
+  padding: 1rem;
+
   & li {
     padding: 1rem;
+    margin: .5rem;
   }
 `
 
@@ -88,17 +105,30 @@ const PostComment = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: inherit;
+  margin-bottom: 2rem;
+
+  & .commentUsername {
+    display: flex;
+    font-size: .8rem;
+    & .username {
+      font-weight: bold;
+      margin-right: .5rem;
+    }
+    & .inputTitle {
+      margin-right: .5rem;
+    }
+  }
 
   & input {
-    width: 80%;
+    width: 70%;
     padding: 0.5rem;
     font-size: 1rem;
+    margin-right: 1rem;
   }
+
   & button {
     background-color: #419300;
-    color: white;
-    height: 3rem;
+    padding: .5rem;
   }
 `
 
@@ -106,18 +136,7 @@ const CommentList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
-
-  & li {
-    display: flex;
-    align-items: center;
-  }
-  & .comment__createdAt {
-    margin: auto 1rem;
-  }
-  & button {
-    padding: 0.5rem;
-    background-color: #ffc257;
-  }
+  width: inherit;
 `
 
 const BackButton = styled.button`
@@ -130,13 +149,7 @@ const BackButton = styled.button`
   padding: 0.8rem;
 `
 
-// axios
-axios.defaults.withCredentials = true
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-// 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
   //console.log(props.curPost)
@@ -288,3 +301,4 @@ export default function PostRead(props) {
     </Outer>
   )
 }
+
