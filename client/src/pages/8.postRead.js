@@ -40,7 +40,6 @@ const PostReadSection = styled.div`
 
 const PostTitle = styled.div`
   display: flex;
-  border: 1px solid green;
   width: calc(100% - 2rem);
 `
 
@@ -49,7 +48,6 @@ const PostTitleLeft = styled.div`
   flex-grow: 8;
   // justify-content: space-around;
   align-items: center;
-  border: 1px solid red;
 `
 
 const PostButtons = styled.div`
@@ -128,7 +126,6 @@ const BackButton = styled.button`
   font-size: 1rem;
   margin: 1rem;
   padding: 0.8rem;
-  border: none;
 `
 
 // axios
