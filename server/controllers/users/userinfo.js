@@ -17,6 +17,10 @@ module.exports = (req, res) => {
         res.status(422).send("반려동물 없음")
       }
 
+      // 반려동물 정보 보이기
+
+      
+
       res.status(222).send(useranimaldata[0].dataValues)
     })
 }

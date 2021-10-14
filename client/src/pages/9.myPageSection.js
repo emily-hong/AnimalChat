@@ -162,7 +162,7 @@ export default function MyPageSection(props) {
   }
 
   const removeInfomation = () => {
-     axios({
+    axios({
       url: url + "/userremove",
       method: "delete",
       withCredentials: true
@@ -171,7 +171,7 @@ export default function MyPageSection(props) {
       history.push("/firstpage")
     })    
   }
- 
+
 
   // 모달창 닫히는 함수
   const addButtonHandler = () => {
@@ -194,7 +194,7 @@ export default function MyPageSection(props) {
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
         <button onClick={pwdChange}>비밀번호 수정</button>
-        <QuitButton className="deleteUserInfo">회원탈퇴</QuitButton>
+        <button onClick={deleteUserInfo}>회원탈퇴</button>
       </ButtonsArea>
 
       {isOpen === false ? null : (
