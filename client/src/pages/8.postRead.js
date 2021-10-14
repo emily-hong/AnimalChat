@@ -134,7 +134,6 @@ const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-// 삭제버튼들 확인창 띄우기
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
@@ -148,6 +147,24 @@ export default function PostRead(props) {
   const deletePostButton = (event) => {
     alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
+    if(window.confirm("게시물을 삭제하시겠습니까?")){
+      axios({
+        url: url + "/post",
+        method: "delete",
+        data: {
+          // 삭제될 게시물 정보들
+          // user_id,
+          // post_title,
+          // post_content,
+          // post_img,
+          // animalcategory
+        }
+      })
+      .then(() => {
+        alert("게시물 삭제 완료")
+        history.push("/mainpage") // 또는 board/{해당동물} 페이지로
+      })
+    }
   }
 
   // 뒤로 버튼
