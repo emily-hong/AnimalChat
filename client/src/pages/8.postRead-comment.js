@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 const Comment = ({comment}) => {
   const parsedDate = new Date(comment.createdAt).toLocaleTimeString('ko-kr')

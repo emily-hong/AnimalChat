@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom"
 import axios from "axios"
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Outer = styled.div`
   height: 100vh;
@@ -80,11 +80,11 @@ export default function PasswordChange() {
   }
 
   // TODO old pwd validity check states
-  const [ curPwdValidity, setCurPwdValidity ] = useState({
-    isCurPwdInput: false,
-    isCurWrong: true
-  });
-  const { isCurPwdInput, isCurWrong } = curPwdValidity;
+  // const [ curPwdValidity, setCurPwdValidity ] = useState({
+  //   isCurPwdInput: false,
+  //   isCurWrong: true
+  // });
+  // const { isCurPwdInput, isCurWrong } = curPwdValidity;
 
   // new pwd validity check states
   const [ newPwdValidity, setNewPwdValidity ] = useState({

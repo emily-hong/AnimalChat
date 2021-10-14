@@ -61,6 +61,7 @@ const QuitButton = styled.button`
   border: none;
   color: #aaaaaa;
 `
+
 const AddAnimalModalContainer = styled.div`
   box-sizing: content-box;
   padding: 1rem;
@@ -142,7 +143,7 @@ export default function MyPageSection(props) {
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
         <button onClick={pwdChange}>비밀번호 수정</button>
-        <button className="deleteUserInfo">회원탈퇴</button>
+        <QuitButton className="deleteUserInfo">회원탈퇴</QuitButton>
       </ButtonsArea>
 
       {isOpen === false ? null : (

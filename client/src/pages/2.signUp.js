@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import styled from 'styled-components'
 import axios from "axios"
-import DatePicker, { registerLocale, useHistory } from "react-datepicker"
+import DatePicker from "react-datepicker" //  { registerLocale, useHistory }
 import "react-datepicker/dist/react-datepicker.css"
 
 axios.defaults.withCredentials = true

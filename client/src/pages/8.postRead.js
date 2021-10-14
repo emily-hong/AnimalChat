@@ -193,7 +193,7 @@ export default function PostRead(props) {
             </PostTitleLeft>
             <PostButtons className="postTitle_right">
               <button className="editPost" onClick={editPostButton}>수정</button>
-              <button className="deletePost">삭제</button>
+              <button className="deletePost" onClick={deletePostButton}>삭제</button>
             </PostButtons>
           </PostTitle>
 

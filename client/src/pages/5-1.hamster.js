@@ -1,7 +1,7 @@
 import Posts from "../components/Posts"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react" // useState
 
 export default function Hamster(props) {
   useEffect(() => {
