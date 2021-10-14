@@ -217,8 +217,10 @@ export default function PostRead(props) {
       <div className="postTitle">
         <div className="postTitle_left">
           <img className="profilePic" alt="프로필사진" />
-          <h1 className="title">{props.curPost.post_title}</h1>
-          <p>{props.curPost.updatedAt}</p>
+          <h1>post_title 테스트중</h1>
+          {/* <h1 className="title">{props.curPost.post_title}</h1> */}
+          <p>updated_at 테스트중</p>
+          {/* <p>{props.curPost.updatedAt}</p> */}
         </div>
 
         <div className="postTitle_right">
@@ -231,18 +233,21 @@ export default function PostRead(props) {
       <div className="postPic">
         <img
           className="picture"
-          src={url + props.curPost.post_img}
+          // src={url + props.curPost.post_img}
+          src={'img 테스트용'}
           alt="게시물 사진"
         />
       </div>
 
       {/* 게시물 내용 */}
-      <div className="postContent">{props.curPost.post_content}</div>
+      {/* <div className="postContent">{props.curPost.post_content}</div> */}
+      <div className="postContent">{'postContent 테스트중'}</div>
 
       {/* 댓글 작성 */}
 
       <div className="postComment">
-        <div>{props.userinfo.user_id} 댓글달기:</div>
+        {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
+        <div>{'userid 테스트용'}</div>
         <input
           className="inputComment"
           type="text"
