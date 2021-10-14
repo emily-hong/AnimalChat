@@ -48,7 +48,7 @@ function App() {
     setCurAnimal(animaltype)
   }
 
-  async function authorization() {
+  function authorization() {
     console.log("authorization")
     axios({
       url: url + "/auth",
