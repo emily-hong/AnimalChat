@@ -28,11 +28,9 @@ const Comment = ({ content, userinfo }) => {
   return (
     <CommentContainer className="comment">
       <div className="comment__left">
-        {/* <p className= 'comment__userId'>{comment.userId}</p> */}
-        {/* <span className="comment__userId">{content.nickname}: </span>
-        <div className="comment__content">{content.comment_content}</div> */}
-        <span className="comment__userId">{'test'}</span>
-        <div className="comment__content">{'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget.'}</div>
+        <p className= 'comment__userId'>{comment.userId}</p>
+        <span className="comment__userId">{content.nickname}: </span>
+        <div className="comment__content">{content.comment_content}</div>
       </div>
 
       <div className="comment__right">
