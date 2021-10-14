@@ -126,7 +126,7 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
   // 추가버튼
   const addButton = () => {
     // console.log(animalInfo) // 들어옴
-    if(Selected && animalName && animalYob){ // name이 어디서 오는지?
+    if(Selected && animalName && animalYob){
       console.log('추가!')
 
       axios({

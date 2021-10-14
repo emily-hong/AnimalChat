@@ -4,6 +4,7 @@ import MyPageSection from "./9.myPageSection"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 
+
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -25,7 +26,7 @@ export default function MyPage({ userinfo }) {
       <Navigation />
       <MyPageSection 
       userinfo={userinfo}
-       />
+      />
     </div>
   )
 }
