@@ -173,7 +173,7 @@ export const FirstPage = (props) => {
     setLoginInfo({ ...loginInfo, [key]: e.target.value })
   }
 
-  function signUpHandler() {
+  function signUpHandler(e) {
     //로그인시
     // console.log("로그인 버튼클릭시 콘솔")
     //console.log(loginInfo)
@@ -233,7 +233,10 @@ export const FirstPage = (props) => {
                 </SignInModalForm>
 
                 <LoginButtons className="loginModalButtons">
-                  <button onClick={signUpHandler} className="justLogin">
+                  <button
+                    onClick={(e) => signUpHandler(e)}
+                    className="justLogin"
+                  >
                     로그인
                   </button>
                   <button className="socialLogin" onClick={socialSignUpHandler}>
