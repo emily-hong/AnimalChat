@@ -139,7 +139,7 @@ const url =
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
-  console.log(props.curPost)
+  // console.log(props.curPost)
   const history = useHistory()
   function editPostButton(event) {
     history.push("/postedit")
@@ -156,15 +156,6 @@ export default function PostRead(props) {
       axios({
         url: url + "/postdelete",
         method: "delete",
-
-        // data: {
-        //   // 삭제될 게시물 정보들
-        //   // user_id,
-        //   // post_title,
-        //   // post_content,
-        //   // post_img,
-        //   // animalcategory
-        // }
         withCredentials: true
       })
       .then(() => {
@@ -186,22 +177,22 @@ export default function PostRead(props) {
 
   // 댓글작성 버튼
   function handleButtonClick() {
-    // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
-    // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
-    axios({
-      url: url + "/commentsend",
-      method: "post",
-      data: {
-        post_id: props.curPost.id,
-        comment_user_id: props.userinfo.user_id,
-        comment_content: contentMsg,
-      },
-      withCredentials: true,
-    }).then((res) => {
-      // setContentList(res.data)
-      console.log("댓글작성완료")
-      handleButtonClick2()
-    })
+    if(contentMsg.length === ""){
+      axios({
+        url: url + "/commentsend",
+        method: "post",
+        data: {
+          post_id: props.curPost.id,
+          comment_user_id: props.userinfo.user_id,
+          comment_content: contentMsg,
+        },
+        withCredentials: true,
+      }).then((res) => {
+        setContentList(res.data)
+        // console.log("댓글작성완료")
+        handleButtonClick2()
+      })
+    }
   }
 
   function handleButtonClick2() {
@@ -220,11 +211,26 @@ export default function PostRead(props) {
     console.log(cotentList)
   }
 
+  // 댓글 삭제
+  const deleteComment = (event) => {
+    if(window.confirm("댓글을 삭제하시겠습니까?")){
+      axios({
+        url: url + '/commentdelete',
+        method: "delete",
+        withCredentials: true,
+      })
+      .then(() => {
+        history.push('/mainpage')
+        history.goBack()
+      })
+    }
+  }
+
   // 댓글내용
   const handleChangeMsg = (event) => {
     setContentMsg(event.target.value)
   }
-  console.log(cotentList)
+  console.log('댓글배열 : ', cotentList)
 
   return (
     <Outer>
@@ -280,7 +286,7 @@ export default function PostRead(props) {
           {/* 댓글 목록 */}
           <CommentList className="commentsList">
             {cotentList.map((content) => (
-              <Comment content={content} />
+              <Comment content={content} deleteComment={deleteComment}/>
             ))}
           </CommentList>
         </CommentSection>
