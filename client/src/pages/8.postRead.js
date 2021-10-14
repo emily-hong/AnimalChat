@@ -12,11 +12,13 @@ const Outer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
+  height: 100vh;
 `
 
 const Contents = styled.div`
-  width: 100vw;
-  height: 100vh;
+  // width: 100vw;
+  // height: 100vh;
   background-color: #feefd5;
 `
 
