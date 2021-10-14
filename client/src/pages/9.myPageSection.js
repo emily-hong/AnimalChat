@@ -24,7 +24,7 @@ const AnimalsList = styled.div`
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, 350px);
   justify-content: center;
-  align-content: center;s
+  align-content: center;
 `
 
 const ButtonsArea = styled.div`
