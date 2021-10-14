@@ -56,7 +56,7 @@ function App() {
       withCredentials: true,
     })
       .then((res) =>
-        // console.log(res.data.data.userInfo)
+        console.log(res)
         setUserinfo(res.data.data.userInfo)
       )
       .then((res2) => {
