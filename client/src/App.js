@@ -17,6 +17,7 @@ import MyPage from "./pages/9.myPage"
 import MyPageEdit from "./pages/10.myPageEdit"
 import PwdEditPage from "./pages/11-1.pwdEdit"
 
+
 import "./App.css"
 const url =
   process.env.REACT_APP_URL ||
@@ -83,7 +84,6 @@ function App() {
 
   return (
     <>
-      {/* <NavBar /> */}
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
