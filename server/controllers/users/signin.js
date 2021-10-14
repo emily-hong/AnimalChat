@@ -19,11 +19,12 @@ module.exports = (req, res) => {
       delete data.dataValues.password
       accessToken = generateAccessToken(data.dataValues)
       // sendAccessToken(res, accessToken)
+      console.log(accessToken)
+      res
+        .cookie("jwt", accessToken, {
+          httpOnly: true,
+        })
+        .status(200)
+        .send({ message: "ok" })
     })
-  res
-    .cookie("jwt", accessToken, {
-      httpOnly: true,
-    })
-    .status(200)
-    .send({ message: "ok" })
 }

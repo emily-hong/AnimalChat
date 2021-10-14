@@ -39,10 +39,10 @@ function App() {
 
   function loginFunc(tk) {
     // setIsLogin(!isLogin)
+    console.log(accessToken)
     setAccessToken(tk)
     // setIsLogin(!isLogin)
 
-    console.log(accessToken)
     authorization()
   }
   function SignUpFin() {
@@ -64,8 +64,8 @@ function App() {
       withCredentials: true,
     })
       .then((res) => {
-        console.log(res)
-        // setUserinfo(res.data.data.userInfo)
+        // console.log(res)
+        setUserinfo(res.data.data.userInfo)
       })
       .then((res2) => {
         setIsLogin(true)
@@ -155,8 +155,7 @@ function App() {
             <PostRead curPost={curPost} userinfo={userinfo} />
           </Route>
           <Route path="/mypage">
-            <MyPage userinfo={userinfo} 
-            />
+            <MyPage userinfo={userinfo} />
           </Route>
 
           <Route path="/mypageedit">
