@@ -18,9 +18,7 @@ const Body = styled.div`
 
 // 사진 업로드, 글 수정 전체
 const ContentBox = styled.div`
-
   background-color: #fff9ee;
-
   padding: 2rem;
   width: 80vw;
   height: inherit;
