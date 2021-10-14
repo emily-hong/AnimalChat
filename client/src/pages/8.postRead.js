@@ -8,10 +8,6 @@ import Comment from "./8.postRead-comment"
 
 // styled-component
 const Outer = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   width: 100vw;
   height: 100vh;
 `
@@ -37,6 +33,10 @@ const PostReadSection = styled.div`
     width: 90%;
     margin-bottom: 2rem;
   }
+
+  & img {
+    border: 1px solid black;
+  }
 `
 
 const PostTitle = styled.div`
@@ -48,9 +48,7 @@ const PostTitle = styled.div`
 const PostTitleLeft = styled.div`
   display: flex;
   flex-grow: 8;
-  // justify-content:
   align-items: center;
-  border: 1px solid red;
 
   & > img {
     border: 1px solid red;
@@ -91,8 +89,12 @@ const PostButtons = styled.div`
 `
 
 const CommentSection = styled.div`
+  width: inherit;
+  padding: 1rem;
+
   & li {
     padding: 1rem;
+    margin: .5rem;
   }
 `
 
@@ -101,16 +103,31 @@ const PostComment = styled.div`
   justify-content: center;
   align-items: center;
   width: inherit;
+  margin-bottom: 2rem;
+
+  & .commentUsername {
+    display: flex;
+    font-size: .8rem;
+    & .username {
+      font-weight: bold;
+      margin-right: .5rem;
+    }
+    & .inputTitle {
+      margin-right: .5rem;
+    }
+  }
 
   & input {
-    width: 80%;
+    width: 70%;
     padding: 0.5rem;
     font-size: 1rem;
+    margin-right: 1rem;
   }
   & button {
     background-color: #419300;
     color: white;
-    height: 3rem;
+    margin-left: 1rem;
+    padding: .5rem;
   }
 `
 
@@ -269,7 +286,10 @@ export default function PostRead(props) {
         <CommentSection>
           <PostComment className="postComment">
             {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
-            <div>{'유저이름 테스트'} 댓글달기:</div>
+            <div className="commentUsername">
+              <span className="username">{'유저이름 테스트'}</span>
+              <span className="inputTitle">댓글달기</span>
+            </div>
             <input
               className="inputComment"
               type="text"
