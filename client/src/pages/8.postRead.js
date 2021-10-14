@@ -2,24 +2,23 @@ import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-// import Header from "../components/Header"
-// import Navigation from "../components/Navigation"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 // styled-component
 const Outer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
   width: 100vw;
   height: 100vh;
 `
 
 const Contents = styled.div`
-  // width: 100vw;
-  // height: 100vh;
-  background-color: #feefd5;
+  background-color: #FEEFD5;
+  height: 100vh;
 `
 
 const PostReadSection = styled.div`
@@ -42,13 +41,13 @@ const PostReadSection = styled.div`
 
 const PostTitle = styled.div`
   display: flex;
+  justify-content: space-between;
   width: calc(100% - 2rem);
 `
 
 const PostTitleLeft = styled.div`
   display: flex;
   flex-grow: 8;
-  // justify-content: space-around;
   align-items: center;
 `
 
@@ -185,26 +184,26 @@ export default function PostRead(props) {
   function handleButtonClick() {
     // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
     // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
-    axios({
-      url: url + "/commentsend",
-      method: "post",
-      data: {
-        post_id: props.curPost.id,
-        comment_user_id: props.userinfo.user_id,
-        comment_content: contentMsg,
-      },
-      withCredentials: true,
-    }).then((res) => {
-      return axios({
-        url: url + "/commentlist",
-        method: "post",
-        data: {
-          post_id: props.curPost.id,
-          comment_user_id: props.userinfo.user_id,
-        },
-        withCredentials: true,
-      }).then((res) => setContentList(res.data))
-    })
+    // axios({
+    //   url: url + "/commentsend",
+    //   method: "post",
+    //   data: {
+    //     post_id: props.curPost.id,
+    //     comment_user_id: props.userinfo.user_id,
+    //     comment_content: contentMsg,
+    //   },
+    //   withCredentials: true,
+    // }).then((res) => {
+    //   return axios({
+    //     url: url + "/commentlist",
+    //     method: "post",
+    //     data: {
+    //       post_id: props.curPost.id,
+    //       comment_user_id: props.userinfo.user_id,
+    //     },
+    //     withCredentials: true,
+    //   }).then((res) => setContentList(res.data))
+    // })
   }
 
   // 댓글내용
@@ -215,14 +214,18 @@ export default function PostRead(props) {
 
   return (
     <Outer>
+      <Header />
+      <Navigation />
       {/* 내사진, 제목, 날짜, 버튼 */}
       <Contents>
         <PostReadSection>
           <PostTitle className="postTitle">
             <PostTitleLeft className="postTitle_left">
               <img className="profilePic" alt="프로필사진" />
-              <h1 className="title">{props.curPost.post_title}</h1>
-              <p>{props.curPost.updatedAt}</p>
+              <h1 className="title">제목 테스트</h1>
+              <p>2000. 00. 00.</p>
+              {/* <h1 className="title">{props.curPost.post_title}</h1>
+              <p>{props.curPost.updatedAt}</p> */}
             </PostTitleLeft>
 
             <PostButtons className="postTitle_right">
@@ -235,13 +238,15 @@ export default function PostRead(props) {
           <div className="postPic">
             <img
               className="picture"
-              src={url + props.curPost.post_img}
+              // src={url + props.curPost.post_img}
+              src={'testing'}
               alt="게시물 사진"
             />
           </div>
 
           {/* 게시물 내용 */}
-          <div className="postContent">{props.curPost.post_content}</div>
+          {/* <div className="postContent">{props.curPost.post_content}</div> */}
+          <div className="postContent">{'글 내용 테스트'}</div>
 
           {/* 뒤로 버튼 */}
           <BackButton className="backButton" onClick={backButtonHandler}>뒤로</BackButton>
@@ -250,7 +255,8 @@ export default function PostRead(props) {
 
         <CommentSection>
           <PostComment className="postComment">
-            <div>{props.userinfo.user_id} 댓글달기:</div>
+            {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
+            <div>{'유저이름 테스트'} 댓글달기:</div>
             <input
               className="inputComment"
               type="text"
@@ -262,9 +268,13 @@ export default function PostRead(props) {
 
           {/* 댓글 목록 */}
           <CommentList className="commentsList">
-            {cotentList.map((content) => (
+            {/* {cotentList.map((content) => (
               <Comment content={content} />
-            ))}
+            ))} */}
+            <Comment content={'댓글1'} />
+            <Comment content={'댓글2'} />
+            <Comment content={'댓글3'} />
+            <Comment content={'댓글4'} />
           </CommentList>
         </CommentSection>
       </Contents>
