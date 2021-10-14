@@ -2,7 +2,7 @@ import axios from "axios"
 import styled from "styled-components"
 import AnimalInfo from "../components/AnimalInfo"
 import AddAnimalInfo from "../components/AddAnimalInfo"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom"
 
 const Outer = styled.div`
@@ -135,7 +135,7 @@ const url =
 export default function MyPageSection(props) {
   // console.log(props.userinfo)
   const userOfAnimal = props.userinfo
-  console.log('마이페이지 animalInfo : ', userOfAnimal);
+  // console.log('9.myPagesection.js : ', userOfAnimal);
 
   const [isOpen, setIsOpen] = useState(false)
   const [removeUsers, setremoveUsers] = useState(false)
@@ -178,9 +178,6 @@ export default function MyPageSection(props) {
     setIsOpen(false)
   }
 
-  // 등록되어있는 반려동물 정보 
-  // user_id
-
   return (
     <Outer className="MyPageSection">
       <IdDisplay>
@@ -189,7 +186,7 @@ export default function MyPageSection(props) {
       </IdDisplay>
       <AnimalsList>
         {/* TODO : axios 요청 -> 동물 정보 -> map */}
-        <AnimalInfo userOfAnimal={userOfAnimal}/>
+        <AnimalInfo userOfAnimal={userOfAnimal} />
       </AnimalsList>
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>

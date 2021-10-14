@@ -1,4 +1,11 @@
+import axios from "axios"
+import { useEffect } from "react"
 import styled from "styled-components"
+
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
 
 const Outer = styled.div`
   box-sizing: content-box;
@@ -65,13 +72,15 @@ const Button = styled.button`
 `
 
 export default function AnimalInfo({ userOfAnimal}) {
-  console.log('AnimalInfo.js : ', userOfAnimal);  // user_id
+  // console.log('AnimalInfo.js : ', userOfAnimal);  // user_id
 
   // 동물 삭제
   const deleteButtonHandler = () => {
     console.log('동물정보 삭제 버튼 동작 확인');
     // 동물삭제해야함
   }
+
+  
 
   return (
     <div className="singleAnimalInfo">

@@ -17,9 +17,12 @@ export default function MyPage({ userinfo }) {
     method: "get",
     withCredentials: true,
   }).then((res) => {
-    // console.log(res)
-    // setUserAnimalInfo(res)
+    console.log(res)
+    setUserAnimalInfo(res)
   })
+
+  // console.log('9.myPage.js : ', userAnimalinfo);
+
   return (
     <div className="MyPage">
       <Header />
