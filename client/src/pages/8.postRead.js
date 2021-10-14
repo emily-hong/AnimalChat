@@ -30,17 +30,17 @@ const PostReadSection = styled.div`
     margin: 1rem;
   }
 
+  & .postPic {
+    width: 50vw;
+    height: 50vw;
+    border: 1px solid grey;
+  }
+
   & .postContent {
     font-size: 1.2rem;
     padding: 1rem;
     width: 90%;
     margin-bottom: 2rem;
-  }
-
-  & img {
-    border: 1px solid red;
-    width: 3rem;
-    height: 3rem;
   }
 `
 
@@ -57,6 +57,12 @@ const PostTitleLeft = styled.div`
   display: flex;
   flex-grow: 8;
   align-items: center;
+
+  & img {
+    border: 1px solid black;
+    width: 3rem;
+    height: 3rem;
+  }
 `
 
 const PostButtons = styled.div`
