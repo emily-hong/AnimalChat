@@ -68,8 +68,8 @@ export const SignInModalView = styled.div`
   border-radius: 20px;
   background-color: #feefd5;
   min-width: 400px;
-  width: 30vw;
-  height: 60vh;
+  width: 40vw;
+  height: 70vw;
 
   & h1 {
     font-size: 3rem;
