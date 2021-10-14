@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import styled from 'styled-components'
+import styled from "styled-components"
 import axios from "axios"
 import DatePicker, { registerLocale, useHistory } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -19,26 +19,26 @@ const Outer = styled.div`
   align-items: center;
   width: 100vw;
   height: auto;
-  background-color: #FEEFD5;
-`;
+  background-color: #feefd5;
+`
 
 const FormSpace = styled.div`
   min-width: 300px;
   width: 50vw;
-  background-color: #FFF9EE;
-`;
+  background-color: #fff9ee;
+`
 
 const PageTitle = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem;
-`;
+`
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const InputsSection = styled.section`
   display: flex;
@@ -47,30 +47,30 @@ const InputsSection = styled.section`
   margin: 1rem auto;
 
   & h3 {
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
-`;
+`
 
 const SingleInputSection = styled.div`
-  margin: .3rem auto;
+  margin: 0.3rem auto;
   & p {
     font-weight: bold;
   }
   & input {
-    margin: .25rem auto;
-    padding: .25rem;
+    margin: 0.25rem auto;
+    padding: 0.25rem;
     width: 10rem;
   }
   & select {
-    margin: .25rem auto;
-    padding: .25rem;
+    margin: 0.25rem auto;
+    padding: 0.25rem;
     width: 10rem;
   }
   & div.validityWarning {
     color: red;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
-`;
+`
 
 const ButtonsArea = styled.div`
   margin: 1rem;
@@ -80,22 +80,21 @@ const ButtonsArea = styled.div`
   align-items: center;
 
   & button {
-    padding: .5rem;
+    padding: 0.5rem;
     border-radius: none;
     border: none;
-    background-color: #E00000;
+    background-color: #e00000;
     color: white;
     font-size: 1.1rem;
   }
 
-  & button[type=submit] {
+  & button[type="submit"] {
     border: none;
     width: 40%;
     background-color: #419300;
     color: white;
   }
-`;
-
+`
 
 export default function Signup(props) {
   const [userInfo, setUserInfo] = useState({
@@ -244,109 +243,107 @@ export default function Signup(props) {
   return (
     <Outer>
       <FormSpace>
-          <PageTitle>회원가입</PageTitle>
-          <StyledForm onSubmit={(e) => e.preventDefault()}>
-            <InputsSection className="humanInputs">
-              <h3>회원 정보</h3>
+        <PageTitle>회원가입</PageTitle>
+        <StyledForm onSubmit={(e) => e.preventDefault()}>
+          <InputsSection className="humanInputs">
+            <h3>회원 정보</h3>
 
-              <SingleInputSection>
-                <p>아이디</p>
-                <input
-                  type="userId"
-                  name="userId"
-                  placeholder="6 ~ 12자, 영문 또는 숫자"
-                  onChange={handleInputValue}
-                />
-                {userCheck ? null : (
-                  <div className="validityWarning">
-                    아이디 형식이 올바르지 않습니다.
-                  </div>
-                )}
-              </SingleInputSection>
+            <SingleInputSection>
+              <p>아이디</p>
+              <input
+                type="userId"
+                name="userId"
+                placeholder="6 ~ 12자, 영문 또는 숫자"
+                onChange={handleInputValue}
+              />
+              {userCheck ? null : (
+                <div className="validityWarning">
+                  아이디 형식이 올바르지 않습니다.
+                </div>
+              )}
+            </SingleInputSection>
 
-              <SingleInputSection>
-                <p>비밀번호</p>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="4 ~ 15자, 영문과 숫자 포함"
-                  type="password"
-                  onChange={handleInputValue}
-                />
-                {passwordCheck ? null : (
-                  <div className="validityWarning">
-                    비밀번호 형식이 올바르지 않습니다.
-                  </div>
-                )}
-              </SingleInputSection>
+            <SingleInputSection>
+              <p>비밀번호</p>
+              <input
+                type="password"
+                name="password"
+                placeholder="4 ~ 15자, 영문과 숫자 포함"
+                type="password"
+                onChange={handleInputValue}
+              />
+              {passwordCheck ? null : (
+                <div className="validityWarning">
+                  비밀번호 형식이 올바르지 않습니다.
+                </div>
+              )}
+            </SingleInputSection>
 
-              <SingleInputSection>
-                <p>닉네임(2글자 이상)</p>
-                <input
-                  placeholder="2 ~ 15자, 한글, 영문, 숫자"
-                  type="nickName"
-                  name="nickName"
-                  onChange={handleInputValue}
-                />
-                {nickNameCheck ? null : (
-                  <div className="validityWarning">
-                    닉네임 형식이 올바르지 않습니다.
-                  </div>
-                )}
-              </SingleInputSection>
-            </InputsSection>
+            <SingleInputSection>
+              <p>닉네임(2글자 이상)</p>
+              <input
+                placeholder="2 ~ 15자, 한글, 영문, 숫자"
+                type="nickName"
+                name="nickName"
+                onChange={handleInputValue}
+              />
+              {nickNameCheck ? null : (
+                <div className="validityWarning">
+                  닉네임 형식이 올바르지 않습니다.
+                </div>
+              )}
+            </SingleInputSection>
+          </InputsSection>
 
-            <InputsSection className="animalInputs">
-              <h3>반려동물 정보</h3>
-              <SingleInputSection>
-                <p>반려동물의 종류</p>
-                <select onChange={handleSelect} value={Selected}>
-                  {selectList.map((item) => (
-                    <option value={item} key={item}>
-                      {item}
-                      {console.log(Selected)}
-                    </option>
-                  ))}
-                </select>
-                {Selected !== "선택하세요" ? null : (
-                  <div className="validityWarning">
-                    종류를 선택하세요.
-                  </div>
-                )}
-              </SingleInputSection>
+          <InputsSection className="animalInputs">
+            <h3>반려동물 정보</h3>
+            <SingleInputSection>
+              <p>반려동물의 종류</p>
+              <select onChange={handleSelect} value={Selected}>
+                {selectList.map((item) => (
+                  <option value={item} key={item}>
+                    {item}
+                    {console.log(Selected)}
+                  </option>
+                ))}
+              </select>
+              {Selected !== "선택하세요" ? null : (
+                <div className="validityWarning">종류를 선택하세요.</div>
+              )}
+            </SingleInputSection>
 
-              <SingleInputSection>
-                <p>반려동물의 이름</p>
-                <input
-                  type="animalName"
-                  name="animalName"
-                  onChange={handleInputValue}
-                />
-              </SingleInputSection>
+            <SingleInputSection>
+              <p>반려동물의 이름</p>
+              <input
+                type="animalName"
+                name="animalName"
+                onChange={handleInputValue}
+              />
+            </SingleInputSection>
 
-              <SingleInputSection>
-                <p>반려동물의 생년월일</p>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => {
-                    console.log(dateFormat(date))
-                    serStartDate(date)
-                    setUserInfo({
-                      ...userInfo,
-                      animalYob: dateFormat(date),
-                    })
-                  }}
-                />
-              </SingleInputSection>
-            </InputsSection>
+            <SingleInputSection>
+              <p>반려동물의 생년월일</p>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => {
+                  console.log(dateFormat(date))
+                  serStartDate(date)
+                  setUserInfo({
+                    ...userInfo,
+                    animalYob: dateFormat(date),
+                  })
+                }}
+              />
+            </SingleInputSection>
+          </InputsSection>
 
-            <ButtonsArea>
-              <button type="submit" onClick={handleSubmit}>
-                회원가입
-              </button>
-              <button>취소</button>
-            </ButtonsArea>
-          </StyledForm>
+          <ButtonsArea>
+            <button type="submit" onClick={handleSubmit}>
+              회원가입
+            </button>
+            <button>취소</button>
+          </ButtonsArea>
+        </StyledForm>
       </FormSpace>
     </Outer>
   )

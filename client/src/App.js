@@ -23,6 +23,7 @@ const url =
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
+  const [accessToken, setAccessToken] = useState(null)
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("home")
   const [userinfo, setUserinfo] = useState(null)
@@ -31,13 +32,17 @@ function App() {
   const [curPost, setCurPost] = useState("")
   const history = useHistory()
 
-  function curPostRead(post) {
-    setCurPost(post)
+  async function curPostRead(post) {
+    await setCurPost(post)
     history.push("/postread")
   }
 
-  function loginFunc() {
+  function loginFunc(tk) {
     // setIsLogin(!isLogin)
+    setAccessToken(tk)
+    // setIsLogin(!isLogin)
+
+    console.log(accessToken)
     authorization()
   }
   function SignUpFin() {
@@ -48,17 +53,24 @@ function App() {
   }
 
   function authorization() {
+    console.log("authorization")
     axios({
       url: url + "/auth",
       method: "get",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
       withCredentials: true,
-    }).then((res) => {
-      console.log(res.data.data.userInfo)
-      // console.log(res.data.data.userInfo)
-      setUserinfo(res.data.data.userInfo)
-      setIsLogin(true)
-      history.push("/")
     })
+      .then((res) => {
+        console.log(res)
+        // setUserinfo(res.data.data.userInfo)
+      })
+      .then((res2) => {
+        setIsLogin(true)
+        history.push("/")
+      })
   }
   function getPostList(data) {
     function date_descending(a, b) {
@@ -130,13 +142,17 @@ function App() {
             />
           </Route>
           <Route path="/post">
-            <Post curAnimal={curAnimal} />
+            <Post curAnimal={curAnimal} userinfo={userinfo} />
           </Route>
           <Route path="/postedit">
-            <PostEdit curAnimal={curAnimal} userinfo={userinfo} />
+            <PostEdit
+              curAnimal={curAnimal}
+              userinfo={userinfo}
+              curPost={curPost}
+            />
           </Route>
           <Route path="/postread">
-            <PostRead curPost={curPost} />
+            <PostRead curPost={curPost} userinfo={userinfo} />
           </Route>
           <Route path="/mypage">
             <MyPage userinfo={userinfo} 
@@ -160,6 +176,6 @@ function App() {
         </Switch>
       </div>
     </>
-  );
+  )
 }
 export default App
