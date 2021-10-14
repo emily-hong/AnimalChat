@@ -8,7 +8,6 @@ const express = require("express")
 const app = express()
 const controllers = require("./controllers")
 const multer = require("multer")
-
 const logger = require("morgan")
 
 const url =
@@ -21,7 +20,7 @@ app.use(
   cors({
     origin: [url],
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
+    methods: ["GET", "POST", "DELETE", "OPTIONS"],
   })
 )
 app.use(logger("dev")) //서버요청 로그

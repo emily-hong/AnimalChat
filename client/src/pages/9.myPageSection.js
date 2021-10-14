@@ -3,10 +3,7 @@ import styled from "styled-components"
 import AnimalInfo from "../components/AnimalInfo"
 import AddAnimalInfo from "../components/AddAnimalInfo"
 import React, { useState } from "react"
-
-const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+import { useHistory } from "react-router-dom"
 
 const Outer = styled.div`
   background-color: #FEEFD5;
@@ -53,13 +50,6 @@ const ButtonsArea = styled.div`
   }
 `
 
-const QuitButton = styled.button`
-  background-color: transparent;
-  border-radius: none;
-  text-decoration: underline;
-  border: none;
-  color: #aaaaaa;
-`
 const AddAnimalModalContainer = styled.div`
   box-sizing: content-box;
   padding: 1rem;
@@ -69,6 +59,7 @@ const AddAnimalModalContainer = styled.div`
   justify-content: center;
   align-content: center;
 `
+
 const AddAnimalModalBackDrop = styled.div`
   position: fixed;
   display: grid;
@@ -87,28 +78,51 @@ const AddAnimalModalView = styled.div`
   flex-direction: column;
   justify-content: center;
   border-radius: 20px;
-  background-color: #feefd5;
+  background-color: #FEEFD5;
   min-width: 400px;
   width: 19vw;
   height: 20vw;
 
-  & h1 {
-    font-size: 3rem;
+  & h3 {
+    font-size: 1.5rem;
     font-weight: bold;
-    color: palevioletred;
+    color: #BD2020;
+    margin-left: 4.5rem;
   }
   & button.close {
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
     padding: 0.5rem 2rem;
-    font-size: 1rem;
+    font-size: 2rem;
     text-decoration: underline;
-    color: #7b7b7b;
+    color: #7B7B7B;
     border: none;
     background-color: transparent;
   }
 `
+
+const ButtonSpace = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`
+const Button = styled.button`
+  /* margin: 1rem; */
+  margin-top: 2rem;
+  margin-right: 5.5rem;
+`
+
+const Buttos = styled.button`
+  /* margin: 1rem; */
+  margin-right: 5rem;
+  margin-top: 2rem;
+`
+
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
 
 export default function MyPageSection(props) {
   // console.log(props.userinfo)
@@ -116,10 +130,40 @@ export default function MyPageSection(props) {
   console.log('마이페이지 animalInfo : ', infoAnimal);
 
   const [isOpen, setIsOpen] = useState(false)
+  const [removeUsers, setremoveUsers] = useState(false)
+  const [pwdEdit, setPwdEdit] = useState(false)
+  const history = useHistory()
+
   function addAnimal() {
     console.log("동물추가버튼")
     setIsOpen(!isOpen)
   }
+  
+  function deleteUserInfo() {
+    setremoveUsers(!isOpen)
+  }
+
+  function pwdChange(click) {
+    setPwdEdit(!click)
+    history.push("/pwdedit")
+  }
+
+  function closeRemoveModal() { //취소하기 버튼으로 
+    setIsOpen(!isOpen)
+    history.push("/mypage")
+  }
+
+  const removeInfomation = () => {
+     axios({
+      url: url + "/userremove",
+      method: "delete",
+      withCredentials: true
+    }).then((res) => {
+      alert("회원탈퇴가 완료되었습니다.")
+      history.push("/firstpage")
+    })    
+  }
+ 
 
   // 모달창 닫히는 함수
   const addButtonHandler = () => {
@@ -140,9 +184,10 @@ export default function MyPageSection(props) {
         <AnimalInfo />
       </AnimalsList>
       <ButtonsArea>
-        <button onClick={addAnimal} props={props}>동물 추가하기</button>
-        <button>비밀번호 수정</button>
-        <button className="deleteUserInfo">회원탈퇴</button>
+        <button onClick={addAnimal}>동물 추가하기</button>
+        <button onClick={pwdChange}>비밀번호 수정</button>
+        {/* <button className="deleteUserInfo">회원탈퇴</button> */}
+        <button onClick={deleteUserInfo}>회원탈퇴</button>
       </ButtonsArea>
 
       {isOpen === false ? null : (
@@ -154,7 +199,24 @@ export default function MyPageSection(props) {
           </AddAnimalModalBackDrop>
         </AddAnimalModalContainer>
       )}
-    </Outer>
+      {removeUsers === false ? null : (
+        <AddAnimalModalContainer>
+          <AddAnimalModalBackDrop>
+            <AddAnimalModalView onClick={deleteUserInfo}>
+              <div>
+                <h3>회원탈퇴를 하시겠습니까?</h3>
+              </div>
+                <ButtonSpace>
+                  <Button onClick={closeRemoveModal}>닫기</Button>
+                </ButtonSpace>
+                <ButtonSpace>
+                  <Buttos onClick={removeInfomation}>탈퇴하기</Buttos>
+                </ButtonSpace> 
+            </AddAnimalModalView>
+          </AddAnimalModalBackDrop>
+        </AddAnimalModalContainer>
+      )}
+      </Outer>
   )
 }
 
