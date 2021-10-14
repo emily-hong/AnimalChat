@@ -2,21 +2,43 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 // styled components
+const Outer = styled.div`
+  width: 100vw;
+`;
+
 const ButtonsArea = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: 1px solid red;
+  // border: 1px solid red;
+  background-color: #FFD489;
+  padding: 1rem;
+
+  & button {
+    border: none;
+    margin: auto .5rem;
+    padding: .5rem 1rem;
+    background-color: #FFB83E;
+    font-size: 1.05rem;
+  }
 `
 
 const HomeButtonArea = styled.div`
   display: flex;
   margin-right: 2rem;
+
+  & button {
+    font-weight: bold;
+    border: none;
+    margin: auto .5rem;
+    padding: .5rem;
+    background-color: #FFA200;
+  }
 `
 
-export default function Navigation({ isLinkToWritePage }) {
+export default function Navigation() {
   return (
-    <div className="navigation">
+    <Outer className="navigation">
       <ButtonsArea>
         <HomeButtonArea>
           <Link to="/mainpage">
@@ -41,17 +63,7 @@ export default function Navigation({ isLinkToWritePage }) {
           </Link>
         </div>
       </ButtonsArea>
-      <div>
-      {
-        isLinkToWritePage?
-          <Link to='/post'>
-            <button>글쓰기</button>
-          </Link>
-        :
-          ''
-      }
-      </div>
-    </div>
+    </Outer>
   )
 }
 

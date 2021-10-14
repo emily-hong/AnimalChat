@@ -11,8 +11,13 @@ export default function Chick(props) {
     <div className="mainPage">
       <Header />
       <Navigation isLinkToWritePage />
-      <h2>병아리</h2>
-      <Posts mockBgColorPost={"#D9CAB3"} />
+      <Posts
+        title="병아리"
+        isLinkToWritePage
+        postList={props.postList}
+        curAnimal={props.curAnimal}
+        curPostRead={props.curPostRead}
+      />
     </div>
   )
 }

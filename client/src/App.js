@@ -4,7 +4,7 @@ import axios from "axios"
 import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
-import MainPage from "./pages/4-2.mainPage"
+import MainPage from "./pages/4.mainPage"
 import Hamster from "./pages/5-1.hamster"
 import Chick from "./pages/5-2.chick"
 import Parrot from "./pages/5-3.parrot"
@@ -24,16 +24,22 @@ const url =
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-  const [curAnimal, setCurAnimal] = useState("")
+  const [curAnimal, setCurAnimal] = useState("home")
   const [userinfo, setUserinfo] = useState(null)
+  console.log(userinfo)
   const [postList, setPostList] = useState([])
-
+  const [curPost, setCurPost] = useState("")
   const history = useHistory()
 
+  async function curPostRead(post) {
+    await setCurPost(post)
+    history.push("/postread")
+  }
+
   function loginFunc() {
-    setIsLogin(!isLogin)
+    // setIsLogin(!isLogin)
+    console.log("loginFunc")
     authorization()
-    history.push("/")
   }
   function SignUpFin() {
     history.push("/")
@@ -42,25 +48,34 @@ function App() {
     setCurAnimal(animaltype)
   }
 
-  function authorization() {
+  async function authorization() {
+    console.log("authorization")
     axios({
       url: url + "/auth",
       method: "get",
       withCredentials: true,
-    }).then((res) => {
-      //console.log(res)
-      setUserinfo(res.data)
-      setIsLogin(true)
-      history.push("/")
     })
+      .then((res) =>
+        // console.log(res.data.data.userInfo)
+        setUserinfo(res.data.data.userInfo)
+      )
+      .then((res2) => {
+        setIsLogin(true)
+        history.push("/")
+      })
   }
   function getPostList(data) {
-    setPostList(data)
+    function date_descending(a, b) {
+      var dateA = new Date(a["updatedAt"]).getTime()
+      var dateB = new Date(b["updatedAt"]).getTime()
+      return dateA < dateB ? 1 : -1
+    }
+    setPostList(data.sort(date_descending))
   }
 
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="entire">
         <Switch>
           <Route exact path="/firstpage">
@@ -71,37 +86,68 @@ function App() {
           </Route>
           <Route exact path="/mainpage">
             <MainPage
-              userinfo={userinfo}
+              curAnimalChange={curAnimalChange}
               getPostList={getPostList}
               postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
             />
           </Route>
           <Route exact path="/board/hamster">
-            <Hamster curAnimalChange={curAnimalChange} />
+            <Hamster
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/chick">
-            <Chick curAnimalChange={curAnimalChange} />
+            <Chick
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/parrot">
-            <Parrot curAnimalChange={curAnimalChange} />
+            <Parrot
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/rabbit">
-            <Rabbit curAnimalChange={curAnimalChange} />
+            <Rabbit
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route exact path="/board/hedgehog">
-            <Hedgehog curAnimalChange={curAnimalChange} />
+            <Hedgehog
+              curAnimalChange={curAnimalChange}
+              postList={postList}
+              curPostRead={curPostRead}
+              curAnimal={curAnimal}
+            />
           </Route>
           <Route path="/post">
-            <Post curAnimal={curAnimal} />
+            <Post curAnimal={curAnimal} userinfo={userinfo} />
           </Route>
           <Route path="/postedit">
-            <PostEdit />
+            <PostEdit
+              curAnimal={curAnimal}
+              userinfo={userinfo}
+              curPost={curPost}
+            />
           </Route>
           <Route path="/postread">
-            <PostRead />
+            <PostRead curPost={curPost} userinfo={userinfo} />
           </Route>
           <Route path="/mypage">
-            <MyPage />
+            <MyPage userinfo={userinfo} />
           </Route>
 
           <Route path="/mypageedit">

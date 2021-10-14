@@ -19,7 +19,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
-    origin: [url],
+    // origin: [url],
+    origin: ["*"],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
   })
@@ -43,11 +44,11 @@ const upload = multer({
 app.get("/auth", controllers.auth)
 app.get("/postlist", controllers.postlist) //signin, signout, signup,
 app.get("/userinfo", controllers.userinfo) // postlist -> userinfo 마이페이지에서 반려동물 정보 확인할 때(myPage.js)
-app.get("/commentlist", controllers.commentlist) // postlist -> commentlist 게시글 볼 때 다른 사용자가 남긴 댓글 보기(postRead.js)
+app.post("/commentlist", controllers.commentlist) // postlist -> commentlist 게시글 볼 때 다른 사용자가 남긴 댓글 보기(postRead.js)
 
 //post
 app.post("/commentsend", controllers.commentsend) // postlist -> commentsend 게시글 볼 때 댓글 작성시(postRead.js)
-app.post("/postedit", controllers.postedit) // postlist -> postedit 게시글 수정시(postEdit.js)
+app.post("/postedit", upload.single("img"), controllers.postedit) // postlist -> postedit 게시글 수정시(postEdit.js)
 app.post("/postsend", upload.single("img"), controllers.postsend) // postlist -> postsend 게시글 작성시(post.js)
 app.post("/pwchange", controllers.pwchange) // postlist -> pwchange 비밀번호 수정시(pwdEdit.js)
 app.post("/signin", controllers.signin) // postlist -> signin 로그인시(signin.js)
@@ -60,7 +61,7 @@ app.delete("/commentdelete", controllers.commentdelete) // postlist -> commentde
 app.delete("/postdelete", controllers.postdelete) // postlist -> postdelete 게시글에서 해당 게시글 삭제시(postRead.js)
 app.delete("/userremove", controllers.userremove) // userinfo -> userremove 마이페이지에서 회원탈퇴(myPage.js)
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 80
+const HTTPS_PORT = process.env.HTTPS_PORT || 443
 
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
