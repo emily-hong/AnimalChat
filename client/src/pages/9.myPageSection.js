@@ -154,7 +154,7 @@ export default function MyPageSection(props) {
   }
 
   const removeInfomation = () => {
-     axios({
+    axios({
       url: url + "/userremove",
       method: "delete",
       withCredentials: true
@@ -163,7 +163,7 @@ export default function MyPageSection(props) {
       history.push("/firstpage")
     })    
   }
- 
+
 
   // 모달창 닫히는 함수
   const addButtonHandler = () => {
