@@ -1,10 +1,10 @@
 const { user } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 
-module.exports = async(req, res) => {
-  //console.log(req.headers)
-  const accessTokenData = isAuthorized(req);
-  
+module.exports = async (req, res) => {
+  console.log(req.headers.cookie)
+  const accessTokenData = isAuthorized(req)
+
   if (!accessTokenData) {
     return res.json({ data: null, message: "not authorized" })
   }
