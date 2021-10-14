@@ -191,6 +191,7 @@ export const FirstPage = (props) => {
         "Content-Type": "application/json",
         withCredentials: true,
       }).then((res) => {
+        console.log(res)
         props.loginFunc(res)
         alert("로그인 완료")
       })
