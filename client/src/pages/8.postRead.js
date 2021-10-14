@@ -181,28 +181,28 @@ export default function PostRead(props) {
 
   // 댓글작성 버튼
   function handleButtonClick() {
-    // createdAt: new Date().toLocaleDateString("ko-kr"),
-    // updatedAt: new Date().toLocaleDateString("ko-kr"),
-    // axios({
-    //   url: url + "/commentsend",
-    //   method: "post",
-    //   data: {
-    //     post_id: props.curPost.id,
-    //     comment_user_id: props.userinfo.user_id,
-    //     comment_content: contentMsg,
-    //   },
-    //   withCredentials: true,
-    // }).then((res) => {
-    //   return axios({
-    //     url: url + "/commentlist",
-    //     method: "post",
-    //     data: {
-    //       post_id: props.curPost.id,
-    //       comment_user_id: props.userinfo.user_id,
-    //     },
-    //     withCredentials: true,
-    //   }).then((res) => setContentList(res.data))
-    // })
+    // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
+    // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
+    axios({
+      url: url + "/commentsend",
+      method: "post",
+      data: {
+        post_id: props.curPost.id,
+        comment_user_id: props.userinfo.user_id,
+        comment_content: contentMsg,
+      },
+      withCredentials: true,
+    }).then((res) => {
+      return axios({
+        url: url + "/commentlist",
+        method: "post",
+        data: {
+          post_id: props.curPost.id,
+          comment_user_id: props.userinfo.user_id,
+        },
+        withCredentials: true,
+      }).then((res) => setContentList(res.data))
+    })
   }
 
   // 댓글내용
@@ -219,10 +219,8 @@ export default function PostRead(props) {
           <PostTitle className="postTitle">
             <PostTitleLeft className="postTitle_left">
               <img className="profilePic" alt="프로필사진" />
-              <h1>post_title 테스트중</h1>
-              {/* <h1 className="title">{props.curPost.post_title}</h1> */}
-              <p>updated_at 테스트중</p>
-              {/* <p>{props.curPost.updatedAt}</p> */}
+              <h1 className="title">{props.curPost.post_title}</h1>
+              <p>{props.curPost.updatedAt}</p>
             </PostTitleLeft>
 
             <PostButtons className="postTitle_right">
@@ -235,25 +233,22 @@ export default function PostRead(props) {
           <div className="postPic">
             <img
               className="picture"
-              // src={url + props.curPost.post_img}
-              src={'img 테스트용'}
+              src={url + props.curPost.post_img}
               alt="게시물 사진"
             />
           </div>
 
           {/* 게시물 내용 */}
-          {/* <div className="postContent">{props.curPost.post_content}</div> */}
-          <div className="postContent">{'postContent 테스트중'}</div>
+          <div className="postContent">{props.curPost.post_content}</div>
 
           {/* 뒤로 버튼 */}
-          <BackButton>뒤로</BackButton>
+          <BackButton className="backButton">뒤로</BackButton>
         </PostReadSection>
         {/* 댓글 작성 */}
 
         <CommentSection>
           <PostComment className="postComment">
-            {/* <div>{props.userinfo.user_id} 댓글달기:</div> */}
-            <div>{'userid 테스트용'}</div>
+            <div>{props.userinfo.user_id} 댓글달기:</div>
             <input
               className="inputComment"
               type="text"
