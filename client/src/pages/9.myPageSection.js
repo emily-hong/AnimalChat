@@ -127,17 +127,11 @@ const url =
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPageSection(props) {
-<<<<<<< HEAD
-  // console.log(props.userinfo)
-  const userOfAnimal = props.userinfo
-  // console.log('9.myPagesection.js : ', userOfAnimal);
-=======
   console.log(props.userAnimalinfo)
   console.log(Array.isArray(props.userAnimalinfo))
 
   const infoAnimal = props.userinfo
   console.log("마이페이지 animalInfo : ", infoAnimal)
->>>>>>> Dev
 
   const [isOpen, setIsOpen] = useState(false)
   const [removeUsers, setremoveUsers] = useState(false)
@@ -205,10 +199,6 @@ export default function MyPageSection(props) {
         <span>아이디 : {props.userinfo.user_id}</span>
       </IdDisplay>
       <AnimalsList>
-<<<<<<< HEAD
-        {/* TODO : axios 요청 -> 동물 정보 -> map */}
-        <AnimalInfo userOfAnimal={userOfAnimal} />
-=======
         {userAnimalinfo.length ? (
           userAnimalinfo.map((animalcard) => {
             return <AnimalInfo animalcard={animalcard} />
@@ -216,7 +206,6 @@ export default function MyPageSection(props) {
         ) : (
           <div>정보없음</div>
         )}
->>>>>>> Dev
       </AnimalsList>
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
@@ -227,10 +216,6 @@ export default function MyPageSection(props) {
       {isOpen === false ? null : (
         <AddAnimalModalContainer>
           <AddAnimalModalBackDrop>
-<<<<<<< HEAD
-            <AddAnimalModalView  >
-              <AddAnimalInfo userOfAnimal={userOfAnimal} addButtonHandler={addButtonHandler}>나는 모달</AddAnimalInfo>
-=======
             <AddAnimalModalView>
               <AddAnimalInfo
                 infoAnimal={infoAnimal}
@@ -238,7 +223,6 @@ export default function MyPageSection(props) {
               >
                 나는 모달
               </AddAnimalInfo>
->>>>>>> Dev
             </AddAnimalModalView>
           </AddAnimalModalBackDrop>
         </AddAnimalModalContainer>
