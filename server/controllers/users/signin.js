@@ -1,5 +1,5 @@
 const { user } = require("../../models")
-require("dotenv").config()
+// require("dotenv").config()
 const { generateAccessToken, sendAccessToken } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
