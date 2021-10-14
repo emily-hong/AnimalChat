@@ -3,9 +3,9 @@ const { post } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
 
-  console.log(req.file)
+  //console.log(req.file)
   //   console.log(req)
   const { post_title, post_content } = req.body
 
