@@ -3,6 +3,7 @@ import styled from "styled-components"
 import AnimalInfo from "../components/AnimalInfo"
 import AddAnimalInfo from "../components/AddAnimalInfo"
 import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 
 const url =
   process.env.REACT_APP_URL ||
@@ -113,9 +114,17 @@ const AddAnimalModalView = styled.div`
 export default function MyPageSection(props) {
   // console.log(props.userinfo)
   const [isOpen, setIsOpen] = useState(false)
+  const [pwdEdit, setPwdEdit] = useState("")
+  const history = useHistory()
+  
   function addAnimal() {
     console.log("동물추가버튼")
     setIsOpen(!isOpen)
+  }
+  
+  function pwdChange(click) {
+    setPwdEdit(click)
+    history.push("/pwdedit")
   }
 
   return (
@@ -132,7 +141,7 @@ export default function MyPageSection(props) {
       </AnimalsList>
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
-        <button>비밀번호 수정</button>
+        <button onClick={pwdChange}>비밀번호 수정</button>
         <button className="deleteUserInfo">회원탈퇴</button>
       </ButtonsArea>
 

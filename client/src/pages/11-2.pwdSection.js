@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom"
+import axios from "axios"
 import styled, { css } from 'styled-components'
 
 const Outer = styled.div`
@@ -55,7 +57,13 @@ const SubmitButtonArea = styled.div`
   }
 `;
 
+const url =
+  process.env.REACT_APP_URL ||
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
+
 export default function PasswordChange() {
+  const history = useHistory()
   // input states
   const [ inputs, setInputs ] = useState({
     curPwd: "",
@@ -131,7 +139,23 @@ export default function PasswordChange() {
   // button event
   const handleButtonClick = (e) => {
     e.preventDefault();
-    console.log('비밀번호 변경 버튼 동작 확인')
+    // console.log('비밀번호 변경 버튼 동작 확인')
+    // if(!curPwdValidity || !newPwdValidity){
+    //   setErrMessage('모든 정보를 입력해주세요.')
+    // }
+    //else{
+       //변경전후 비밀번호 모두 입력시 
+      axios({
+        url: url + "/pwchange",
+        method: "post",
+        data: { password: inputs.newPwd },
+        withCredentials: true,
+      })
+      .then((res) => {
+        alert("비밀번호 변경이 완료되었습니다.")
+        history.push("/mainpage")
+      })
+    //}
   }
 
   return (

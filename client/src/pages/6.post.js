@@ -188,8 +188,9 @@ export const Post = (props) => {
   const postSendButton = () => {
     if (
       inputTitle.length > 0 &&
-      inputContent.length > 0 &&
-      uploadedImg.fileName
+      inputContent.length > 0 
+      // &&
+      // uploadedImg.fileName
     ) {
       // 제목, 내용 작성했을 때
       console.log("작성완료 쪽")
