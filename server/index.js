@@ -13,14 +13,14 @@ const logger = require("morgan")
 
 const url =
   process.env.API_URL ||
-  "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
+  "https://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
     // origin: [url],
-    origin: ["*"],
+    origin: [url],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
   })
