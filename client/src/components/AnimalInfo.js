@@ -64,9 +64,13 @@ const Button = styled.button`
   margin: 1rem;
 `
 
-export default function AnimalInfo() {
+export default function AnimalInfo({ userOfAnimal}) {
+  console.log('AnimalInfo.js : ', userOfAnimal);  // user_id
+
+  // 동물 삭제
   const deleteButtonHandler = () => {
     console.log('동물정보 삭제 버튼 동작 확인');
+    // 동물삭제해야함
   }
 
   return (
