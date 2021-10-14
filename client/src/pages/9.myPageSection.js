@@ -24,12 +24,7 @@ const AnimalsList = styled.div`
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, 350px);
   justify-content: center;
-  align-content: center;
-
-  & > div {
-    // border: 1px solid red;
-    background-color: #ffec99;
-  }
+  align-content: center;s
 `
 
 const ButtonsArea = styled.div`
