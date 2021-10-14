@@ -40,7 +40,7 @@ const StyledTitlePreview = styled.div`
   }
 `
 
-export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
+export default function SinglePostOnBoard({ post, curPostRead }) {
   const history = useHistory()
 
   function postRead() {

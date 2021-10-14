@@ -161,7 +161,7 @@ export default function PostRead(props) {
     history.push("/postedit")
   }
   useEffect(() => {
-    handleButtonClick()
+    handleButtonClick2()
   }, [])
 
   // title - 삭제 :
@@ -187,27 +187,25 @@ export default function PostRead(props) {
   }
 
   // 댓글
-  const [contentMsg, setContentMsg] = useState("") // 작성되어지는 댓글 (input)
+  const [contentMsg, setContentMsg] = useState(null) // 작성되어지는 댓글 (input)
   const [cotentList, setContentList] = useState([]) // 댓글 목록
 
   // 댓글작성 버튼
   function handleButtonClick() {
-    if(contentMsg.length === ""){
-      axios({
-        url: url + "/commentsend",
-        method: "post",
-        data: {
-          post_id: props.curPost.id,
-          comment_user_id: props.userinfo.user_id,
-          comment_content: contentMsg,
-        },
-        withCredentials: true,
-      }).then((res) => {
-        setContentList(res.data)
-        // console.log("댓글작성완료")
-        handleButtonClick2()
-      })
-    }
+    axios({
+      url: url + "/commentsend",
+      method: "post",
+      data: {
+        post_id: props.curPost.id,
+        comment_user_id: props.userinfo.user_id,
+        comment_content: contentMsg,
+      },
+      withCredentials: true,
+    }).then((res) => {
+      // setContentList(res.data)
+      // console.log("댓글작성완료")
+      handleButtonClick2()
+    })
   }
 
   function handleButtonClick2() {
@@ -254,7 +252,6 @@ export default function PostRead(props) {
         <PostReadSection>
           <PostTitle className="postTitle">
             <PostTitleLeft className="postTitle_left">
-              <img className="profilePic" alt="프로필사진" />
               <h1 className="title">{props.curPost.post_title}</h1>
               <p>{props.curPost.updatedAt}</p>
             </PostTitleLeft>

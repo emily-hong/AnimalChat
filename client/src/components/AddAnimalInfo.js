@@ -148,12 +148,6 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
-          <PictureSpace>
-            <RoundPicture>
-              {/* TODO : 사진 props, 악시오스 요청 */}
-              사진
-            </RoundPicture>
-          </PictureSpace>
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>

@@ -10,6 +10,7 @@ const Outer = styled.div`
   width: 300px;
   padding: 1rem;
   background-color: #fff9ee;
+  border-radius: 10%;
 `
 
 const PictureAndText = styled.div`
@@ -93,18 +94,10 @@ export default function AnimalInfo(props) {
     })
   }
 
-  
-
   return (
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
-          <PictureSpace>
-            <RoundPicture>
-              {/* TODO : 사진 props, 악시오스 요청 */}
-              사진
-            </RoundPicture>
-          </PictureSpace>
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
