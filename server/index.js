@@ -12,9 +12,11 @@ const multer = require("multer")
 const logger = require("morgan")
 
 const url =
-  process.env.API_URL ||
+  process.env.API_URL || "https://animal-chat.vercel.app"
   // "https://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
-  "https://animal-chat.vercel.app"
+
+
+ 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
