@@ -137,7 +137,8 @@ const url =
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
-  console.log(props.curPost)
+  //console.log(props.curPost)
+  console.log(props)
   const history = useHistory()
   function editPostButton(event) {
     history.push("/postedit")
@@ -148,7 +149,7 @@ export default function PostRead(props) {
 
   // title - 삭제 :
   const deletePostButton = (event) => {
-    // alert("게시물을 삭제하시겠습니까?")
+    //alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
     if(window.confirm("게시물을 삭제하시겠습니까?")){
       axios({
@@ -164,7 +165,8 @@ export default function PostRead(props) {
         // }
         withCredentials: true
       })
-      .then(() => {
+      .then((res) => {
+        //console.log(res)
         alert("게시물 삭제 완료")
         history.push("/mainpage") // 또는 board/{해당동물} 페이지로
       })

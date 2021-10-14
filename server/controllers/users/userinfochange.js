@@ -3,7 +3,7 @@ const { animal } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async(req, res) => {
-	console.log(req.body);
+	//console.log(req.body);
 	// 반려동물 추가
 	const {userId, animalName, animalYob, selectType} = req.body
 

@@ -5,7 +5,7 @@ const { isAuthorized } = require("../tokenFunc")
 module.exports = (req, res) => {
   //   console.log(req.query.serchAnimalInfo)
   const { serchAnimalInfo } = req.query
-  console.log(serchAnimalInfo)
+  //console.log(serchAnimalInfo)
 
   animal
     .findAll({
