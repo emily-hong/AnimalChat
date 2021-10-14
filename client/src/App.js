@@ -20,7 +20,7 @@ import PwdEditPage from "./pages/11-1.pwdEdit"
 import "./App.css"
 const url =
   process.env.REACT_APP_URL ||
-  "https://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
   const [accessToken, setAccessToken] = useState(null)
@@ -40,7 +40,9 @@ function App() {
   function loginFunc(tk) {
     // setIsLogin(!isLogin)
     setAccessToken(tk)
-    console.log("loginFunc")
+    // setIsLogin(!isLogin)
+
+    console.log(accessToken)
     authorization()
   }
   function SignUpFin() {
@@ -55,6 +57,10 @@ function App() {
     axios({
       url: url + "/auth",
       method: "get",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
       withCredentials: true,
     })
       .then((res) => {

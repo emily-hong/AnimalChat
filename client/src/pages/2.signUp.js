@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true
 
 const url =
   process.env.REACT_APP_URL ||
-  "https://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 // styled-component
 // TODO 필요시 height 수정

@@ -11,8 +11,9 @@ const multer = require("multer")
 
 const logger = require("morgan")
 
-const url = process.env.API_URL || "https://animal-chat.vercel.app"
-// "https://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
+const url =
+  process.env.API_URL ||
+  "http://animalchat-bucket.s3-website.ap-northeast-2.amazonaws.com"
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -59,7 +60,7 @@ app.delete("/commentdelete", controllers.commentdelete) // postlist -> commentde
 app.delete("/postdelete", controllers.postdelete) // postlist -> postdelete 게시글에서 해당 게시글 삭제시(postRead.js)
 app.delete("/userremove", controllers.userremove) // userinfo -> userremove 마이페이지에서 회원탈퇴(myPage.js)
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 443
+const HTTPS_PORT = process.env.HTTPS_PORT || 80
 
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
