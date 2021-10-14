@@ -12,12 +12,12 @@ module.exports = async (req, res) => {
   })
 
   if (!userFind) {
-    return res.status(404).send("invalid user")
+    res.status(404).send("invalid user")
   } else {
     //delete data.dataValues.password;
     const accessToken = generateAccessToken(data.dataValues)
     //console.log(data.dataValues)
     //console.log(accessToken) //토큰 잘발급되고
-    return sendAccessToken(res, accessToken, data.dataValues)
+    sendAccessToken(res, accessToken, data.dataValues)
   }
 }
