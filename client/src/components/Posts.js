@@ -40,7 +40,7 @@ export default function Posts({
   return (
     <div className="boards">
       <Background>
-        <h2>{boardTitle}</h2>
+        <h2>{"boardTitle"}</h2>
         <div>
           {isLinkToWritePage ? (
             <Link to="/post">

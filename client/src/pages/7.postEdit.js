@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
 import axios from "axios"
 import Header from "../components/Header"
@@ -10,7 +10,7 @@ const Body = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #FEEFD5;
+  background-color: #feefd5;
   width: 100vw;
   height: 100vh;
 `
@@ -32,7 +32,7 @@ const PhotoBox = styled.div`
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
 `
 
 const PhotoBoxDiv = styled.div`
@@ -59,7 +59,7 @@ const TitlePostDiv2 = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFB83E;
+  background-color: #ffb83e;
   margin-top: 5rem;
 `
 const TitlePostDiv3 = styled.form`
@@ -68,7 +68,6 @@ const TitlePostDiv3 = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 `
 
 const TitlePostDiv4 = styled.div`
@@ -76,7 +75,7 @@ const TitlePostDiv4 = styled.div`
   padding: 1rem;
   display: flex;
   justify-content: space-between;
-  background-color: #FFB83E;
+  background-color: #ffb83e;
   margin-top: 5rem;
 `
 const PhotoSelectBtn = styled.input`
@@ -109,7 +108,7 @@ const PhotoUpLoadBtn = styled.button`
 `
 
 const TitleBox = styled.input`
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
   margin-bottom: 40px;
   width: inherit;
   height: 50px;
@@ -117,17 +116,17 @@ const TitleBox = styled.input`
   font-size: 30px;
   color: palevioletred;
   text-align: center;
-  padding: .5rem;
+  padding: 0.5rem;
 `
 
 const PostBox = styled.textarea`
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
   width: inherit;
   height: 400px;
   background-color: #ececec;
+  color: palevioletred;
   font-size: 30px;
-  color: #424242;
-  padding: .5rem;
+  padding: 0.5rem;
 `
 
 const PostUploadBtn = styled.div`
@@ -150,24 +149,24 @@ const CancelBtn = styled.div`
 
 const PostCompletionBtnMargin = styled.div`
   text-align: center;
-  background-color: #4876BF;
+  background-color: #4876bf;
   color: white;
-  padding: .5rem 8rem;
+  padding: 0.5rem 8rem;
   margin: auto 1rem;
 `
 
 const PostCancelBtnMargin = styled.div`
   text-align: center;
-  background-color: #E00000;
+  background-color: #e00000;
   color: white;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
 `
 
 const url =
   process.env.REACT_APP_URL ||
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-export const Post = (props) => {
+export const PostEdit = (props) => {
   console.log(props)
   const history = useHistory()
 
@@ -180,6 +179,17 @@ export const Post = (props) => {
     fileName: null,
     filePath: null,
   })
+  const [photoChange, setPhotoChange] = useState(false)
+  ////////////////////////////////
+  useEffect(() => {
+    setUploadedImg({
+      fileName: props.curPost.post_img,
+      filePath: `${url}${props.curPost.post_img}`,
+    })
+    setInputTitle(props.curPost.post_title)
+    setInputContent(props.curPost.post_content)
+  }, [])
+
   // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
   // 작성되어지는 제목, 내용
@@ -196,18 +206,21 @@ export const Post = (props) => {
   // 수정된 게시물 정보 -> 서버로
   // 수정 페이지 postread에서 보여야함
   const postSendButton = () => {
+    //사진바꿨을경우
     if (
       inputTitle.length > 0 &&
       inputContent.length > 0 &&
-      uploadedImg.fileName
+      uploadedImg.fileName &&
+      photoChange
     ) {
       // 제목, 내용 작성했을 때
-      console.log("작성완료 쪽")
+      console.log("사진을 변경함")
       axios({
-        url: url + "/postsend",
+        url: url + "/postedit",
         method: "post",
         data: {
-          user_id: 1,
+          user_id: props.userinfo.user_id,
+          post_id: props.curPost.id,
           post_title: inputTitle,
           post_content: inputContent,
           post_img: "/img/" + uploadedImg.fileName,
@@ -216,11 +229,32 @@ export const Post = (props) => {
         withCredentials: true,
       })
         .then(() => {
+          alert("수정 완료(사진수정포함)")
+          // 작성 완료
+          history.push("/mainpage")
+        })
+        .catch((err) => console.log(err))
+    }
+    //사진은안바꾸고 제목과 내용만 변경
+    else if (inputTitle.length > 0 && inputContent.length > 0 && !photoChange) {
+      console.log("사진은안바꿈")
+      axios({
+        url: url + "/postedit",
+        method: "post",
+        data: {
+          user_id: props.userinfo.user_id,
+          post_id: props.curPost.id,
+          post_title: inputTitle,
+          post_content: inputContent,
+          post_img: props.curPost.post_img,
+          animalcategory: props.curAnimal,
+        },
+        withCredentials: true,
+      })
+        .then(() => {
           alert("작성 완료")
           // 작성 완료
           history.push("/mainpage")
-          history.goBack() // 이전페이지로 돌아가야함
-          history.goBack()
         })
         .catch((err) => console.log(err))
     } else {
@@ -238,9 +272,10 @@ export const Post = (props) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append("img", photo)
+    setPhotoChange(true)
     console.log(formData)
     axios
-      .post(url + "/postsend", formData, {
+      .post(url + "/postedit", formData, {
         "Content-Type": "application/json",
         withCredentials: true,
       })
@@ -287,7 +322,7 @@ export const Post = (props) => {
         {/* /////////////////// */}
         <TitlePostDiv>
           <TitleBox
-            placeholder="제목을 적으세요."
+            value={inputTitle}
             type="text"
             name="title"
             onChange={handleInputValue}
@@ -297,6 +332,7 @@ export const Post = (props) => {
             type="text"
             name="content"
             onChange={handleInputValue}
+            value={inputContent}
           />
           <TitlePostDiv4>
             <PostUploadBtn>
@@ -316,7 +352,7 @@ export const Post = (props) => {
   )
 }
 
-export default Post
+export default PostEdit
 
 // import { useHistory } from "react-router-dom"
 // import React, { useState } from "react"

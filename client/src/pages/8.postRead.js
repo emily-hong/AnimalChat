@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
 import Header from "../components/Header"
@@ -12,11 +12,11 @@ const Outer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
+`
 
 const Contents = styled.div`
-  background-color: #FEEFD5;
-`;
+  background-color: #feefd5;
+`
 
 const PostReadSection = styled.div`
   display: flex;
@@ -34,12 +34,12 @@ const PostReadSection = styled.div`
     width: 90%;
     margin-bottom: 2rem;
   }
-`;
+`
 
 const PostTitleLeft = styled.div`
   display: flex;
   align-items: center;
-`;
+`
 
 const PostButtons = styled.div`
   margin-left: 10rem;
@@ -49,24 +49,24 @@ const PostButtons = styled.div`
 
   & button {
     font-size: 1rem;
-    padding: .5rem;
+    padding: 0.5rem;
     color: white;
     margin: 0;
   }
   & .editPost {
-    background-color: #4876BF;
+    background-color: #4876bf;
     color: white;
   }
   & .deletePost {
-    background-color: #E00000;
+    background-color: #e00000;
   }
-`;
+`
 
 const CommentSection = styled.div`
   & li {
     padding: 1rem;
   }
-`;
+`
 
 const PostComment = styled.div`
   display: flex;
@@ -76,7 +76,7 @@ const PostComment = styled.div`
 
   & input {
     width: 80%;
-    padding: .5rem;
+    padding: 0.5rem;
     font-size: 1rem;
   }
   & button {
@@ -84,7 +84,7 @@ const PostComment = styled.div`
     color: white;
     height: 3rem;
   }
-`;
+`
 
 const CommentList = styled.ul`
   display: flex;
@@ -99,10 +99,10 @@ const CommentList = styled.ul`
     margin: auto 1rem;
   }
   & button {
-    padding: .5rem;
-    background-color: #FFC257;
+    padding: 0.5rem;
+    background-color: #ffc257;
   }
-`;
+`
 
 // axios
 axios.defaults.withCredentials = true
@@ -119,6 +119,9 @@ export default function PostRead(props) {
   function editPostButton(event) {
     history.push("/postedit")
   }
+  useEffect(() => {
+    handleButtonClick()
+  }, [])
 
   // title - 삭제 :
   const deletPostButton = (event) => {
@@ -127,30 +130,42 @@ export default function PostRead(props) {
   }
 
   // 댓글
-  const [contentInput, setContentInput] = useState("") // 작성되어지는 댓글 (input)
+  const [contentMsg, setContentMsg] = useState("") // 작성되어지는 댓글 (input)
   const [cotentList, setContentList] = useState([]) // 댓글 목록
 
   // 댓글작성 버튼
-  const handleButtonClick = (event) => {
-    const comment = {
-      // 새로작성된 댓글
-      id: cotentList.length + 1,
-      // userId
-      commentContent: contentInput,
-      createdAt: new Date().toLocaleDateString("ko-kr"),
-      updatedAt: new Date().toLocaleDateString("ko-kr"),
-    }
-
-    setContentList([comment, ...cotentList])
+  function handleButtonClick() {
+    // createdAt: new Date().toLocaleDateString("ko-kr"),
+    // updatedAt: new Date().toLocaleDateString("ko-kr"),
+    axios({
+      url: url + "/commentsend",
+      method: "post",
+      data: {
+        post_id: props.curPost.id,
+        comment_user_id: props.userinfo.user_id,
+        comment_content: contentMsg,
+      },
+      withCredentials: true,
+    }).then((res) => {
+      return axios({
+        url: url + "/commentlist",
+        method: "post",
+        data: {
+          post_id: props.curPost.id,
+          comment_user_id: props.userinfo.user_id,
+        },
+        withCredentials: true,
+      }).then((res) => setContentList(res.data))
+    })
   }
 
   // 댓글내용
   const handleChangeMsg = (event) => {
-    setContentInput(event.target.value)
+    setContentMsg(event.target.value)
   }
+  console.log(cotentList)
 
   return (
-
     <div>
       {/* 내사진, 제목, 날짜, 버튼 */}
       <div className="postTitle">
@@ -176,18 +191,12 @@ export default function PostRead(props) {
       </div>
 
       {/* 게시물 내용 */}
-      <div className="postContent">
-        안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠 ,,,,
-        ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청 귀엽죠
-        ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데 엄청
-        귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에 목욕했는데
-        엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ 이번에
-        목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ 안녕하세요~ 저희집 고슴이에요ᄒᄒ
-        이번에 목욕했는데 엄청 귀엽죠 ,,,, ᄒᄒ
-      </div>
+      <div className="postContent">{props.curPost.post_content}</div>
 
       {/* 댓글 작성 */}
+
       <div className="postComment">
+        <div>{props.userinfo.user_id} 댓글달기:</div>
         <input
           className="inputComment"
           type="text"
@@ -199,12 +208,10 @@ export default function PostRead(props) {
 
       {/* 댓글 목록 */}
       <ul className="commentsList">
-        {/* 작성된 댓글 보여주기 */}
-        {cotentList.map((el) => (
-          <Comment key={el.id} comment={el} />
+        {cotentList.map((content) => (
+          <Comment content={content} />
         ))}
       </ul>
     </div>
-
   )
 }
