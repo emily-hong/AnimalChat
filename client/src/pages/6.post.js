@@ -149,7 +149,7 @@ const PostCompletionBtnMargin = styled.button`
 
 const PostCancelBtnMargin = styled.button`
   text-align: center;
-  background-color: #E00000;c
+  background-color: #E00000;
   color: white;
   padding: .5rem 2rem;
 `

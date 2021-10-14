@@ -86,7 +86,7 @@ export default function AddAnimalInfo() {
         </PictureAndText>
         <ButtonSpace>
           {/* TODO : 악시오스 요청일까요? */}
-          <Button>삭제</Button>
+          <Button>추가</Button>
         </ButtonSpace>
       </Outer>
     </div>
