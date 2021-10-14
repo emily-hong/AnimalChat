@@ -242,7 +242,7 @@ export default function PostRead(props) {
           <div className="postContent">{props.curPost.post_content}</div>
 
           {/* 뒤로 버튼 */}
-          <BackButton className="backButton">뒤로</BackButton>
+          <BackButton className="backButton" onClick={backButtonHandler}>뒤로</BackButton>
         </PostReadSection>
         {/* 댓글 작성 */}
 
