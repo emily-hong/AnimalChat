@@ -23,6 +23,7 @@ const url =
   "https://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
+  const [accessToken, setAccessToken] = useState(null)
   const [isLogin, setIsLogin] = useState(false)
   const [curAnimal, setCurAnimal] = useState("home")
   const [userinfo, setUserinfo] = useState(null)
@@ -36,8 +37,9 @@ function App() {
     history.push("/postread")
   }
 
-  function loginFunc() {
+  function loginFunc(tk) {
     // setIsLogin(!isLogin)
+    setAccessToken(tk)
     console.log("loginFunc")
     authorization()
   }
