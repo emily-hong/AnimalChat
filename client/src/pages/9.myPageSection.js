@@ -189,7 +189,7 @@ export default function MyPageSection(props) {
       <ButtonsArea>
         <button onClick={addAnimal}>동물 추가하기</button>
         <button onClick={pwdChange}>비밀번호 수정</button>
-        <button onClick={deleteUserInfo}>회원탈퇴</button>
+        <QuitButton onClick={deleteUserInfo}>회원탈퇴</QuitButton>
       </ButtonsArea>
 
       {isOpen === false ? null : (
