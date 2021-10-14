@@ -2,8 +2,8 @@ import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-import Header from "../components/Header"
-import Navigation from "../components/Navigation"
+// import Header from "../components/Header"
+// import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 // styled-component
