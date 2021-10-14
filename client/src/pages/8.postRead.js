@@ -171,7 +171,7 @@ export default function PostRead(props) {
 
   // 뒤로 버튼
   const backButtonHandler = () => {
-    history.goBack()
+    history.push("/")
   }
 
   // 댓글
@@ -254,7 +254,7 @@ export default function PostRead(props) {
 
           {/* 뒤로 버튼 */}
           <BackButton className="backButton" onClick={backButtonHandler}>
-            뒤로
+            home
           </BackButton>
         </PostReadSection>
         {/* 댓글 작성 */}
