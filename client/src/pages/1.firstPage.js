@@ -179,6 +179,7 @@ export const FirstPage = (props) => {
     //console.log(loginInfo)
     // if (!loginInfo.id || !loginInfo.password) {
     //로그인 정보를 입력하지 않았을 때
+    e.preventDefault()
     if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
       setErrMessage(" 아이디와 패스워드를 입력하세요.")
     } else {
