@@ -183,26 +183,26 @@ export default function PostRead(props) {
   function handleButtonClick() {
     // createdAt: new Date().toLocaleDateString("ko-kr"),
     // updatedAt: new Date().toLocaleDateString("ko-kr"),
-    axios({
-      url: url + "/commentsend",
-      method: "post",
-      data: {
-        post_id: props.curPost.id,
-        comment_user_id: props.userinfo.user_id,
-        comment_content: contentMsg,
-      },
-      withCredentials: true,
-    }).then((res) => {
-      return axios({
-        url: url + "/commentlist",
-        method: "post",
-        data: {
-          post_id: props.curPost.id,
-          comment_user_id: props.userinfo.user_id,
-        },
-        withCredentials: true,
-      }).then((res) => setContentList(res.data))
-    })
+    // axios({
+    //   url: url + "/commentsend",
+    //   method: "post",
+    //   data: {
+    //     post_id: props.curPost.id,
+    //     comment_user_id: props.userinfo.user_id,
+    //     comment_content: contentMsg,
+    //   },
+    //   withCredentials: true,
+    // }).then((res) => {
+    //   return axios({
+    //     url: url + "/commentlist",
+    //     method: "post",
+    //     data: {
+    //       post_id: props.curPost.id,
+    //       comment_user_id: props.userinfo.user_id,
+    //     },
+    //     withCredentials: true,
+    //   }).then((res) => setContentList(res.data))
+    // })
   }
 
   // 댓글내용
