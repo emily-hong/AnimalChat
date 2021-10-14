@@ -2,24 +2,22 @@ import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-// import Header from "../components/Header"
-// import Navigation from "../components/Navigation"
+import Header from "../components/Header"
+import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 // styled-component
 const Outer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100vw;
   height: 100vh;
 `
 
 const Contents = styled.div`
   width: 100vw;
-  height: 100vh;
   background-color: #feefd5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const PostReadSection = styled.div`
@@ -38,11 +36,21 @@ const PostReadSection = styled.div`
     width: 90%;
     margin-bottom: 2rem;
   }
+
+  & img {
+    border: 1px solid red;
+    width: 3rem;
+    height: 3rem;
+  }
 `
 
 const PostTitle = styled.div`
   display: flex;
   width: calc(100% - 2rem);
+
+  & h1 {
+    margin: auto 1rem;
+  }
 `
 
 const PostTitleLeft = styled.div`
@@ -78,8 +86,12 @@ const PostButtons = styled.div`
 `
 
 const CommentSection = styled.div`
+  width: inherit;
+  padding: 1rem;
+
   & li {
     padding: 1rem;
+    margin: .5rem;
   }
 `
 
@@ -87,17 +99,30 @@ const PostComment = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: inherit;
+  margin-bottom: 2rem;
+
+  & .commentUsername {
+    display: flex;
+    font-size: .8rem;
+    & .username {
+      font-weight: bold;
+      margin-right: .5rem;
+    }
+    & .inputTitle {
+      margin-right: .5rem;
+    }
+  }
 
   & input {
-    width: 80%;
+    width: 70%;
     padding: 0.5rem;
     font-size: 1rem;
+    margin-right: 1rem;
   }
+
   & button {
     background-color: #419300;
-    color: white;
-    height: 3rem;
+    padding: .5rem;
   }
 `
 
@@ -105,18 +130,7 @@ const CommentList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
-
-  & li {
-    display: flex;
-    align-items: center;
-  }
-  & .comment__createdAt {
-    margin: auto 1rem;
-  }
-  & button {
-    padding: 0.5rem;
-    background-color: #ffc257;
-  }
+  width: inherit;
 `
 
 const BackButton = styled.button`
@@ -161,6 +175,8 @@ export default function PostRead(props) {
   return (
     <Outer>
       {/* 내사진, 제목, 날짜, 버튼 */}
+      <Header />
+      <Navigation />
       <Contents>
         <PostReadSection>
           <PostTitle className="postTitle">
@@ -196,9 +212,9 @@ export default function PostRead(props) {
         {/* 댓글 작성 */}
         <CommentSection>
           <PostComment className="postComment">
-            <div>
-              <span>username</span>
-              <span>댓글달기</span>
+            <div className="commentUsername">
+              <span className="username">{'유저이름 테스트'}</span>
+              <span className="inputTitle">댓글달기</span>
             </div>
             <input
               className="inputComment"
@@ -211,8 +227,6 @@ export default function PostRead(props) {
 
           {/* 댓글 목록 */}
           <CommentList className="commentsList">
-            <Comment />
-            <Comment />
             <Comment />
             <Comment />
             <Comment />
