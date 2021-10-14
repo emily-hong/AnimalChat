@@ -11,13 +11,16 @@ const Body = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #FEEFD5;
+  background-color: #feefd5;
   width: 100vw;
   height: 100vh;
 `
 
 // 사진 업로드, 글 수정 전체
 const ContentBox = styled.div`
+
+  background-color: #fff9ee;
+
   padding: 2rem;
   width: 80vw;
   height: inherit;
@@ -43,7 +46,7 @@ const PhotoBox = styled.div`
   background-color: #ececec;
   font-size: 30px;
   color: palevioletred;
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
 `
 
 const PhotoUploadWarning = styled.div`
@@ -51,7 +54,7 @@ const PhotoUploadWarning = styled.div`
   background-color: #ececec;
   font-size: 30px;
   text-align: center;
-  color: #E00000;
+  color: #e00000;
 `
 
 const PhotoUploadButtons = styled.div`
@@ -59,7 +62,7 @@ const PhotoUploadButtons = styled.div`
   padding: 1rem;
   display: flex;
   justify-content: space-around;
-  background-color: #FFB83E;
+  background-color: #ffb83e;
   margin-top: 5rem;
 `
 
@@ -67,13 +70,13 @@ const PhotoSelectBtn = styled.input`
   text-align: center;
   font-size: 20px;
   width: 200px;
-  background-color: #FFB83E;
+  background-color: #ffb83e;
   color: black;
 `
 
 const PhotoUpLoadBtn = styled.button`
   font-size: 20px;
-  padding: .5rem;
+  padding: 0.5rem;
   color: white;
   text-align: center;
   width: 200px;
@@ -92,7 +95,7 @@ const TitlePostDiv = styled.div`
 `
 
 const TitleBox = styled.input`
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
   margin-bottom: 40px;
   width: inherit;
   height: 50px;
@@ -100,17 +103,17 @@ const TitleBox = styled.input`
   font-size: 30px;
   color: palevioletred;
   text-align: center;
-  padding: .5rem;
+  padding: 0.5rem;
 `
 
 const PostBox = styled.textarea`
-  border: 1px solid #B5B5B5;
+  border: 1px solid #b5b5b5;
   width: inherit;
   height: 400px;
   background-color: #ececec;
   font-size: 30px;
   color: #424242;
-  padding: .5rem;
+  padding: 0.5rem;
 `
 
 // const PostUploadBtn = styled.div`
@@ -144,14 +147,16 @@ const PostCompletionBtnMargin = styled.button`
   text-align: center;
   background-color: #419300;
   color: white;
-  padding: .5rem 10rem;
+  padding: 0.5rem 10rem;
 `
 
 const PostCancelBtnMargin = styled.button`
   text-align: center;
+
   background-color: #E00000;
+
   color: white;
-  padding: .5rem 2rem;
+  padding: 2rem;
 `
 
 const url =
@@ -159,6 +164,7 @@ const url =
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const Post = (props) => {
+  console.log(props)
   const history = useHistory()
 
   // 1. input title, content
@@ -199,7 +205,7 @@ export const Post = (props) => {
         url: url + "/postsend",
         method: "post",
         data: {
-          user_id: 1,
+          user_id: props.userinfo.user_id,
           post_title: inputTitle,
           post_content: inputContent,
           post_img: "/img/" + uploadedImg.fileName,
@@ -211,8 +217,8 @@ export const Post = (props) => {
           alert("작성 완료")
           // 작성 완료
           history.push("/mainpage")
-          history.goBack() // 이전페이지로 돌아가야함
-          history.goBack()
+          // history.goBack() // 이전페이지로 돌아가야함
+          // history.goBack()
         })
         .catch((err) => console.log(err))
     } else {
@@ -265,11 +271,17 @@ export const Post = (props) => {
                 {/* <h3>{uploadedImg.fileName}</h3> */}
               </div>
             ) : (
-              <PhotoUploadWarning className="photoUploadWarning">아래 파일 추가를 눌러주세요.</PhotoUploadWarning>
+              <PhotoUploadWarning className="photoUploadWarning">
+                아래 파일 추가를 눌러주세요.
+              </PhotoUploadWarning>
             )}
           </PhotoBox>
           <PhotoUploadButtons className="photoSelectButtons">
-            <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
+            <PhotoSelectBtn
+              type="file"
+              className="photoButton"
+              onChange={addFile}
+            />
             {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
             <PhotoUpLoadBtn type="submit" className="photoButton">
               업로드
