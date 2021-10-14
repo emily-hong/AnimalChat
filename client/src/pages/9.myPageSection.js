@@ -112,17 +112,26 @@ const AddAnimalModalView = styled.div`
 
 export default function MyPageSection(props) {
   // console.log(props.userinfo)
+  const infoAnimal = props.userinfo
+  console.log('마이페이지 animalInfo : ', infoAnimal);
+
   const [isOpen, setIsOpen] = useState(false)
   function addAnimal() {
     console.log("동물추가버튼")
     setIsOpen(!isOpen)
   }
 
+  // 모달창 닫히는 함수
+  const addButtonHandler = () => {
+    // console.log('addButtonHandler 함수실행')
+    setIsOpen(false)
+  }
+
   return (
     <Outer className="MyPageSection">
       <IdDisplay>
         {/* TODO : axios 요청 -> 회원정보 -> id */}
-        <span>아이디 : {"sss"}</span>
+        <span>아이디 : {props.userinfo.user_id}</span>
       </IdDisplay>
       <AnimalsList>
         {/* TODO : axios 요청 -> 동물 정보 -> map */}
@@ -131,7 +140,7 @@ export default function MyPageSection(props) {
         <AnimalInfo />
       </AnimalsList>
       <ButtonsArea>
-        <button onClick={addAnimal}>동물 추가하기</button>
+        <button onClick={addAnimal} props={props}>동물 추가하기</button>
         <button>비밀번호 수정</button>
         <button className="deleteUserInfo">회원탈퇴</button>
       </ButtonsArea>
@@ -139,8 +148,8 @@ export default function MyPageSection(props) {
       {isOpen === false ? null : (
         <AddAnimalModalContainer>
           <AddAnimalModalBackDrop>
-            <AddAnimalModalView onClick={addAnimal}>
-              <AddAnimalInfo>나는 모달</AddAnimalInfo>
+            <AddAnimalModalView  >
+              <AddAnimalInfo infoAnimal={infoAnimal} addButtonHandler={addButtonHandler}>나는 모달</AddAnimalInfo>
             </AddAnimalModalView>
           </AddAnimalModalBackDrop>
         </AddAnimalModalContainer>

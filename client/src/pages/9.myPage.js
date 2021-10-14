@@ -9,14 +9,14 @@ const url =
   "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPage({ userinfo }) {
-  console.log(userinfo)
+  // console.log(userinfo)
   const [userAnimalinfo, setUserAnimalInfo] = useState("")
   axios({
     url: url + `/userinfo?serchAnimalInfo=${userinfo.user_id}`,
     method: "get",
     withCredentials: true,
   }).then((res) => {
-    console.log(res)
+    // console.log(res)
     // setUserAnimalInfo(res)
   })
   return (
