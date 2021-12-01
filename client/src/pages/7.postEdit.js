@@ -22,7 +22,6 @@ const ContentBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 1px solid blue;
 `
 
 const PhotoBox = styled.div`
@@ -55,7 +54,6 @@ const TitlePostDiv = styled.div`
 
 // 사진 업로드 버튼들
 const TitlePostDiv2 = styled.div`
-  // border: 1px solid yellow;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,7 +61,6 @@ const TitlePostDiv2 = styled.div`
   margin-top: 5rem;
 `
 const TitlePostDiv3 = styled.form`
-  // border: 1px solid gray;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,7 +86,6 @@ const PhotoSelectBtn = styled.input`
 
 // here
 const PhotoSelectBtnMargin = styled.div`
-  /* border: 1px solid gray; */
   /* margin-top: 15px; */
   text-align: center;
   font-size: 20px;

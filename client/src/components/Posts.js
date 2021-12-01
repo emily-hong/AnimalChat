@@ -7,6 +7,7 @@ const Background = styled.div`
   background-color: #feefd5;
   padding: 1rem;
   // border-bottom: 1px solid red;
+  height: 100vh;
 `
 
 const WriteButton = styled.button`
@@ -60,7 +61,7 @@ export default function Posts({
               ))
             : postList
                 .filter((post) => curAnimal === post.animalcategory)
-                .map((post) => <SinglePostOnBoard key={post.id} post={post} />)}
+                .map((post) => <SinglePostOnBoard key={post.id} post={post} curPostRead={curPostRead}/>)}
         </BoardInGrid>
       </Background>
     </div>
