@@ -157,9 +157,38 @@ export default function PostRead(props) {
   //console.log(props.curPost)
   console.log(props)
   const history = useHistory()
+  const [edit, setEdit] = useState(false)
+
+
+
+
   function editPostButton(event) {
-    history.push("/postedit")
+    // history.push("/postedit")
+    axios({
+      url: url + "/postedit",
+      method: "post",
+      data: {
+        post_id: props.curPost.id, //클릭한 포스트 id 
+        user_id: props.userinfo.user_id, //현재접속한 유저정보
+        post_title:  props.curPost.post_title, 
+        post_img:  props.curPost.post_img,
+        post_content:  props.curPost.post_content
+      },
+      withCredentials: true
+    })
+    .then((res) => {
+      //console.log(res.data)
+      alert(res.data)
+      if(res.data === "게시물 작성자가 아닙니다."){
+        history.push("/mainpage")
+      }else{
+        history.push("/postedit")
+      }
+    })
+    setEdit(true)
   }
+
+
   useEffect(() => {
     handleButtonClick2()
   }, [])
