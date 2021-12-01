@@ -137,7 +137,7 @@ const url =
 // 댓글 : content
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
-  console.log(props.curPost)
+  // console.log(props.curPost)  // 해당 게시물 정보 확인
   const history = useHistory()
   function editPostButton(event) {
     history.push("/postedit")
@@ -179,11 +179,12 @@ export default function PostRead(props) {
   const [contentMsg, setContentMsg] = useState("") // 작성되어지는 댓글 (input)
   const [cotentList, setContentList] = useState([]) // 댓글 목록
 
-  // 댓글작성 버튼
+  // 댓글작성 버튼 클릭
   function handleButtonClick() {
     // createdAt: new Date().toLocaleDateString("ko-kr"), // 여기 두 줄 뭔지 모르겠어요...
     // updatedAt: new Date().toLocaleDateString("ko-kr"), // 일단 주석처리 합니다
     axios({
+      // 작성한 댓글을 보냄
       url: url + "/commentsend",
       method: "post",
       data: {
@@ -194,6 +195,7 @@ export default function PostRead(props) {
       withCredentials: true,
     }).then((res) => {
       return axios({
+        // 게시글의 댓글 목록 가져옴
         url: url + "/commentlist",
         method: "post",
         data: {
@@ -201,7 +203,10 @@ export default function PostRead(props) {
           comment_user_id: props.userinfo.user_id,
         },
         withCredentials: true,
-      }).then((res) => setContentList(res.data))
+      }).then((res) => {
+        console.log("게시글의 댓글목록 : ", res);
+        setContentList(res.data)
+      })
     })
   }
 
@@ -209,7 +214,7 @@ export default function PostRead(props) {
   const handleChangeMsg = (event) => {
     setContentMsg(event.target.value)
   }
-  console.log(cotentList)
+  console.log(cotentList) // []만 나오고 있음
 
   return (
     <Outer>

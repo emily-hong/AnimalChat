@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 const Comment = ({ content, userinfo }) => {
   console.log(content)
+  console.log("userinfo : ", userinfo);
   // const parsedDate = new Date(comment.createdAt).toLocaleTimeString("ko-kr")
 
   return (
