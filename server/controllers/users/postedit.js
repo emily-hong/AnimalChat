@@ -3,11 +3,27 @@ const { post } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
-  console.log(req.body)
+  console.log("server/postedit.js::::::::::::", req.body)
 
   //console.log(req.file)
   //   console.log(req)
-  const { post_title, post_content } = req.body
+  const { id, user_id, post_title, post_img, post_content } = req.body
+  // const checkUser = await post.findOne({
+  //   where: {
+  //     user_id: user_id,
+  //     id: id
+  //   }
+  // })
+  // if(!checkUser){
+  //   res.send("게시물 작성자가 아닙니다.")
+  // }
+  // else if(!post_title || !post_content){
+  //   res.send("제목과 내용은 필수로 수정해주세요 :)")
+  // }
+  // else{
+
+  // }
+
 
   // post_users의 id, post_id, userid, createdAt, updatedAt 가져와야함
   if (req.file) {
