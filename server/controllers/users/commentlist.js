@@ -10,6 +10,5 @@ module.exports = async (req, res) => {
     },
   })
   console.log("commentList : ", commetList)
-
   res.send(commetList)
 }

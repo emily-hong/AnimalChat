@@ -8,15 +8,25 @@
   },
   "test": {
     "username": "root",
+<<<<<<< HEAD
     "password": "1234",
     "database": "database_test",
+=======
+    "password": "animalchat",
+    "database": "animalchat",
+>>>>>>> Dev
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
+<<<<<<< HEAD
     "password": "1234",
     "database": "database_production",
+=======
+    "password": "animalchat",
+    "database": "animalchat",
+>>>>>>> Dev
     "host": "127.0.0.1",
     "dialect": "mysql"
   }

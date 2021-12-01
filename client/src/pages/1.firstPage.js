@@ -239,9 +239,6 @@ export const FirstPage = (props) => {
                   >
                     로그인
                   </button>
-                  <button className="socialLogin" onClick={socialSignUpHandler}>
-                    구글 소셜 로그인
-                  </button>
                 </LoginButtons>
 
                 <button

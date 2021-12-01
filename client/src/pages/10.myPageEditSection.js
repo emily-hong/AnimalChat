@@ -6,7 +6,7 @@ const Outer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 80vh;
+  height: 100vh;
   background-color: #FEEFD5;
 `;
 
