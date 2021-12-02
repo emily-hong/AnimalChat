@@ -216,7 +216,7 @@ export default function PostRead(props) {
 
     // 댓글
     const [contentMsg, setContentMsg] = useState(null) // 작성되어지는 댓글 (input)
-    const [cotentList, setContentList] = useState([]) // 댓글 목록
+    const [contentList, setContentList] = useState([]) // 댓글 목록
 
     // 댓글작성 버튼
     function handleButtonClick() {
@@ -249,7 +249,7 @@ export default function PostRead(props) {
             withCredentials: true,
         }).then((res) => setContentList(res.data))
         // console.log("handleButtonClick2끝")
-        // console.log(cotentList) // 댓글목록배열
+        // console.log(contentList) // 댓글목록배열
     }
 
     // 댓글 삭제 (해당 유저 아이디만, )
@@ -263,8 +263,10 @@ export default function PostRead(props) {
                 data: {
                     // 해당댓글삭제 , 포스트게시물id, 
                     post_id: props.curPost.id, // 게시물 아이디
-                    // 해당 댓글의 내용(comment_content)
-
+                    // 해당 댓글의 내용(comment_content) 또는
+                    // 댓글 id로 삭제
+                    
+                    
 
                 },
                 withCredentials: true,
@@ -274,7 +276,7 @@ export default function PostRead(props) {
                     history.goBack()
                 })
                 .then(() => {
-                    console.log("cotentList : ", cotentList)
+                    console.log("contentList : ", contentList)
                 })
         }
     }
@@ -283,7 +285,7 @@ export default function PostRead(props) {
     const handleChangeMsg = (event) => {
         setContentMsg(event.target.value)
     }
-    // console.log('댓글배열 : ', cotentList)
+    // console.log('댓글배열 : ', contentList)
 
     return (
         <Outer>
@@ -352,11 +354,12 @@ export default function PostRead(props) {
 
                     {/* 댓글 목록 */}
                     <CommentList className="commentsList">
-                        {cotentList.map((content) => (
+                        {contentList.map((content) => (
                             <Comment
+                                key={content.id}
                                 content={content}
                                 deleteComment={deleteComment}
-                            />
+                                />
                         ))}
                     </CommentList>
                 </CommentSection>
