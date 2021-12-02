@@ -4,20 +4,23 @@ import Navigation from "../components/Navigation"
 import React, { useEffect } from "react"
 
 export default function Rabbit(props) {
-  useEffect(() => {
-    props.curAnimalChange("rabbit")
-  }, [])
-  return (
-    <div className="mainPage">
-      <Header />
-      <Navigation isLinkToWritePage />
-      <Posts
-        title="토끼"
-        isLinkToWritePage
-        postList={props.postList}
-        curAnimal={props.curAnimal}
-        curPostRead={props.curPostRead}
-      />
-    </div>
-  )
+    useEffect(() => {
+        props.curAnimalChange("rabbit")
+    }, [])
+    return (
+        <div className="mainPage">
+            <Header
+                setIsLogin={props.setIsLogin}
+                setUserinfo={props.setUserinfo}
+            />
+            <Navigation isLinkToWritePage />
+            <Posts
+                title="토끼"
+                isLinkToWritePage
+                postList={props.postList}
+                curAnimal={props.curAnimal}
+                curPostRead={props.curPostRead}
+            />
+        </div>
+    )
 }
