@@ -26,17 +26,17 @@ const StyledThumbnail = styled.img`
 `
 
 const StyledTitlePreview = styled.div`
-  display: flex;
-  height: 60px;
-  padding: 0.25rem;
-  font-size: 0.9rem;
-  color: #424242;
-
-  & p {
+    display: flex;
+    height: 60px;
     padding: 0.25rem;
     font-size: 0.9rem;
     color: #424242;
 
+    & p {
+        padding: 0.25rem;
+        font-size: 0.9rem;
+        color: #424242;
+    }
     & p {
         padding: 0.25rem;
     }
