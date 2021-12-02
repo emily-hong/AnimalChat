@@ -18,6 +18,7 @@ module.exports = (req, res) => {
     comment.destroy({
       where:{
         comment_user_id: user_id,
+        // 댓글 내용으로 삭제 test
       }
     })
   }

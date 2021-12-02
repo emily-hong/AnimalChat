@@ -155,7 +155,7 @@ const url =
 export default function PostRead(props) {
   // title - 수정버튼 : history.push
   //console.log(props.curPost)
-  console.log(props)
+  // console.log(props)
   const history = useHistory()
   function editPostButton(event) {
     history.push("/postedit")
@@ -166,7 +166,6 @@ export default function PostRead(props) {
 
   // title - 삭제 :
   const deletePostButton = (event) => {
-    //alert("게시물을 삭제하시겠습니까?")
     // 데이터베이스 게시물 삭제
     if (window.confirm("게시물을 삭제하시겠습니까?")) {
       axios({
@@ -209,7 +208,7 @@ export default function PostRead(props) {
   }
 
   function handleButtonClick2() {
-    console.log("handleButtonClick2")
+    // console.log("handleButtonClick2")
 
     axios({
       url: url + "/commentlist",
@@ -220,21 +219,30 @@ export default function PostRead(props) {
       },
       withCredentials: true,
     }).then((res) => setContentList(res.data))
-    console.log("handleButtonClick2끝")
-    console.log(cotentList)
+    // console.log("handleButtonClick2끝")
+    // console.log(cotentList) // 댓글목록배열
   }
 
-  // 댓글 삭제
+  // 댓글 삭제 (해당 유저 아이디만, )
   const deleteComment = (event) => {
     if(window.confirm("댓글을 삭제하시겠습니까?")){
       axios({
         url: url + '/commentdelete',
         method: "delete",
+      data: {
+        // 해당댓글삭제
+        post_id: props.curPost.id,  // 
+
+      },
         withCredentials: true,
       })
       .then(() => {
         history.push('/mainpage')
         history.goBack()
+      })
+      .then(() => {
+        console.log("cotentList : ", cotentList);
+
       })
     }
   }
@@ -243,7 +251,7 @@ export default function PostRead(props) {
   const handleChangeMsg = (event) => {
     setContentMsg(event.target.value)
   }
-  console.log('댓글배열 : ', cotentList)
+  // console.log('댓글배열 : ', cotentList)
 
   return (
     <Outer>
@@ -306,4 +314,3 @@ export default function PostRead(props) {
     </Outer>
   )
 }
-

@@ -25,7 +25,8 @@ const CommentContainer = styled.li`
 axios.defaults.withCredentials = true
 
 const Comment = ({ content, deleteComment, userinfo }) => {
-  console.log(content)
+  // console.log(content)  // 댓글목록뜸
+  // console.log("userinfo : ", userinfo); // undefined
   // const parsedDate = new Date(comment.createdAt).toLocaleTimeString("ko-kr")
 
   return (
