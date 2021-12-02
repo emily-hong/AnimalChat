@@ -77,7 +77,7 @@ export default function AnimalInfo(props) {
   const deleteButtonHandler = () => {
     console.log("동물정보 삭제 버튼 동작 확인")
     axios({
-      url: url + `/animaldel`,
+      url: url + `/deleteanimal`,
       method: "delete",
       data: {
         userId: props.animalcard.userId,

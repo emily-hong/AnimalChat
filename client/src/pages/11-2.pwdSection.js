@@ -146,7 +146,7 @@ export default function PasswordChange() {
     //else{
        //변경전후 비밀번호 모두 입력시 
       axios({
-        url: url + "/pwchange",
+        url: url + "/editpw",
         method: "post",
         data: { password: inputs.newPwd },
         withCredentials: true,

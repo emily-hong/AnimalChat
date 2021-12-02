@@ -35,7 +35,7 @@ function App() {
     function curPostRead(post) {
         console.log("이녀석은 언제 실행됨?")
         setCurPost(post)
-        history.push("/postread")
+        history.push("/readpost")
     }
 
     function loginFunc(tk) {
@@ -182,7 +182,7 @@ function App() {
                             setUserinfo={setUserinfo}
                         />
                     </Route>
-                    <Route path="/postedit">
+                    <Route path="/editpost">
                         <PostEdit
                             curAnimal={curAnimal}
                             userinfo={userinfo}
@@ -191,7 +191,7 @@ function App() {
                             setUserinfo={setUserinfo}
                         />
                     </Route>
-                    <Route path="/postread">
+                    <Route path="/readpost">
                         <PostRead curPost={curPost} userinfo={userinfo} />
                     </Route>
                     <Route path="/mypage">
@@ -202,10 +202,10 @@ function App() {
                         />
                     </Route>
 
-                    <Route path="/mypageedit">
+                    <Route path="/editmypage">
                         <MyPageEdit />
                     </Route>
-                    <Route path="/pwdedit">
+                    <Route path="/editpw">
                         <PwdEditPage
                             setIsLogin={setIsLogin}
                             setUserinfo={setUserinfo}
