@@ -36,7 +36,7 @@ const StyledTitlePreview = styled.div`
     padding: 0.25rem;
     font-size: 0.9rem;
     color: #424242;
-
+    }
     & p {
         padding: 0.25rem;
     }
@@ -55,7 +55,7 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
     function postRead() {
         console.log(curPostRead)
         curPostRead(post)
-        history.push("/postread")
+        history.push("/readpost")
     }
 
     return (

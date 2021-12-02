@@ -161,7 +161,7 @@ export default function MyPageSection(props) {
 
   function pwdChange(click) {
     setPwdEdit(!click)
-    history.push("/editpwd")
+    history.push("/editpw")
   }
 
   function closeRemoveModal() {

@@ -213,7 +213,7 @@ export const PostEdit = (props) => {
             // 제목, 내용 작성했을 때
             console.log("사진을 변경함")
             axios({
-                url: url + "/postedit",
+                url: url + "/editpost",
                 method: "post",
                 data: {
                     user_id: props.userinfo.user_id,
@@ -240,7 +240,7 @@ export const PostEdit = (props) => {
         ) {
             console.log("사진은안바꿈")
             axios({
-                url: url + "/postedit",
+                url: url + "/editpost",
                 method: "post",
                 data: {
                     user_id: props.userinfo.user_id,
@@ -276,7 +276,7 @@ export const PostEdit = (props) => {
         setPhotoChange(true)
         console.log(formData)
         axios
-            .post(url + "/postedit", formData, {
+            .post(url + "/editpost", formData, {
                 "Content-Type": "application/json",
                 withCredentials: true,
             })
