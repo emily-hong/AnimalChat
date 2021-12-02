@@ -184,6 +184,7 @@ export default function PostRead(props) {
         history.goBack()
         history.goBack()
         // history.goBack()
+        // history.goBack()
     }
 
     // 댓글
