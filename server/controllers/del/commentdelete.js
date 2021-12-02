@@ -3,7 +3,7 @@ const { isAuthorized } = require('../tokenFunc');
 
 module.exports = (req, res) => {
   const accessTokenData = isAuthorized(req)
-  console.log('req.body : ', req.body);
+  // console.log('req.body : ', req.body); // { post_id: 16 }
   const { user_id } = accessTokenData
 
   const userCheck = user.findOne({
@@ -19,6 +19,7 @@ module.exports = (req, res) => {
       where:{
         comment_user_id: user_id,
         // 댓글 내용으로 삭제 test
+        
       }
     })
   }
