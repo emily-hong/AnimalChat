@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
 // import NavBar from "./pages/0.navBar"
@@ -17,164 +17,211 @@ import MyPage from "./pages/9.myPage"
 import MyPageEdit from "./pages/10.myPageEdit"
 import PwdEditPage from "./pages/11-1.pwdEdit"
 
-
 import "./App.css"
 const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+    process.env.REACT_APP_URL ||
+    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
-  const [accessToken, setAccessToken] = useState(null)
-  const [isLogin, setIsLogin] = useState(false)
-  const [curAnimal, setCurAnimal] = useState("home")
-  const [userinfo, setUserinfo] = useState(null)
-  console.log('App.js의 userinfo : ', userinfo)
-  const [postList, setPostList] = useState([])
-  const [curPost, setCurPost] = useState("")
-  const history = useHistory()
+    const [accessToken, setAccessToken] = useState(null)
+    const [isLogin, setIsLogin] = useState(false)
+    const [curAnimal, setCurAnimal] = useState("home")
+    const [userinfo, setUserinfo] = useState("")
+    console.log("App.js의 userinfo : ", userinfo)
+    const [postList, setPostList] = useState([])
+    const [curPost, setCurPost] = useState("")
+    const history = useHistory()
 
-  async function curPostRead(post) {
-    await setCurPost(post)
-    history.push("/readpost")
-  }
-
-  function loginFunc(tk) {
-    // setIsLogin(!isLogin)
-    console.log(accessToken)
-    setAccessToken(tk)
-    // setIsLogin(!isLogin)
-
-    authorization()
-  }
-  function SignUpFin() {
-    history.push("/")
-  }
-  function curAnimalChange(animaltype) {
-    setCurAnimal(animaltype)
-  }
-
-  function authorization() {
-    console.log("authorization")
-    axios({
-      url: url + "/auth",
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "Content-Type": "application/json",
-      },
-      withCredentials: true,
-    })
-      .then((res) => {
-        // console.log(res)
-        setUserinfo(res.data.data.userInfo)
-      })
-      .then((res2) => {
-        setIsLogin(true)
-        history.push("/mainpage")
-      })
-  }
-  function getPostList(data) {
-    function date_descending(a, b) {
-      var dateA = new Date(a["updatedAt"]).getTime()
-      var dateB = new Date(b["updatedAt"]).getTime()
-      return dateA < dateB ? 1 : -1
+    function curPostRead(post) {
+        console.log("이녀석은 언제 실행됨?")
+        setCurPost(post)
+        history.push("/readpost")
     }
-    setPostList(data.sort(date_descending))
-  }
 
-  return (
-    <>
-      <div className="entire">
-        <Switch>
-          <Route exact path="/firstpage">
-            <FirstPage isLogin={isLogin} loginFunc={loginFunc} />
-          </Route>
-          <Route exact path="/signup">
-            <Signup SignUpFin={SignUpFin} />
-          </Route>
-          <Route exact path="/mainpage">
-            <MainPage
-              curAnimalChange={curAnimalChange}
-              getPostList={getPostList}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route exact path="/board/hamster">
-            <Hamster
-              curAnimalChange={curAnimalChange}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route exact path="/board/chick">
-            <Chick
-              curAnimalChange={curAnimalChange}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route exact path="/board/parrot">
-            <Parrot
-              curAnimalChange={curAnimalChange}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route exact path="/board/rabbit">
-            <Rabbit
-              curAnimalChange={curAnimalChange}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route exact path="/board/hedgehog">
-            <Hedgehog
-              curAnimalChange={curAnimalChange}
-              postList={postList}
-              curPostRead={curPostRead}
-              curAnimal={curAnimal}
-            />
-          </Route>
-          <Route path="/post">
-            <Post curAnimal={curAnimal} userinfo={userinfo} />
-          </Route>
-          <Route path="/editpost">
-            <PostEdit
-              curAnimal={curAnimal}
-              userinfo={userinfo}
-              curPost={curPost}
-            />
-          </Route>
-          <Route path="/readpost">
-            <PostRead curPost={curPost} userinfo={userinfo} />
-          </Route>
-          <Route path="/mypage">
-            <MyPage userinfo={userinfo} />
-          </Route>
+    function loginFunc(tk) {
+        // setIsLogin(!isLogin)
+        // console.log(accessToken)
+        // setAccessToken(tk)
+        setIsLogin(true)
 
-          <Route path="/editmypage">
-            <MyPageEdit />
-          </Route>
-          <Route path="/editpw">
-            <PwdEditPage />
-          </Route>
+        // authorization()
+    }
+    function SignUpFin() {
+        history.push("/")
+    }
+    function curAnimalChange(animaltype) {
+        setCurAnimal(animaltype)
+    }
 
-          <Route path="/">
-            {isLogin ? (
-              <Redirect to="/mainpage" />
-            ) : (
-              <Redirect to="/firstpage" />
-            )}
-          </Route>
-        </Switch>
-      </div>
-    </>
-  )
+    // function authorization() {
+    //     console.log("authorization")
+    //     axios({
+    //         url: url + "/auth",
+    //         method: "get",
+    //         headers: {
+    //             Authorization: `Bearer ${accessToken}`,
+    //             "Content-Type": "application/json",
+    //         },
+    //         withCredentials: true,
+    //     })
+    //         .then((res) => {
+    //             console.log(res)
+    //             setUserinfo(res.data.data.userInfo)
+    //         })
+    //         .then((res2) => {
+    //             setIsLogin(true)
+    //             history.push("/")
+    //         })
+    //     // localStorage.setItem("accessToken", JSON.stringify(accessToken))
+    // }
+    function getPostList(data) {
+        function date_descending(a, b) {
+            var dateA = new Date(a["updatedAt"]).getTime()
+            var dateB = new Date(b["updatedAt"]).getTime()
+            return dateA < dateB ? 1 : -1
+        }
+        setPostList(data.sort(date_descending))
+    }
+
+    useEffect(() => {
+        console.log("여기 몇번 들어오는건데 대체?")
+        if (localStorage.getItem("accessToken")) {
+            axios({
+                url: url + "/auth",
+                method: "get",
+                headers: {
+                    authorization: `token ${JSON.parse(
+                        localStorage.getItem("accessToken")
+                    )}`,
+                },
+            }).then((res) => {
+                setIsLogin(true)
+                setUserinfo(res.data.data.userInfo)
+                history.push("/")
+            })
+        }
+    }, [localStorage.getItem("accessToken")])
+
+    return (
+        <>
+            {/* <NavBar /> */}
+            <div className="entire">
+                <Switch>
+                    <Route exact path="/firstpage">
+                        <FirstPage isLogin={isLogin} loginFunc={loginFunc} />
+                    </Route>
+                    <Route exact path="/signup">
+                        <Signup SignUpFin={SignUpFin} />
+                    </Route>
+                    <Route exact path="/mainpage">
+                        <MainPage
+                            curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route exact path="/board/hamster">
+                        <Hamster
+                            curAnimalChange={curAnimalChange}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route exact path="/board/chick">
+                        <Chick
+                            curAnimalChange={curAnimalChange}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route exact path="/board/parrot">
+                        <Parrot
+                            curAnimalChange={curAnimalChange}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route exact path="/board/rabbit">
+                        <Rabbit
+                            curAnimalChange={curAnimalChange}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route exact path="/board/hedgehog">
+                        <Hedgehog
+                            curAnimalChange={curAnimalChange}
+                            postList={postList}
+                            curPostRead={curPostRead}
+                            curAnimal={curAnimal}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route path="/post">
+                        <Post
+                            curAnimal={curAnimal}
+                            userinfo={userinfo}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route path="/postedit">
+                        <PostEdit
+                            curAnimal={curAnimal}
+                            userinfo={userinfo}
+                            curPost={curPost}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+                    <Route path="/postread">
+                        <PostRead curPost={curPost} userinfo={userinfo} />
+                    </Route>
+                    <Route path="/mypage">
+                        <MyPage
+                            userinfo={userinfo}
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+
+                    <Route path="/mypageedit">
+                        <MyPageEdit />
+                    </Route>
+                    <Route path="/pwdedit">
+                        <PwdEditPage
+                            setIsLogin={setIsLogin}
+                            setUserinfo={setUserinfo}
+                        />
+                    </Route>
+
+                    <Route path="/">
+                        {isLogin ? (
+                            <Redirect to="/mainpage" />
+                        ) : (
+                            <Redirect to="/firstpage" />
+                        )}
+                    </Route>
+                </Switch>
+            </div>
+        </>
+    )
 }
 export default App

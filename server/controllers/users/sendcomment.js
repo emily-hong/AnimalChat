@@ -9,5 +9,5 @@ module.exports = async (req, res) => {
     comment_content: req.body.comment_content,
   })
 
-  res.status(205).send("OK")
+    res.status(205).send("OK")
 }
