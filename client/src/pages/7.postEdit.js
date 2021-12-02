@@ -16,13 +16,12 @@ const Body = styled.div`
 `
 
 const ContentBox = styled.div`
-    padding: 2rem;
-    width: 90vw;
-    height: inherit;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    // border: 1px solid blue;
+  padding: 2rem;
+  width: 90vw;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const PhotoBox = styled.div`
@@ -55,19 +54,17 @@ const TitlePostDiv = styled.div`
 
 // 사진 업로드 버튼들
 const TitlePostDiv2 = styled.div`
-    // border: 1px solid yellow;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffb83e;
-    margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffb83e;
+  margin-top: 5rem;
 `
 const TitlePostDiv3 = styled.form`
-    // border: 1px solid gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const TitlePostDiv4 = styled.div`

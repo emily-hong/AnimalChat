@@ -1,14 +1,13 @@
 const { comment } = require("../../models")
 
 module.exports = async (req, res) => {
-  //   console.log(req.body)
+  // console.log("commentlist : ",req.body) // { post_id: 16, comment_user_id: 'hong123' }
   let commetList = await comment.findAll({
     where: {
-      post_id: req.body.post_id,
-      //   comment_user_id: req.body.comment_user_id,
+      post_id: req.body.post_id,  // 해당게시물의 아이디
+      // comment_user_id: req.body.comment_user_id,
     },
   })
-  //   console.log(commetList)
-
+  // console.log("commentList : ", commetList)
   res.send(commetList)
 }

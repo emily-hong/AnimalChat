@@ -27,7 +27,7 @@ function App() {
     const [isLogin, setIsLogin] = useState(false)
     const [curAnimal, setCurAnimal] = useState("home")
     const [userinfo, setUserinfo] = useState("")
-    console.log(userinfo)
+    console.log("App.js의 userinfo : ", userinfo)
     const [postList, setPostList] = useState([])
     const [curPost, setCurPost] = useState("")
     const history = useHistory()
