@@ -10,12 +10,6 @@ module.exports = {
       },
       comment_user_id: {
         type: Sequelize.STRING,
-<<<<<<< HEAD:server/migrations/20211013052816-create-comment.js
-      },
-      post_id: {
-        type: Sequelize.STRING
-=======
->>>>>>> Dev:server/migrations/20211011065347-create-comment.js
       },
       comment_content: {
         type: Sequelize.STRING,
