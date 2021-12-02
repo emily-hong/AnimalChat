@@ -130,7 +130,7 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
       console.log('추가!')
 
       axios({
-        url : url + "/userinfochange",
+        url : url + "/edituserinfo",
         method: "post",
         data: animalInfo
       })

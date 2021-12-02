@@ -161,7 +161,7 @@ export default function MyPageSection(props) {
 
   function pwdChange(click) {
     setPwdEdit(!click)
-    history.push("/pwdedit")
+    history.push("/editpwd")
   }
 
   function closeRemoveModal() {
@@ -172,7 +172,7 @@ export default function MyPageSection(props) {
 
   const removeInfomation = () => {
     axios({
-      url: url + "/userremove",
+      url: url + "/removeuser",
       method: "delete",
       withCredentials: true,
     }).then((res) => {

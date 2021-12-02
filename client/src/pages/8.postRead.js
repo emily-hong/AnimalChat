@@ -165,7 +165,7 @@ export default function PostRead(props) {
   function editPostButton(event) {
     // history.push("/postedit")
     axios({
-      url: url + "/postedit",
+      url: url + "/editpost",
       method: "post",
       data: {
         post_id: props.curPost.id, //클릭한 포스트 id 
@@ -182,7 +182,7 @@ export default function PostRead(props) {
       if(res.data === "게시물 작성자가 아닙니다."){
         history.push("/mainpage")
       }else{
-        history.push("/postedit")
+        history.push("/editpost")
       }
     })
     setEdit(true)
@@ -199,7 +199,7 @@ export default function PostRead(props) {
     // 데이터베이스 게시물 삭제
     if (window.confirm("게시물을 삭제하시겠습니까?")) {
       axios({
-        url: url + "/postdelete",
+        url: url + "/deletepost",
         method: "delete",
         withCredentials: true
       })
@@ -222,7 +222,7 @@ export default function PostRead(props) {
   // 댓글작성 버튼
   function handleButtonClick() {
     axios({
-      url: url + "/commentsend",
+      url: url + "/sendcomment",
       method: "post",
       data: {
         post_id: props.curPost.id,
@@ -257,7 +257,7 @@ export default function PostRead(props) {
   const deleteComment = (event) => {
     if(window.confirm("댓글을 삭제하시겠습니까?")){
       axios({
-        url: url + '/commentdelete',
+        url: url + '/deletecomment',
         method: "delete",
         withCredentials: true,
       })

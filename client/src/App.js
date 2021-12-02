@@ -35,7 +35,7 @@ function App() {
 
   async function curPostRead(post) {
     await setCurPost(post)
-    history.push("/postread")
+    history.push("/readpost")
   }
 
   function loginFunc(tk) {
@@ -144,24 +144,24 @@ function App() {
           <Route path="/post">
             <Post curAnimal={curAnimal} userinfo={userinfo} />
           </Route>
-          <Route path="/postedit">
+          <Route path="/editpost">
             <PostEdit
               curAnimal={curAnimal}
               userinfo={userinfo}
               curPost={curPost}
             />
           </Route>
-          <Route path="/postread">
+          <Route path="/readpost">
             <PostRead curPost={curPost} userinfo={userinfo} />
           </Route>
           <Route path="/mypage">
             <MyPage userinfo={userinfo} />
           </Route>
 
-          <Route path="/mypageedit">
+          <Route path="/editmypage">
             <MyPageEdit />
           </Route>
-          <Route path="/pwdedit">
+          <Route path="/editpw">
             <PwdEditPage />
           </Route>
 
