@@ -199,7 +199,7 @@ export const Post = (props) => {
             // 제목, 내용 작성했을 때
             console.log("작성완료 쪽")
             axios({
-                url: url + "/postsend",
+                url: url + "/sendpost",
                 method: "post",
                 data: {
                     user_id: props.userinfo.user_id,
@@ -235,7 +235,7 @@ export const Post = (props) => {
         formData.append("img", photo)
         console.log(formData)
         axios
-            .post(url + "/postsend", formData, {
+            .post(url + "/sendpost", formData, {
                 "Content-Type": "application/json",
                 withCredentials: true,
             })

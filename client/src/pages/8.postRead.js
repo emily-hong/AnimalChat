@@ -156,10 +156,37 @@ export default function PostRead(props) {
     // title - 수정버튼 : history.push
     //console.log(props.curPost)
     // console.log(props)
+    const [edit, setEdit] = useState(false)
     const history = useHistory()
+
     function editPostButton(event) {
-        history.push("/postedit")
+        axios({
+            url: url + "/editpost",
+            method: "post",
+            data: {
+              post_id: props.curPost.id, //클릭한 포스트 id 
+              user_id: props.userinfo.user_id, //현재접속한 유저정보
+              post_title:  props.curPost.post_title, 
+              post_img:  props.curPost.post_img,
+              post_content:  props.curPost.post_content
+            },
+            withCredentials: true
+          })
+          .then((res) => {
+            //console.log(res.data)
+            alert(res.data)
+            if(res.data === "게시물 작성자가 아닙니다."){
+              history.push("/mainpage")
+            }else{
+              history.push("/editpost")
+            }
+          })
+          setEdit(true)
     }
+
+
+
+
     useEffect(() => {
         handleButtonClick2()
     }, [])
@@ -169,7 +196,7 @@ export default function PostRead(props) {
         // 데이터베이스 게시물 삭제
         if (window.confirm("게시물을 삭제하시겠습니까?")) {
             axios({
-                url: url + "/postdelete",
+                url: url + "/deletepost",
                 method: "delete",
                 withCredentials: true,
             }).then(() => {
@@ -194,7 +221,7 @@ export default function PostRead(props) {
     // 댓글작성 버튼
     function handleButtonClick() {
         axios({
-            url: url + "/commentsend",
+            url: url + "/sendcomment",
             method: "post",
             data: {
                 post_id: props.curPost.id,
@@ -229,7 +256,7 @@ export default function PostRead(props) {
     const deleteComment = (event) => {
         if (window.confirm("댓글을 삭제하시겠습니까?")) {
             axios({
-                url: url + "/commentdelete",
+                url: url + "/deletecomment",
                 method: "delete",
                 data: {
                     // 해당댓글삭제
