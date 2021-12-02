@@ -1,29 +1,32 @@
 const { user, post } = require("../../models")
 const { isAuthorized } = require('../tokenFunc');
 
-module.exports = (req, res) => {
-//  console.log(req.body)
+module.exports = async(req, res) => { 
+//console.log("server/deletepost-----", req.body)
 const accessTokenData = isAuthorized(req)
+//console.log(accessTokenData)
+const { post_id } = req.body
 const { user_id } = accessTokenData
 
-const userCheck = user.findOne({
-    where: {
-        user_id: user_id
-    }
-})
-
-if(!userCheck){
-  res.status(401).send('게시물을 삭제할 수 없습니다.')
+if(!accessTokenData){
+  return res.status(401).send("로그인 정보를 확인해주세요.")
 }
 else{
-  post.destroy({
-  where: {
-    user_id: user_id
+  const checkUser = await post.findOne({
+    where: {
+      user_id: user_id,
+      id: post_id
+    }
+  })
+  if(!checkUser){
+    res.send("게시물 작성자가 아닙니다.")
+  }else{
+    post.destroy({
+      where: {
+        id: post_id
+      }
+    })
+    res.send("삭제완료")
+    }
   }
-})
-res.status(205).send()
-}
-
-// //res.send()
-// res.status(205).send()
 };
