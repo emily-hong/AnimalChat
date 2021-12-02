@@ -183,6 +183,7 @@ export default function PostRead(props) {
     const backButtonHandler = () => {
         history.goBack()
         history.goBack()
+        // history.goBack()
     }
 
     // 댓글
