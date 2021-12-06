@@ -45,7 +45,18 @@ const PhotoBox = styled.div`
     background-color: #ececec;
     font-size: 30px;
     color: palevioletred;
-    border: 1px solid #b5b5b5;
+    // border: 1px solid #b5b5b5;
+`
+const PhotoBoxZone = styled.img`
+    // min-width: 300px;
+    // width: 30vh;
+    // height: 30vh;
+    max-width: 100%;
+
+    // background-color: #ececec;
+    // font-size: 30px;
+    // color: palevioletred;
+    // border: 1px solid #b5b5b5;
 `
 
 const PhotoUploadWarning = styled.div`
@@ -267,10 +278,13 @@ export const Post = (props) => {
                     onSubmit={onSubmit}
                     className="photoUploadSection"
                 >
-                    <PhotoBox>
+                    <PhotoBox className="photoBox">
                         {uploadedImg ? (
                             <div className="uploadedImage">
-                                <img src={uploadedImg.filePath} alt="" />
+                                <PhotoBoxZone
+                                    src={uploadedImg.filePath}
+                                    alt=""
+                                />
                                 {/* <h3>{uploadedImg.fileName}</h3> */}
                             </div>
                         ) : (

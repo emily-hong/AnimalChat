@@ -32,8 +32,8 @@ const PostReadSection = styled.div`
 
     & .postPic {
         width: 50vw;
-        height: 50vw;
-        border: 1px solid grey;
+        // height: 50vw;
+        // border: 1px solid grey;
     }
 
     & .postContent {
@@ -164,28 +164,24 @@ export default function PostRead(props) {
             url: url + "/editpost",
             method: "post",
             data: {
-              post_id: props.curPost.id, //클릭한 포스트 id 
-              user_id: props.userinfo.user_id, //현재접속한 유저정보
-              post_title:  props.curPost.post_title, 
-              post_img:  props.curPost.post_img,
-              post_content:  props.curPost.post_content
+                post_id: props.curPost.id, //클릭한 포스트 id
+                user_id: props.userinfo.user_id, //현재접속한 유저정보
+                post_title: props.curPost.post_title,
+                post_img: props.curPost.post_img,
+                post_content: props.curPost.post_content,
             },
-            withCredentials: true
-          })
-          .then((res) => {
+            withCredentials: true,
+        }).then((res) => {
             //console.log(res.data)
             alert(res.data)
-            if(res.data === "게시물 작성자가 아닙니다."){
-              history.push("/mainpage")
-            }else{
-              history.push("/editpost")
+            if (res.data === "게시물 작성자가 아닙니다.") {
+                history.push("/mainpage")
+            } else {
+                history.push("/editpost")
             }
-          })
-          setEdit(true)
+        })
+        setEdit(true)
     }
-
-
-
 
     useEffect(() => {
         handleButtonClick2()
@@ -279,7 +275,9 @@ export default function PostRead(props) {
         setContentMsg(event.target.value)
     }
     // console.log('댓글배열 : ', cotentList)
-
+    const PhotoBoxZone = styled.img`
+        max-width: 100%;
+    `
     return (
         <Outer>
             {/* 내사진, 제목, 날짜, 버튼 */}
@@ -311,7 +309,7 @@ export default function PostRead(props) {
 
                     {/* 게시물 사진 */}
                     <div className="postPic">
-                        <img
+                        <PhotoBoxZone
                             className="picture"
                             src={url + props.curPost.post_img}
                             alt="게시물 사진"
@@ -328,7 +326,7 @@ export default function PostRead(props) {
                         className="backButton"
                         onClick={backButtonHandler}
                     >
-                        home
+                        Back
                     </BackButton>
                 </PostReadSection>
                 {/* 댓글 작성 */}

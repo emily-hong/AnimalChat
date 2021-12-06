@@ -146,6 +146,12 @@ const LoginButtons = styled.div`
         background-color: #ea4335;
     }
 `
+const IconPhoto = styled.img`
+    width: 100px;
+`
+const IconPhoto2 = styled.img`
+    width: 50px;
+`
 
 axios.defaults.withCredentials = true
 const url =
@@ -211,7 +217,11 @@ export const FirstPage = (props) => {
 
     return (
         <Container>
-            <Header>Animal Chat 🐣</Header>
+            <Header>
+                Animal Chat
+                <IconPhoto src="img/image3.png" />
+            </Header>
+
             <div>
                 <SigninBtn onClick={openSignInModalHandler}>로그인</SigninBtn>
                 <SigninBtn onClick={signup}>회원가입</SigninBtn>
@@ -222,7 +232,10 @@ export const FirstPage = (props) => {
                     <SignInModalContainer>
                         <SignInModalBackdrop>
                             <SignInModalView>
-                                <h1>Animal Chat🐣</h1>
+                                <h1>
+                                    Animal Chat
+                                    <IconPhoto2 src="img/image3.png" />
+                                </h1>
 
                                 <SignInModalForm>
                                     <InputSet className="inputSection">
