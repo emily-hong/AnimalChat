@@ -16,7 +16,7 @@ export default function MyPage({ userinfo, setUserinfo, setIsLogin }) {
         method: "get",
         withCredentials: true,
     }).then((res) => {
-        // console.log(res)
+        //console.log(res)
         // setUserAnimalInfo(res)
     })
     return (
