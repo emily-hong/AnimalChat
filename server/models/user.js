@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       models.user.hasMany(models.animal, {foreignKey: "userId", sourceKey: "id"})
       models.user.hasMany(models.comment, {foreignKey: "comment_user_id", sourceKey: "user_id"})
       models.user.hasMany(models.post, {foreignKey: "user_id", sourceKey: "user_id"})
+      models.user.hasMany(models.like, {foreignKey: "id", sourceKey: "user_id"})
     }
   }
   user.init(
