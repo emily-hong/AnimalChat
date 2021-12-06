@@ -210,8 +210,6 @@ export default function PostRead(props) {
     const backButtonHandler = () => {
         history.goBack()
         history.goBack()
-        // history.goBack()
-        // history.goBack()
     }
 
     // 댓글
@@ -253,9 +251,8 @@ export default function PostRead(props) {
     }
 
     // 댓글 삭제 (해당 유저 아이디만, )
-    const deleteComment = (event) => {
-        // console.log("props.curPost : ", props.curPost);
-        console.log("삭제버튼 누를시 target : ", event.target);
+    const deleteComment = (commentId) => {
+        // console.log("삭제버튼 누를시 target : ", commentId);
         if (window.confirm("댓글을 삭제하시겠습니까?")) {
             axios({
                 url: url + "/deletecomment",
@@ -263,21 +260,19 @@ export default function PostRead(props) {
                 data: {
                     // 해당댓글삭제 , 포스트게시물id, 
                     post_id: props.curPost.id, // 게시물 아이디
-                    // 해당 댓글의 내용(comment_content) 또는
                     // 댓글 id로 삭제
-                    
-                    
-
+                    comment_id: commentId,
                 },
                 withCredentials: true,
             })
-                .then(() => {
-                    history.push("/mainpage")
-                    history.goBack()
-                })
-                .then(() => {
-                    console.log("contentList : ", contentList)
-                })
+            .then(() => {
+                history.push("/mainpage")
+                history.goBack()
+                // event.preventDefault()
+                // history.push("/")
+                // history.push("/postread")
+
+            })
         }
     }
 
