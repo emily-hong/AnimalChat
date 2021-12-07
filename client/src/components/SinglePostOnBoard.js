@@ -31,7 +31,7 @@ const StyledTitlePreview = styled.div`
     padding: 0.25rem;
     font-size: 0.9rem;
     color: #424242;
-    }
+
     & p {
         padding: 0.25rem;
         font-size: 0.9rem;

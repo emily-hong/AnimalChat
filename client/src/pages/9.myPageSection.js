@@ -76,6 +76,7 @@ const AddAnimalModalBackDrop = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 `
+// 모달창
 const AddAnimalModalView = styled.div`
     display: flex;
     flex-direction: column;
@@ -84,7 +85,7 @@ const AddAnimalModalView = styled.div`
     background-color: #feefd5;
     min-width: 400px;
     width: 19vw;
-    height: 20vw;
+    height: 30vw;
 
     & h3 {
         font-size: 1.5rem;
@@ -127,11 +128,11 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPageSection(props) {
-    console.log(props.userAnimalinfo)
-    console.log(Array.isArray(props.userAnimalinfo))
+    // console.log(props.userAnimalinfo)
+    // console.log(Array.isArray(props.userAnimalinfo))
 
     const infoAnimal = props.userinfo
-    console.log("마이페이지 animalInfo : ", infoAnimal)
+    // console.log("마이페이지 animalInfo : ", infoAnimal)
 
     const [isOpen, setIsOpen] = useState(false)
     const [removeUsers, setremoveUsers] = useState(false)
@@ -151,7 +152,7 @@ export default function MyPageSection(props) {
     }, [])
 
     function addAnimal() {
-        console.log("동물추가버튼")
+        // console.log("동물추가버튼")
         setIsOpen(!isOpen)
     }
 
@@ -181,7 +182,7 @@ export default function MyPageSection(props) {
         })
     }
 
-    // 모달창 닫히는 함수
+    // 동물추가 후 모달창 닫히는 함수
     const addButtonHandler = () => {
         // console.log('addButtonHandler 함수실행')
         setIsOpen(false)
@@ -190,6 +191,10 @@ export default function MyPageSection(props) {
     const renderreset = () => {
         history.push("/")
         history.push("/mypage")
+    }
+    // 추가 취소
+    const cancleButton = () => {
+        setIsOpen(false)
     }
 
     return (
@@ -221,6 +226,7 @@ export default function MyPageSection(props) {
                             <AddAnimalInfo
                                 infoAnimal={infoAnimal}
                                 addButtonHandler={addButtonHandler}
+                                cancleButton={cancleButton}
                             >
                                 나는 모달
                             </AddAnimalInfo>

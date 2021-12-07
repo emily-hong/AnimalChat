@@ -5,7 +5,7 @@ import React, { useEffect } from "react" // useState
 
 export default function Hamster(props) {
     useEffect(() => {
-        console.log("햄스터게시판")
+        // console.log("햄스터게시판")
         props.curAnimalChange("hamster")
     }, [])
 

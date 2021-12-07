@@ -148,6 +148,12 @@ const BackButton = styled.button`
     margin: 1rem;
     padding: 0.8rem;
 `
+
+// console.log('댓글배열 : ', cotentList)
+const PhotoBoxZone = styled.img`
+    max-width: 100%;
+`
+
 const url =
     process.env.REACT_APP_URL ||
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -269,15 +275,16 @@ export default function PostRead(props) {
                 },
                 withCredentials: true,
             })
-            .then(() => {
+            .then((res) => {
+                // 추후 수정 필요 12/06
                 history.push("/mainpage")
-                history.goBack()
-                // event.preventDefault()
-                // history.push("/")
-                // history.push("/postread")
-
+                history.goBack();
+                // history.goForward()
             })
         }
+    }
+    function deleteComment2(){
+
     }
 
     // 댓글내용
@@ -285,10 +292,7 @@ export default function PostRead(props) {
         setContentMsg(event.target.value)
     }
 
-    // console.log('댓글배열 : ', cotentList)
-    const PhotoBoxZone = styled.img`
-        max-width: 100%;
-    `
+
 
     return (
         <Outer>
@@ -341,8 +345,8 @@ export default function PostRead(props) {
                         Back
                     </BackButton>
                 </PostReadSection>
-                {/* 댓글 작성 */}
 
+                {/* 댓글 작성 */}
                 <CommentSection>
                     <PostComment className="postComment">
                         <div>{props.userinfo.user_id} 댓글달기:</div>
