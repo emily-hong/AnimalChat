@@ -1,7 +1,8 @@
 const {user, comment} = require("../../models")
 const { isAuthorized } = require('../tokenFunc');
+const commentlist = require("../users/commentlist");
 
-module.exports = (req, res) => {
+module.exports = async(req, res) => {
   const accessTokenData = isAuthorized(req)
   console.log('req.body : ', req.body); // { post_id: 16 }
   const { user_id } = accessTokenData
@@ -24,5 +25,7 @@ module.exports = (req, res) => {
       }
     })
   }
+
+
   res.status(205).send()
 };

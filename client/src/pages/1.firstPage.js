@@ -208,6 +208,10 @@ export const FirstPage = (props) => {
                 alert("로그인 완료")
                 history.push("/")
             })
+            .catch((err) => {
+                console.log(err);
+                setErrMessage("아이디 또는 비밀번호를 확인하세요")
+            })
         }
     }
 
