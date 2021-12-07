@@ -38,6 +38,10 @@ const upload = multer({
     limits: { fileSize: 13 * 1024 * 1024 },
 })
 
+app.get("/", (req, res) => {
+    res.send("Hello World!")
+})
+
 //get
 app.get("/auth", controllers.auth)
 app.get("/postlist", controllers.postlist) //signin, signout, signup,
