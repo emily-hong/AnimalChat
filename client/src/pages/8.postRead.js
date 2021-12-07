@@ -163,9 +163,8 @@ const url =
 export default function PostRead(props) {
     // title - 수정버튼 : history.push
     //console.log(props.curPost)
-    // console.log(props)
+    console.log(props)
     const [edit, setEdit] = useState(false)
-
     const history = useHistory()
 
     function editPostButton(event) {
@@ -200,7 +199,7 @@ export default function PostRead(props) {
     const deletePostButton = (event) => {
         console.log(props)
         const token = JSON.parse(localStorage.getItem("accessToken"))
-        const postId = props.curPost.id
+        //const postId = props.curPost.id
         //console.log(token)
         axios({
             url: url + "/deletepost",
@@ -209,7 +208,7 @@ export default function PostRead(props) {
                 "Content-Type": "application/json",
                 Authorization: `token ${token}`
             },
-            data: { post_id: postId },
+            data: { post_id: props.curPost.id },
             withCredentials: true
         })
         .then((res) => {
@@ -286,28 +285,11 @@ export default function PostRead(props) {
             })
         }
     }
-    function deleteComment2(){
-
-    }
 
     // 댓글내용
     const handleChangeMsg = (event) => {
         setContentMsg(event.target.value)
     }
-
-
-
-    // const [like, setLike] = useState(false) //댓글 좋아요 
-
-    //댓글 좋아요 
-    // useEffect(() => {
-    //     handleButtonClick2()
-    // }, [])
-    
-    // const likeHandler = async(e) => {
-    //     console.log("like 버튼")
-    // }
-
 
 
 
