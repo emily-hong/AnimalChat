@@ -1,6 +1,14 @@
 import axios from "axios";
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
+import likes from "../../src/icon/like.png"
+import liked from "../../src/icon/liked.png"
+
+
+const Like = styled.img`
+    cursor: pointer;
+    color: #aaa;
+`
 
 const CommentContainer = styled.li`
   display: flex;
@@ -22,17 +30,51 @@ const CommentContainer = styled.li`
   }
 `;
 
-axios.defaults.withCredentials = true
+const url =
+    process.env.REACT_APP_URL ||
+    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+
+
+// const LikeBtn = ({ likes, onClick }) => {
+//     return (
+//       <Like src={ likes ? like : liked } onClick={onClick}></Like>
+//     )
+//   }
+
 
 const Comment = ({content, deleteComment, userinfo }) => {
-  // console.log(content)  // 댓글목록뜸
+  //console.log(content)  // 댓글목록뜸
   // console.log("userinfo : ", userinfo); // undefined
-  // const parsedDate = new Date(comment.createdAt).toLocaleTimeString("ko-kr")
+  //const parsedDate = new Date(comment.createdAt).toLocaleTimeString("ko-kr")
+
+  const [like, setLike] = useState(false)
+
+  const likeHandler = async(e) => {
+    //console.log("like 버튼")
+    //axios 작업 
+    axios({
+      url: url + "/like",
+      method: "post",
+      data: { user_id: content.comment_user_id, comment_id: content.id },
+      headers: {  "Content-Type": "application/json" },
+      withCredentials: true
+    })
+    .then((res) => {
+      console.log(res.data)
+      setLike(data => !data)
+    })
+  }
+
+  // useEffect(() => {
+  //   likeHandler()
+  // }, [])
+  
 
   return (
     <CommentContainer className="comment">
       <div className="comment__left">
         <p className= 'comment__userId'>{content.comment_user_id}</p>
+        <Like like={like} onClick={likeHandler} src={ like ? liked : likes }></Like>
         {/* <span className="comment__userId">{content.nickname}: </span> */}
         <div className="comment__content">{content.comment_content}</div>
       </div>
