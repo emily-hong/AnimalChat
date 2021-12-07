@@ -15,21 +15,25 @@ const Outer = styled.div`
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  padding: 1rem;
+  width: 350px;
+  /* padding: 1rem; */
+  border: 1px solid blue;
+  margin: 0 auto;
 `
 
 const PictureAndText = styled.div`
   display: flex;
+  border: 1px solid orange;
 `
-
+// 사진 div
 const PictureSpace = styled.div`
   display: flex;
   flex: 1.5;
   justify-content: center;
   align-items: center;
+  border: 1px solid red;
 `
-
+// 사진
 // TODO axios 요청 이후 - img태그로 바꾸고 배경색, border 빼기
 const RoundPicture = styled.div`
   box-sizing: content-box;
@@ -68,9 +72,9 @@ const Button = styled.button`
   margin: 1rem;
 `
 
-export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
+export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButton}) {
   const history = useHistory()
-  console.log('animalInfo : ', infoAnimal.user_id);
+  // console.log('animalInfo : ', infoAnimal.user_id);
 
   // console.log('AddAnimalInfo', props.props.userinfo);
   const [animalInfo, setAnimalInfo] = useState({
@@ -144,10 +148,17 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
     }
   }
   
+  const closeModal = () => {
+    cancleButton()
+  }
+
   return (
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
+          <PictureSpace>
+            <RoundPicture/>
+          </PictureSpace>
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
@@ -157,7 +168,9 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
                 {selectList.map((item) => (
                   <option value={item} key={item}>
                     {item}
-                    {console.log(Selected)}
+                    {
+                      // console.log(Selected)
+                    }
                   </option>
                 ))}
               </select>
@@ -185,6 +198,7 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
         <ButtonSpace>
           {/* TODO : 수정 페이지 Link, 라우팅 */}
           <Button onClick={addButton}>추가</Button>
+          <Button onClick={closeModal}>취소</Button>
         </ButtonSpace>
       </Outer>
     </div>
