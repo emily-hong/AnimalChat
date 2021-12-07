@@ -65,12 +65,16 @@ const Comment = ({content, deleteComment, userinfo }) => {
     })
   }
 
+  // useEffect(() => {
+  //   likeHandler()
+  // }, [])
+  
 
   return (
     <CommentContainer className="comment">
       <div className="comment__left">
         <p className= 'comment__userId'>{content.comment_user_id}</p>
-        <Like like={like} onClick={likeHandler} src={ like ? likes : liked }></Like>
+        <Like like={like} onClick={likeHandler} src={ like ? liked : likes }></Like>
         {/* <span className="comment__userId">{content.nickname}: </span> */}
         <div className="comment__content">{content.comment_content}</div>
       </div>
