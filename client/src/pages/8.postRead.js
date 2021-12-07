@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
+//import LikeBtn from "../components/like"
 
 // styled-component
 const Outer = styled.div`
@@ -148,6 +149,7 @@ const BackButton = styled.button`
     margin: 1rem;
     padding: 0.8rem;
 `
+
 const url =
     process.env.REACT_APP_URL ||
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
@@ -157,6 +159,7 @@ export default function PostRead(props) {
     //console.log(props.curPost)
     // console.log(props)
     const [edit, setEdit] = useState(false)
+
     const history = useHistory()
 
     function editPostButton(event) {
@@ -290,6 +293,20 @@ export default function PostRead(props) {
         max-width: 100%;
     `
 
+    // const [like, setLike] = useState(false) //댓글 좋아요 
+
+    //댓글 좋아요 
+    // useEffect(() => {
+    //     handleButtonClick2()
+    // }, [])
+    
+    // const likeHandler = async(e) => {
+    //     console.log("like 버튼")
+    // }
+
+
+
+
     return (
         <Outer>
             {/* 내사진, 제목, 날짜, 버튼 */}
@@ -357,14 +374,17 @@ export default function PostRead(props) {
 
                     {/* 댓글 목록 */}
                     <CommentList className="commentsList">
+                   
                         {contentList.map((content) => (
                             <Comment
-                                key={content.id}
+                                key={content.id} 
                                 content={content}
                                 deleteComment={deleteComment}
-                                />
+                            />
                         ))}
+                         {/* <LikeBtn like={like} onClick={likeHandler}></LikeBtn>  */}
                     </CommentList>
+                    {/* <LikeBtn like={like} onClick={likeHandler}></LikeBtn> */}
                 </CommentSection>
             </Contents>
         </Outer>

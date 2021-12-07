@@ -46,7 +46,7 @@ app.post("/commentlist", controllers.commentlist) // postlist -> commentlist 게
 
 //post
 app.post("/sendcomment", controllers.sendcomment) // postlist -> commentsend 게시글 볼 때 댓글 작성시(postRead.js)
-
+app.post("/like", controllers.like)
 app.post("/editpost", upload.single("img"), controllers.editpost) // postlist -> postedit 게시글 수정시(postEdit.js)
 app.post("/sendpost", upload.single("img"), controllers.sendpost) // postlist -> postsend 게시글 작성시(post.js)
 app.post("/editpw", controllers.editpw) // postlist -> pwchange 비밀번호 수정시(pwdEdit.js)

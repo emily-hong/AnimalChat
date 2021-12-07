@@ -37,6 +37,7 @@ export default function Posts({
     curPostRead,
 }) {
     console.log(postList)
+    // console.log(curAnimal)
 
     return (
         <div className="boards">

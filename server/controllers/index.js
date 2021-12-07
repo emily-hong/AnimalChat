@@ -11,6 +11,7 @@ module.exports = {
   signup: require("./users/signup"),
   userinfo: require("./users/userinfo"),
   edituserinfo: require("./users/edituserinfo"),
+  like: require("./users/like"),
   deletecomment: require("./del/deletecomment"),
   deletepost: require("./del/deletepost"),
   deleteanimal: require("./del/deleteanimal"),
