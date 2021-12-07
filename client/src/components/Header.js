@@ -49,6 +49,9 @@ const TitleArea = styled.div`
         font-size: 1.1rem;
     }
 `
+const IconPhoto = styled.img`
+    width: 40px;
+`
 
 const url =
     process.env.REACT_APP_URL ||
@@ -94,7 +97,10 @@ export default function Header(props) {
                 <TitleArea>
                     <Link to="/board">
                         <button>
-                            <h1 className="headerTitle">Animal Chat 🐣</h1>
+                            <h1 className="headerTitle">
+                                Animal Chat{" "}
+                                <IconPhoto src="../img/image3.png" alt="" />
+                            </h1>
                         </button>
                     </Link>
                     <h2 className="headerDesc">반려동물 집사 커뮤니티</h2>

@@ -14,7 +14,7 @@ const IdDisplay = styled.div`
     box-sizing: content-box;
     padding: 1rem;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 `
 
 const AnimalsList = styled.div`
@@ -122,6 +122,61 @@ const Buttos = styled.button`
     margin-right: 5rem;
     margin-top: 2rem;
 `
+const PhotoBoxAndIdDisplay = styled.div`
+    // height: 100%;
+    // width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`
+
+const PhotoBox = styled.img`
+    // max-height: 10%;
+    max-width: 35%;
+
+    // display: flex;
+    justify-content: center;
+    // border-radius: 50px;
+    border-radius: 100%;
+    border: 1px solid silver;
+`
+const PhotoBox2 = styled.div`
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    // border-radius: 50%;
+    // border-radius: 50px;
+    // border-radius: 10%;
+`
+const CameraImg = styled.label`
+    // max-width: 5%;
+    // width: 100px;
+    // height: 100px;
+    // position: absolute;
+    // bottom: 60%;
+    // left: 60%;
+
+    // z-index: 999999;
+    // justify-content: center;
+    // border-radius: 100%;
+    // border: 1px solid silver;
+`
+const CameraImg2 = styled.img`
+    max-width: 5%;
+    position: absolute;
+    bottom: 60%;
+    left: 60%;
+    background-color: white;
+    justify-content: center;
+    border-radius: 100%;
+    border: 1px solid silver;
+`
+// import asd from '../../public/img/image3'
+const FormInputTag = styled.input`
+    display: none;
+`
 
 const url =
     process.env.REACT_APP_URL ||
@@ -197,13 +252,59 @@ export default function MyPageSection(props) {
         setIsOpen(false)
     }
 
+    const [photo, setPhoto] = useState("")
+    const [uploadedImg, setUploadedImg] = useState({
+        fileName: null,
+        filePath: null,
+    })
+
+    const onSubmit = (e) => {
+        console.log("나는 서밋")
+
+        // e.preventDefault()
+        // const formData = new FormData()
+        // formData.append("img", photo)
+        // console.log(formData)
+        // axios
+        //     .post(url + "/sendpost", formData, {
+        //         "Content-Type": "application/json",
+        //         withCredentials: true,
+        //     })
+        //     .then((res) => {
+        //         const { fileName } = res.data
+        //         setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+        //         alert("사진을 성공적으로 업로드 하였습니다.")
+        //     })
+        //     .catch((err) => {
+        //         console.error(err)
+        //     })
+    }
+    // const inputTag = <FormInputTag type="file" />
+
     return (
         <Outer className="MyPageSection">
-            <div>사진</div>
-            <IdDisplay>
-                {/* TODO : axios 요청 -> 회원정보 -> id */}
-                <span>아이디 : {props.userinfo.user_id}</span>
-            </IdDisplay>
+            <PhotoBoxAndIdDisplay>
+                <PhotoBox2 onSubmit={onSubmit}>
+                    {props.userinfo.profilePhoto ? (
+                        <PhotoBox src="../" />
+                    ) : (
+                        <PhotoBox src="../img/image3.png" />
+                    )}
+                </PhotoBox2>
+                <PhotoBox2>
+                    <CameraImg for="fileId">
+                        <CameraImg2
+                            src="../img/camera.png"
+                            // onChange={form.submit()}
+                        />
+                    </CameraImg>
+                    <FormInputTag type="file" id="fileId"></FormInputTag>
+                </PhotoBox2>
+                <IdDisplay>
+                    {/* TODO : axios 요청 -> 회원정보 -> id */}
+                    <span>{props.userinfo.user_id}</span>
+                </IdDisplay>
+            </PhotoBoxAndIdDisplay>
             <AnimalsList>
                 {userAnimalinfo.length ? (
                     userAnimalinfo.map((animalcard) => {
