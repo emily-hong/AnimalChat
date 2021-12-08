@@ -11,9 +11,11 @@ module.exports = async (req, res) => {
         })
     }
 
+
     //const { user_id } = accessTokenData
     const { post_title, post_content } = req.body
     // // post_users의 id, post_id, userid, createdAt, updatedAt 가져와야함
+
 
     if (req.file) {
         res.send({

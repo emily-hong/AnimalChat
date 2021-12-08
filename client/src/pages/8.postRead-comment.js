@@ -43,7 +43,7 @@ const url =
 
 
 const Comment = ({content, deleteComment, userinfo }) => {
-  //console.log(content)  // 댓글목록뜸
+  console.log(content)  // 댓글목록뜸
   // console.log("userinfo : ", userinfo); // undefined
   //const parsedDate = new Date(comment.createdAt).toLocaleTimeString("ko-kr")
 
@@ -55,12 +55,12 @@ const Comment = ({content, deleteComment, userinfo }) => {
     axios({
       url: url + "/like",
       method: "post",
-      data: { user_id: content.comment_user_id, comment_id: content.id },
+      data: { user_id: content.comment_user_id, comment_id: content.id, post_id: content.post_id },
       headers: {  "Content-Type": "application/json" },
       withCredentials: true
     })
     .then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       setLike(data => !data)
     })
   }
@@ -69,13 +69,29 @@ const Comment = ({content, deleteComment, userinfo }) => {
   //   likeHandler()
   // }, [])
   
+  // const [likeList, setLikeList] = useState()
+  useEffect(() => {
+      axios({
+          url: url + "/readlike",
+          method: "post",
+          data: { user_id: content.comment_user_id, comment_id: content.id, post_id: content.post_id },
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res.data)
+        // setLike(data => !data)
+        if(res.data !== "댓글 좋아요 없음"){
+          setLike(!like)
+        }
+      })
+  }, [])
 
   return (
     <CommentContainer className="comment">
       <div className="comment__left">
         <p className= 'comment__userId'>{content.comment_user_id}</p>
         <Like like={like} onClick={likeHandler} src={ like ? liked : likes }></Like>
-        {/* <span className="comment__userId">{content.nickname}: </span> */}
         <div className="comment__content">{content.comment_content}</div>
       </div>
 
