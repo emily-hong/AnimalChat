@@ -53,6 +53,7 @@ app.post("/sendcomment", controllers.sendcomment) // postlist -> commentsend 게
 app.post("/like", controllers.like)
 app.post("/editpost", upload.single("img"), controllers.editpost) // postlist -> postedit 게시글 수정시(postEdit.js)
 app.post("/sendpost", upload.single("img"), controllers.sendpost) // postlist -> postsend 게시글 작성시(post.js)
+app.post("/profilephoto", upload.single("img"), controllers.profilephoto) // postlist -> postsend 게시글 작성시(post.js)
 app.post("/editpw", controllers.editpw) // postlist -> pwchange 비밀번호 수정시(pwdEdit.js)
 
 app.post("/signin", controllers.signin) // postlist -> signin 로그인시(signin.js)

@@ -8,7 +8,12 @@ const url =
     process.env.REACT_APP_URL ||
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-export default function MyPage({ userinfo, setUserinfo, setIsLogin }) {
+export default function MyPage({
+    userinfo,
+    setUserinfo,
+    setIsLogin,
+    newUserInfo,
+}) {
     // console.log(userinfo)
     const [userAnimalinfo, setUserAnimalInfo] = useState("")
     axios({
@@ -23,7 +28,7 @@ export default function MyPage({ userinfo, setUserinfo, setIsLogin }) {
         <div className="MyPage">
             <Header setUserinfo={setUserinfo} setIsLogin={setIsLogin} />
             <Navigation />
-            <MyPageSection userinfo={userinfo} />
+            <MyPageSection userinfo={userinfo} newUserInfo={newUserInfo} />
         </div>
     )
 }
