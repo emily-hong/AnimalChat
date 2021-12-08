@@ -102,6 +102,25 @@ function App() {
         }
     }, [localStorage.getItem("accessToken")])
 
+    //회원정보 수정시 프롭스 최신화
+    function newUserInfo() {
+        if (localStorage.getItem("accessToken")) {
+            axios({
+                url: url + "/auth",
+                method: "get",
+                headers: {
+                    authorization: `token ${JSON.parse(
+                        localStorage.getItem("accessToken")
+                    )}`,
+                },
+            }).then((res) => {
+                setIsLogin(true)
+                setUserinfo(res.data.data.userInfo)
+                // history.push("/")
+            })
+        }
+    }
+
     return (
         <>
             {/* <NavBar /> */}
@@ -199,6 +218,7 @@ function App() {
                             userinfo={userinfo}
                             setIsLogin={setIsLogin}
                             setUserinfo={setUserinfo}
+                            newUserInfo={newUserInfo}
                         />
                     </Route>
 

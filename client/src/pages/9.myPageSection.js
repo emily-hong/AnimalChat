@@ -122,7 +122,7 @@ const Buttos = styled.button`
     margin-right: 5rem;
     margin-top: 2rem;
 `
-const PhotoBoxAndIdDisplay = styled.div`
+const PhotoBoxAndIdDisplay = styled.form`
     // height: 100%;
     // width: 100%;
 
@@ -132,23 +132,26 @@ const PhotoBoxAndIdDisplay = styled.div`
 `
 
 const PhotoBox = styled.img`
-    // max-height: 10%;
-    max-width: 35%;
+    width: 100%;
+    height: 100%;
 
-    // display: flex;
+    display: flex;
     justify-content: center;
-    // border-radius: 50px;
-    border-radius: 100%;
+    border-radius: 50%;
     border: 1px solid silver;
 `
 const PhotoBox2 = styled.div`
     display: flex;
     justify-content: center;
-    position: relative;
-
+    // flex-direction: column;
+    // width: 200px;
+    // height: 200px;
     // border-radius: 50%;
-    // border-radius: 50px;
-    // border-radius: 10%;
+    // align-items: center;
+    // box-sizing: content-box;
+    // padding: 1rem;
+    // display: flex;
+    // justify-content: center;
 `
 const CameraImg = styled.label`
     // max-width: 5%;
@@ -164,14 +167,20 @@ const CameraImg = styled.label`
     // border: 1px solid silver;
 `
 const CameraImg2 = styled.img`
-    max-width: 5%;
-    position: absolute;
-    bottom: 60%;
-    left: 60%;
+    // max-width: 5%;
+    width: 100px;
+
+    // position: absolute;
+    // bottom: 60%;
+    // left: 60%;
     background-color: white;
-    justify-content: center;
+    // justify-content: center;
     border-radius: 100%;
     border: 1px solid silver;
+`
+const DivTag = styled.div`
+    // align-items: center;
+    align-items: center;
 `
 // import asd from '../../public/img/image3'
 const FormInputTag = styled.input`
@@ -257,53 +266,87 @@ export default function MyPageSection(props) {
         fileName: null,
         filePath: null,
     })
+    const [formBox, setformBox] = useState("")
 
-    const onSubmit = (e) => {
-        console.log("나는 서밋")
+    useEffect(() => {
+        // onSubmit()
+        console.log(photo)
+        const formData = new FormData()
+        formData.append("img", photo)
+        formData.append("user_id", props.userinfo.user_id)
 
-        // e.preventDefault()
-        // const formData = new FormData()
-        // formData.append("img", photo)
-        // console.log(formData)
-        // axios
-        //     .post(url + "/sendpost", formData, {
-        //         "Content-Type": "application/json",
-        //         withCredentials: true,
-        //     })
-        //     .then((res) => {
-        //         const { fileName } = res.data
-        //         setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
-        //         alert("사진을 성공적으로 업로드 하였습니다.")
-        //     })
-        //     .catch((err) => {
-        //         console.error(err)
-        //     })
+        setformBox(formData)
+    }, [photo])
+    useEffect(() => {
+        // onSubmit()
+        console.log(formBox)
+        if (formBox !== "") {
+            axios
+                .post(url + "/profilephoto", formBox, {
+                    "Content-Type": "application/json",
+                    withCredentials: true,
+                })
+                .then((res) => {
+                    const { fileName } = res.data
+                    setUploadedImg({
+                        fileName,
+                        filePath: `${url}/img/${fileName}`,
+                    })
+                    props.newUserInfo()
+                    alert("사진을 성공적으로 업로드 하였습니다.")
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
+        }
+    }, [formBox])
+
+    const addFile = async (e) => {
+        console.log(e.target.files[0])
+        await setPhoto(e.target.files[0])
     }
-    // const inputTag = <FormInputTag type="file" />
+    useEffect(() => {
+        setUploadedImg({
+            fileName: props.userinfo.profilePhoto,
+            filePath: `${url}/img/${props.userinfo.profilePhoto}`,
+        })
+    }, [])
 
     return (
         <Outer className="MyPageSection">
             <PhotoBoxAndIdDisplay>
-                <PhotoBox2 onSubmit={onSubmit}>
-                    {props.userinfo.profilePhoto ? (
-                        <PhotoBox src="../" />
+                <PhotoBox2 className="PhotoBox2">
+                    {uploadedImg ? (
+                        // <DivTag>
+                        <PhotoBox
+                            className="PhotoBox1-1"
+                            src={uploadedImg.filePath}
+                        />
                     ) : (
-                        <PhotoBox src="../img/image3.png" />
+                        // </DivTag>
+                        // <DivTag>
+
+                        <PhotoBox
+                            className="PhotoBox1-2"
+                            src="../img/image3.png"
+                        />
+                        // </DivTag>
                     )}
                 </PhotoBox2>
                 <PhotoBox2>
-                    <CameraImg for="fileId">
-                        <CameraImg2
-                            src="../img/camera.png"
-                            // onChange={form.submit()}
-                        />
+                    <CameraImg htmlFor="fileId">
+                        <CameraImg2 src="../img/camera.png" />
                     </CameraImg>
-                    <FormInputTag type="file" id="fileId"></FormInputTag>
                 </PhotoBox2>
                 <IdDisplay>
                     {/* TODO : axios 요청 -> 회원정보 -> id */}
                     <span>{props.userinfo.user_id}</span>
                 </IdDisplay>
+                <FormInputTag
+                    type="file"
+                    id="fileId"
+                    onChange={addFile}
+                ></FormInputTag>
             </PhotoBoxAndIdDisplay>
             <AnimalsList>
                 {userAnimalinfo.length ? (
