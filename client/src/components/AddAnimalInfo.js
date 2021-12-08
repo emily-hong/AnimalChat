@@ -26,8 +26,8 @@ const PictureAndText = styled.div`
   border: 1px solid orange;
 `
 // 사진 div
-const PictureSpace = styled.div`
-  display: flex;
+const PictureSpace = styled.form`
+  display: block;
   flex: 1.5;
   justify-content: center;
   align-items: center;
@@ -72,6 +72,15 @@ const Button = styled.button`
   margin: 1rem;
 `
 
+const PhotoSelectBtn = styled.input`
+  border: 1px solid red;
+  width: 100%;
+`
+
+const PhotoUpLoadBtn = styled.button`
+  border: 1px solid red;
+`
+
 export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButton}) {
   const history = useHistory()
   // console.log('animalInfo : ', infoAnimal.user_id);
@@ -80,12 +89,12 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
   const [animalInfo, setAnimalInfo] = useState({
     userId: infoAnimal.user_id,
     animalName: "",
-    animalYob: ""
+    animalYob: "",
   })
 
   const {
     animalName,
-    animalYob
+    animalYob,
   } = animalInfo
 
   // 반려동물 type 선택
@@ -125,7 +134,34 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
   }
 
   // 사진업로드
-
+  const [photo, setPhoto] = useState("")
+  const [uploadedImg, setUploadedImg] = useState({
+    fileName: null,
+    filePath: null,
+  })
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append("img", photo)
+    console.log("formData : ", formData)
+    axios
+      .post(url + "/edituserinfo", formData, {
+        "Content-Type": "application/json",
+        withCredentials: true,
+      })
+      .then((res) => {
+        const { fileName } = res.data
+        setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+        alert("사진을 성공적으로 업로드 하였습니다.")
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+  const addFile = (e) => {
+    console.log(e.target.files[0])
+    setPhoto(e.target.files[0])
+  }
 
   // 추가버튼
   const addButton = () => {
@@ -136,7 +172,10 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
       axios({
         url : url + "/edituserinfo",
         method: "post",
-        data: animalInfo
+        data: {
+          animalInfo,
+          animal_photo: "/img/" + uploadedImg.fileName,
+        }
       })
       .then((res) => {
         alert("추가 완료")
@@ -156,9 +195,20 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
-          <PictureSpace>
-            <RoundPicture/>
+          <PictureSpace onSubmit={onSubmit}>
+            <div>
+              {uploadedImg? (
+                <RoundPicture>
+                  <img src={uploadedImg.filePath} alt=""/>
+                </RoundPicture>
+              ) : (
+                <div/>
+              )}
+            </div>
+            <PhotoSelectBtn type="file" onChange={addFile}/>
+            <PhotoUpLoadBtn type="submit">사진 업로드</PhotoUpLoadBtn>
           </PictureSpace>
+
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
