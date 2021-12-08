@@ -1,14 +1,22 @@
 const { user } = require("../../models")
 const { animal } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
+const { isAuthorized } = require('../tokenFunc');
 
 module.exports = async(req, res) => {
-	console.log(req.body);
+	console.log("반려동물추가 : ", req.body);
 	// 반려동물 추가
-	const {userId, animalName, animalYob, selectType} = req.body
+	const {userId, animalName, animalYob, selectType, animal_photo} = req.body
+	const accessTokenData = isAuthorized(req);
+	if(!accessTokenData){
+    return res.json({ data: null, message: '회원정보가 일치하지 않습니다.' })
+  }
 
-	// 정보가 하나라도 없을 경우
-	if(
+	if (req.file) {
+    res.send({
+      fileName: req.file.filename,
+    })
+  }else if(
 		!userId ||
 		!animalName ||
 		!animalYob ||
@@ -17,17 +25,12 @@ module.exports = async(req, res) => {
 		res.status(401).send("정보를 모두 기입해야합니다.")
 	}
 	else{
-		// const userInfo = await user.findOne({
-		// 	where: {
-		// 		user_id: userId
-		// 	},
-		// })
-		// console.log('userInfo',userInfo);
 		await animal.create({
 			userId: userId,
 			animaltype: selectType,
 			animalname: animalName,
 			animalyob: animalYob,
+			animal_photo: animal_photo,
 		})
 		res.status(201).send({message: "ok"})
 	}

@@ -126,24 +126,6 @@ const PostBox = styled.textarea`
     padding: 0.5rem;
 `
 
-// const PostUploadBtn = styled.div`
-//   // border: 1px solid gray;
-//   width: 250px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-//   font-size: 20px;
-//   color: palevioletred;
-// `
-
-// const CancelBtn = styled.div`
-//   border: 1px solid gray;
-//   width: 250px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-//   font-size: 20px;
-//   color: palevioletred;
-// `
-
 const TitlePostButtons = styled.div`
     display: flex;
     justify-content: space-around;
@@ -256,7 +238,7 @@ export const Post = (props) => {
                 alert("사진을 성공적으로 업로드 하였습니다.")
             })
             .catch((err) => {
-                console.error(err)
+                console.error("에러")
             })
     }
 
