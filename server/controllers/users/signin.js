@@ -4,11 +4,9 @@ const { decrypto } = require("../users/setpw")
 module.exports = (req, res) => {
     //console.log(req.body) //{ id: 'kimcoding3', password: 'a123' }
     let accessToken = null
-    // const depw = decrypto(req.body.password)
     user.findOne({
         where: {
             user_id: req.body.id,
-            // password: req.body.password,
         },
     }).then((data) => {
         console.log(data)
