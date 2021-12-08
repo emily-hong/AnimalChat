@@ -12,6 +12,7 @@ module.exports = {
   userinfo: require("./users/userinfo"),
   edituserinfo: require("./users/edituserinfo"),
   like: require("./users/like"),
+  readlike: require("./users/readlike"),
   deletecomment: require("./del/deletecomment"),
   deletepost: require("./del/deletepost"),
   deleteanimal: require("./del/deleteanimal"),
