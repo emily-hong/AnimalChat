@@ -1,8 +1,9 @@
-'use strict';
+"use strict"
 
-const { sequelize } = require("../models");
+const { sequelize } = require("../models")
 
 module.exports = {
+
   up: async (queryInterface, Sequelize) => {
     /**
      * Add altering commands here.
@@ -24,14 +25,15 @@ module.exports = {
     })
   },
 
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
-    await queryInterface.removeConstraint('likes', 'custom_fkey_name');
-    await queryInterface.removeColumn('likes', 'post_id');
-  }
-};
+
+    down: async (queryInterface, Sequelize) => {
+        /**
+         * Add reverting commands here.
+         *
+         * Example:
+         * await queryInterface.dropTable('users');
+         */
+        await queryInterface.removeConstraint("likes", "custom_fkey_name")
+        await queryInterface.removeColumn("likes", "post_id")
+    },
+}

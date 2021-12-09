@@ -8,8 +8,10 @@ import Posts from "../components/Posts"
 import React from "react"
 
 const Outer = styled.div`
-  width: 100vw;
-  height: 100vh;  
+
+    width: 100vw;
+    height: 100vh;
+
 `
 
 // const Posts = styled.div`
@@ -33,7 +35,7 @@ export default function MainPage(props) {
             method: "get",
             withCredentials: true,
         }).then((res) => {
-            // setPostList(res.data)
+            console.log(res.data)
             props.getPostList(res.data)
         })
     }, [])

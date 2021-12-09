@@ -15,6 +15,7 @@ const IdDisplay = styled.div`
     padding: 1rem;
     display: flex;
     justify-content: center;
+    // border: 1px solid green;
 `
 
 const AnimalsList = styled.div`
@@ -125,24 +126,44 @@ const Buttos = styled.button`
 const PhotoBoxAndIdDisplay = styled.form`
     // height: 100%;
     // width: 100%;
-
+    // height: 100%;
+    // width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    // border: 5px solid black;
 `
 
 const PhotoBox = styled.img`
-    width: 100%;
-    height: 100%;
+    width: 250px;
+    height: 250px;
 
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
     border-radius: 50%;
     border: 1px solid silver;
 `
 const PhotoBox2 = styled.div`
     display: flex;
     justify-content: center;
+    // border: 1px solid red;
+
+    // flex-direction: column;
+    width: 100%;
+    height: 100%;
+    // border-radius: 50%;
+    // align-items: center;
+    // box-sizing: content-box;
+    // padding: 1rem;
+    // display: flex;
+    // justify-content: center;
+`
+const PhotoBox3 = styled.div`
+    display: flex;
+    justify-content: center;
+    // border: 1px solid yellow;
+    position: relative;
+
     // flex-direction: column;
     // width: 200px;
     // height: 200px;
@@ -154,27 +175,27 @@ const PhotoBox2 = styled.div`
     // justify-content: center;
 `
 const CameraImg = styled.label`
-    // max-width: 5%;
-    // width: 100px;
-    // height: 100px;
+    // max-width: 50%;
+    // width: 100%;
+    // height: 100%;
     // position: absolute;
-    // bottom: 60%;
-    // left: 60%;
+    // bottom: 4px;
+    // left: 580px;
+    position: relative;
 
     // z-index: 999999;
     // justify-content: center;
     // border-radius: 100%;
-    // border: 1px solid silver;
 `
 const CameraImg2 = styled.img`
-    // max-width: 5%;
-    width: 100px;
+    // max-width: 100%;
+    width: 50px;
+    margin-left: 70px;
 
-    // position: absolute;
-    // bottom: 60%;
-    // left: 60%;
+    position: absolute;
+    bottom: 20px;
+    // left: 515px;
     background-color: white;
-    // justify-content: center;
     border-radius: 100%;
     border: 1px solid silver;
 `
@@ -316,28 +337,16 @@ export default function MyPageSection(props) {
         <Outer className="MyPageSection">
             <PhotoBoxAndIdDisplay>
                 <PhotoBox2 className="PhotoBox2">
-                    {uploadedImg ? (
-                        // <DivTag>
-                        <PhotoBox
-                            className="PhotoBox1-1"
-                            src={uploadedImg.filePath}
-                        />
-                    ) : (
-                        // </DivTag>
-                        // <DivTag>
-
-                        <PhotoBox
-                            className="PhotoBox1-2"
-                            src="../img/image3.png"
-                        />
-                        // </DivTag>
-                    )}
+                    <PhotoBox
+                        className="PhotoBox1-1"
+                        src={uploadedImg.filePath}
+                    />
                 </PhotoBox2>
-                <PhotoBox2>
+                <PhotoBox3>
                     <CameraImg htmlFor="fileId">
                         <CameraImg2 src="../img/camera.png" />
                     </CameraImg>
-                </PhotoBox2>
+                </PhotoBox3>
                 <IdDisplay>
                     {/* TODO : axios 요청 -> 회원정보 -> id */}
                     <span>{props.userinfo.user_id}</span>
