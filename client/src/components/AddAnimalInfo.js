@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
-import { useHistory } from "react-router-dom"
 import DatePicker, { registerLocale } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
@@ -17,13 +16,13 @@ const Outer = styled.div`
   flex-direction: column;
   width: 350px;
   /* padding: 1rem; */
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   margin: 0 auto;
 `
 
 const PictureAndText = styled.div`
   display: flex;
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 `
 // 사진 div
 const PictureSpace = styled.form`
@@ -31,18 +30,31 @@ const PictureSpace = styled.form`
   flex: 1.5;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `
 // 사진
 // TODO axios 요청 이후 - img태그로 바꾸고 배경색, border 빼기
-const RoundPicture = styled.div`
+const RoundPicture = styled.img`
+  margin: 1rem auto;
   box-sizing: content-box;
-  border: 1px solid black;
+  display: block;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+`
+// 사진없을때
+const NonePicture = styled.div`
+  margin: 1rem auto;
+  box-sizing: content-box;
   border-radius: 50%;
   background-color: grey;
   width: 120px;
   height: 120px;
-  margin: 1rem;
+  text-align: center;
+  line-height: 120px;
+  p{
+    vertical-align: middle;
+  }
 `
 
 const TextSpace = styled.div`
@@ -73,18 +85,19 @@ const Button = styled.button`
 `
 
 const PhotoSelectBtn = styled.input`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 100%;
 `
 
 const PhotoUpLoadBtn = styled.button`
-  border: 1px solid red;
+  border: 1px solid gray;
+  width: 72px;
+  height: 20px;
+  margin-top: 5px;
 `
 
 export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButton}) {
-  const history = useHistory()
   // console.log('animalInfo : ', infoAnimal.user_id);
-
   // console.log('AddAnimalInfo', props.props.userinfo);
   const [animalInfo, setAnimalInfo] = useState({
     userId: infoAnimal.user_id,
@@ -149,7 +162,7 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
     // console.log("photo : ", photo); // 잘나옴
     console.log("formData : ", formData)  // formData {}
     
-    axios.post(url + "/profilephoto", formData,{
+    axios.post(url + "/animalphoto", formData,{
       "Content-Type": "multipart/form-data",
       withCredentials: true,
     })
@@ -170,14 +183,11 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
 
   // 추가버튼
   const addButton = () => {
-    // console.log(animalInfo) // 들어옴
-    console.log("uploadedImg : ", uploadedImg);
-
     if(Selected && animalName && animalYob){
       console.log('추가!')
 
       axios({
-        url : url + "/profilephoto",
+        url : url + "/edituserinfo",
         method: "post",
         data: {
           animalInfo: animalInfo,
@@ -188,7 +198,6 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
         alert("추가 완료")
         addButtonHandler();
       })
-    
     }else{
       alert("모두 입력해주세요.")
     }
@@ -204,15 +213,13 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
         <PictureAndText>
           
           <PictureSpace onSubmit={onSubmit}>
-            <div>
-              {uploadedImg? (
-                <RoundPicture>
-                  <img src={uploadedImg.filePath} alt=""/>
-                </RoundPicture>
-              ) : (
-                <div/>
-              )}
-            </div>
+            {uploadedImg.filePath === null? (
+              <NonePicture><p>사진이 없습니다</p></NonePicture>
+            ) : (
+              <RoundPicture
+                src={uploadedImg.filePath}
+              />
+            )}
             <PhotoSelectBtn type="file" onChange={addFile}/>
             <PhotoUpLoadBtn type="submit">사진 업로드</PhotoUpLoadBtn>
           </PictureSpace>

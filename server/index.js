@@ -60,6 +60,7 @@ app.post("/signout", controllers.signout) // postlist -> signout 로그아웃 �
 app.post("/signup", controllers.signup) // postlist -> signup 회원가입시(signup.js)
 app.post("/edituserinfo", controllers.edituserinfo) // postlist -> userinfochange 반려동물 정보수정시(myPageEdit.js)
 app.post("/readlike", controllers.readlike)
+app.post("/animalphoto", upload.single("img"), controllers.animalphoto) // 반려동물사진 추가
 
 //delete
 app.delete("/deletecomment", controllers.deletecomment) // postlist -> commentdelete 게시글에서 댓글 삭제시(postRead.js)

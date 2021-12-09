@@ -67,7 +67,7 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
         history.push("/readpost")
     }
     useEffect(() => {
-        console.log(post)
+        // console.log(post)
     }, [])
 
     return (
