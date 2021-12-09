@@ -10,7 +10,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('likes', 'post_id', Sequelize.STRING);
+    await queryInterface.addColumn('likes', 'post_id', Sequelize.INTEGER);
     await queryInterface.addConstraint('likes', {
       fields: ['post_id'],
       type: 'foreign key',

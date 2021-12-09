@@ -1,5 +1,6 @@
 const { user } = require('../../models')
 const { isAuthorized } = require('../tokenFunc');
+const { encrypto } = require("../users/setpw")
 
 module.exports = async(req, res) => {
     //console.log(req.body)
@@ -14,13 +15,14 @@ module.exports = async(req, res) => {
 
     // const { user_id, password } = accessTokenData
     const { user_id, nickname } = accessTokenData
+    const { password } = req.body;
+    const enpw = encrypto(password); 
     //user_id와 password가 토큰발급한 정보와 같으면 비밀번호를 업데이트해라  
     user.update({
-        password: req.body.password
+        password: enpw
     }, 
     { where: { 
         user_id: user_id,
-        // password: password
         nickname: nickname
         }
     })
