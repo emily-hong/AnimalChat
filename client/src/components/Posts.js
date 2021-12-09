@@ -6,8 +6,8 @@ const Background = styled.div`
     box-sizing: content-box;
     background-color: #feefd5;
     padding: 1rem;
-    // border-bottom: 1px solid red;
-    // height: 100vh;
+    /* border-bottom: 1px solid red; */
+    height: 100vh; /* 메인화면 밑에 흰 부분 */
 `
 
 const WriteButton = styled.button`

@@ -9,9 +9,14 @@ import React from "react"
 
 const Outer = styled.div`
   width: 100vw;
-  height: 100vh;
-  
+  height: 100vh;  
 `
+
+// const Posts = styled.div`
+
+// `
+
+
 
 const url =
     process.env.REACT_APP_URL ||

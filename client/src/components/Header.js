@@ -28,6 +28,11 @@ const TopButtonsArea = styled.div`
         margin: auto 0.5rem;
         padding: 0.5rem;
         background-color: #ffa200;
+        color: #fafafa;
+
+       &:hover {
+       background-color:transparent;
+       }
     }
 `
 
