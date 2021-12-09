@@ -53,27 +53,6 @@ function App() {
         setCurAnimal(animaltype)
     }
 
-    // function authorization() {
-    //     console.log("authorization")
-    //     axios({
-    //         url: url + "/auth",
-    //         method: "get",
-    //         headers: {
-    //             Authorization: `Bearer ${accessToken}`,
-    //             "Content-Type": "application/json",
-    //         },
-    //         withCredentials: true,
-    //     })
-    //         .then((res) => {
-    //             console.log(res)
-    //             setUserinfo(res.data.data.userInfo)
-    //         })
-    //         .then((res2) => {
-    //             setIsLogin(true)
-    //             history.push("/")
-    //         })
-    //     // localStorage.setItem("accessToken", JSON.stringify(accessToken))
-    // }
     function getPostList(data) {
         function date_descending(a, b) {
             var dateA = new Date(a["updatedAt"]).getTime()
@@ -146,6 +125,7 @@ function App() {
                     <Route exact path="/board/hamster">
                         <Hamster
                             curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
                             postList={postList}
                             curPostRead={curPostRead}
                             curAnimal={curAnimal}
@@ -156,6 +136,7 @@ function App() {
                     <Route exact path="/board/chick">
                         <Chick
                             curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
                             postList={postList}
                             curPostRead={curPostRead}
                             curAnimal={curAnimal}
@@ -166,6 +147,7 @@ function App() {
                     <Route exact path="/board/parrot">
                         <Parrot
                             curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
                             postList={postList}
                             curPostRead={curPostRead}
                             curAnimal={curAnimal}
@@ -176,6 +158,7 @@ function App() {
                     <Route exact path="/board/rabbit">
                         <Rabbit
                             curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
                             postList={postList}
                             curPostRead={curPostRead}
                             curAnimal={curAnimal}
@@ -186,6 +169,7 @@ function App() {
                     <Route exact path="/board/hedgehog">
                         <Hedgehog
                             curAnimalChange={curAnimalChange}
+                            getPostList={getPostList}
                             postList={postList}
                             curPostRead={curPostRead}
                             curAnimal={curAnimal}

@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import React from "react" // useState
+import React, { useEffect } from "react" // useState
 
 const url =
     process.env.REACT_APP_URL ||
@@ -46,7 +46,16 @@ const StyledTitlePreview = styled.div`
 `
 
 const StyledProfilePictureArea = styled.div`
-    background-color: #4976bf;
+    // background-color: #4976bf;
+`
+const DivTag = styled.div`
+    width: 70px;
+    height: 70px;
+`
+const ImgvTag = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
 `
 
 export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
@@ -57,6 +66,9 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
         curPostRead(post)
         history.push("/readpost")
     }
+    useEffect(() => {
+        console.log(post)
+    }, [])
 
     return (
         <div className="singlePostOnBoard">
@@ -68,7 +80,9 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                 {post.post_title}
                 <StyledTitlePreview>
                     <StyledProfilePictureArea>
-                        {"프로필사진"}
+                        <DivTag>
+                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                        </DivTag>
                     </StyledProfilePictureArea>
                     <div className="text">
                         <p className="title">{`${
