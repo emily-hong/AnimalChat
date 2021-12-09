@@ -6,7 +6,7 @@ module.exports = {
   editpost: require("./users/editpost"),
   postlist: require("./users/postlist"),
   sendpost: require("./users/sendpost"),
-    profilephoto: require("./users/profilephoto"),
+  profilephoto: require("./users/profilephoto"),
   editpw: require("./users/editpw"),
   signin: require("./users/signin"),
   signout: require("./users/signout"),

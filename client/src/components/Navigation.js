@@ -16,10 +16,17 @@ const ButtonsArea = styled.div`
 
   & button {
     border: none;
+    border-radius: 2rem;
     margin: auto .5rem;
     padding: .5rem 1rem;
     background-color: #FFB83E;
-    font-size: 1.05rem;
+    color: #f2782b;
+    font-size: 1.2rem;
+  
+    &:hover{
+      color: black;
+      background-color: #ff9843;
+    }
   }
 `
 
@@ -33,6 +40,7 @@ const HomeButtonArea = styled.div`
     margin: auto .5rem;
     padding: .5rem;
     background-color: #FFA200;
+    color: #f47600;
   }
 `
 

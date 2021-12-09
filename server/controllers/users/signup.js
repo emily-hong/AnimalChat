@@ -1,6 +1,7 @@
 const { user } = require("../../models")
 const { animal } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
+const { encrypto } = require("../users/setpw")
 
 module.exports = async (req, res) => {
     //console.log(req.body)
@@ -20,6 +21,7 @@ module.exports = async (req, res) => {
     }
     //6가지 정보가 정상일경우 중
     else {
+
         //id가 조회
         const userInfo = await user.findOne({
             where: {
@@ -44,20 +46,21 @@ module.exports = async (req, res) => {
         }
         //id도 중복아니고, 닉네임도 중복이 아닌경우 생성해준다.
         else {
-            //users테이블에 가입정보 추가
-            await user.create({
-                user_id: userId,
-                password: password,
-                nickname: nickName,
-                profilePhoto: "chick.png",
-            })
-            await animal.create({
-                userId: userId,
-                animaltype: selectType,
-                animalname: animalName,
-                animalyob: animalYob,
-            })
-            res.status(201).send({ message: "ok" })
-        }
+              const enpw = encrypto(password)
+
+      //users테이블에 가입정보 추가
+      await user.create({
+        user_id: userId,
+        password: enpw,
+        nickname: nickName,
+      })
+      await animal.create({
+        userId: userId,
+        animaltype: selectType,
+        animalname: animalName,
+        animalyob: animalYob,
+      })
+      res.status(201).send({ message: "ok" })
+
     }
 }
