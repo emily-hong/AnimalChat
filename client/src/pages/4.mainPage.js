@@ -8,10 +8,8 @@ import Posts from "../components/Posts"
 import React from "react"
 
 const Outer = styled.div`
-
     width: 100vw;
     height: 100vh;
-
 `
 
 // const Posts = styled.div`

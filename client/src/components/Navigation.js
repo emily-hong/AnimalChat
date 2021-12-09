@@ -11,7 +11,8 @@ const ButtonsArea = styled.div`
   justify-content: flex-end;
   align-items: center;
   // border: 1px solid red;
-  background-color: #FFD489;
+  /* background-color: #FFD489; */
+  background-color: #FFF2E2;
   padding: 1rem;
 
   & button {
@@ -19,7 +20,8 @@ const ButtonsArea = styled.div`
     border-radius: 2rem;
     margin: auto .5rem;
     padding: .5rem 1rem;
-    background-color: #FFB83E;
+    /* background-color: #FFB83E; */
+    background-color: #FEDCAA;
     color: #f2782b;
     font-size: 1.2rem;
   
@@ -39,7 +41,8 @@ const HomeButtonArea = styled.div`
     border: none;
     margin: auto .5rem;
     padding: .5rem;
-    background-color: #FFA200;
+    /* background-color: #FFA200; */
+    background-color: #FEDCAA;
     color: #f47600;
   }
 `
