@@ -4,7 +4,7 @@ const commentlist = require("../users/commentlist");
 
 module.exports = async(req, res) => {
   const accessTokenData = isAuthorized(req)
-  console.log('req.body : ', req.body); // { post_id: 16 }
+  //console.log('req.body : ', req.body); // { post_id: 16 }
   const { user_id } = accessTokenData
 
   const userCheck = user.findOne({

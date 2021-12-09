@@ -4,7 +4,7 @@ const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 const { isAuthorized } = require('../tokenFunc');
 
 module.exports = async(req, res) => {
-	console.log("반려동물추가 : ", req.body);
+	//console.log("반려동물추가 : ", req.body);
 	// 반려동물 추가
 	const {userId, animalName, animalYob, selectType, animal_photo} = req.body
 	const accessTokenData = isAuthorized(req);

@@ -3,7 +3,7 @@ const user = require("../../models/user");
 
 module.exports = async (req, res) => {
   //res.send()
-  console.log("server/like---------",req.body)
+  //console.log("server/like---------",req.body)
   // { user_id: 'kimcoding', comment_id: 41, post_id: '15' }
   // const post_id = Number(req.body.post_id)
   //console.log(postId)

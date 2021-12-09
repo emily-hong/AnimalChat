@@ -2,7 +2,7 @@ const { like, comment, post } = require("../../models")
 
 module.exports = async (req, res) => {
     //res.send()
-    console.log("server/readlike.js:::::::::",req.body)
+    //console.log("server/readlike.js:::::::::",req.body)
     const { user_id, comment_id, post_id } = req.body;
     const list = await like.findOne({
         where: {

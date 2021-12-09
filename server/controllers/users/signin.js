@@ -9,7 +9,7 @@ module.exports = (req, res) => {
             user_id: req.body.id,
         },
     }).then((data) => {
-        console.log(data)
+        //console.log(data)
         const depw = decrypto(data.password)
         if (!data) {
             res.status(404).send("invalid user")

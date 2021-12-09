@@ -10,8 +10,9 @@ module.exports = async (req, res) => {
         for (let m = 0; m < data2.length; m++) {
             // console.log(data[n].dataValues["user_id"])
             // console.log(data2[m].dataValues.user_id)
-            console.log(String(data[n].dataValues.user_id))
-            console.log(String(data2[m].dataValues.user_id))
+            
+            //console.log(String(data[n].dataValues.user_id))
+            //console.log(String(data2[m].dataValues.user_id))
 
             if (
                 String(data[n].dataValues.user_id) ===
@@ -25,7 +26,7 @@ module.exports = async (req, res) => {
     }
 
     // res.send(await post.findAll({}))
-    console.log(data)
+    //console.log(data)
     // console.log(data2[0].dataValues.profilePhoto)
 
     res.send(data)
