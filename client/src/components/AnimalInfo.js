@@ -73,7 +73,8 @@ const url =
 
 export default function AnimalInfo(props) {
   const history = useHistory()
-  // console.log(props)
+  console.log("AnimalInfo.js : ",props)
+  
   const deleteButtonHandler = () => {
     // console.log("동물정보 삭제 버튼 동작 확인")
     axios({

@@ -139,25 +139,30 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
     fileName: null,
     filePath: null,
   })
+
   const onSubmit = (e) => {
     e.preventDefault()
+
     const formData = new FormData()
     formData.append("img", photo)
-    console.log("formData : ", formData)
-    axios
-      .post(url + "/edituserinfo", formData, {
-        "Content-Type": "application/json",
-        withCredentials: true,
-      })
-      .then((res) => {
-        const { fileName } = res.data
-        setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
-        alert("사진을 성공적으로 업로드 하였습니다.")
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    
+    // console.log("photo : ", photo); // 잘나옴
+    console.log("formData : ", formData)  // formData {}
+    
+    axios.post(url + "/profilephoto", formData,{
+      "Content-Type": "multipart/form-data",
+      withCredentials: true,
+    })
+    .then((res) => {
+      const { fileName } = res.data
+      setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+      alert("사진을 성공적으로 업로드 하였습니다.")
+    })
+    .catch((err) => {
+      console.error(err)
+    })
   }
+
   const addFile = (e) => {
     console.log(e.target.files[0])
     setPhoto(e.target.files[0])
@@ -166,14 +171,16 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
   // 추가버튼
   const addButton = () => {
     // console.log(animalInfo) // 들어옴
+    console.log("uploadedImg : ", uploadedImg);
+
     if(Selected && animalName && animalYob){
       console.log('추가!')
 
       axios({
-        url : url + "/edituserinfo",
+        url : url + "/profilephoto",
         method: "post",
         data: {
-          animalInfo,
+          animalInfo: animalInfo,
           animal_photo: "/img/" + uploadedImg.fileName,
         }
       })
@@ -195,6 +202,7 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
+          
           <PictureSpace onSubmit={onSubmit}>
             <div>
               {uploadedImg? (
@@ -255,5 +263,3 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButt
   )
 }
 
-// TODO
-// props 목록 { profileSrc, animalName, animalBirth, }
