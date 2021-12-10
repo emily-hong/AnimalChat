@@ -4,10 +4,14 @@ import SinglePostOnBoard from "../components/SinglePostOnBoard"
 import axios from "axios"
 const Background = styled.div`
     box-sizing: content-box;
-    background-color: #feefd5;
+    /* background-color: #feefd5; */
     padding: 1rem;
+    /* border-bottom: 1px solid red; */
 
-    height: 100vh; /* 메인화면 밑에 흰 부분 */
+    @media screen and (min-width: 1500px) {
+        margin: 0 auto;
+        width: 80%;
+    }
 `
 
 const WriteButton = styled.button`
@@ -27,6 +31,15 @@ const BoardInGrid = styled.div`
     grid-template-columns: repeat(auto-fit, 200px);
     justify-content: center;
     align-content: center;
+
+    @media screen and (max-width: 375px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem;
+    }
+    @media screen and (max-width: 300px) {  // 최소화면넓이
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+    }
 `
 const HiddenTag = styled.div`
     color: white;

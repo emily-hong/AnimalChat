@@ -13,14 +13,32 @@ const StyledSinglePost = styled.div`
     width: 220px;
     height: 300px;
     background-color: #fff9ee;
+
+    &:hover{
+        transform: scale(1.03);
+        transition: transform .3s;
+    }
+    
+    @media screen and (max-width: 375px) {
+        /* border: 1px solid blue; */
+        width: 130px;
+        height: 160px;
+    }
+    @media screen and (max-width: 300px) {
+        margin: 0 auto;
+    }
 `
 
 const StyledThumbnail = styled.img`
     width: 175px;
     height: 175px;
     background-color: #ffd000;
-
     border-radius: 10%;
+
+    @media screen and (max-width: 375px) {
+        width: 80px;
+        height: 80px;
+    }
 `
 
 const StyledTitlePreview = styled.div`
@@ -41,12 +59,28 @@ const StyledTitlePreview = styled.div`
     & .writer {
         font-size: 0.8rem;
     }
+
+    @media screen and (max-width: 375px) {
+        /* border: 1px solid red; */
+        height: 30px;
+
+        .title{
+            /* border: 1px solid black; */
+            font-size: 0.2rem;
+            height: 70%;
+        }
+    }
 `
 
 const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
     width: 70px;
     height: 70px;
+
+    @media screen and (max-width: 375px) {
+        width: 30px;
+        height: 30px;
+    }
 `
 const ImgvTag = styled.img`
     width: 100%;
@@ -61,13 +95,15 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
         curPostRead(post)
         history.push("/readpost")
     }
+
     function getRandomIntInclusive(min, max) {
         min = Math.ceil(min)
         max = Math.floor(max)
         return Math.floor(Math.random() * (max - min + 1)) + min
     }
+
     return (
-        <div className="singlePostOnBoard">
+        // <div className="singlePostOnBoard">
             <StyledSinglePost>
                 {post.post_img.includes("png") ? (
                     <StyledThumbnail
@@ -105,6 +141,6 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                     </div>
                 </StyledTitlePreview>
             </StyledSinglePost>
-        </div>
+        // </div>
     )
 }

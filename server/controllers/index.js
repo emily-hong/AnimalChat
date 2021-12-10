@@ -15,9 +15,10 @@ module.exports = {
   edituserinfo: require("./users/edituserinfo"),
   like: require("./users/like"),
   readlike: require("./users/readlike"),
+  animalphoto: require("./users/animalphoto"),
   deletecomment: require("./del/deletecomment"),
   deletepost: require("./del/deletepost"),
   deleteanimal: require("./del/deleteanimal"),
   removeuser: require("./del/removeuser"),
-
+  
 }
