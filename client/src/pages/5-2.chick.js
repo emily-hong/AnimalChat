@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Posts from "../components/Posts"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
@@ -14,7 +15,6 @@ export default function Chick(props) {
             method: "get",
             withCredentials: true,
         }).then((res) => {
-            console.log(res.data)
             props.getPostList(res.data)
         })
     }, [])

@@ -11,7 +11,8 @@ const Outer = styled.div`
 const HeaderFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #ffd489;
+    /* background-color: #ffd489; */
+    background-color: #FEF4DE;
 `
 
 const TopButtonsArea = styled.div`
@@ -27,12 +28,13 @@ const TopButtonsArea = styled.div`
         border: none;
         margin: auto 0.5rem;
         padding: 0.5rem;
-        background-color: #ffa200;
-        color: #fafafa;
+        border-radius: 2rem;
+        background-color: transparent;
+        color: #f47600;
 
-       &:hover {
-       background-color:transparent;
-       }
+        &:hover {
+            background-color: #FEDCAA;
+        }
     }
 `
 

@@ -3,10 +3,6 @@ const { isAuthorized } = require('../tokenFunc');
 
 module.exports = async(req, res) => {
   //console.log(req.body)
-  //res.send()
-  //회원정보확인하고 
-  //토큰삭제 
-  //정보삭제 
   const accessTokenData = isAuthorized(req)
   if(!accessTokenData){
     return res.json({ data: null, message: '회원정보가 일치하지 않습니다.' })
@@ -27,3 +23,4 @@ module.exports = async(req, res) => {
   })
   res.clearCookie("jwt").status(205).send('회원탈퇴가 되었습니다.')
 };
+

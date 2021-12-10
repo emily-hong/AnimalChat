@@ -1,9 +1,8 @@
+/* eslint-disable */
 import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
-import Header from "../components/Header"
-import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
 
 const Outer = styled.div`
@@ -34,7 +33,6 @@ const PostReadSection = styled.div`
     & .postPic {
         width: 50vw;
         height: 50vw;
-        // border: 1px solid grey;
     }
 
     & .postContent {
@@ -150,8 +148,6 @@ const BackButton = styled.button`
     padding: 0.8rem;
 `
 
-
-// console.log('댓글배열 : ', cotentList)
 const PhotoBoxZone = styled.img`
     max-width: 100%;
 `
@@ -161,10 +157,6 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function PostRead(props) {
-    // title - 수정버튼 : history.push
-    //console.log(props.curPost)
-    console.log(props)
-    const [edit, setEdit] = useState(false)
     const history = useHistory()
 
     function editPostButton(event) {
@@ -180,7 +172,6 @@ export default function PostRead(props) {
             },
             withCredentials: true,
         }).then((res) => {
-            //console.log(res.data)
             alert(res.data)
             if (res.data === "게시물 작성자가 아닙니다.") {
                 history.push("/mainpage")
@@ -188,7 +179,6 @@ export default function PostRead(props) {
                 history.push("/editpost")
             }
         })
-        setEdit(true)
     }
 
     useEffect(() => {
@@ -197,22 +187,18 @@ export default function PostRead(props) {
 
     // title - 삭제 :
     const deletePostButton = (event) => {
-        console.log(props)
         const token = JSON.parse(localStorage.getItem("accessToken"))
-        //const postId = props.curPost.id
-        //console.log(token)
+
         axios({
             url: url + "/deletepost",
             method: "delete",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `token ${token}`
+                Authorization: `token ${token}`,
             },
             data: { post_id: props.curPost.id },
-            withCredentials: true
-        })
-        .then((res) => {
-            console.log(res.data)
+            withCredentials: true,
+        }).then((res) => {
             alert(res.data)
             history.push("/mainpage")
         })
@@ -245,7 +231,6 @@ export default function PostRead(props) {
     }
 
     function handleButtonClick2() {
-        // console.log("handleButtonClick2")
         axios({
             url: url + "/commentlist",
             method: "post",
@@ -268,12 +253,10 @@ export default function PostRead(props) {
                     comment_id: commentId,
                 },
                 withCredentials: true,
-            })
-            .then((res) => {
+            }).then((res) => {
                 // 추후 수정 필요 12/06
                 history.push("/mainpage")
-                history.goBack();
-                // history.goForward()
+                history.goBack()
             })
         }
     }
@@ -282,12 +265,14 @@ export default function PostRead(props) {
     const handleChangeMsg = (event) => {
         setContentMsg(event.target.value)
     }
-
-
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
 
     return (
         <Outer>
-            {/* 내사진, 제목, 날짜, 버튼 */}
             <Contents>
                 <PostReadSection>
                     <PostTitle className="postTitle">
@@ -316,11 +301,22 @@ export default function PostRead(props) {
 
                     {/* 게시물 사진 */}
                     <div className="postPic">
-                        <PhotoBoxZone
-                            className="picture"
-                            src={url + props.curPost.post_img}
-                            alt="게시물 사진"
-                        />
+                        {props.curPost.post_img.includes("png") ? (
+                            <PhotoBoxZone
+                                className="picture"
+                                src={url + props.curPost.post_img}
+                                alt="게시물 사진1"
+                            />
+                        ) : (
+                            <PhotoBoxZone
+                                className="picture"
+                                src={`http://placeimg.com/640/${getRandomIntInclusive(
+                                    480,
+                                    640
+                                )}/animals`}
+                                alt="게시물 사진2"
+                            />
+                        )}
                     </div>
 
                     {/* 게시물 내용 */}
@@ -352,10 +348,9 @@ export default function PostRead(props) {
 
                     {/* 댓글 목록 */}
                     <CommentList className="commentsList">
-                   
                         {contentList.map((content) => (
                             <Comment
-                                key={content.id} 
+                                key={content.id}
                                 content={content}
                                 deleteComment={deleteComment}
                             />

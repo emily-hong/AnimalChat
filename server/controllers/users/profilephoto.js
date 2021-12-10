@@ -2,7 +2,6 @@ const { user, post } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
-    // console.log("프로필포토")
     if (req.file) {
         await user.update(
             {
