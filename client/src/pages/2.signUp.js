@@ -21,7 +21,7 @@ const Outer = styled.div`
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: auto;
+    height: 100vh; 
     background-color: #feefd5;
 `
 

@@ -5,9 +5,7 @@ import styled from "styled-components"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import Comment from "./8.postRead-comment"
-//import LikeBtn from "../components/like"
 
-// styled-component
 const Outer = styled.div`
     width: 100vw;
     height: 100vh;
@@ -26,14 +24,16 @@ const PostReadSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh; //추가
+    margin-top: 0.5rem;
 
     & > div {
-        margin: 1rem;
+        margin: 5rem;
     }
 
     & .postPic {
         width: 50vw;
-        // height: 50vw;
+        height: 50vw;
         // border: 1px solid grey;
     }
 
@@ -41,7 +41,7 @@ const PostReadSection = styled.div`
         font-size: 1.2rem;
         padding: 1rem;
         width: 90%;
-        margin-bottom: 2rem;
+        margin: 3rem;
     }
 `
 
@@ -240,15 +240,12 @@ export default function PostRead(props) {
             },
             withCredentials: true,
         }).then((res) => {
-            // setContentList(res.data)
-            // console.log("댓글작성완료")
             handleButtonClick2()
         })
     }
 
     function handleButtonClick2() {
         // console.log("handleButtonClick2")
-
         axios({
             url: url + "/commentlist",
             method: "post",
@@ -258,21 +255,16 @@ export default function PostRead(props) {
             },
             withCredentials: true,
         }).then((res) => setContentList(res.data))
-        // console.log("handleButtonClick2끝")
-        // console.log(contentList) // 댓글목록배열
     }
 
     // 댓글 삭제 (해당 유저 아이디만, )
     const deleteComment = (commentId) => {
-        // console.log("삭제버튼 누를시 target : ", commentId);
         if (window.confirm("댓글을 삭제하시겠습니까?")) {
             axios({
                 url: url + "/deletecomment",
                 method: "delete",
                 data: {
-                    // 해당댓글삭제 , 포스트게시물id, 
-                    post_id: props.curPost.id, // 게시물 아이디
-                    // 댓글 id로 삭제
+                    post_id: props.curPost.id, 
                     comment_id: commentId,
                 },
                 withCredentials: true,
@@ -368,9 +360,7 @@ export default function PostRead(props) {
                                 deleteComment={deleteComment}
                             />
                         ))}
-                         {/* <LikeBtn like={like} onClick={likeHandler}></LikeBtn>  */}
                     </CommentList>
-                    {/* <LikeBtn like={like} onClick={likeHandler}></LikeBtn> */}
                 </CommentSection>
             </Contents>
         </Outer>

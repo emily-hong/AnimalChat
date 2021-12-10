@@ -38,4 +38,9 @@ const { like, post } = sequelize.models;
 like.belongsTo(post);
 post.hasMany(like);
 
+
+// const { animal, user } = sequelize.models;
+// animal.belongsTo(user);
+// user.hasMany(animal);
+
 module.exports = db;

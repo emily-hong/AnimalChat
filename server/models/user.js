@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
             models.user.hasMany(models.animal, {
                 foreignKey: "userId",
                 sourceKey: "id",
+                onDelete: 'cascade'
             })
             models.user.hasMany(models.comment, {
                 foreignKey: "comment_user_id",
@@ -37,6 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             sequelize,
             modelName: "user",
+            paranoid: false
         }
     )
     return user

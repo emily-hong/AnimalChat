@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-     models.animal.belongsTo(models.user, {foreignKey: "userId", targetKey: "id"})
+     models.animal.belongsTo(models.user, {
+      foreignKey: 'userId', 
+      targetKey: 'id',
+      onDelete: 'cascade'
+      })
     }
   }
   animal.init(
@@ -23,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "animal",
+      paranoid: false
     }
   )
   return animal
