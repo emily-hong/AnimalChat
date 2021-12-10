@@ -12,7 +12,7 @@ const HeaderFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
     /* background-color: #ffd489; */
-    background-color: #FEF4DE;
+    /* background-color: #FEF4DE; */
 `
 
 const TopButtonsArea = styled.div`

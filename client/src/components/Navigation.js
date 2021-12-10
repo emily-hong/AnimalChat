@@ -12,7 +12,8 @@ const ButtonsArea = styled.div`
   align-items: center;
   // border: 1px solid red;
   /* background-color: #FFD489; */
-  background-color: #FFF2E2;
+  /* background-color: #FFF2E2; */
+  border-bottom: 1px solid #E0E0E0;
   padding: 1rem;
 
   & button {
