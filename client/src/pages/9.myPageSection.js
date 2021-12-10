@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from "axios"
 import styled from "styled-components"
 import AnimalInfo from "../components/AnimalInfo"
@@ -15,7 +16,6 @@ const IdDisplay = styled.div`
     padding: 1rem;
     display: flex;
     justify-content: center;
-    // border: 1px solid green;
 `
 
 const AnimalsList = styled.div`
@@ -77,135 +77,127 @@ const AddAnimalModalBackDrop = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 `
-// 모달창
 const AddAnimalModalView = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
+    justify-content: space-around;
     border-radius: 20px;
     background-color: #feefd5;
     min-width: 400px;
-    width: 19vw;
-    height: 30vw;
+    // width: 40vw;
+    // height: 60vw;
+    width: 500px;
 
-    & h3 {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #bd2020;
-        margin-left: 4.5rem;
-    }
-    & button.close {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1rem;
-        padding: 0.5rem 2rem;
-        font-size: 2rem;
-        text-decoration: underline;
-        color: #7b7b7b;
-        border: none;
-        background-color: transparent;
-    }
+    height: 600px;
+    color: #bd2020;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    // & button.close {
+    //     display: flex;
+    //     justify-content: flex-end;
+    //     margin-top: 1rem;
+    //     padding: 0.5rem 2rem;
+    //     font-size: 2rem;
+    //     text-decoration: underline;
+    //     color: #7b7b7b;
+    //     border: none;
+    //     background-color: transparent;
+    // }
 `
 
-const ButtonSpace = styled.div`
+const ButtonSpace1 = styled.div`
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    justify-content: center;
+    // align-items: center;
+`
+const ButtonSpace2 = styled.div`
+    display: flex;
+    justify-content: space-around;
+    // align-items: center;
+
+    & button {
+        width: 110px;
+        border: none;
+        border-radius: 2rem;
+        margin: auto 0.5rem;
+        padding: 0.5rem 1rem;
+        background-color: #ffb83e;
+        color: red;
+        font-size: 1.2rem;
+
+        &:hover {
+            color: black;
+            background-color: red;
+        }
+    }
 `
 const Button = styled.button`
-    /* margin: 1rem; */
-    margin-top: 2rem;
-    margin-right: 5.5rem;
+    // margin-top: 2rem;
+    // margin-right: 5.5rem;
 `
 
 const Buttos = styled.button`
-    /* margin: 1rem; */
-    margin-right: 5rem;
-    margin-top: 2rem;
+    // margin-right: 5rem;
+    // margin-top: 2rem;
 `
 const PhotoBoxAndIdDisplay = styled.form`
-    // height: 100%;
-    // width: 100%;
-    // height: 100%;
-    // width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // border: 5px solid black;
 `
 
 const PhotoBox = styled.img`
     width: 250px;
     height: 250px;
 
-    // display: flex;
-    // justify-content: center;
     border-radius: 50%;
     border: 1px solid silver;
 `
 const PhotoBox2 = styled.div`
     display: flex;
     justify-content: center;
-    // border: 1px solid red;
 
-    // flex-direction: column;
     width: 100%;
     height: 100%;
-    // border-radius: 50%;
-    // align-items: center;
-    // box-sizing: content-box;
-    // padding: 1rem;
-    // display: flex;
-    // justify-content: center;
 `
 const PhotoBox3 = styled.div`
     display: flex;
     justify-content: center;
-    // border: 1px solid yellow;
-    position: relative;
 
-    // flex-direction: column;
-    // width: 200px;
-    // height: 200px;
-    // border-radius: 50%;
-    // align-items: center;
-    // box-sizing: content-box;
-    // padding: 1rem;
-    // display: flex;
-    // justify-content: center;
+    position: relative;
 `
 const CameraImg = styled.label`
-    // max-width: 50%;
-    // width: 100%;
-    // height: 100%;
-    // position: absolute;
-    // bottom: 4px;
-    // left: 580px;
     position: relative;
-
-    // z-index: 999999;
-    // justify-content: center;
-    // border-radius: 100%;
 `
 const CameraImg2 = styled.img`
-    // max-width: 100%;
     width: 50px;
     margin-left: 70px;
 
     position: absolute;
     bottom: 20px;
-    // left: 515px;
+
     background-color: white;
     border-radius: 100%;
     border: 1px solid silver;
 `
-const DivTag = styled.div`
-    // align-items: center;
-    align-items: center;
-`
-// import asd from '../../public/img/image3'
+
 const FormInputTag = styled.input`
     display: none;
+`
+const DivTag1 = styled.div``
+const DivTag2 = styled.div`
+    color: black;
+    font-size: 1.5rem;
+    font-weight: normal;
+`
+const DivTag3 = styled.div`
+    margin: 20px;
+    font-size: 1.2rem;
+
+    color: #b6b6b6;
+    font-weight: normal;
 `
 
 const url =
@@ -213,15 +205,11 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPageSection(props) {
-    // console.log(props.userAnimalinfo)
-    // console.log(Array.isArray(props.userAnimalinfo))
-
     const infoAnimal = props.userinfo
-    // console.log("마이페이지 animalInfo : ", infoAnimal)
 
     const [isOpen, setIsOpen] = useState(false)
     const [removeUsers, setremoveUsers] = useState(false)
-    const [pwdEdit, setPwdEdit] = useState(false)
+
     const history = useHistory()
 
     const [userAnimalinfo, setUserAnimalInfo] = useState([])
@@ -231,28 +219,25 @@ export default function MyPageSection(props) {
             method: "get",
             withCredentials: true,
         }).then((res) => {
-            // console.log(res)
             setUserAnimalInfo(res.data)
         })
     }, [])
 
     function addAnimal() {
-        // console.log("동물추가버튼")
         setIsOpen(!isOpen)
     }
 
     function deleteUserInfo() {
-        setremoveUsers(!isOpen)
+        setremoveUsers(true)
     }
 
     function pwdChange(click) {
-        setPwdEdit(!click)
         history.push("/editpw")
     }
 
     function closeRemoveModal() {
         //취소하기 버튼으로
-        setIsOpen(!isOpen)
+        setremoveUsers(false)
         history.push("/mypage")
     }
 
@@ -269,7 +254,6 @@ export default function MyPageSection(props) {
 
     // 동물추가 후 모달창 닫히는 함수
     const addButtonHandler = () => {
-        // console.log('addButtonHandler 함수실행')
         setIsOpen(false)
         renderreset()
     }
@@ -290,8 +274,6 @@ export default function MyPageSection(props) {
     const [formBox, setformBox] = useState("")
 
     useEffect(() => {
-        // onSubmit()
-        console.log(photo)
         const formData = new FormData()
         formData.append("img", photo)
         formData.append("user_id", props.userinfo.user_id)
@@ -299,8 +281,6 @@ export default function MyPageSection(props) {
         setformBox(formData)
     }, [photo])
     useEffect(() => {
-        // onSubmit()
-        console.log(formBox)
         if (formBox !== "") {
             axios
                 .post(url + "/profilephoto", formBox, {
@@ -323,7 +303,6 @@ export default function MyPageSection(props) {
     }, [formBox])
 
     const addFile = async (e) => {
-        console.log(e.target.files[0])
         await setPhoto(e.target.files[0])
     }
     useEffect(() => {
@@ -348,7 +327,6 @@ export default function MyPageSection(props) {
                     </CameraImg>
                 </PhotoBox3>
                 <IdDisplay>
-                    {/* TODO : axios 요청 -> 회원정보 -> id */}
                     <span>{props.userinfo.user_id}</span>
                 </IdDisplay>
                 <FormInputTag
@@ -360,7 +338,12 @@ export default function MyPageSection(props) {
             <AnimalsList>
                 {userAnimalinfo.length ? (
                     userAnimalinfo.map((animalcard) => {
-                        return <AnimalInfo animalcard={animalcard} />
+                        return (
+                            <AnimalInfo
+                                key={animalcard.id}
+                                animalcard={animalcard}
+                            />
+                        )
                     })
                 ) : (
                     <div>정보없음</div>
@@ -369,7 +352,9 @@ export default function MyPageSection(props) {
             <ButtonsArea>
                 <button onClick={addAnimal}>동물 추가하기</button>
                 <button onClick={pwdChange}>비밀번호 수정</button>
-                <QuitButton onClick={deleteUserInfo}>회원탈퇴</QuitButton>
+                <QuitButton onClick={() => deleteUserInfo()}>
+                    회원탈퇴
+                </QuitButton>
             </ButtonsArea>
 
             {isOpen === false ? null : (
@@ -387,29 +372,46 @@ export default function MyPageSection(props) {
                     </AddAnimalModalBackDrop>
                 </AddAnimalModalContainer>
             )}
-            {removeUsers === false ? null : (
+            {removeUsers ? (
                 <AddAnimalModalContainer>
                     <AddAnimalModalBackDrop>
-                        <AddAnimalModalView onClick={deleteUserInfo}>
-                            <div>
-                                <h3>회원탈퇴를 하시겠습니까?</h3>
-                            </div>
-                            <ButtonSpace>
-                                <Button onClick={closeRemoveModal}>닫기</Button>
-                            </ButtonSpace>
-                            <ButtonSpace>
-                                <Buttos onClick={removeInfomation}>
-                                    탈퇴하기
+                        <AddAnimalModalView className={"3"}>
+                            <ButtonSpace1>
+                                <h1>회원탈퇴</h1>
+                            </ButtonSpace1>
+                            <DivTag1>
+                                <ButtonSpace1>
+                                    <DivTag2>탈퇴 전 유의 사항</DivTag2>{" "}
+                                </ButtonSpace1>
+                                <DivTag3>
+                                    -탈퇴시 회원정보가 삭제되며, 복구가
+                                    불가합니다.
+                                </DivTag3>
+                                <DivTag3>
+                                    -재가입시에도 복구가 불가능합니다.
+                                </DivTag3>
+                                <DivTag3>
+                                    -회원가입 정보는 완전 삭제 되지만, 일부
+                                    작성게시글과 작성댓글은 남아 있을 수
+                                    있습니다.
+                                </DivTag3>
+                                <DivTag3>
+                                    -작성글, 작성댓글의 삭제를 원하신다면
+                                    탈퇴전에 모두 삭제처리를 선행해주세요.
+                                </DivTag3>
+                            </DivTag1>
+                            <ButtonSpace2>
+                                <Button onClick={() => closeRemoveModal()}>
+                                    아니오
+                                </Button>
+                                <Buttos onClick={() => removeInfomation()}>
+                                    예
                                 </Buttos>
-                            </ButtonSpace>
+                            </ButtonSpace2>
                         </AddAnimalModalView>
                     </AddAnimalModalBackDrop>
                 </AddAnimalModalContainer>
-            )}
+            ) : null}
         </Outer>
     )
 }
-
-// id 넣는 부분 : 회원 정보 요청
-// 동물 정보 넣는 부분 : axios 요청 받아서 map으로 뿌리기
-// 별도 컴포넌트 필요할듯
