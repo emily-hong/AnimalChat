@@ -1,7 +1,8 @@
+/* eslint-disable */
 import Posts from "../components/Posts"
 import Header from "../components/Header"
 import Navigation from "../components/Navigation"
-import React, { useEffect } from "react" // useState
+import React, { useEffect } from "react"
 import axios from "axios"
 const url =
     process.env.REACT_APP_URL ||
@@ -9,14 +10,12 @@ const url =
 
 export default function Hamster(props) {
     useEffect(() => {
-        // console.log("햄스터게시판")
         props.curAnimalChange("hamster")
         axios({
             url: url + "/postlist",
             method: "get",
             withCredentials: true,
         }).then((res) => {
-            console.log(res.data)
             props.getPostList(res.data)
         })
     }, [])
@@ -35,8 +34,6 @@ export default function Hamster(props) {
                 curAnimal={props.curAnimal}
                 curPostRead={props.curPostRead}
             />
-
-            {/* <Posts title="전체 게시물" postList={props.postList} /> */}
         </div>
     )
 }

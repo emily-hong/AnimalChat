@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom"
-import React, { useState } from "react" // useEffect
+import React, { useState } from "react"
 import styled from "styled-components"
 import axios from "axios"
 import Header from "../components/Header"
@@ -26,11 +26,9 @@ const ContentBox = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: 1px solid blue;
 `
 
 const PhotoUploadSection = styled.form`
-    // border: 2px solid yellow;
     margin: auto 2rem;
     display: flex;
     flex-direction: column;
@@ -45,18 +43,9 @@ const PhotoBox = styled.div`
     background-color: #ececec;
     font-size: 30px;
     color: palevioletred;
-    // border: 1px solid #b5b5b5;
 `
 const PhotoBoxZone = styled.img`
-    // min-width: 300px;
-    // width: 30vh;
-    // height: 30vh;
     max-width: 100%;
-
-    // background-color: #ececec;
-    // font-size: 30px;
-    // color: palevioletred;
-    // border: 1px solid #b5b5b5;
 `
 
 const PhotoUploadWarning = styled.div`
@@ -68,7 +57,6 @@ const PhotoUploadWarning = styled.div`
 `
 
 const PhotoUploadButtons = styled.div`
-    // border: 1px solid red;
     padding: 1rem;
     display: flex;
     justify-content: space-around;
@@ -154,7 +142,6 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const Post = (props) => {
-    // console.log(props)
     const history = useHistory()
 
     // 1. input title, content
@@ -166,7 +153,6 @@ export const Post = (props) => {
         fileName: null,
         filePath: null,
     })
-    // const [inputImg, setInputImg] = useState() // 사진 수정했을때
 
     // 작성되어지는 제목, 내용
     const handleInputValue = (e) => {
@@ -175,22 +161,16 @@ export const Post = (props) => {
         } else if (e.target.name === "content") {
             setInputContent(e.target.value)
         }
-        console.log(e.target.value)
     }
 
     // 작성 버튼
     // 수정된 게시물 정보 -> 서버로
     // 수정 페이지 postread에서 보여야함
     const postSendButton = () => {
-        console.log(props)
         if (
             inputTitle.length > 0 &&
             inputContent.length > 0
-            // &&
-            // uploadedImg.fileName
         ) {
-            // 제목, 내용 작성했을 때
-            console.log("작성완료 쪽")
             axios({
                 url: url + "/sendpost",
                 method: "post",
@@ -205,10 +185,7 @@ export const Post = (props) => {
             })
                 .then(() => {
                     alert("작성 완료")
-                    // 작성 완료
                     history.push("/mainpage")
-                    // history.goBack() // 이전페이지로 돌아가야함
-                    // history.goBack()
                 })
                 .catch((err) => console.log(err))
         } else {
@@ -220,13 +197,13 @@ export const Post = (props) => {
         // 해당 동물의 게시판으로 가야함
         history.goBack()
     }
-    ///////////////////여기서부터 사진업로드 기능구현////////////////
+ 
 
     const onSubmit = (e) => {
         e.preventDefault()
         const formData = new FormData()
         formData.append("img", photo)
-        console.log(formData)
+
         axios
             .post(url + "/sendpost", formData, {
                 "Content-Type": "application/json",
@@ -243,7 +220,6 @@ export const Post = (props) => {
     }
 
     const addFile = (e) => {
-        console.log(e.target.files[0])
         setPhoto(e.target.files[0])
     }
 
@@ -255,7 +231,7 @@ export const Post = (props) => {
             />
             <Navigation />
             <ContentBox className="contentBox">
-                {/* /////////////////// */}
+    
                 <PhotoUploadSection
                     onSubmit={onSubmit}
                     className="photoUploadSection"
@@ -267,7 +243,7 @@ export const Post = (props) => {
                                     src={uploadedImg.filePath}
                                     alt=""
                                 />
-                                {/* <h3>{uploadedImg.fileName}</h3> */}
+                          
                             </div>
                         ) : (
                             <PhotoUploadWarning className="photoUploadWarning">
@@ -281,13 +257,13 @@ export const Post = (props) => {
                             className="photoButton"
                             onChange={addFile}
                         />
-                        {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
+                  
                         <PhotoUpLoadBtn type="submit" className="photoButton">
                             업로드
                         </PhotoUpLoadBtn>
                     </PhotoUploadButtons>
                 </PhotoUploadSection>
-                {/* /////////////////// */}
+              
                 <TitlePostDiv>
                     <TitleBox
                         placeholder="제목을 적으세요."

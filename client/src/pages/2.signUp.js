@@ -1,11 +1,10 @@
+/* eslint-disable */
 import React, { useEffect, useState } from "react"
-
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
-import DatePicker from "react-datepicker" //  { registerLocale, useHistory }
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import { Route } from "react-router"
 
 axios.defaults.withCredentials = true
 
@@ -13,8 +12,6 @@ const url =
     process.env.REACT_APP_URL ||
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-// styled-component
-// TODO 필요시 height 수정
 const Outer = styled.div`
     display: flex;
     flex-direction: column;
@@ -109,20 +106,11 @@ export default function Signup(props) {
         selectType: "",
         animalYob: "",
     })
-    console.log(userInfo)
 
-    const {
-        userId,
-        password,
-        nickName,
-        animalName,
-        selectType,
-        animalYob,
-    } = userInfo
+    const { userId, password, nickName } = userInfo
 
     const handleInputValue = (e) => {
         setUserInfo({ ...userInfo, [e.target.name]: e.target.value })
-        console.log(e.target.value)
     }
 
     // 반려동물 type 선택
@@ -170,14 +158,11 @@ export default function Signup(props) {
     useEffect(() => {
         if (userId) {
             const checkId = regUserId.test(userId)
-            // console.log('아이디 유효성 검사 : ', checkId)
-            // console.log(userId);
 
             if (checkId) {
                 setUserCheck(true)
             } else {
                 setUserCheck(false)
-                // 유효하지않다는 메세지 띄우기
             }
         }
     }, [userId])
@@ -240,7 +225,6 @@ export default function Signup(props) {
         } else {
             // 입력하지 않았을때
             alert("모든 항목은 필수입니다.")
-            console.log("회원가입버튼 userCheck", userCheck)
         }
     }
 
@@ -270,10 +254,10 @@ export default function Signup(props) {
                         <SingleInputSection>
                             <p>비밀번호</p>
                             <input
+                                autoComplete="off"
                                 type="password"
                                 name="password"
                                 placeholder="4 ~ 15자, 영문과 숫자 포함"
-                                type="password"
                                 onChange={handleInputValue}
                             />
                             {passwordCheck ? null : (
@@ -307,7 +291,6 @@ export default function Signup(props) {
                                 {selectList.map((item) => (
                                     <option value={item} key={item}>
                                         {item}
-                                        {console.log(Selected)}
                                     </option>
                                 ))}
                             </select>
@@ -332,7 +315,6 @@ export default function Signup(props) {
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => {
-                                    console.log(dateFormat(date))
                                     serStartDate(date)
                                     setUserInfo({
                                         ...userInfo,

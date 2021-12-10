@@ -4,7 +4,6 @@ const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 const { encrypto } = require("../users/setpw")
 
 module.exports = async (req, res) => {
-    //console.log(req.body)
     const { userId, password, nickName, animalName, selectType, animalYob } =
         req.body
 
@@ -21,7 +20,6 @@ module.exports = async (req, res) => {
     }
     //6가지 정보가 정상일경우 중
     else {
-
         //id가 조회
         const userInfo = await user.findOne({
             where: {
@@ -33,7 +31,7 @@ module.exports = async (req, res) => {
                 nickname: nickName,
             },
         })
-        // console.log(userInfo)
+
         // id가 이미 있는 사람인 경우
         if (userInfo) {
             res.status(202).send({ message: "이미 가입되어 있는 회원의 경우" })
@@ -46,22 +44,23 @@ module.exports = async (req, res) => {
         }
         //id도 중복아니고, 닉네임도 중복이 아닌경우 생성해준다.
         else {
-              const enpw = encrypto(password)
+            const enpw = encrypto(password)
 
-      //users테이블에 가입정보 추가
-      await user.create({
-        user_id: userId,
-        password: enpw,
-        nickname: nickName,
-      })
-      await animal.create({
-        userId: userId,
-        animaltype: selectType,
-        animalname: animalName,
-        animalyob: animalYob,
-      })
-      res.status(201).send({ message: "ok" })
-
+            //users테이블에 가입정보 추가
+            await user.create({
+                user_id: userId,
+                password: enpw,
+                nickname: nickName,
+                profilePhoto: "chick.png",
+            })
+            await animal.create({
+                userId: userId,
+                animaltype: selectType,
+                animalname: animalName,
+                animalyob: animalYob,
+            })
+            res.status(201).send({ message: "ok" })
+        }
     }
 }
 }

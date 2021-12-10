@@ -26,7 +26,6 @@ const SigninBtn = styled.h1`
     color: palevioletred;
 
     &:hover {
-        // background: gold;
         color: #892847;
     }
 `
@@ -129,7 +128,6 @@ const LoginButtons = styled.div`
     margin: 1rem;
 
     & button {
-        // 공통
         margin: 0.5rem;
         padding: 0.5rem;
         width: 30%;
@@ -138,11 +136,11 @@ const LoginButtons = styled.div`
         color: white;
     }
     & button.justLogin {
-        // 자체
+        // 자체로그인색상
         background-color: #419300;
     }
     & button.socialLogin {
-        // 소셜
+        // 소셜로그인색상
         background-color: #ea4335;
     }
 `
@@ -170,22 +168,13 @@ export const FirstPage = (props) => {
 
     function openSignInModalHandler() {
         setIsOpen(!isOpen)
-        //console.log(isOpen)
-        //history.push("/signup")
     }
 
     const handleInputValue = (key) => (e) => {
-        //console.log({ [key]: e.target.value })
         setLoginInfo({ ...loginInfo, [key]: e.target.value })
     }
 
     function signUpHandler(e) {
-        //로그인시
-        // console.log("로그인 버튼클릭시 콘솔")
-        //console.log(loginInfo)
-        // if (!loginInfo.id || !loginInfo.password) {
-        //로그인 정보를 입력하지 않았을 때
-        // e.preventDefault()
         if (loginInfo === null || !loginInfo.id || !loginInfo.password) {
             setErrMessage(" 아이디와 패스워드를 입력하세요.")
         } else {
@@ -196,27 +185,22 @@ export const FirstPage = (props) => {
                 data: { id: loginInfo.id, password: loginInfo.password },
                 "Content-Type": "application/json",
                 withCredentials: true,
-            }).then((res) => {
-                console.log(res)
-                localStorage.setItem(
-                    "accessToken",
-                    JSON.stringify(res.data.accessToken)
-                )
-
-                props.loginFunc()
-
-                alert("로그인 완료")
-                history.push("/")
             })
-            .catch((err) => {
-                console.log(err);
-                setErrMessage("아이디 또는 비밀번호를 확인하세요")
-            })
+                .then((res) => {
+                    localStorage.setItem(
+                        "accessToken",
+                        JSON.stringify(res.data.accessToken)
+                    )
+
+                    props.loginFunc()
+
+                    alert("로그인 완료")
+                    history.push("/")
+                })
+                .catch((err) => {
+                    setErrMessage("아이디 또는 비밀번호를 확인하세요")
+                })
         }
-    }
-
-    function socialSignUpHandler() {
-        // console.log("소셜로그인 준비완료")
     }
 
     return (
@@ -251,12 +235,15 @@ export const FirstPage = (props) => {
                                     </InputSet>
                                     <InputSet className="inputSection">
                                         <h4>패스워드</h4>
-                                        <input
-                                            type="password"
-                                            onChange={handleInputValue(
-                                                "password"
-                                            )}
-                                        />
+                                        <form>
+                                            <input
+                                                autoComplete="off"
+                                                type="password"
+                                                onChange={handleInputValue(
+                                                    "password"
+                                                )}
+                                            />
+                                        </form>
                                         <div className="errorMessage">
                                             {errMessage}
                                         </div>
@@ -270,10 +257,7 @@ export const FirstPage = (props) => {
                                     >
                                         로그인
                                     </button>
-                                    <button
-                                        className="socialLogin"
-                                        onClick={socialSignUpHandler}
-                                    >
+                                    <button className="socialLogin">
                                         구글 소셜 로그인
                                     </button>
                                 </LoginButtons>
