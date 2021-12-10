@@ -4,7 +4,7 @@ import SinglePostOnBoard from "../components/SinglePostOnBoard"
 import axios from "axios"
 const Background = styled.div`
     box-sizing: content-box;
-    /* background-color: #feefd5; */
+    // background-color: white;
     padding: 1rem;
     /* border-bottom: 1px solid red; */
 
@@ -12,15 +12,25 @@ const Background = styled.div`
         margin: 0 auto;
         width: 80%;
     }
+    background-color: #fff9ee;
 `
 
 const WriteButton = styled.button`
     border: none;
     margin: 1rem auto;
     padding: 0.5rem;
-    background-color: #ffa200;
+    background-color: #a06a50;
+
     font-weight: bold;
     font-size: 1.05rem;
+    border-radius: 8px;
+    // color: white;
+
+    &:hover {
+        color: white;
+        // background-color: #ffc9d4;
+        background-color: #55433b;
+    }
 `
 
 const BoardInGrid = styled.div`
@@ -36,7 +46,8 @@ const BoardInGrid = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: 2rem;
     }
-    @media screen and (max-width: 300px) {  // 최소화면넓이
+    @media screen and (max-width: 300px) {
+        // 최소화면넓이
         grid-template-columns: 1fr;
         grid-gap: 1rem;
     }
@@ -140,7 +151,7 @@ export default function Posts({
                 <div>
                     {isLinkToWritePage ? (
                         <Link to="/post">
-                            <WriteButton>글쓰기</WriteButton>
+                            <WriteButton>Write</WriteButton>
                         </Link>
                     ) : (
                         ""
