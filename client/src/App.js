@@ -1,7 +1,7 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react"
 import { Switch, Route, Redirect, useHistory } from "react-router-dom"
 import axios from "axios"
-// import NavBar from "./pages/0.navBar"
 import FirstPage from "./pages/1.firstPage"
 import Signup from "./pages/2.signUp"
 import MainPage from "./pages/4.mainPage"
@@ -14,7 +14,6 @@ import Post from "./pages/6.post"
 import PostEdit from "./pages/7.postEdit"
 import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
-import MyPageEdit from "./pages/10.myPageEdit"
 import PwdEditPage from "./pages/11-1.pwdEdit"
 
 import "./App.css"
@@ -23,28 +22,20 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
-    const [accessToken, setAccessToken] = useState(null)
     const [isLogin, setIsLogin] = useState(false)
     const [curAnimal, setCurAnimal] = useState("home")
     const [userinfo, setUserinfo] = useState("")
-    // console.log("App.js의 userinfo : ", userinfo)
     const [postList, setPostList] = useState([])
     const [curPost, setCurPost] = useState("")
     const history = useHistory()
 
     function curPostRead(post) {
-        console.log("이녀석은 언제 실행됨?")
         setCurPost(post)
         history.push("/readpost")
     }
 
     function loginFunc(tk) {
-        // setIsLogin(!isLogin)
-        // console.log(accessToken)
-        // setAccessToken(tk)
         setIsLogin(true)
-
-        // authorization()
     }
     function SignUpFin() {
         history.push("/")
@@ -63,7 +54,6 @@ function App() {
     }
 
     useEffect(() => {
-        console.log("여기 몇번 들어오는건데 대체?")
         if (localStorage.getItem("accessToken")) {
             axios({
                 url: url + "/auth",
@@ -95,14 +85,12 @@ function App() {
             }).then((res) => {
                 setIsLogin(true)
                 setUserinfo(res.data.data.userInfo)
-                // history.push("/")
             })
         }
     }
 
     return (
         <>
-            {/* <NavBar /> */}
             <div className="entire">
                 <Switch>
                     <Route exact path="/firstpage">
@@ -206,9 +194,6 @@ function App() {
                         />
                     </Route>
 
-                    <Route path="/editmypage">
-                        <MyPageEdit />
-                    </Route>
                     <Route path="/editpw">
                         <PwdEditPage
                             setIsLogin={setIsLogin}

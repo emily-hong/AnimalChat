@@ -1,12 +1,12 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import SinglePostOnBoard from "../components/SinglePostOnBoard"
-
+import axios from "axios"
 const Background = styled.div`
     box-sizing: content-box;
     background-color: #feefd5;
     padding: 1rem;
-    /* border-bottom: 1px solid red; */
+
     height: 100vh; /* 메인화면 밑에 흰 부분 */
 `
 
@@ -28,6 +28,27 @@ const BoardInGrid = styled.div`
     justify-content: center;
     align-content: center;
 `
+const HiddenTag = styled.div`
+    color: white;
+`
+const ImgTag = styled.img`
+    max-width: 40%;
+`
+const DivTag = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`
+const DivTag2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-size: 200%;
+`
+const url =
+    process.env.REACT_APP_URL ||
+    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function Posts({
     title,
@@ -36,8 +57,69 @@ export default function Posts({
     curAnimal,
     curPostRead,
 }) {
-    console.log(postList)
-    // console.log(curAnimal)
+    function sFunc() {
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min)
+            max = Math.floor(max)
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+
+        for (let n = 0; n < 10; n++) {
+            axios({
+                url: url + "/sendpost",
+                method: "post",
+                data: {
+                    user_id: Math.random().toString(36).substr(2, 5),
+                    post_title: [
+                        "우리집 햄스터입니다.",
+                        "우리집 병아리입니다.",
+                        "우리집 앵무새입니다.",
+                        "우리집 토끼입니다.",
+                        "우리집 고슴도치입니다.",
+                        "햄스터 오늘의모습입니다.",
+                        "병아리 오늘의모습입니다.",
+                        "앵무새 오늘의모습입니다.",
+                        "토끼 오늘의모습입니다.",
+                        "고슴도치 오늘의모습입니다.",
+                        "안녕하세요, 오늘은 우리 햄토리 입니다.",
+                        "안녕하세요, 오늘은 우리 삐약이 입니다.",
+                        "안녕하세요, 오늘은 우리 앵무 입니다.",
+                        "안녕하세요, 오늘은 우리 토깽이 입니다.",
+                        "안녕하세요, 오늘은 우리 헤지고지 입니다.",
+                    ][getRandomIntInclusive(0, 14)],
+                    post_content: [
+                        "우리집 햄스터입니다.",
+                        "우리집 병아리입니다.",
+                        "우리집 앵무새입니다.",
+                        "우리집 토끼입니다.",
+                        "우리집 고슴도치입니다.",
+                        "햄스터 오늘의모습입니다.",
+                        "병아리 오늘의모습입니다.",
+                        "앵무새 오늘의모습입니다.",
+                        "토끼 오늘의모습입니다.",
+                        "고슴도치 오늘의모습입니다.",
+                        "안녕하세요, 오늘은 우리 햄토리 입니다.",
+                        "안녕하세요, 오늘은 우리 삐약이 입니다.",
+                        "안녕하세요, 오늘은 우리 앵무 입니다.",
+                        "안녕하세요, 오늘은 우리 토깽이 입니다.",
+                        "안녕하세요, 오늘은 우리 헤지고지 입니다.",
+                    ][getRandomIntInclusive(0, 14)],
+                    post_img: `http://placeimg.com/640/${getRandomIntInclusive(
+                        480,
+                        640
+                    )}/animals`,
+                    animalcategory: [
+                        "hamster",
+                        "chick",
+                        "parrot",
+                        "rabbit",
+                        "hedgehog",
+                    ][getRandomIntInclusive(0, 4)],
+                },
+                withCredentials: true,
+            })
+        }
+    }
 
     return (
         <div className="boards">
@@ -51,6 +133,20 @@ export default function Posts({
                         ""
                     )}
                 </div>
+                <HiddenTag onClick={() => sFunc()}>.</HiddenTag>
+                {postList.length === 0 ? (
+                    <DivTag className={"divTag"}>
+                        <DivTag2>
+                            <ImgTag src={"../img/pen.png"} />
+                        </DivTag2>
+                        <DivTag2>
+                            <div>첫 번째 글을 작성해보는 것은 어떨까요?</div>
+                        </DivTag2>
+                    </DivTag>
+                ) : (
+                    <div></div>
+                )}
+
                 <BoardInGrid>
                     {curAnimal === "home"
                         ? postList.map((post) => (
@@ -76,9 +172,3 @@ export default function Posts({
         </div>
     )
 }
-
-// TODO : 게시물 없을 때의 메시지
-
-// TODO
-// [] 게시물 자료 배열에 map으로 <SinglePostOnBoard /> 적용
-// [] height를 어떻게 해야 할까

@@ -1,9 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import axios from "axios"
-import { Link } from "react-router-dom" // useHistory
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-// styled components
 const Outer = styled.div`
     width: 100vw;
 `
@@ -19,7 +18,6 @@ const TopButtonsArea = styled.div`
     justify-content: flex-end;
     align-items: center;
     padding: 1rem;
-    // border: 1px solid red;
 
     & button {
         font-size: 1.05rem;
@@ -30,9 +28,9 @@ const TopButtonsArea = styled.div`
         background-color: #ffa200;
         color: #fafafa;
 
-       &:hover {
-       background-color:transparent;
-       }
+        &:hover {
+            background-color: transparent;
+        }
     }
 `
 
@@ -42,7 +40,6 @@ const TitleArea = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // border: 1px solid red;
 
     & button {
         font-size: 1.2rem;
@@ -63,30 +60,22 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function Header(props) {
-    // const [isLogin, setIsLogin] = useState(false)
-    // const [userinfo, setUserinfo] = useState(null)
-
-    // button event
     function logoutEventListener() {
-        // console.log('send logout request here')
         axios({
             url: url + "/signout",
             method: "post",
             withCredentials: true,
+        }).then((res) => {
+            localStorage.removeItem("accessToken")
+            props.setUserinfo(null)
+            props.setIsLogin(false)
         })
-            //확인필요
-            .then((res) => {
-                localStorage.removeItem("accessToken")
-                props.setUserinfo(null)
-                props.setIsLogin(false)
-            })
     }
 
     return (
         <Outer className="headerComponent">
             <HeaderFlexDiv>
                 <TopButtonsArea className="topButtonsArea">
-                    {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트, 랜딩페이지 라우팅*/}
                     <Link to="/mypage">
                         <button className="headerTopButtons">마이페이지</button>
                     </Link>

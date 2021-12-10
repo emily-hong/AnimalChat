@@ -1,12 +1,11 @@
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
-import React, { useEffect } from "react" // useState
+import React from "react"
 
 const url =
     process.env.REACT_APP_URL ||
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
-// styled components
 const StyledSinglePost = styled.div`
     display: grid;
     place-items: center center;
@@ -14,7 +13,6 @@ const StyledSinglePost = styled.div`
     width: 220px;
     height: 300px;
     background-color: #fff9ee;
-    // border: 1px solid red;
 `
 
 const StyledThumbnail = styled.img`
@@ -45,9 +43,7 @@ const StyledTitlePreview = styled.div`
     }
 `
 
-const StyledProfilePictureArea = styled.div`
-    // background-color: #4976bf;
-`
+const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
     width: 70px;
     height: 70px;
@@ -62,26 +58,44 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
     const history = useHistory()
 
     function postRead() {
-        console.log(curPostRead)
         curPostRead(post)
         history.push("/readpost")
     }
-    useEffect(() => {
-        console.log(post)
-    }, [])
-
+    function getRandomIntInclusive(min, max) {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
     return (
         <div className="singlePostOnBoard">
             <StyledSinglePost>
-                <StyledThumbnail
-                    src={url + post.post_img}
-                    onClick={() => postRead(post)}
-                />
+                {post.post_img.includes("png") ? (
+                    <StyledThumbnail
+                        src={url + post.post_img}
+                        onClick={() => postRead(post)}
+                    />
+                ) : (
+                    <StyledThumbnail
+                        src={post.post_img}
+                        onClick={() => postRead(post)}
+                    />
+                )}
                 {post.post_title}
                 <StyledTitlePreview>
                     <StyledProfilePictureArea>
                         <DivTag>
-                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                            {post.postUserPhoto ? (
+                                <ImgvTag
+                                    src={`${url}/img/${post.postUserPhoto}`}
+                                />
+                            ) : (
+                                <ImgvTag
+                                    src={`http://placeimg.com/640/${getRandomIntInclusive(
+                                        480,
+                                        640
+                                    )}/people`}
+                                />
+                            )}
                         </DivTag>
                     </StyledProfilePictureArea>
                     <div className="text">
@@ -93,38 +107,4 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
             </StyledSinglePost>
         </div>
     )
-
-    // return (
-    //   <div className="singlePostOnBoard">
-    //     <StyledSinglePost>
-    //       <StyledThumbnail color={mockBgColor}>
-    //         {/* {"사진 미리보기"} */}
-    //       </StyledThumbnail>
-    //       <StyledTitlePreview>
-    //         <StyledProfilePictureArea></StyledProfilePictureArea>
-    //         <div className="text">
-    //           <span className="writer">{"김코딩:"}</span>
-    //           <span className="title">{"만나서 반갑습니다."}</span>
-    //         </div>
-    //       </StyledTitlePreview>
-    //     </StyledSinglePost>
-    //   </div>
-    // )
 }
-
-// TODO
-// props : 미리보기 사진, 프로필 사진, 글쓴이, 제목, 링크(?)
-// { postImg ,userId, postTitle }
-// get/postlist
-// {
-//     "id" : "id",
-//     "userId" : "userId",
-//     "postTitle" : "postTitle",
-//     "postImg" : "postImg",
-//     "postContent" : "postContent",
-//     "animalCategory" : "animalCategory",
-//     "createdAt" : "createdAt",
-//     "updatedAt" : "updatedAt"
-// }
-// react-router-dom 적용 필요, 게시글마다(고민), 사진과 제목에 게시글로 연결시킬 링크가 필요하긴 하다
-// 사이즈 문제
