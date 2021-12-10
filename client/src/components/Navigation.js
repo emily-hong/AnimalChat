@@ -24,7 +24,7 @@ const ButtonsArea = styled.div`
     background-color: #FEDCAA;
     color: #f2782b;
     font-size: 1.2rem;
-  
+    font-weight: bold;
     &:hover{
       color: black;
       background-color: #ff9843;
@@ -53,7 +53,7 @@ export default function Navigation() {
       <ButtonsArea>
         <HomeButtonArea>
           <Link to="/mainpage">
-            <button className="homeButton">Home</button>
+            <button className="homeButton">전체</button>
           </Link>
         </HomeButtonArea>
         <div className="boardButtonsSpace">

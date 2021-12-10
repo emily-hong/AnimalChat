@@ -13,12 +13,19 @@ const StyledSinglePost = styled.div`
     width: 220px;
     height: 300px;
     background-color: #fff9ee;
-    /* border: 1px solid grey; */
-
+    
+    &:hover{
+        transform: scale(1.03);
+        transition: transform .3s;
+    }
+    
     @media screen and (max-width: 375px) {
         /* border: 1px solid blue; */
         width: 130px;
         height: 160px;
+    }
+    @media screen and (max-width: 300px) {
+        margin: 0 auto;
     }
 `
 

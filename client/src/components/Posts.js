@@ -36,6 +36,10 @@ const BoardInGrid = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: 2rem;
     }
+    @media screen and (max-width: 300px) {  // 최소화면넓이
+        grid-template-columns: 1fr;
+        grid-gap: 1rem;
+    }
 `
 
 export default function Posts({
