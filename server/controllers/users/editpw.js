@@ -2,9 +2,9 @@ const { user } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 const { encrypto } = require("../users/setpw")
 
+
 module.exports = async (req, res) => {
     const accessTokenData = isAuthorized(req)
-
     if (!accessTokenData) {
         res.json({ data: null, message: "not authorized" })
     }

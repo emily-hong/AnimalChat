@@ -2,10 +2,10 @@ const { user, comment } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 const commentlist = require("../users/commentlist")
 
+
 module.exports = async (req, res) => {
     const accessTokenData = isAuthorized(req)
     const { user_id } = accessTokenData
-
     const userCheck = user.findOne({
         where: {
             user_id: user_id,

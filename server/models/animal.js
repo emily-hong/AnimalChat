@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class animal extends Model {
  
     static associate(models) {
-
+      // define association here
      models.animal.belongsTo(models.user, {foreignKey: "userId", targetKey: "id"})
     }
   }
@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "animal",
+      paranoid: false
     }
   )
   return animal
