@@ -6,13 +6,14 @@ import styled from "styled-components"
 // styled components
 const Outer = styled.div`
     width: 100vw;
+    background-color: white;
 `
 
 const HeaderFlexDiv = styled.div`
     display: flex;
     flex-direction: column;
     /* background-color: #ffd489; */
-    background-color: #FEF4DE;
+    // background-color: #fef4de;
 `
 
 const TopButtonsArea = styled.div`
@@ -28,12 +29,12 @@ const TopButtonsArea = styled.div`
         border: none;
         margin: auto 0.5rem;
         padding: 0.5rem;
-        border-radius: 2rem;
+        border-radius: 2em;
         background-color: transparent;
-        color: #f47600;
+        color: #a06a50;
 
         &:hover {
-            background-color: #FEDCAA;
+            background-color: #fedcaa;
         }
     }
 `
@@ -90,14 +91,14 @@ export default function Header(props) {
                 <TopButtonsArea className="topButtonsArea">
                     {/* 링크 연결 : 마이페이지-라우팅, 로그아웃-클릭 이벤트, 랜딩페이지 라우팅*/}
                     <Link to="/mypage">
-                        <button className="headerTopButtons">마이페이지</button>
+                        <button className="headerTopButtons">My</button>
                     </Link>
                     <Link to="/firstpage">
                         <button
                             className="headerTopButtons"
                             onClick={logoutEventListener}
                         >
-                            로그아웃
+                            Logout
                         </button>
                     </Link>
                 </TopButtonsArea>
