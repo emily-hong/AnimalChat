@@ -211,8 +211,8 @@ export const FirstPage = (props) => {
             </Header>
 
             <div>
-                <SigninBtn onClick={openSignInModalHandler}>로그인</SigninBtn>
-                <SigninBtn onClick={signup}>회원가입</SigninBtn>
+                <SigninBtn onClick={openSignInModalHandler}>Login</SigninBtn>
+                <SigninBtn onClick={signup}>Signup</SigninBtn>
             </div>
 
             {isOpen === false ? null : (
@@ -227,14 +227,14 @@ export const FirstPage = (props) => {
 
                                 <SignInModalForm>
                                     <InputSet className="inputSection">
-                                        <h4>아이디</h4>
+                                        <h4>ID</h4>
                                         <input
                                             type="id"
                                             onChange={handleInputValue("id")}
                                         />
                                     </InputSet>
                                     <InputSet className="inputSection">
-                                        <h4>패스워드</h4>
+                                        <h4>PASSWORD</h4>
                                         <form>
                                             <input
                                                 autoComplete="off"
@@ -255,7 +255,7 @@ export const FirstPage = (props) => {
                                         onClick={(e) => signUpHandler(e)}
                                         className="justLogin"
                                     >
-                                        로그인
+                                        Login
                                     </button>
                                     <button className="socialLogin">
                                         구글 소셜 로그인
