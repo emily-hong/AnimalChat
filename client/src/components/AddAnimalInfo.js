@@ -1,7 +1,6 @@
 import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
-import { useHistory } from "react-router-dom"
 import DatePicker, { registerLocale } from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
@@ -15,30 +14,47 @@ const Outer = styled.div`
   box-sizing: content-box;
   display: flex;
   flex-direction: column;
-  width: 300px;
-  padding: 1rem;
+  width: 350px;
+  /* padding: 1rem; */
+  /* border: 1px solid blue; */
+  margin: 0 auto;
 `
 
 const PictureAndText = styled.div`
   display: flex;
+  /* border: 1px solid orange; */
 `
-
-const PictureSpace = styled.div`
-  display: flex;
+// 사진 div
+const PictureSpace = styled.form`
+  display: block;
   flex: 1.5;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid red; */
 `
-
+// 사진
 // TODO axios 요청 이후 - img태그로 바꾸고 배경색, border 빼기
-const RoundPicture = styled.div`
+const RoundPicture = styled.img`
+  margin: 1rem auto;
   box-sizing: content-box;
-  border: 1px solid black;
+  display: block;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+`
+// 사진없을때
+const NonePicture = styled.div`
+  margin: 1rem auto;
+  box-sizing: content-box;
   border-radius: 50%;
   background-color: grey;
   width: 120px;
   height: 120px;
-  margin: 1rem;
+  text-align: center;
+  line-height: 120px;
+  p{
+    vertical-align: middle;
+  }
 `
 
 const TextSpace = styled.div`
@@ -68,20 +84,30 @@ const Button = styled.button`
   margin: 1rem;
 `
 
-export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
-  const history = useHistory()
-  console.log('animalInfo : ', infoAnimal.user_id);
+const PhotoSelectBtn = styled.input`
+  /* border: 1px solid red; */
+  width: 100%;
+`
 
+const PhotoUpLoadBtn = styled.button`
+  border: 1px solid gray;
+  width: 72px;
+  height: 20px;
+  margin-top: 5px;
+`
+
+export default function AddAnimalInfo({infoAnimal , addButtonHandler, cancleButton}) {
+  // console.log('animalInfo : ', infoAnimal.user_id);
   // console.log('AddAnimalInfo', props.props.userinfo);
   const [animalInfo, setAnimalInfo] = useState({
     userId: infoAnimal.user_id,
     animalName: "",
-    animalYob: ""
+    animalYob: "",
   })
 
   const {
     animalName,
-    animalYob
+    animalYob,
   } = animalInfo
 
   // 반려동물 type 선택
@@ -121,39 +147,83 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
   }
 
   // 사진업로드
+  const [photo, setPhoto] = useState("")
+  const [uploadedImg, setUploadedImg] = useState({
+    fileName: null,
+    filePath: null,
+  })
 
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    const formData = new FormData()
+    formData.append("img", photo)
+    
+    // console.log("photo : ", photo); // 잘나옴
+    console.log("formData : ", formData)  // formData {}
+    
+    axios.post(url + "/animalphoto", formData,{
+      "Content-Type": "multipart/form-data",
+      withCredentials: true,
+    })
+    .then((res) => {
+      const { fileName } = res.data
+      setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+      alert("사진을 성공적으로 업로드 하였습니다.")
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  }
+
+  const addFile = (e) => {
+    console.log(e.target.files[0])
+    setPhoto(e.target.files[0])
+  }
 
   // 추가버튼
   const addButton = () => {
-    // console.log(animalInfo) // 들어옴
-    if(Selected && animalName && animalYob){ // name이 어디서 오는지?
+    if(Selected && animalName && animalYob){
       console.log('추가!')
 
       axios({
-        url : url + "/userinfochange",
+        url : url + "/edituserinfo",
         method: "post",
-        data: animalInfo
+        data: {
+          animalInfo: animalInfo,
+          animal_photo: "/img/" + uploadedImg.fileName,
+        }
       })
       .then((res) => {
         alert("추가 완료")
         addButtonHandler();
       })
-    
     }else{
       alert("모두 입력해주세요.")
     }
   }
   
+  const closeModal = () => {
+    cancleButton()
+  }
+
   return (
     <div className="singleAnimalInfo">
       <Outer>
         <PictureAndText>
-          <PictureSpace>
-            <RoundPicture>
-              {/* TODO : 사진 props, 악시오스 요청 */}
-              사진
-            </RoundPicture>
+          
+          <PictureSpace onSubmit={onSubmit}>
+            {uploadedImg.filePath === null? (
+              <NonePicture><p>사진이 없습니다</p></NonePicture>
+            ) : (
+              <RoundPicture
+                src={uploadedImg.filePath}
+              />
+            )}
+            <PhotoSelectBtn type="file" onChange={addFile}/>
+            <PhotoUpLoadBtn type="submit">사진 업로드</PhotoUpLoadBtn>
           </PictureSpace>
+
           <TextSpace>
             {/* TODO : 이름과 출생년도 props, 악시오스 요청 */}
             <div>
@@ -163,7 +233,9 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
                 {selectList.map((item) => (
                   <option value={item} key={item}>
                     {item}
-                    {console.log(Selected)}
+                    {
+                      // console.log(Selected)
+                    }
                   </option>
                 ))}
               </select>
@@ -191,11 +263,10 @@ export default function AddAnimalInfo({infoAnimal , addButtonHandler}) {
         <ButtonSpace>
           {/* TODO : 수정 페이지 Link, 라우팅 */}
           <Button onClick={addButton}>추가</Button>
+          <Button onClick={closeModal}>취소</Button>
         </ButtonSpace>
       </Outer>
     </div>
   )
 }
 
-// TODO
-// props 목록 { profileSrc, animalName, animalBirth, }

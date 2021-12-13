@@ -3,11 +3,12 @@ const { animal } = require("../../models")
 const { generateAccessToken, generateRefreshToken } = require("../tokenFunc")
 
 module.exports = async(req, res) => {
-	console.log(req.body);
+	//console.log("반려동물추가 : ", req.body);
 	// 반려동물 추가
-	const {userId, animalName, animalYob, selectType} = req.body
+	const animal_photo = req.body.animal_photo
+	const {userId, animalName, animalYob, selectType} = req.body.animalInfo
+	console.log(userId, animalName, animalYob, selectType, animal_photo);
 
-	// 정보가 하나라도 없을 경우
 	if(
 		!userId ||
 		!animalName ||
@@ -15,19 +16,13 @@ module.exports = async(req, res) => {
 		!selectType
 	){
 		res.status(401).send("정보를 모두 기입해야합니다.")
-	}
-	else{
-		// const userInfo = await user.findOne({
-		// 	where: {
-		// 		user_id: userId
-		// 	},
-		// })
-		// console.log('userInfo',userInfo);
+	}else{
 		await animal.create({
 			userId: userId,
 			animaltype: selectType,
 			animalname: animalName,
 			animalyob: animalYob,
+			animal_photo: animal_photo,
 		})
 		res.status(201).send({message: "ok"})
 	}
