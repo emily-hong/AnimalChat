@@ -60,12 +60,34 @@ const StyledList = styled.li`
 const SubmitButtonArea = styled.div`
     & > button {
         padding: 0.5rem 2rem;
+        margin: 2.2rem 1.5rem 2rem 2.8rem;
+        margin-bottom: 10rem;
+        border-radius: 3rem;
+    }
+    .submit{
+        color: #588156;
+        background-color: white;
+        font-weight: bold;
+        &:hover{
         color: white;
-        background-color: #419300;
-        margin: 2rem auto;
-        margin-bottom: 10rem; //추가
+        background-color: #FFBC57;
+        /* backgrou/nd-color:  #588156; */
+        font-weight: bold;
+        }
+    }
+    .cancel{
+        color: white;
+        background-color: #588156;
+        font-weight: bold;
+        &:hover{
+        color: #588156;
+        background-color: #FF9075;  
+        /* background-color:white; */
+        font-weight: bold;
+        }
     }
 `
+
 
 const url =
     process.env.REACT_APP_URL ||
@@ -161,6 +183,11 @@ export default function PasswordChange() {
         })
     }
 
+    const handleCancelButtonClick = (e) => {
+        history.push("/mypage")
+    }
+
+
     return (
         <Outer className="passwordChangeComponent">
             <StyledPwdChangeSection>
@@ -210,7 +237,8 @@ export default function PasswordChange() {
                     </StyledPwdFieldset>
                 </StyledPwdInputsArea>
                 <SubmitButtonArea className="submitButtonArea">
-                    <button onClick={handleButtonClick}>확인</button>
+                    <button className="submit"  onClick={handleButtonClick}>확인</button>
+                    <button className="cancel"  onClick={handleCancelButtonClick}>취소</button>
                 </SubmitButtonArea>
             </StyledPwdChangeSection>
         </Outer>
