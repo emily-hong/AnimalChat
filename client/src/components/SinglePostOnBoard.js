@@ -12,13 +12,14 @@ const StyledSinglePost = styled.div`
     padding: 0.35rem;
     width: 220px;
     height: 300px;
-    background-color: #fff9ee;
+    background-color: #bd9c8c;
+    border-radius: 10%;
 
-    &:hover{
+    &:hover {
         transform: scale(1.03);
-        transition: transform .3s;
+        transition: transform 0.3s;
     }
-    
+
     @media screen and (max-width: 375px) {
         /* border: 1px solid blue; */
         width: 130px;
@@ -64,7 +65,7 @@ const StyledTitlePreview = styled.div`
         /* border: 1px solid red; */
         height: 30px;
 
-        .title{
+        .title {
             /* border: 1px solid black; */
             font-size: 0.2rem;
             height: 70%;
@@ -104,43 +105,41 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
 
     return (
         // <div className="singlePostOnBoard">
-            <StyledSinglePost>
-                {post.post_img.includes("png") ? (
-                    <StyledThumbnail
-                        src={url + post.post_img}
-                        onClick={() => postRead(post)}
-                    />
-                ) : (
-                    <StyledThumbnail
-                        src={post.post_img}
-                        onClick={() => postRead(post)}
-                    />
-                )}
-                {post.post_title}
-                <StyledTitlePreview>
-                    <StyledProfilePictureArea>
-                        <DivTag>
-                            {post.postUserPhoto ? (
-                                <ImgvTag
-                                    src={`${url}/img/${post.postUserPhoto}`}
-                                />
-                            ) : (
-                                <ImgvTag
-                                    src={`http://placeimg.com/640/${getRandomIntInclusive(
-                                        480,
-                                        640
-                                    )}/people`}
-                                />
-                            )}
-                        </DivTag>
-                    </StyledProfilePictureArea>
-                    <div className="text">
-                        <p className="title">{`${
-                            post.user_id
-                        } : ${post.post_content.substring(0, 6)}...`}</p>
-                    </div>
-                </StyledTitlePreview>
-            </StyledSinglePost>
+        <StyledSinglePost>
+            {post.post_img.includes("png") ? (
+                <StyledThumbnail
+                    src={url + post.post_img}
+                    onClick={() => postRead(post)}
+                />
+            ) : (
+                <StyledThumbnail
+                    src={post.post_img}
+                    onClick={() => postRead(post)}
+                />
+            )}
+            {post.post_title}
+            <StyledTitlePreview>
+                <StyledProfilePictureArea>
+                    <DivTag>
+                        {post.postUserPhoto ? (
+                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                        ) : (
+                            <ImgvTag
+                                src={`http://placeimg.com/640/${getRandomIntInclusive(
+                                    480,
+                                    640
+                                )}/people`}
+                            />
+                        )}
+                    </DivTag>
+                </StyledProfilePictureArea>
+                <div className="text">
+                    <p className="title">{`${
+                        post.user_id
+                    } : ${post.post_content.substring(0, 6)}...`}</p>
+                </div>
+            </StyledTitlePreview>
+        </StyledSinglePost>
         // </div>
     )
 }

@@ -5,6 +5,7 @@ import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 import { useEffect } from "react"
 import Posts from "../components/Posts"
+import Footer from "../components/Footer"
 import React from "react"
 
 const Outer = styled.div`
@@ -43,6 +44,7 @@ export default function MainPage(props) {
                 curAnimal={props.curAnimal}
                 curPostRead={props.curPostRead}
             />
+            <Footer></Footer>
         </Outer>
     )
 }
