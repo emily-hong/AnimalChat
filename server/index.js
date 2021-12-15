@@ -61,6 +61,7 @@ app.post("/signup", controllers.signup)
 app.post("/edituserinfo", controllers.edituserinfo) 
 app.post("/readlike", controllers.readlike)
 app.post("/animalphoto", upload.single("img"), controllers.animalphoto)
+app.post("/checkpw", controllers.checkpw)
 
 //delete
 app.delete("/deletecomment", controllers.deletecomment) 

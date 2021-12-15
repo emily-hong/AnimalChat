@@ -168,7 +168,7 @@ const url =
 
 export default function PostRead(props) {
     const history = useHistory()
-    console.log(props)
+   
     function editPostButton() {
         axios({
             url: url + "/editpost",
