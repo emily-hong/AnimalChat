@@ -3,8 +3,12 @@ import { Link } from "react-router-dom" // useHistory
 import styled from "styled-components"
 
 const Outer = styled.div`
-    margin: 1.5rem;
+    /* margin: 1.5rem; */
+    margin: 0 auto;
     font-family: "IBM Plex Sans KR", sans-serif;
+    background-color: #FFFFFF;
+    height: 200px;  // 임의추가(수정가능)
+
 `
 const ImgTag = styled.img`
     width: 63px;

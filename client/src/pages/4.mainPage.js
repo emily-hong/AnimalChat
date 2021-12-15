@@ -9,8 +9,9 @@ import Footer from "../components/Footer"
 import React from "react"
 
 const Outer = styled.div`
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    /* height: 100vh; */
+    background-color: #FFF9EE;
 `
 const url =
     process.env.REACT_APP_URL ||
