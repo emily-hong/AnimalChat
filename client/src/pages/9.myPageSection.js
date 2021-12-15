@@ -102,6 +102,18 @@ const AddAnimalModalView = styled.div`
     font-weight: bold;
 `
 
+const DeleteAccount = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 20px;
+    background-color: #FFF9EE;
+    width: 400px;
+    height: 550px;
+    font-size: 1.5rem;
+    font-weight: bold;
+`
+
 const ButtonSpace1 = styled.div`
     display: flex;
     justify-content: center;
@@ -362,7 +374,7 @@ export default function MyPageSection(props) {
             {removeUsers ? (
                 <AddAnimalModalContainer>
                     <AddAnimalModalBackDrop>
-                        <AddAnimalModalView className={"3"}>
+                        <DeleteAccount className={"3"}>
                             <ButtonSpace1>
                                 <h1>회원탈퇴</h1>
                             </ButtonSpace1>
@@ -395,7 +407,7 @@ export default function MyPageSection(props) {
                                     예
                                 </Button>
                             </ButtonSpace2>
-                        </AddAnimalModalView>
+                        </DeleteAccount>
                     </AddAnimalModalBackDrop>
                 </AddAnimalModalContainer>
             ) : null}

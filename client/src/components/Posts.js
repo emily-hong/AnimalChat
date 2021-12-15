@@ -2,11 +2,16 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import SinglePostOnBoard from "../components/SinglePostOnBoard"
 import axios from "axios"
+
+const Outer = styled.div`
+    background-color: #FFF9EE;
+    min-height: 500px;
+    height: 100%;
+`
+
 const Background = styled.div`
     box-sizing: content-box;
-    // background-color: white;
-    padding: 1rem;
-    /* border-bottom: 1px solid red; */
+    padding: 2rem 1rem 4rem 1rem;
 
     @media screen and (min-width: 1500px) {
         margin: 0 auto;
@@ -146,7 +151,7 @@ export default function Posts({
     }
 
     return (
-        <div className="boards">
+        <Outer className="boards">
             <Background>
                 <div>
                     {isLinkToWritePage ? (
@@ -193,6 +198,6 @@ export default function Posts({
                               ))}
                 </BoardInGrid>
             </Background>
-        </div>
+        </Outer>
     )
 }
