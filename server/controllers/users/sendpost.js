@@ -3,7 +3,7 @@ const { isAuthorized } = require("../tokenFunc")
 
 module.exports = async (req, res) => {
     const accessTokenData = isAuthorized(req)
-
+    //console.log("server/sendpost.js", req.body)
     if (!accessTokenData) {
         return res.json({
             data: null,

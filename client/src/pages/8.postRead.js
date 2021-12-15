@@ -23,11 +23,9 @@ const PostReadSection = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh; //추가
-    margin-top: 0.5rem;
 
     & > div {
-        margin: 5rem;
+        margin: 1rem;
     }
 
     & .postPic {
@@ -39,7 +37,7 @@ const PostReadSection = styled.div`
         font-size: 1.2rem;
         padding: 1rem;
         width: 90%;
-        margin: 3rem;
+        margin-bottom: 2rem;
     }
 `
 
@@ -150,6 +148,7 @@ const BackButton = styled.button`
 
 const PhotoBoxZone = styled.img`
     max-width: 100%;
+    align-items: center;
 `
 
 const url =
@@ -158,14 +157,15 @@ const url =
 
 export default function PostRead(props) {
     const history = useHistory()
-
-    function editPostButton(event) {
+    console.log(props)
+    function editPostButton() {
         axios({
             url: url + "/editpost",
             method: "post",
             data: {
                 post_id: props.curPost.id, //클릭한 포스트 id
                 user_id: props.userinfo.user_id, //현재접속한 유저정보
+                // user_id: props.curPost.user_id,
                 post_title: props.curPost.post_title,
                 post_img: props.curPost.post_img,
                 post_content: props.curPost.post_content,
@@ -249,7 +249,7 @@ export default function PostRead(props) {
                 url: url + "/deletecomment",
                 method: "delete",
                 data: {
-                    post_id: props.curPost.id,
+                    post_id: props.curPost.id, 
                     comment_id: commentId,
                 },
                 withCredentials: true,
@@ -265,6 +265,8 @@ export default function PostRead(props) {
     const handleChangeMsg = (event) => {
         setContentMsg(event.target.value)
     }
+
+    //랜덤이미지 
     function getRandomIntInclusive(min, max) {
         min = Math.ceil(min)
         max = Math.floor(max)
@@ -299,9 +301,9 @@ export default function PostRead(props) {
                         </PostButtons>
                     </PostTitle>
 
-                    {/* 게시물 사진 */}
-                    <div className="postPic">
-                        {props.curPost.post_img.includes("png", "jpg") ? (
+                    {/* 게시물 사진 - 랜덤이미지 */}
+                    {/* <div className="postPic">
+                        {props.curPost.post_img.includes("png") ? (
                             <PhotoBoxZone
                                 className="picture"
                                 src={url + props.curPost.post_img}
@@ -317,6 +319,17 @@ export default function PostRead(props) {
                                 alt="게시물 사진2"
                             />
                         )}
+                    </div> */}
+
+                     {/* 게시물 사진 */}
+                    <div className="postPic">
+                    
+                      {/* <img className="picture" src={url + props.curPost.post_img} alt="게시물 사진" /> */}
+                      <PhotoBoxZone
+                                className="picture"
+                                src={url + props.curPost.post_img}
+                                alt="게시물 사진"
+                            />
                     </div>
 
                     {/* 게시물 내용 */}

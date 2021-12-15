@@ -11,7 +11,7 @@ const Body = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #feefd5;
+    background-color: #fff9ee;
     width: 100vw;
     height: 100vh;
 `
@@ -53,14 +53,15 @@ const TitlePostDiv = styled.div`
     height: 35vh;
 `
 
-// 사진 업로드 버튼들
+//사진 업로드 버튼 div
 const TitlePostDiv2 = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffb83e;
     margin-top: 5rem;
+    padding: 2rem;
 `
+//사진업로드 배경div
 const TitlePostDiv3 = styled.form`
     display: flex;
     flex-direction: column;
@@ -68,37 +69,35 @@ const TitlePostDiv3 = styled.form`
     align-items: center;
 `
 
+//수정 취소 버튼div
 const TitlePostDiv4 = styled.div`
     text-align: center;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #ffb83e;
     margin-top: 5rem;
 `
+//파일선택버튼 
 const PhotoSelectBtn = styled.input`
     text-align: center;
-    font-size: 20px;
-    width: 200px;
-    height: 60px;
-    background-color: #ffe2cd;
-    color: palevioletred;
+    font-size: 1.2rem;
+    width: 17rem;
+    height: 3rem; 
+    margin-top: 1rem;
 `
 
-const PhotoSelectBtnMargin = styled.div`
-    text-align: center;
-    font-size: 20px;
-    width: 200px;
-    color: black;
-`
 const PhotoUpLoadBtn = styled.button`
-    font-size: 20px;
-    color: palevioletred;
-
+    color: white;
+    font-weight:bold;
+    border-radius: 2rem;
     text-align: center;
+    font-size: 1.2rem;
     width: 200px;
-    background-color: #419300;
+    background-color: #9FD9F4;
     padding: 1rem;
+    &:hover{
+        background-color:#95E4FE;
+    }
 `
 
 const TitleBox = styled.input`
@@ -121,6 +120,7 @@ const PostBox = styled.textarea`
     color: palevioletred;
     font-size: 30px;
     padding: 0.5rem;
+    text-align: center;
 `
 
 const PostUploadBtn = styled.div``
@@ -151,7 +151,7 @@ const url =
 
 export const PostEdit = (props) => {
     const history = useHistory()
-
+    console.log(props)
     // 1. input title, content
     // 2. 제목과 내용 필수, 사진은 선택으로 함
     const [inputTitle, setInputTitle] = useState("")
@@ -214,7 +214,7 @@ export const PostEdit = (props) => {
                 })
                 .catch((err) => console.log(err))
         }
-        //사진은안바꾸고 제목과 내용만 변경
+        //사진은 안바꾸고 제목과 내용만 변경
         else if (
             inputTitle.length > 0 &&
             inputContent.length > 0 &&
@@ -229,6 +229,7 @@ export const PostEdit = (props) => {
                     post_title: inputTitle,
                     post_content: inputContent,
                     post_img: props.curPost.post_img,
+                    // post_img: "/img/" + uploadedImg.fileName,
                     animalcategory: props.curAnimal,
                 },
                 withCredentials: true,
@@ -255,6 +256,8 @@ export const PostEdit = (props) => {
         const formData = new FormData()
         formData.append("img", photo)
         setPhotoChange(true)
+
+        //console.log("formData : ", formData)
 
         axios
             .post(url + "/animalphoto", formData, {
@@ -287,27 +290,26 @@ export const PostEdit = (props) => {
                 <TitlePostDiv3 onSubmit={onSubmit}>
                     <PhotoBox>
                         {uploadedImg ? (
-                            <>
+                            <div className="uploadedImage">
                                 <PhotoBoxZone
                                     src={uploadedImg.filePath}
                                     alt=""
                                 />
-                            </>
+                            </div>
                         ) : (
-                            <PhotoBoxDiv>
+                            <PhotoBoxDiv className="photoUploadWarning">
                                 아래 파일 추가를 눌러주세요.
                             </PhotoBoxDiv>
                         )}
                     </PhotoBox>
-                    <TitlePostDiv2>
-                        <PhotoSelectBtn type="file" onChange={addFile} />
 
+                    <TitlePostDiv2 className="photoSelectButtons">
+                        <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
                         <PhotoUpLoadBtn type="submit">
-                            <PhotoSelectBtnMargin>
-                                사진수정 버튼
-                            </PhotoSelectBtnMargin>
+                            사진 재업로드
                         </PhotoUpLoadBtn>
                     </TitlePostDiv2>
+
                 </TitlePostDiv3>
 
                 <TitlePostDiv>
@@ -319,7 +321,6 @@ export const PostEdit = (props) => {
                         // 수정 전의 제목이 들어와야함
                     />
                     <PostBox
-                        placeholder="글을 적으세요."
                         type="text"
                         name="content"
                         onChange={handleInputValue}
