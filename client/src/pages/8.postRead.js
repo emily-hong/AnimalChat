@@ -301,6 +301,14 @@ export default function PostRead(props) {
 
                     {/* 게시물 사진 */}
                     <div className="postPic">
+                      {/* <img className="picture" src={url + props.curPost.post_img} alt="게시물 사진" /> */}
+                      <PhotoBoxZone
+                                className="picture"
+                                src={url + props.curPost.post_img}
+                                alt="게시물 사진"
+                            />
+                    </div>
+                    {/* <div className="postPic">
                         {props.curPost.post_img.includes("png") ? (
                             <PhotoBoxZone
                                 className="picture"
@@ -317,7 +325,7 @@ export default function PostRead(props) {
                                 alt="게시물 사진2"
                             />
                         )}
-                    </div>
+                    </div> */}
 
                     {/* 게시물 내용 */}
                     <div className="postContent">
