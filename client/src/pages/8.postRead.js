@@ -301,7 +301,7 @@ export default function PostRead(props) {
                         </PostButtons>
                     </PostTitle>
 
-                    {/* 게시물 사진 - 랜덤 */}
+                    {/* 게시물 사진 - 랜덤이미지 */}
                     {/* <div className="postPic">
                         {props.curPost.post_img.includes("png") ? (
                             <PhotoBoxZone

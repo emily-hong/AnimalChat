@@ -142,6 +142,8 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                     </div>
                 </StyledTitlePreview>
             </StyledSinglePost> */}
+             
+             {/* 랜덤이미지 아닐 때 */}
             <StyledSinglePost>
                 <StyledThumbnail
                     src={url + post.post_img}
@@ -163,4 +165,5 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
             </StyledSinglePost>
         </div>
     )
-}
+}ㄴ
+                </StyledProfilePictureArea>

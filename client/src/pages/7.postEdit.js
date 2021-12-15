@@ -252,6 +252,7 @@ export const PostEdit = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+
         const formData = new FormData()
         formData.append("img", photo)
         setPhotoChange(true)
@@ -274,7 +275,7 @@ export const PostEdit = (props) => {
     }
 
     const addFile = (e) => {
-        console.log(e.target.files[0])
+        console.log(e.target.files[0]);
         setPhoto(e.target.files[0])
     }
 

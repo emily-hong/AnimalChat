@@ -11,9 +11,6 @@ const ButtonsArea = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    // border: 1px solid red;
-    /* background-color: #FFD489; */
-    // background-color: #fff2e2;
     padding: 1rem;
     border-bottom: 1px solid #e0e0e0;
     // background-color: #a06a50;
@@ -23,17 +20,12 @@ const ButtonsArea = styled.div`
         border-radius: 8px;
         margin: auto 0.5rem;
         padding: 0.5rem 1rem;
-        /* background-color: #FFB83E; */
-        // background-color: #95e4fe;
-        // background-color: #ff9075;
         background-color: #a06a50;
 
         color: white;
         font-size: 1.2rem;
-        // font-weight: bold;
         &:hover {
             color: white;
-            // background-color: #ffc9d4;
             background-color: #55433b;
         }
     }
@@ -51,8 +43,6 @@ const HomeButtonArea = styled.div`
         border: none;
         margin: auto 0.5rem;
         padding: 0.5rem;
-        /* background-color: #FFA200; */
-        // background-color: #fedcaa;
         background-color: #a06a50;
     }
 `
@@ -71,7 +61,7 @@ export default function Navigation() {
                         <button className="boardButton">햄스터</button>
                     </Link>
                     <Link to="/board/chick">
-                        <button className="boardButton">병아리</button>
+                        <button className="boardButton">병아리 & 닭</button>
                     </Link>
                     <Link to="/board/parrot">
                         <button className="boardButton">앵무새</button>
