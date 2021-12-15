@@ -165,5 +165,4 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
             </StyledSinglePost>
         </div>
     )
-}ㄴ
-                </StyledProfilePictureArea>
+}

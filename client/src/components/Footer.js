@@ -5,6 +5,9 @@ import styled from "styled-components"
 const Outer = styled.div`
     margin: 1.5rem;
     font-family: "IBM Plex Sans KR", sans-serif;
+    background-color: #FFFFFF;
+    width: 100vw;
+    height: 20%;
 `
 const ImgTag = styled.img`
     width: 63px;
