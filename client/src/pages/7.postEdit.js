@@ -53,16 +53,15 @@ const TitlePostDiv = styled.div`
     height: 35vh;
 `
 
-// 사진 업로드 버튼들
+//사진 업로드 버튼 div
 const TitlePostDiv2 = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: #ffb83e; */
     margin-top: 5rem;
     padding: 2rem;
-
 `
+//사진업로드 배경div
 const TitlePostDiv3 = styled.form`
     display: flex;
     flex-direction: column;
@@ -70,36 +69,24 @@ const TitlePostDiv3 = styled.form`
     align-items: center;
 `
 
+//수정 취소 버튼div
 const TitlePostDiv4 = styled.div`
     text-align: center;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
-    background-color: #ffb83e;
     margin-top: 5rem;
 `
+//파일선택버튼 
 const PhotoSelectBtn = styled.input`
     text-align: center;
-    font-size: 20px;
+    font-size: 1.2rem;
     width: 17rem;
     height: 3rem; 
-    /* background-color: #ffe2cd; */
-    /* color: palevioletred; */
+    margin-top: 1rem;
 `
 
-const PhotoSelectBtnMargin = styled.button`
-    text-align: center;
-    font-size: 1.2rem;
-    width: 200px;
-    background-color:#9FD9F4 ;
-    color: white;
-    font-weight:bold;
-    &:hover{
-        background-color:#95E4FE;
-    }
-`
 const PhotoUpLoadBtn = styled.button`
-    font-size: 20px;
     color: white;
     font-weight:bold;
     border-radius: 2rem;
@@ -133,6 +120,7 @@ const PostBox = styled.textarea`
     color: palevioletred;
     font-size: 30px;
     padding: 0.5rem;
+    text-align: center;
 `
 
 const PostUploadBtn = styled.div``
@@ -317,9 +305,7 @@ export const PostEdit = (props) => {
                     <TitlePostDiv2 className="photoSelectButtons">
                         <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
                         <PhotoUpLoadBtn type="submit">
-                            {/* <PhotoSelectBtnMargin> */}
-                                사진수정 버튼
-                            {/* </PhotoSelectBtnMargin> */}
+                            사진 재업로드
                         </PhotoUpLoadBtn>
                     </TitlePostDiv2>
 

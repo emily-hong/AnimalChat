@@ -1,10 +1,6 @@
 const { post } = require("../../models")
 
 module.exports = async (req, res) => {
-    console.log("server/editpost.js::::::::::", req.body)
-
-    console.log("server/editpost.js::::::::::", req.file)
-
 
     const {
         user_id, //현재접속중인 유저id 
@@ -20,7 +16,6 @@ module.exports = async (req, res) => {
             id: post_id,
         }
     })
-    //console.log("server/editpost.js------",checkUser)
     
     if (!checkUser) {
         res.send("게시물 작성자가 아닙니다.")
