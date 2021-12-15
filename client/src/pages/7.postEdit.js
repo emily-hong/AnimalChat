@@ -251,13 +251,14 @@ export const PostEdit = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
+
         const formData = new FormData()
         formData.append("img", photo)
         setPhotoChange(true)
 
         axios
-            .post(url + "/editpost", formData, {
-                "Content-Type": "application/json",
+            .post(url + "/animalphoto", formData, {
+                "Content-Type": "multipart/form-data",
                 withCredentials: true,
             })
             .then((res) => {
@@ -271,6 +272,7 @@ export const PostEdit = (props) => {
     }
 
     const addFile = (e) => {
+        console.log(e.target.files[0]);
         setPhoto(e.target.files[0])
     }
 

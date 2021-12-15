@@ -1,6 +1,7 @@
 const { post } = require("../../models")
 
 module.exports = async (req, res) => {
+    console.log("editpost : ",req.body);
     const {
         user_id,
         post_id,
