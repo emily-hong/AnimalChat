@@ -58,6 +58,7 @@ const SubmitButtonArea = styled.div`
         margin: 2.2rem 1.5rem 2rem 2.8rem;
         margin-bottom: 10rem;
         border-radius: 3rem;
+        font-size:1rem;
     }
     .submit{
         color: #588156;
@@ -66,7 +67,6 @@ const SubmitButtonArea = styled.div`
         &:hover{
         color: white;
         background-color: #FFBC57;
-        /* backgrou/nd-color:  #588156; */
         font-weight: bold;
         }
     }
@@ -75,9 +75,8 @@ const SubmitButtonArea = styled.div`
         background-color: #588156;
         font-weight: bold;
         &:hover{
-        color: #588156;
-        background-color: #FF9075;  
-        /* background-color:white; */
+        color: #006300;
+        background-color: #E55432;  
         font-weight: bold;
         }
     }
