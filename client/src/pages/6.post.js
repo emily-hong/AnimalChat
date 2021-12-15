@@ -116,7 +116,7 @@ const PostBox = styled.textarea`
     height: 400px;
     background-color: #ececec;
     font-size: 30px;
-    color: #424242;
+    color: palevioletred;
     padding: 0.5rem;
     text-align: center;
 `
@@ -275,6 +275,7 @@ export const Post = (props) => {
                             </PhotoUploadWarning>
                         )}
                     </PhotoBox>
+                    
                     <PhotoUploadButtons className="photoSelectButtons">
                         <PhotoSelectBtn
                             type="file"

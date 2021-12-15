@@ -103,8 +103,9 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
     }
 
     return (
-        // <div className="singlePostOnBoard">
-            <StyledSinglePost>
+        <div className="singlePostOnBoard">
+            {/* 랜덤이미지 */}
+            {/* <StyledSinglePost>
                 {post.post_img.includes("png") ? (
                     <StyledThumbnail
                         src={url + post.post_img}
@@ -140,7 +141,26 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                         } : ${post.post_content.substring(0, 6)}...`}</p>
                     </div>
                 </StyledTitlePreview>
+            </StyledSinglePost> */}
+            <StyledSinglePost>
+                <StyledThumbnail
+                    src={url + post.post_img}
+                    onClick={() => postRead(post)}
+                />
+                {post.post_title}
+                <StyledTitlePreview>
+                    <StyledProfilePictureArea>
+                        <DivTag>
+                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                        </DivTag>
+                    </StyledProfilePictureArea>
+                    <div className="text">
+                        <p className="title">{`${
+                            post.user_id
+                        } : ${post.post_content.substring(0, 6)}...`}</p>
+                    </div>
+                </StyledTitlePreview>
             </StyledSinglePost>
-        // </div>
+        </div>
     )
 }
