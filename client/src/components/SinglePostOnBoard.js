@@ -20,7 +20,6 @@ const StyledSinglePost = styled.div`
     }
     
     @media screen and (max-width: 375px) {
-        /* border: 1px solid blue; */
         width: 130px;
         height: 160px;
     }
@@ -43,7 +42,7 @@ const StyledThumbnail = styled.img`
 
 const StyledTitlePreview = styled.div`
     display: flex;
-    height: 60px;
+    /* height: 60px; */
     padding: 0.25rem;
     font-size: 0.9rem;
     color: #424242;
@@ -61,11 +60,9 @@ const StyledTitlePreview = styled.div`
     }
 
     @media screen and (max-width: 375px) {
-        /* border: 1px solid red; */
         height: 30px;
 
         .title{
-            /* border: 1px solid black; */
             font-size: 0.2rem;
             height: 70%;
         }
@@ -74,8 +71,8 @@ const StyledTitlePreview = styled.div`
 
 const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
 
     @media screen and (max-width: 375px) {
         width: 30px;
@@ -151,11 +148,11 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                 />
                 {post.post_title}
                 <StyledTitlePreview>
-                    <StyledProfilePictureArea>
+                    {/* <StyledProfilePictureArea> */}
                         <DivTag>
                             <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
                         </DivTag>
-                    </StyledProfilePictureArea>
+                    {/* </StyledProfilePictureArea> */}
                     <div className="text">
                         <p className="title">{`${
                             post.user_id
