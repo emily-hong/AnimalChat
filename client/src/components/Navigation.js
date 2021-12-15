@@ -61,7 +61,7 @@ export default function Navigation() {
                         <button className="boardButton">햄스터</button>
                     </Link>
                     <Link to="/board/chick">
-                        <button className="boardButton">병아리</button>
+                        <button className="boardButton">병아리 & 닭</button>
                     </Link>
                     <Link to="/board/parrot">
                         <button className="boardButton">앵무새</button>
