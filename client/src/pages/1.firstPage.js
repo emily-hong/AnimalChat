@@ -9,7 +9,7 @@ const Container = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: #FFF9EE;
+    background-color: #fff9ee;
 `
 
 const Header = styled.div`
@@ -70,7 +70,7 @@ export const SignInModalView = styled.div`
     flex-direction: column;
     justify-content: center;
     border-radius: 20px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     min-width: 400px;
     width: 450px;
     height: 550px;
@@ -90,7 +90,7 @@ export const SignInModalForm = styled.div`
     padding: 1rem;
     /* font-size: 1.33rem; */
     color: palevioletred;
-    & p{
+    & p {
         font-weight: bold;
         color: black;
         font-size: 1rem;
@@ -147,9 +147,13 @@ const LoginButtons = styled.div`
         border: 2px solid #588156;
     }
     & button.close {
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         border: 1px solid #588156;
         color: #588156;
+    }
+    & button.NonMembers {
+        background-color: #588156;
+        border: 2px solid #588156;
     }
 `
 const IconPhoto = styled.img`
@@ -211,6 +215,46 @@ export const FirstPage = (props) => {
                 })
         }
     }
+    const [userInfo, setUserInfo] = useState({
+        userId: "testman",
+        password: "123q",
+        nickName: "테스터맨",
+        animalName: "테스터",
+        selectType: "햄스터",
+        animalYob: "2021.11.30",
+    })
+    function testLogin(e) {
+        //테스터 아이디 만들고
+        axios({
+            url: url + "/signup",
+            method: "post",
+            data: userInfo,
+            "Content-Type": "application/json",
+            withCredentials: true,
+        }).then((res) => {
+            axios({
+                url: url + "/signin",
+                method: "post",
+                data: { id: "testman", password: "123q" },
+                "Content-Type": "application/json",
+                withCredentials: true,
+            })
+                .then((res) => {
+                    localStorage.setItem(
+                        "accessToken",
+                        JSON.stringify(res.data.accessToken)
+                    )
+
+                    props.loginFunc()
+
+                    alert("로그인 완료")
+                    history.push("/")
+                })
+                .catch((err) => {
+                    setErrMessage("아이디 또는 비밀번호를 확인하세요")
+                })
+        })
+    }
 
     return (
         <Container>
@@ -235,7 +279,10 @@ export const FirstPage = (props) => {
                                 </p>
 
                                 <SignInModalForm>
-                                    <InputSet className="inputSection" id="inputId">
+                                    <InputSet
+                                        className="inputSection"
+                                        id="inputId"
+                                    >
                                         {/* <p>ID</p> */}
                                         <input
                                             type="id"
@@ -279,8 +326,13 @@ export const FirstPage = (props) => {
                                     >
                                         닫기
                                     </button>
+                                    <button
+                                        onClick={(e) => testLogin()}
+                                        className="NonMembers"
+                                    >
+                                        비회원 로그인
+                                    </button>
                                 </LoginButtons>
-
                             </SignInModalView>
                         </SignInModalBackdrop>
                     </SignInModalContainer>

@@ -14,11 +14,11 @@ const StyledSinglePost = styled.div`
     height: 300px;
     background-color: #fff9ee;
 
-    &:hover{
+    &:hover {
         transform: scale(1.03);
-        transition: transform .3s;
+        transition: transform 0.3s;
     }
-    
+
     @media screen and (max-width: 375px) {
         width: 130px;
         height: 160px;
@@ -62,7 +62,9 @@ const StyledTitlePreview = styled.div`
     @media screen and (max-width: 375px) {
         height: 30px;
 
+
         .title{
+
             font-size: 0.2rem;
             height: 70%;
         }
@@ -139,8 +141,8 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                     </div>
                 </StyledTitlePreview>
             </StyledSinglePost> */}
-             
-             {/* 랜덤이미지 아닐 때 */}
+
+            {/* 랜덤이미지 아닐 때 */}
             <StyledSinglePost>
                 <StyledThumbnail
                     src={url + post.post_img}
@@ -162,4 +164,6 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
             </StyledSinglePost>
         </div>
     )
+
 }
+

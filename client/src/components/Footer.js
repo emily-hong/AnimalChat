@@ -6,14 +6,33 @@ const Outer = styled.div`
     /* margin: 1.5rem; */
     margin: 0 auto;
     font-family: "IBM Plex Sans KR", sans-serif;
-    background-color: #FFFFFF;
+     background-color: #FFFFFF;
     height: 200px;  // 임의추가(수정가능)
+    background-color: white;
+    //모바일
+    @media screen and (max-width: 1080px) {
+        // background-color: red;
+        margin: 0rem;
+        width: 100%;
+    }
+`
 
+
+const GifTag = styled.img`
+    // width: 100%;
+    // margin-bottom: 5px;
+    // margin-left: -21px;
+    @media screen and (max-width: 1080px) {
+        display: none;
+    }
 `
 const ImgTag = styled.img`
     width: 63px;
     margin-bottom: 5px;
     margin-left: -21px;
+    @media screen and (max-width: 1080px) {
+        display: none;
+    }
 `
 const IconTag = styled.img`
     width: 20px;
@@ -65,7 +84,7 @@ export default function Footer(props) {
         <Outer className="footerComponent">
             <FlexRow1>
                 <div>
-                    <img src={"../img/footerGif.gif"} alt={""} />
+                    <GifTag src={"../img/footerGif.gif"} alt={""} />
                     {/* <imgTag src={"../img/footerGif.gif"} alt={""} /> */}
 
                     <ImgTag src={"../img/image3.png"} alt={""} />
