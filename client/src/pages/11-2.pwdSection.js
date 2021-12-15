@@ -5,21 +5,16 @@ import axios from "axios"
 import styled from "styled-components"
 
 const Outer = styled.div`
-    /* height: 100vh; */
-    background-color: #feefd5;
-    /* background-color:yellow; */
+    height: 100%;
+    border: 1px solid red;
 `
 
 const StyledPwdChangeSection = styled.div`
     display: flex;
-    padding: 5rem;
-    /* margin-top: 10rem; */
-    height: 100vh;
+    padding: 0;
     flex-direction: column;
     align-items: center;
-    background-color: #feefd5;
-    /* background-color:blue; */
-    /* flex-grow: 1; */
+    background-color: #FFF9EE;
     flex:3 1 auto;
 `
 
