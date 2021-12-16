@@ -6,9 +6,11 @@ const Outer = styled.div`
     /* margin: 1.5rem; */
     margin: 0 auto;
     font-family: "IBM Plex Sans KR", sans-serif;
-     background-color: #FFFFFF;
-    height: 200px;  // 임의추가(수정가능)
+    height: 150px;
     background-color: white;
+    /* display: flex; */
+    /* align-items: center; */
+
     //모바일
     @media screen and (max-width: 1080px) {
         // background-color: red;
@@ -16,7 +18,6 @@ const Outer = styled.div`
         width: 100%;
     }
 `
-
 
 const GifTag = styled.img`
     // width: 100%;
@@ -42,6 +43,8 @@ const FlexRow1 = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin: 0 auto;
+    padding-top: 50px;  // 수직 가운데추가
 `
 const FlexRow2 = styled.div`
     display: flex;
