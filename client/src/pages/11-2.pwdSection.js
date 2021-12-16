@@ -22,7 +22,6 @@ const StyledPwdInputsArea = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* flex:1 1 auto; */
     margin-top: 5rem;
 `
 
@@ -58,6 +57,7 @@ const SubmitButtonArea = styled.div`
         margin: 2.2rem 1.5rem 2rem 2.8rem;
         margin-bottom: 10rem;
         border-radius: 3rem;
+        font-size:1rem;
     }
     .submit{
         color: #588156;
@@ -66,7 +66,6 @@ const SubmitButtonArea = styled.div`
         &:hover{
         color: white;
         background-color: #FFBC57;
-        /* backgrou/nd-color:  #588156; */
         font-weight: bold;
         }
     }
@@ -75,12 +74,27 @@ const SubmitButtonArea = styled.div`
         background-color: #588156;
         font-weight: bold;
         &:hover{
-        color: #588156;
-        background-color: #FF9075;  
-        /* background-color:white; */
+        color: #006300;
+        background-color: #E55432;  
         font-weight: bold;
         }
     }
+`
+
+const CheckCurPwBtn = styled.button`
+   justify-content: center;
+   margin-bottom:1.3rem;
+   margin-left:1.5rem;
+   border-radius:1rem;
+   font-size: 1.1rem;
+   font-weight: bold;
+   padding: 0.3rem 2rem;
+   background-color: #FFB5A0;
+   color: white;
+   &:hover{
+    background-color: #FF9075;
+    color: white;
+   }
 `
 
 
@@ -90,97 +104,120 @@ const url =
 
 export default function PasswordChange() {
     const history = useHistory()
-
-    const [inputs, setInputs] = useState({
-        curPwd: "",
-        newPwd: "",
-    })
-    const { curPwd, newPwd } = inputs
-
-    const handleOnChange = (e) => {
-        setInputs({
-            ...inputs,
-            [e.target.name]: e.target.value,
-        })
-    }
-
-    const [newPwdValidity, setNewPwdValidity] = useState({
-        isNewPwdInput: false,
-        isTooShort: true,
-        isTooLong: false,
-        isAllNumbers: false,
-        isAllAlphabets: false,
-    })
-
-    useEffect(() => {
-        function getValidity(str) {
-            // 비밀번호 유효성 검사용 정규식
-            const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/ // 비밀번호 전체
-            const regOnlyNumber = /^[0-9]/ // 숫자만
-            const regOnlyAlphabets = /^[a-zA-Z]*$/ // 문자만
-
-            // newPwd 유효성검사
-            if (str.length > 0) {
-                setNewPwdValidity({ ...newPwdValidity, isNewPwdInput: true })
-                const isValidPwd = regPassword.test(str)
-
-                if (isValidPwd) {
-                } else {
-                    let isOnlyNumber = regOnlyNumber.test(str)
-                    let isOnlyAlphabets = regOnlyAlphabets.test(str)
-                    if (isOnlyNumber) {
-                        // 문자를 포함해야 함
-                        setNewPwdValidity({
-                            ...newPwdValidity,
-                            isAllNumbers: true,
-                            isAllAlphabets: false,
-                        })
-                    } else if (isOnlyAlphabets) {
-                        // 숫자를 포함해야 함
-                        setNewPwdValidity({
-                            ...newPwdValidity,
-                            isAllAlphabets: true,
-                            isAllNumbers: false,
-                        })
-                    }
-
-                    if (str.length < 4) {
-                        // 비밀번호 길이는 4자 이상
-                        setNewPwdValidity({
-                            ...newPwdValidity,
-                            isTooShort: true,
-                            isTooLong: false,
-                        })
-                    } else if (str.length > 15) {
-                        // 비밀번호 길이는 15자 이하
-                        setNewPwdValidity({
-                            ...newPwdValidity,
-                            isTooLong: true,
-                            isTooShort: false,
-                        })
-                    }
-                }
-            }
+    const [valid, setValid] = useState(""); 
+    const [curPwd, setCurPwd] = useState("");
+    const [newPwd, setNewPwd] = useState("");
+    const [curWarning, setCurWarning] = useState("비밀번호 입력후 확인해주세요");
+    const [newWarning, setNewWarning] = useState({
+        input: "새로운 비밀번호를 입력하세요",
+        string: "4자 이상 15글자 미만이어야 합니다",
+        number: "숫자와 문자 모두 포함해야 합니다"
+    });
+    const { input, string, number } = newWarning;
+   
+    //4글자 이상 15자 미만, 영문자, 숫자 포함 
+    const regPassword = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{4,15}$/ 
+  
+    const curPwdHandler = (e) => {
+        //console.log(e.target.value)
+        setCurPwd(el => e.target.value);
+        if(e.target.value.length === 0){
+            setCurWarning(el => "비밀번호를 입력하세요")
+        }else{
+            setCurWarning(el => "")
         }
-        getValidity(newPwd)
-    }, [newPwd])
-
-    const handleButtonClick = (e) => {
-        e.preventDefault()
-        axios({
-            url: url + "/editpw",
-            method: "post",
-            data: { password: inputs.newPwd },
-            withCredentials: true,
-        }).then((res) => {
-            alert("비밀번호 변경이 완료되었습니다.")
-            history.push("/mainpage")
-        })
     }
+
+    const newPwdHandler = (e) => {
+        //console.log(e.target.value)
+        setNewPwd(el => e.target.value);
+
+        if(e.target.value.length === 0){
+            setNewWarning(el => {
+                return { ...el, input: "비밀번호를 입력하세요" }
+            })
+        }else{
+          setNewWarning(el => {
+              return { ...el, input: ""}
+          })
+        }
+
+        if(!regPassword.test(e.target.value)){
+            setNewWarning(el => {
+                return { ...el, number: "영문자, 숫자가 모두 포함되어야 합니다" }
+            })
+            setValid(el => "")
+        }else{
+            setNewWarning(el => {
+                return { ...el, number: "" }
+            })
+            setValid(el => "사용가능한 비밀번호 입니다")
+        }
+
+        if(e.target.value.length < 4){
+            setNewWarning(el => {
+                return { ...el, string: "4글자 이상 15글자 미만이어야 합니다" }
+            })
+        }
+        else{
+            setNewWarning(el => {
+                return { ...el, string: "" }
+            })
+        }
+    }
+
 
     const handleCancelButtonClick = (e) => {
+        setCurPwd(el => "")
+        setNewPwd(el => "")
+        setValid(el => "")
         history.push("/mypage")
     }
+
+    const CheckCurPwBtnHandler = (e) => {
+        //console.log("비밀번호확인",e.target.value)
+        const token = JSON.parse(localStorage.getItem("accessToken"))
+        axios({
+            url: url + "/checkpw",
+            method: "post",
+            data: { password: curPwd },
+            headers:{
+              "Content-Type": "application/json",
+              "Authorization": `token ${token}`
+            },
+            withCredentials: true,
+        }).then((res) => {
+           //console.log(res.data)
+           alert(res.data)
+        })
+    }
+
+
+    const handleButtonClick = (e) => {
+        //e.preventDefault()
+        let newPwValid = regPassword.test(newPwd)
+        //console.log(newPwValid)
+        if(newPwValid === false){
+            alert("비밀번호를 수정해주세요") 
+        }else{
+            const token = JSON.parse(localStorage.getItem("accessToken"))
+            //console.log(token)
+            axios({
+                url: url + "/editpw",
+                method: "post",
+                data: { password: newPwd },
+                headers:{
+                  "Content-Type": "application/json",
+                  "Authorization": `token ${token}`
+                },
+                withCredentials: true,
+            }).then((res) => {
+                alert("비밀번호 변경이 완료되었습니다")
+                history.push("/mainpage")
+            })
+        }
+    }
+
 
 
     return (
@@ -194,9 +231,12 @@ export default function PasswordChange() {
                             name="curPwd"
                             placeholder="현재 비밀번호를 입력하세요"
                             value={curPwd}
-                            onChange={handleOnChange}
+                            onChange={curPwdHandler}
                         />
+                        <StyledList>{curWarning}</StyledList>
                     </StyledPwdFieldset>
+                    <CheckCurPwBtn onClick={CheckCurPwBtnHandler}>비밀번호 확인</CheckCurPwBtn>
+
                     <StyledPwdFieldset>
                         <h4 className="inputTitle">새 비밀번호</h4>
                         <input
@@ -204,32 +244,13 @@ export default function PasswordChange() {
                             name="newPwd"
                             placeholder="4 ~ 15자, 영문과 숫자 포함"
                             value={newPwd}
-                            onChange={handleOnChange}
+                            onChange={newPwdHandler}
                         />
-                        <ul className="validityRequirements">
-                            {newPwd.length !== 0 ? (
-                                ""
-                            ) : (
-                                <StyledList>
-                                    비밀번호를 입력해주세요.
-                                </StyledList>
-                            )}
-                            {newPwd.length < 4 ? (
-                                <StyledList>
-                                    4글자 이상으로 입력해주세요.
-                                </StyledList>
-                            ) : (
-                                ""
-                            )}
-                            {newPwd.length > 15 ? (
-                                <StyledList>
-                                    15글자 이하로 입력해주세요.
-                                </StyledList>
-                            ) : (
-                                ""
-                            )}
-                        </ul>
+                        <StyledList>{input}</StyledList>
+                        <StyledList>{string}</StyledList>
+                        <StyledList>{number}</StyledList>
                     </StyledPwdFieldset>
+
                 </StyledPwdInputsArea>
                 <SubmitButtonArea className="submitButtonArea">
                     <button className="submit"  onClick={handleButtonClick}>확인</button>

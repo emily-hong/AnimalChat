@@ -16,6 +16,7 @@ module.exports = {
   like: require("./users/like"),
   readlike: require("./users/readlike"),
   animalphoto: require("./users/animalphoto"),
+  checkpw:require("./users/checkpw"),
   deletecomment: require("./del/deletecomment"),
   deletepost: require("./del/deletepost"),
   deleteanimal: require("./del/deleteanimal"),
