@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom"
 const Outer = styled.div`
     background-color: #FFF9EE;
     height: 100%;
-    padding-top: 5%;
+    padding: 5% 0;
 `
 
 const IdDisplay = styled.div`
