@@ -72,19 +72,30 @@ const PostButtons = styled.div`
         display: flex;
         justify-content: center;
         align-items: flex-end;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        font-weight:bold;
         padding: 0.5rem;
         margin: 0.5rem;
         color: white;
+        border-radius:2rem;
     }
     & .editPost {
-        flex-grow: 2;
-        background-color: #4876bf;
-        color: white;
+        flex-grow: 1.2;
+        background-color:white; 
+        color: #588156;
+        &:hover{
+          background-color: #FFBC57;
+          color:white;
+        }
     }
     & .deletePost {
-        flex-grow: 1;
-        background-color: #e00000;
+        flex-grow: 1.1;
+        background-color: #588156;
+        color:white;
+        &:hover{
+          background-color:#E55432; 
+          color: #006300;
+        }
     }
 `
 
@@ -157,7 +168,7 @@ const url =
 
 export default function PostRead(props) {
     const history = useHistory()
-    console.log(props)
+   
     function editPostButton() {
         axios({
             url: url + "/editpost",

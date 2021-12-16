@@ -59,7 +59,7 @@ const TitlePostDiv2 = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 5rem;
-    padding: 2rem;
+    padding: 1rem;
 `
 //사진업로드 배경div
 const TitlePostDiv3 = styled.form`
@@ -71,11 +71,14 @@ const TitlePostDiv3 = styled.form`
 
 //수정 취소 버튼div
 const TitlePostDiv4 = styled.div`
-    text-align: center;
-    padding: 1rem;
+    margin: 3rem;
     display: flex;
-    justify-content: space-between;
-    margin-top: 5rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 45vh;
+    
 `
 //파일선택버튼 
 const PhotoSelectBtn = styled.input`
@@ -86,60 +89,84 @@ const PhotoSelectBtn = styled.input`
     margin-top: 1rem;
 `
 
+//사진 재업로드 버튼
 const PhotoUpLoadBtn = styled.button`
     color: white;
     font-weight:bold;
     border-radius: 2rem;
     text-align: center;
     font-size: 1.2rem;
-    width: 200px;
+    width: 7vw;
     background-color: #9FD9F4;
     padding: 1rem;
     &:hover{
         background-color:#95E4FE;
     }
 `
-
+//제목
 const TitleBox = styled.input`
     border: 1px solid #b5b5b5;
     margin-bottom: 40px;
     width: inherit;
     height: 50px;
     background-color: #ececec;
-    font-size: 30px;
+    font-size: 1.9rem;
     color: palevioletred;
     text-align: center;
     padding: 0.5rem;
 `
-
+//글
 const PostBox = styled.textarea`
     border: 1px solid #b5b5b5;
     width: inherit;
-    height: 400px;
+    height: 4rem;
     background-color: #ececec;
     color: palevioletred;
-    font-size: 30px;
+    font-size: 1.8rem;
     padding: 0.5rem;
     text-align: center;
 `
 
-const PostUploadBtn = styled.div``
-
-const CancelBtn = styled.div``
-
-const PostCompletionBtnMargin = styled.div`
-    text-align: center;
-    background-color: #4876bf;
-    color: white;
-    padding: 0.5rem 8rem;
-    margin: auto 1rem;
+//수정버튼Div
+const PostUploadBtn = styled.div`
+padding: 0.5rem 6rem;
 `
 
-const PostCancelBtnMargin = styled.div`
+//취소버튼Div
+const CancelBtn = styled.div`
+padding: 0.5rem 6rem;
+`
+
+//수정버튼
+const PostCompletionBtnMargin = styled.button`
     text-align: center;
-    background-color: #e00000;
+    background-color: white;
+    color: #588156;
+    padding: 1rem 3rem;
+    margin: 0.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 2rem;
+    &:hover{
+        background-color:#FFBC57;
+        color: white;
+    }
+`
+
+//취소버튼 
+const PostCancelBtnMargin = styled.button`
+  text-align: center;
+    background-color: #588156;
     color: white;
-    padding: 0.5rem 2rem;
+    padding: 1rem 3rem;
+    margin: 0.2rem; 
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 2rem;
+    &:hover{
+        background-color:#E55432;
+        color: #006300;
+    }
 `
 const PhotoBoxZone = styled.img`
     max-width: 100%;
