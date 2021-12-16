@@ -6,7 +6,11 @@ const Outer = styled.div`
     /* margin: 1.5rem; */
     margin: 0 auto;
     font-family: "IBM Plex Sans KR", sans-serif;
+
+    background-color: #ffffff;
+
     height: 150px;
+
     background-color: white;
     /* display: flex; */
     /* align-items: center; */
@@ -70,6 +74,33 @@ const DivTag1 = styled.div`
 const FlexColumn1 = styled.div`
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 1080px) {
+        margin-top: 1.5rem;
+        // display: none;
+    }
+`
+const FlexColumn2 = styled.div`
+    // display: flex;
+    // flex-direction: column;
+    @media screen and (max-width: 1080px) {
+        display: none;
+    }
+`
+const FlexColumn3 = styled.div`
+    // display: flex;
+    // flex-direction: column;
+    @media screen and (max-width: 1080px) {
+        display: none;
+    }
+`
+const FlexColumn4 = styled.div`
+    display: none;
+    // display: flex;
+    // flex-direction: column;
+    @media screen and (max-width: 1080px) {
+        display: flex;
+        flex-direction: column;
+    }
 `
 const FlexCenter1 = styled.div`
     display: flex;
@@ -86,13 +117,13 @@ export default function Footer(props) {
     return (
         <Outer className="footerComponent">
             <FlexRow1>
-                <div>
+                <FlexColumn2>
                     <GifTag src={"../img/footerGif.gif"} alt={""} />
                     {/* <imgTag src={"../img/footerGif.gif"} alt={""} /> */}
 
                     <ImgTag src={"../img/image3.png"} alt={""} />
-                </div>
-                <div>
+                </FlexColumn2>
+                <FlexColumn3>
                     <FlexRow2>
                         <button
                             onClick={() => alert("준비중 입니다.")}
@@ -110,7 +141,7 @@ export default function Footer(props) {
                             Copyright © Animal Butler. All Rights Reserved.
                         </DivTag1>
                     </FlexCenter1>
-                </div>
+                </FlexColumn3>
                 <FlexColumn1>
                     <DivTag1>
                         박경훈&nbsp;
@@ -165,6 +196,25 @@ export default function Footer(props) {
                     </DivTag1>
                 </FlexColumn1>
             </FlexRow1>
+            <FlexColumn4>
+                <FlexRow2>
+                    <button
+                        onClick={() => alert("준비중 입니다.")}
+                    >{`개인정보처리방침 `}</button>
+                    <div>&nbsp;</div>
+                    <DivTag1>{"|"}</DivTag1>
+                    <div>&nbsp;</div>
+                    <button onClick={() => alert("준비중 입니다.")}>
+                        {" "}
+                        이용약관
+                    </button>
+                </FlexRow2>
+                <FlexCenter1>
+                    <DivTag1>
+                        Copyright © Animal Butler. All Rights Reserved.
+                    </DivTag1>
+                </FlexCenter1>
+            </FlexColumn4>
         </Outer>
     )
 }
