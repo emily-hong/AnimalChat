@@ -21,6 +21,22 @@ const Header = styled.div`
         margin-right: 1rem;
         text-align: center;
         color: palevioletred;
+        @media screen and (max-width: 1080px) {
+            width: 45%;
+            height: 50%;
+        }
+        @media screen and (max-width: 750px) {
+            width: 50%;
+            height: 45%;
+        }
+        @media screen and (max-width: 660px) {
+            width: 60%;
+            height: 40%;
+        }
+        @media screen and (max-width: 550px) {
+            width: 90%;
+            height: 55%;
+        }
     }
 `
 
@@ -71,9 +87,24 @@ export const SignInModalView = styled.div`
     justify-content: center;
     border-radius: 20px;
     background-color: #ffffff;
-    min-width: 400px;
     width: 450px;
     height: 550px;
+    @media screen and (max-width: 1080px) {
+        width: 45%;
+        height: 50%;
+    }
+    @media screen and (max-width: 750px) {
+        width: 50%;
+        height: 45%;
+    }
+    @media screen and (max-width: 660px) {
+        width: 60%;
+        height: 40%;
+    }
+    @media screen and (max-width: 550px) {
+        width: 90%;
+        height: 55%;
+    }
 
     & p {
         font-size: 3rem;
