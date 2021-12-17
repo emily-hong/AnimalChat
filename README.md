@@ -1,5 +1,5 @@
+![header](https://capsule-render.vercel.app/api?type=egg&color=#fadf69)
 # ![logo](https://ifh.cc/g/SzAlkT.png) Animal Chat 
-
 ## About
 - 일반적인 반려동물(ex:강아지,고양이)이 아닌 조금은 특별한(ex:햄스터, 병아리&닭, 앵무새, 토끼, 고슴도치) 반려동물을 위한 커뮤니티 서비스입니다💚 
 - 반려동물종류에 따른 전용 게시판을 갖추어 같은 동물을 키우는 집사들끼리 정보 및 일상 공유가 가능합니다💚
