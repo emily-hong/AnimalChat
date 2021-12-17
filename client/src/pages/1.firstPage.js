@@ -26,16 +26,16 @@ const Header = styled.div`
             height: 50%;
         }
         @media screen and (max-width: 750px) {
-            width: 50%;
-            height: 45%;
+            font-size: 100px;
         }
         @media screen and (max-width: 660px) {
-            width: 60%;
-            height: 40%;
+            font-size: 80px;
         }
         @media screen and (max-width: 550px) {
-            width: 90%;
-            height: 55%;
+            font-size: 70px;
+        }
+        @media screen and (max-width: 480px) {
+            font-size: 55px;
         }
     }
 `
@@ -188,7 +188,27 @@ const LoginButtons = styled.div`
     }
 `
 const IconPhoto = styled.img`
-    width: 100px;
+    width: 10%;
+    @media screen and (max-width: 1080px) {
+        width: 120px;
+        height: 120px;
+    }
+    @media screen and (max-width: 750px) {
+        width: 100px;
+        height: 100px;
+    }
+    @media screen and (max-width: 660px) {
+        width: 80px;
+        height: 80px;
+    }
+    @media screen and (max-width: 550px) {
+        width: 70px;
+        height: 70px;
+    }
+    @media screen and (max-width: 480px) {
+        width: 55px;
+        height: 55px;
+    }
 `
 const IconPhoto2 = styled.img`
     width: 50px;
