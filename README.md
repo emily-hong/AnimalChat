@@ -1,4 +1,4 @@
-# Animal Chat
+# 🐥 Animal Chat 
 
 ## LOGO
 ![logo](https://ifh.cc/g/PUysD3.jpg)
