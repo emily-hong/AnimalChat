@@ -1,7 +1,7 @@
 import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
-import DatePicker, { registerLocale } from "react-datepicker"
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 
 axios.defaults.withCredentials = true
@@ -157,7 +157,6 @@ export default function AddAnimalInfo({
     // 입력창
     const handleInputValue = (e) => {
         setAnimalInfo({ ...animalInfo, [e.target.name]: e.target.value })
-        console.log(e.target.value)
     }
 
     // 사진업로드
@@ -172,7 +171,6 @@ export default function AddAnimalInfo({
 
         const formData = new FormData()
         formData.append("img", photo)
-        // console.log("formData : ", formData)  // formData {}
 
         axios
             .post(url + "/animalphoto", formData, {
@@ -190,15 +188,12 @@ export default function AddAnimalInfo({
     }
 
     const addFile = (e) => {
-        console.log(e.target.files[0])
         setPhoto(e.target.files[0])
     }
 
     // 추가버튼
     const addButton = () => {
         if (Selected && animalName && animalYob) {
-            console.log("추가!")
-
             axios({
                 url: url + "/edituserinfo",
                 method: "post",
@@ -262,7 +257,6 @@ export default function AddAnimalInfo({
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => {
-                                    console.log(dateFormat(date))
                                     serStartDate(date)
                                     setAnimalInfo({
                                         ...animalInfo,

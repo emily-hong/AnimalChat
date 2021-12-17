@@ -14,21 +14,21 @@ const Body = styled.div`
     background-color: #fff9ee;
     width: 100%;
     height: 100vh;
-    @media screen and (max-width: 1080px){
+    @media screen and (max-width: 1080px) {
         width: 100%;
         height: 100%;
     }
 `
 
 const ContentBox = styled.div`
-    background-color:#fff9ee;
+    background-color: #fff9ee;
     padding: 2rem;
     width: 80vw;
     height: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
-    @media screen and (max-width: 1080px){
+    @media screen and (max-width: 1080px) {
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -41,11 +41,11 @@ const PhotoUploadSection = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media screen and (max-width: 1080px){
-      width: 50%;
-      margin-left: 10%;
-      margin-top: 2%;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 50%;
+        margin-left: 10%;
+        margin-top: 2%;
+    }
 `
 
 const PhotoBox = styled.div`
@@ -56,19 +56,19 @@ const PhotoBox = styled.div`
     font-size: 30px;
     color: palevioletred;
     border: 1px solid #b5b5b5;
-    @media screen and (max-width: 1080px){
-      width: 90%;
-      height: 205px;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 90%;
+        height: 205px;
+    }
 `
 
 const PhotoBoxZone = styled.img`
     max-width: 100%;
-    @media screen and (max-width: 1080px){
-      width: 90%;
-      height: 205px;
-      margin-left: 5%;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 90%;
+        height: 205px;
+        margin-left: 5%;
+    }
 `
 //PhotoUploadWarning
 const PhotoBoxDiv = styled.div`
@@ -79,7 +79,6 @@ const PhotoBoxDiv = styled.div`
     color: palevioletred;
 `
 
-
 //사진 업로드 버튼 div
 const PhotoUploadButtons = styled.div`
     display: flex;
@@ -87,48 +86,46 @@ const PhotoUploadButtons = styled.div`
     align-items: center;
     margin-top: 5rem;
     padding: 1rem;
-    @media screen and (max-width: 1080px){
-      width:120%;
-      margin-top: 0.2px;
-      height: 2.2rem;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 120%;
+        margin-top: 0.2px;
+        height: 2.2rem;
+    }
 `
 
-
-//파일선택버튼 
+//파일선택버튼
 const PhotoSelectBtn = styled.input`
     text-align: center;
     font-size: 1.2rem;
     width: 17rem;
-    height: 3rem; 
+    height: 3rem;
     margin-top: 1rem;
-    @media screen and (max-width: 1080px){
-      width: 80%;
-      font-size: 1rem;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 80%;
+        font-size: 1rem;
+    }
 `
 
 //사진 재업로드 버튼
 const PhotoUpLoadBtn = styled.button`
     color: white;
-    font-weight:bold;
+    font-weight: bold;
     border-radius: 2rem;
     text-align: center;
     font-size: 1.2rem;
     width: 7vw;
-    background-color: #9FD9F4;
+    background-color: #9fd9f4;
     padding: 1rem;
-    &:hover{
-        background-color:#95E4FE;
+    &:hover {
+        background-color: #95e4fe;
     }
-    @media screen and (max-width: 1080px){
-      width: 40%;
-      font-size: 1rem;
-      height: 0.55rem;
-      padding-top:0.5rem ;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 40%;
+        font-size: 1rem;
+        height: 0.55rem;
+        padding-top: 0.5rem;
+    }
 `
-
 
 const TitlePostDiv = styled.div`
     margin: 3rem;
@@ -138,16 +135,16 @@ const TitlePostDiv = styled.div`
     align-items: center;
     width: 40vw;
     height: 35vh;
-    @media screen and (max-width: 1080px){
-      margin-top: 3%; 
-      margin-left: 10%;
-      padding: 0.5rem;
-     }
+    @media screen and (max-width: 1080px) {
+        margin-top: 3%;
+        margin-left: 10%;
+        padding: 0.5rem;
+    }
 `
 
 //제목
 const TitleBox = styled.input`
-     border: 1px solid #b5b5b5;
+    border: 1px solid #b5b5b5;
     margin-bottom: 40px;
     width: inherit;
     height: 50px;
@@ -156,13 +153,13 @@ const TitleBox = styled.input`
     color: palevioletred;
     text-align: center;
     padding: 0.5rem;
-    @media screen and (max-width: 1080px){
-      width: 250px;
-      margin-left: 13%;
-      font-size: 1rem;
-      margin-top: 0.3rem;
-      height: 20px;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 250px;
+        margin-left: 13%;
+        font-size: 1rem;
+        margin-top: 0.3rem;
+        height: 20px;
+    }
 `
 //글
 const PostBox = styled.textarea`
@@ -174,12 +171,12 @@ const PostBox = styled.textarea`
     color: palevioletred;
     padding: 0.5rem;
     text-align: center;
-    @media screen and (max-width: 1080px){
-      width: 250px;
-      margin-left: 13%;
-      font-size: 1rem;
-      height: 500px;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 250px;
+        margin-left: 13%;
+        font-size: 1rem;
+        height: 500px;
+    }
 `
 
 //수정 취소 버튼div
@@ -190,14 +187,13 @@ const TitlePostButtons = styled.div`
     justify-content: center;
     align-items: center;
     width: 80%;
-    @media screen and (max-width: 1080px){
-     width: 100%;
-     margin-left:25%;
-     margin-top: 1%;
-     margin-bottom: 0.1rem ;
-     }
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        margin-left: 25%;
+        margin-top: 1%;
+        margin-bottom: 0.1rem;
+    }
 `
-
 
 //수정버튼
 const PostCompletionBtnMargin = styled.button`
@@ -209,36 +205,36 @@ const PostCompletionBtnMargin = styled.button`
     font-weight: bold;
     font-size: 1rem;
     border-radius: 2rem;
-    &:hover{
-        background-color:#FFBC57;
+    &:hover {
+        background-color: #ffbc57;
         color: white;
     }
-    @media screen and (max-width: 1080px){
-      font-size: 0.8rem;
-      padding: 1rem;
-      margin: 0.5rem;
-     }
+    @media screen and (max-width: 1080px) {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 0.5rem;
+    }
 `
 
-//취소버튼 
+//취소버튼
 const PostCancelBtnMargin = styled.button`
-  text-align: center;
+    text-align: center;
     background-color: #588156;
     color: white;
     padding: 1rem 3rem;
-    margin: 0.2rem; 
+    margin: 0.2rem;
     font-weight: bold;
     font-size: 1rem;
     border-radius: 2rem;
-    &:hover{
-        background-color:#E55432;
+    &:hover {
+        background-color: #e55432;
         color: #006300;
     }
-    @media screen and (max-width: 1080px){
-      font-size: 0.8rem;
-      padding: 1rem;
-      margin: 0.5rem;
-     }
+    @media screen and (max-width: 1080px) {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 0.5rem;
+    }
 `
 
 const url =
@@ -247,7 +243,6 @@ const url =
 
 export const PostEdit = (props) => {
     const history = useHistory()
-    //console.log(props)
     // 1. input title, content
     // 2. 제목과 내용 필수, 사진은 선택으로 함
     const [inputTitle, setInputTitle] = useState("")
@@ -281,15 +276,12 @@ export const PostEdit = (props) => {
     // 수정된 게시물 정보 -> 서버로
     // 수정 페이지 postread에서 보여야함
     const postSendButton = () => {
-        //사진바꿨을경우
         if (
             inputTitle.length > 0 &&
             inputContent.length > 0 &&
             uploadedImg.fileName &&
             photoChange
         ) {
-            // 제목, 내용 작성했을 때
-
             axios({
                 url: url + "/editpost",
                 method: "post",
@@ -351,8 +343,6 @@ export const PostEdit = (props) => {
         formData.append("img", photo)
         setPhotoChange(true)
 
-        //console.log("formData : ", formData)
-
         axios
             .post(url + "/animalphoto", formData, {
                 "Content-Type": "multipart/form-data",
@@ -369,7 +359,6 @@ export const PostEdit = (props) => {
     }
 
     const addFile = (e) => {
-        console.log(e.target.files[0]);
         setPhoto(e.target.files[0])
     }
 
@@ -398,12 +387,13 @@ export const PostEdit = (props) => {
                     </PhotoBox>
 
                     <PhotoUploadButtons className="photoSelectButtons">
-                        <PhotoSelectBtn type="file" className="photoButton" onChange={addFile} />
-                        <PhotoUpLoadBtn type="submit">
-                        재업로드
-                        </PhotoUpLoadBtn>
+                        <PhotoSelectBtn
+                            type="file"
+                            className="photoButton"
+                            onChange={addFile}
+                        />
+                        <PhotoUpLoadBtn type="submit">재업로드</PhotoUpLoadBtn>
                     </PhotoUploadButtons>
-
                 </PhotoUploadSection>
 
                 <TitlePostDiv>
@@ -420,12 +410,12 @@ export const PostEdit = (props) => {
                         value={inputContent}
                     />
                     <TitlePostButtons>
-                            <PostCompletionBtnMargin onClick={postSendButton}>
-                                수정
-                            </PostCompletionBtnMargin>
-                            <PostCancelBtnMargin onClick={cancleButton}>
-                                취소
-                            </PostCancelBtnMargin>
+                        <PostCompletionBtnMargin onClick={postSendButton}>
+                            수정
+                        </PostCompletionBtnMargin>
+                        <PostCancelBtnMargin onClick={cancleButton}>
+                            취소
+                        </PostCancelBtnMargin>
                     </TitlePostButtons>
                 </TitlePostDiv>
             </ContentBox>

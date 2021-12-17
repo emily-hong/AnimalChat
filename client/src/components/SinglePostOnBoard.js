@@ -11,7 +11,7 @@ const StyledSinglePost = styled.div`
     place-items: center center;
     padding: 0.35rem;
     height: 350px;
-    background-color: #BD9C8C;
+    background-color: #bd9c8c;
     border-radius: 20px;
 
     &:hover {
@@ -30,8 +30,7 @@ const StyledSinglePost = styled.div`
     @media screen and (max-width: 375px) {
     }
 `
-const DivTag4 = styled.div`
-`
+const DivTag4 = styled.div``
 // 게시물사진
 const ImgDiv = styled.div`
     @media screen and (max-width: 577px) {
@@ -82,7 +81,7 @@ const StyledTitlePreview = styled.div`
     }
 
     @media screen and (max-width: 577px) {
-        border-bottom: 1px solid #A06A50;
+        border-bottom: 1px solid #a06a50;
     }
     @media screen and (max-width: 375px) {
         .title {
@@ -100,7 +99,6 @@ const ProfileAndText = styled.div`
     }
 `
 
-const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
     width: 35px;
     height: 35px;
@@ -122,12 +120,6 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
     function postRead() {
         curPostRead(post)
         history.push("/readpost")
-    }
-
-    function getRandomIntInclusive(min, max) {
-        min = Math.ceil(min)
-        max = Math.floor(max)
-        return Math.floor(Math.random() * (max - min + 1)) + min
     }
 
     return (
@@ -180,7 +172,9 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                     />
                 </ImgDiv>
 
-                <Title><p>{post.post_title}</p></Title>
+                <Title>
+                    <p>{post.post_title}</p>
+                </Title>
 
                 <StyledTitlePreview>
                     <ProfileAndText>
