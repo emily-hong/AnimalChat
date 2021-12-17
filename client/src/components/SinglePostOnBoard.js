@@ -82,7 +82,7 @@ const StyledTitlePreview = styled.div`
     }
 
     @media screen and (max-width: 577px) {
-        border-bottom: 1px solid #A06A50;
+        border-bottom: 5px solid #A06A50;
     }
     @media screen and (max-width: 375px) {
         .title {

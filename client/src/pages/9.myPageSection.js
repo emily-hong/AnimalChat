@@ -126,7 +126,6 @@ const AddAnimalModalView = styled.div`
     height: 300px;
     font-size: 1.5rem;
     font-weight: bold;
-    border: 1px solid red;
 
     @media screen and (max-width: 450px) {
         width: 370px;
