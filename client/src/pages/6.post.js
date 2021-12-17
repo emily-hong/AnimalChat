@@ -73,6 +73,7 @@ const PhotoBoxZone = styled.img`
 
 const PhotoUploadWarning = styled.div`
     margin-top: 200px;
+    /* background-color: #ececec; */
     font-size: 30px;
     text-align: center;
     color: #e00000;
@@ -147,7 +148,7 @@ const TitleBox = styled.input`
     width: inherit;
     height: 50px;
     background-color: #ececec;
-    font-size: 1.9rem;
+    font-size: 30px;
     color: palevioletred;
     text-align: center;
     padding: 0.5rem;
@@ -164,7 +165,7 @@ const PostBox = styled.textarea`
     width: inherit;
     height: 400px;
     background-color: #ececec;
-    font-size: 1.8rem;
+    font-size: 30px;
     color: palevioletred;
     padding: 0.5rem;
     text-align: center;
@@ -218,8 +219,9 @@ const PostCancelBtnMargin = styled.button`
     font-size: 1rem;
     border-radius: 2rem;
     &:hover{
-        background-color:#E55432;
-        color: #006300;
+        /* background-color:#FF9075; */
+        background-color:#FF9075;
+        color: #588156;
     }
     @media screen and (max-width: 1080px){
       font-size: 0.8rem;
