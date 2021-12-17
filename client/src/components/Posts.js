@@ -6,6 +6,7 @@ import axios from "axios"
 const Outer = styled.div`
     min-height: 500px;
     height: 100%;
+    background-color: #fff9ee;
 `
 
 const Background = styled.div`

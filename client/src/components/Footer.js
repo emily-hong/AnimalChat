@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom" // useHistory
+import React from "react"
 import styled from "styled-components"
 
 const Outer = styled.div`
