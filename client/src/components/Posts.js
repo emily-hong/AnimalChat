@@ -5,6 +5,7 @@ import SinglePostOnBoard from "../components/SinglePostOnBoard"
 const Outer = styled.div`
     min-height: 500px;
     height: 100%;
+    background-color: #fff9ee;
 `
 
 const Background = styled.div`
@@ -33,6 +34,10 @@ const WriteButton = styled.button`
     &:hover {
         color: white;
         background-color: #55433b;
+    }
+    @media screen and (max-width: 577px) {
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
     }
 `
 

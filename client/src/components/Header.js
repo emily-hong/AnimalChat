@@ -76,6 +76,7 @@ const url =
     "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function Header(props) {
+
     function logoutEventListener() {
         axios({
             url: url + "/signout",

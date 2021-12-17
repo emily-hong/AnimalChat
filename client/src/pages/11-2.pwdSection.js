@@ -5,8 +5,8 @@ import axios from "axios"
 import styled from "styled-components"
 
 const Outer = styled.div`
-    height: 100%;
-    border: 1px solid red;
+    height: 100vh;
+    background-color: #FFF9EE;
 `
 
 const StyledPwdChangeSection = styled.div`
