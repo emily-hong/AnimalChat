@@ -72,9 +72,9 @@ const ButtonsArea = styled.div`
         background-color: #588156;
         color: #ffffff;
     }
-    
+
     @media screen and (max-width: 751px) {
-        button{
+        button {
             width: 50%;
         }
     }
@@ -126,6 +126,14 @@ const AddAnimalModalView = styled.div`
     height: 300px;
     font-size: 1.5rem;
     font-weight: bold;
+    border: 1px solid red;
+
+    @media screen and (max-width: 450px) {
+        width: 370px;
+    }
+    @media screen and (max-width: 376px) {
+        width: 355px;
+    }
 `
 
 const DeleteAccount = styled.div`
@@ -138,6 +146,13 @@ const DeleteAccount = styled.div`
     height: 550px;
     font-size: 1.5rem;
     font-weight: bold;
+
+    @media screen and (max-width: 450px) {
+        width: 370px;
+    }
+    @media screen and (max-width: 376px) {
+        width: 350px;
+    }
 `
 
 const ButtonSpace1 = styled.div`
