@@ -4,9 +4,10 @@ import SinglePostOnBoard from "../components/SinglePostOnBoard"
 import axios from "axios"
 
 const Outer = styled.div`
-    background-color: #FFF9EE;
+    // background-color: #fff9ee;
     min-height: 500px;
     height: 100%;
+    // border: 1px solid black;
 `
 
 const Background = styled.div`
@@ -46,6 +47,7 @@ const BoardInGrid = styled.div`
     grid-template-columns: repeat(auto-fit, 200px);
     justify-content: center;
     align-content: center;
+    // border: 1px solid black;
 
     @media screen and (max-width: 375px) {
         grid-template-columns: 1fr 1fr;
