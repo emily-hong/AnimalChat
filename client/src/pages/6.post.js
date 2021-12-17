@@ -86,7 +86,6 @@ const PhotoUploadButtons = styled.div`
     margin-top: 4rem;
     padding: 0.1rem;
     margin-right:2rem;
-    
     @media screen and (max-width: 1080px){
       width: 120%;
       margin-left: 8%;
@@ -100,7 +99,6 @@ const PhotoSelectBtn = styled.input`
     align-items: center;
     padding: 0.1rem;
     font-size: 1.2rem;
-    
     @media screen and (max-width: 1080px){
       font-size: 0.9rem;
      }
@@ -135,7 +133,6 @@ const TitlePostDiv = styled.div`
     align-items: center;
     width: 40vw; 
     height: 45vh; 
-    
     @media screen and (max-width: 1080px){
       margin-top: 10%;
       margin-left: 7%;
@@ -169,7 +166,6 @@ const PostBox = styled.textarea`
     color: palevioletred;
     padding: 0.5rem;
     text-align: center;
-    
     @media screen and (max-width: 1080px){
       width: 250px;
       margin-left: 13%;
@@ -184,7 +180,6 @@ const TitlePostButtons = styled.div`
     width: inherit;
     text-align: center;
     margin-top: 2rem;
-    border: 1px solid red; //
     @media screen and (max-width: 1080px){
       margin-left: 13%;
      }
