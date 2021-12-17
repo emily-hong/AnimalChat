@@ -41,7 +41,6 @@ const PhotoUploadSection = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   
     @media screen and (max-width: 1080px){
       width: 50%;
       margin-left: 10%;
@@ -88,7 +87,6 @@ const PhotoUploadButtons = styled.div`
     align-items: center;
     margin-top: 5rem;
     padding: 1rem;
-  
     @media screen and (max-width: 1080px){
       width:120%;
       margin-top: 0.2px;
@@ -104,7 +102,6 @@ const PhotoSelectBtn = styled.input`
     width: 17rem;
     height: 3rem; 
     margin-top: 1rem;
- 
     @media screen and (max-width: 1080px){
       width: 80%;
       font-size: 1rem;
@@ -121,7 +118,6 @@ const PhotoUpLoadBtn = styled.button`
     width: 7vw;
     background-color: #9FD9F4;
     padding: 1rem;
- 
     &:hover{
         background-color:#95E4FE;
     }
@@ -130,7 +126,6 @@ const PhotoUpLoadBtn = styled.button`
       font-size: 1rem;
       height: 0.55rem;
       padding-top:0.5rem ;
-      /* padding-bottom:1.3rem; */
      }
 `
 
@@ -143,7 +138,6 @@ const TitlePostDiv = styled.div`
     align-items: center;
     width: 40vw;
     height: 35vh;
-    border: 1px solid orange; //
     @media screen and (max-width: 1080px){
       margin-top: 3%; 
       margin-left: 10%;
@@ -180,7 +174,6 @@ const PostBox = styled.textarea`
     color: palevioletred;
     padding: 0.5rem;
     text-align: center;
-    /* border: 1px solid red; // */
     @media screen and (max-width: 1080px){
       width: 250px;
       margin-left: 13%;
@@ -196,15 +189,12 @@ const TitlePostButtons = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 40vw;
-    height: 45vh;
-    border: 1px dashed blue; //
+    width: 80%;
     @media screen and (max-width: 1080px){
-     width: 70%;
-     margin-left:45%;
-     margin-top: 3%;
-     margin-bottom: 0.2rem ;
-     padding: 1rem 5rem;
+     width: 100%;
+     margin-left:25%;
+     margin-top: 1%;
+     margin-bottom: 0.1rem ;
      }
 `
 
@@ -219,15 +209,14 @@ const PostCompletionBtnMargin = styled.button`
     font-weight: bold;
     font-size: 1rem;
     border-radius: 2rem;
-    border: 1px solid blue;
     &:hover{
         background-color:#FFBC57;
         color: white;
     }
     @media screen and (max-width: 1080px){
-      /* flex-direction:row ; */
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       padding: 1rem;
+      margin: 0.5rem;
      }
 `
 
@@ -241,7 +230,6 @@ const PostCancelBtnMargin = styled.button`
     font-weight: bold;
     font-size: 1rem;
     border-radius: 2rem;
-    border: 1px solid blue;
     &:hover{
         background-color:#E55432;
         color: #006300;
@@ -249,6 +237,7 @@ const PostCancelBtnMargin = styled.button`
     @media screen and (max-width: 1080px){
       font-size: 0.8rem;
       padding: 1rem;
+      margin: 0.5rem;
      }
 `
 
