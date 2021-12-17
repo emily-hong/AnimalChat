@@ -1,4 +1,6 @@
-![header](https://capsule-render.vercel.app/api?type=egg&color=ffef97)
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=egg&color=99d3ff&height=200&section=header&fontSize=50" />
+</p>
 
 # ![logo](https://ifh.cc/g/SzAlkT.png) Animal Chat 
 ## About
