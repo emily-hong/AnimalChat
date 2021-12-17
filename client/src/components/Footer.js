@@ -1,4 +1,5 @@
 import React from "react"
+
 import styled from "styled-components"
 
 const Outer = styled.div`
@@ -111,11 +112,6 @@ const FlexCenter1 = styled.div`
     // flex-direction: row;
     justify-content: center;
 `
-// font-family: "IBM Plex Sans KR", sans-serif;
-
-const url =
-    process.env.REACT_APP_URL ||
-    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export default function Footer(props) {
     return (
@@ -150,7 +146,11 @@ export default function Footer(props) {
                     <DivTag1>
                         박경훈&nbsp;
                         <IconTag src={"../img/git.png"} alt={""} />
-                        <a href="https://github.com/kingshuny" target="_blank">
+                        <a
+                            href="https://github.com/kingshuny"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             Git
                         </a>{" "}
                         |&nbsp;
@@ -158,6 +158,7 @@ export default function Footer(props) {
                         <a
                             href="https://smartstyle.tistory.com"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             Blog{" "}
                         </a>
@@ -168,12 +169,20 @@ export default function Footer(props) {
                     <DivTag1>
                         오선화&nbsp;
                         <IconTag src={"../img/git.png"} alt={""} />
-                        <a href="https://github.com/xuanhee16" target="_blank">
+                        <a
+                            href="https://github.com/xuanhee16"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             Git
                         </a>{" "}
                         |&nbsp;
                         <IconTag src={"../img/blog.png"} alt={""} />
-                        <a href="https://xuanhee16.github.io" target="_blank">
+                        <a
+                            href="https://xuanhee16.github.io"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             Blog{" "}
                         </a>
                         |&nbsp;
@@ -183,14 +192,23 @@ export default function Footer(props) {
                     <DivTag1>
                         홍현정&nbsp;
                         <IconTag src={"../img/git.png"} alt={""} />
-                        <a href="https://github.com/emily-hong" target="_blank">
+                        <a
+                            href="https://github.com/emily-hong"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             Git
                         </a>{" "}
                         |&nbsp;
-                        <IconTag src={"../img/blog.png"} alt={""} />
+                        <IconTag
+                            src={"../img/blog.png"}
+                            alt={""}
+                            rel="noreferrer"
+                        />
                         <a
                             href="https://emilyhong4659.notion.site/emilyhong4659/Today-I-Learned-9f74900b637947199c72d1220cc3451d"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             Blog{" "}
                         </a>

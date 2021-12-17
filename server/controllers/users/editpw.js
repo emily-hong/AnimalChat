@@ -2,11 +2,8 @@ const { user } = require("../../models")
 const { isAuthorized } = require("../tokenFunc")
 const { encrypto } = require("../users/setpw")
 
-
 module.exports = async (req, res) => {
-    //console.log(req.body)
     const accessTokenData = isAuthorized(req)
-    //console.log(accessTokenData)
 
     if (!accessTokenData) {
         res.status(401).send("로그인 정보를 확인해주세요.")
