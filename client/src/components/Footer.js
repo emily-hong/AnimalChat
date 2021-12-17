@@ -18,7 +18,12 @@ const Outer = styled.div`
     //모바일
     @media screen and (max-width: 1080px) {
         // background-color: red;
-        margin: 0rem;
+        // margin-bottom: 2rem;
+        width: 100%;
+    }
+    @media screen and (max-width: 511px) {
+        // background-color: red;
+        // margin-bottom: 2rem;
         width: 100%;
     }
 `
@@ -48,7 +53,7 @@ const FlexRow1 = styled.div`
     flex-direction: row;
     justify-content: space-around;
     margin: 0 auto;
-    padding-top: 50px;  // 수직 가운데추가
+    padding-top: 50px; // 수직 가운데추가
 `
 const FlexRow2 = styled.div`
     display: flex;

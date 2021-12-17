@@ -11,20 +11,36 @@ const StyledSinglePost = styled.div`
     place-items: center center;
     padding: 0.35rem;
     width: 220px;
-    height: 300px;
+    height: 350px;
+
     background-color: #fff9ee;
 
     &:hover {
         transform: scale(1.03);
         transition: transform 0.3s;
     }
-
-    @media screen and (max-width: 375px) {
-        width: 130px;
-        height: 160px;
+    @media screen and (max-width: 512px) {
+        margin: -4.5rem;
+        margin-left: -4.7rem;
+        padding: 0rem;
+        width: 350px;
+        // border: 1px solid red;
+        margin-top: 0px;
     }
-    @media screen and (max-width: 300px) {
-        margin: 0 auto;
+    // @media screen and (max-width: 375px) {
+    //     width: 130px;
+    //     height: 160px;
+    //     border: 1px solid red;
+    // }
+`
+const DivTag4 = styled.div`
+    // border: 1px solid black;
+    @media screen and (max-width: 512px) {
+        // width: 5%;
+        height: 300px;
+        width: 210px;
+        // height: 150px;
+        // border: 1px solid red;
     }
 `
 
@@ -34,9 +50,16 @@ const StyledThumbnail = styled.img`
     background-color: #ffd000;
     border-radius: 10%;
 
+    @media screen and (max-width: 512px) {
+        width: 250px;
+        height: 250px;
+        // border: 1px solid red;
+    }
+
     @media screen and (max-width: 375px) {
-        width: 80px;
-        height: 80px;
+        width: 130px;
+        height: 160px;
+        // border: 1px solid red;
     }
 `
 
@@ -62,9 +85,7 @@ const StyledTitlePreview = styled.div`
     @media screen and (max-width: 375px) {
         height: 30px;
 
-
-        .title{
-
+        .title {
             font-size: 0.2rem;
             height: 70%;
         }
@@ -73,12 +94,12 @@ const StyledTitlePreview = styled.div`
 
 const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
 
-    @media screen and (max-width: 375px) {
-        width: 30px;
-        height: 30px;
+    @media screen and (max-width: 511px) {
+        width: 35px;
+        height: 35px;
     }
 `
 const ImgvTag = styled.img`
@@ -102,7 +123,7 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
     }
 
     return (
-        <div className="singlePostOnBoard">
+        <DivTag4 className="singlePostOnBoard">
             {/* 랜덤이미지 */}
             {/* <StyledSinglePost>
                 {post.post_img.includes("png") ? (
@@ -151,9 +172,9 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                 {post.post_title}
                 <StyledTitlePreview>
                     {/* <StyledProfilePictureArea> */}
-                        <DivTag>
-                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
-                        </DivTag>
+                    <DivTag>
+                        <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                    </DivTag>
                     {/* </StyledProfilePictureArea> */}
                     <div className="text">
                         <p className="title">{`${
@@ -162,6 +183,6 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
                     </div>
                 </StyledTitlePreview>
             </StyledSinglePost>
-        </div>
+        </DivTag4>
     )
 }
