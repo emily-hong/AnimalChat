@@ -189,13 +189,12 @@ const TitlePostButtons = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 40vw;
-    height: 45vh;
+    width: 80%;
     @media screen and (max-width: 1080px){
-     margin-left:45%;
-     margin-top: 3%;
-     margin-bottom: 0.2rem ;
-     padding: 1rem 2rem;
+     width: 100%;
+     margin-left:25%;
+     margin-top: 1%;
+     margin-bottom: 0.1rem ;
      }
 `
 
@@ -215,9 +214,9 @@ const PostCompletionBtnMargin = styled.button`
         color: white;
     }
     @media screen and (max-width: 1080px){
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       padding: 1rem;
-      text-align: center;
+      margin: 0.5rem;
      }
 `
 
@@ -236,8 +235,9 @@ const PostCancelBtnMargin = styled.button`
         color: #006300;
     }
     @media screen and (max-width: 1080px){
-      font-size: 0.5rem;
+      font-size: 0.8rem;
       padding: 1rem;
+      margin: 0.5rem;
      }
 `
 
