@@ -4,21 +4,21 @@ import SinglePostOnBoard from "../components/SinglePostOnBoard"
 import axios from "axios"
 
 const Outer = styled.div`
-    // background-color: #fff9ee;
     min-height: 500px;
     height: 100%;
-    // border: 1px solid black;
 `
 
 const Background = styled.div`
     box-sizing: content-box;
     padding: 2rem 1rem 4rem 1rem;
-
+    background-color: #fff9ee;
     @media screen and (min-width: 1500px) {
         margin: 0 auto;
         width: 80%;
     }
-    background-color: #fff9ee;
+    @media screen and (max-width: 577px) {
+        padding: 0;
+    }
 `
 
 const WriteButton = styled.button`
@@ -30,11 +30,9 @@ const WriteButton = styled.button`
     font-weight: bold;
     font-size: 1.05rem;
     border-radius: 8px;
-    // color: white;
 
     &:hover {
         color: white;
-        // background-color: #ffc9d4;
         background-color: #55433b;
     }
 `
@@ -44,19 +42,23 @@ const BoardInGrid = styled.div`
     display: grid;
     padding: 1rem;
     gap: 3rem;
-    grid-template-columns: repeat(auto-fit, 200px);
+    grid-template-columns: repeat(auto-fit, 250px);
     justify-content: center;
     align-content: center;
-    // border: 1px solid black;
 
-    @media screen and (max-width: 375px) {
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 2rem;
+    @media screen and (max-width: 938px) {
+        gap: 2rem;
     }
-    @media screen and (max-width: 300px) {
-        // 최소화면넓이
+    @media screen and (max-width: 640px) {
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    @media screen and (max-width: 577px) {
         grid-template-columns: 1fr;
-        grid-gap: 1rem;
+        padding: 0 0 1rem 0;
+    }
+    @media screen and (max-width: 375px) {
+        grid-gap: 2rem;
     }
 `
 const HiddenTag = styled.div`
@@ -181,23 +183,23 @@ export default function Posts({
                 <BoardInGrid>
                     {curAnimal === "home"
                         ? postList.map((post) => (
-                              <SinglePostOnBoard
-                                  key={post.id}
-                                  post={post}
-                                  curPostRead={curPostRead}
-                              />
-                          ))
+                            <SinglePostOnBoard
+                                key={post.id}
+                                post={post}
+                                curPostRead={curPostRead}
+                            />
+                            ))
                         : postList
-                              .filter(
-                                  (post) => curAnimal === post.animalcategory
-                              )
-                              .map((post) => (
-                                  <SinglePostOnBoard
-                                      key={post.id}
-                                      post={post}
-                                      curPostRead={curPostRead}
-                                  />
-                              ))}
+                            .filter(
+                                (post) => curAnimal === post.animalcategory
+                            )
+                            .map((post) => (
+                                <SinglePostOnBoard
+                                    key={post.id}
+                                    post={post}
+                                    curPostRead={curPostRead}
+                                />
+                    ))}
                 </BoardInGrid>
             </Background>
         </Outer>

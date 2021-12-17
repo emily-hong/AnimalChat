@@ -10,81 +10,81 @@ const StyledSinglePost = styled.div`
     display: grid;
     place-items: center center;
     padding: 0.35rem;
-    width: 220px;
     height: 350px;
-
-    background-color: #fff9ee;
+    background-color: #BD9C8C;
+    border-radius: 20px;
 
     &:hover {
         transform: scale(1.03);
         transition: transform 0.3s;
     }
-    @media screen and (max-width: 512px) {
-        margin: -4.5rem;
-        margin-left: -4.7rem;
+
+    @media screen and (max-width: 577px) {
+        display: block;
         padding: 0rem;
-        width: 350px;
-        // border: 1px solid red;
         margin-top: 0px;
+        height: auto;
+        background-color: #fff9ee;
+        border-radius: 0;
     }
-    // @media screen and (max-width: 375px) {
-    //     width: 130px;
-    //     height: 160px;
-    //     border: 1px solid red;
-    // }
+    @media screen and (max-width: 375px) {
+    }
 `
 const DivTag4 = styled.div`
-    // border: 1px solid black;
-    @media screen and (max-width: 512px) {
-        // width: 5%;
-        height: 300px;
-        width: 210px;
-        // height: 150px;
-        // border: 1px solid red;
+`
+// 게시물사진
+const ImgDiv = styled.div`
+    @media screen and (max-width: 577px) {
+        width: 100%;
     }
 `
-
 const StyledThumbnail = styled.img`
     width: 175px;
     height: 175px;
     background-color: #ffd000;
     border-radius: 10%;
 
-    @media screen and (max-width: 512px) {
-        width: 250px;
-        height: 250px;
-        // border: 1px solid red;
+    @media screen and (max-width: 577px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
     }
-
     @media screen and (max-width: 375px) {
-        width: 130px;
-        height: 160px;
-        // border: 1px solid red;
     }
 `
-
+// 게시물 제목
+const Title = styled.div`
+    padding: 0 1.5rem;
+    p {
+        font-size: 1.8rem;
+        text-align: center;
+        height: 1.9rem;
+        overflow: hidden;
+    }
+    @media screen and (max-width: 577px) {
+        margin: 0.5rem 0;
+    }
+`
 const StyledTitlePreview = styled.div`
     display: flex;
-    /* height: 60px; */
     padding: 0.25rem;
     font-size: 0.9rem;
     color: #424242;
 
     & p {
         padding: 0.25rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: #424242;
-    }
-    & p {
-        padding: 0.25rem;
+        line-height: 2rem;
     }
     & .writer {
         font-size: 0.8rem;
     }
 
+    @media screen and (max-width: 577px) {
+        border-bottom: 1px solid #A06A50;
+    }
     @media screen and (max-width: 375px) {
-        height: 30px;
-
         .title {
             font-size: 0.2rem;
             height: 70%;
@@ -92,11 +92,19 @@ const StyledTitlePreview = styled.div`
     }
 `
 
+const ProfileAndText = styled.div`
+    display: flex;
+    @media screen and (max-width: 577px) {
+        margin: 0 auto;
+        margin-bottom: 1rem;
+    }
+`
+
 const StyledProfilePictureArea = styled.div``
 const DivTag = styled.div`
     width: 35px;
     height: 35px;
-
+    margin: 0 auto;
     @media screen and (max-width: 511px) {
         width: 35px;
         height: 35px;
@@ -165,22 +173,26 @@ export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
 
             {/* 랜덤이미지 아닐 때 */}
             <StyledSinglePost>
-                <StyledThumbnail
-                    src={url + post.post_img}
-                    onClick={() => postRead(post)}
-                />
-                {post.post_title}
+                <ImgDiv>
+                    <StyledThumbnail
+                        src={url + post.post_img}
+                        onClick={() => postRead(post)}
+                    />
+                </ImgDiv>
+
+                <Title><p>{post.post_title}</p></Title>
+
                 <StyledTitlePreview>
-                    {/* <StyledProfilePictureArea> */}
-                    <DivTag>
-                        <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
-                    </DivTag>
-                    {/* </StyledProfilePictureArea> */}
-                    <div className="text">
-                        <p className="title">{`${
-                            post.user_id
-                        } : ${post.post_content.substring(0, 6)}...`}</p>
-                    </div>
+                    <ProfileAndText>
+                        <DivTag>
+                            <ImgvTag src={`${url}/img/${post.postUserPhoto}`} />
+                        </DivTag>
+                        <div className="text">
+                            <p className="title">{`${
+                                post.user_id
+                            } : ${post.post_content.substring(0, 6)}...`}</p>
+                        </div>
+                    </ProfileAndText>
                 </StyledTitlePreview>
             </StyledSinglePost>
         </DivTag4>
