@@ -20,7 +20,7 @@ app.use(
     cors({
         origin: [url],
         credentials: true,
-        methods: ["GET", "POST", "DELETE", "OPTIONS"],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     })
 )
 app.use(logger("dev")) //서버요청 로그
@@ -49,19 +49,24 @@ app.get("/userinfo", controllers.userinfo)
 
 //post
 app.post("/sendcomment", controllers.sendcomment)
-app.post("/like", controllers.like)
-app.post("/editpost", upload.single("img"), controllers.editpost)
-app.post("/sendpost", upload.single("img"), controllers.sendpost) 
-app.post("/profilephoto", upload.single("img"), controllers.profilephoto) 
-app.post("/editpw", controllers.editpw) 
+app.post("/like", controllers.like) 
 app.post("/commentlist", controllers.commentlist)
 app.post("/signin", controllers.signin) 
-app.post("/signout", controllers.signout) 
-app.post("/signup", controllers.signup) 
-app.post("/edituserinfo", controllers.edituserinfo) 
-app.post("/readlike", controllers.readlike)
-app.post("/animalphoto", upload.single("img"), controllers.animalphoto)
 app.post("/checkpw", controllers.checkpw)
+app.post("/signout", controllers.signout) 
+app.post("/signup", controllers.signup)
+app.post("/readlike", controllers.readlike)
+app.post("/sendpost", upload.single("img"), controllers.sendpost) 
+app.post("/profilephoto", upload.single("img"), controllers.profilephoto)
+app.post("/animalphoto", upload.single("img"), controllers.animalphoto)
+
+//put(전체)
+app.put("/editpw", controllers.editpw)
+
+//patch(일부)
+app.patch("/editpost", upload.single("img"), controllers.editpost)
+app.patch("/edituserinfo", controllers.edituserinfo) 
+
 
 //delete
 app.delete("/deletecomment", controllers.deletecomment) 
