@@ -73,13 +73,17 @@ const DivTag = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 2rem;
 `
 const DivTag2 = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     font-family: "IBM Plex Sans KR", sans-serif;
-    font-size: 200%;
+    font-size: 1.2rem;
+    p {
+        margin-top: 1rem;
+    }
 `
 
 export default function Posts({
@@ -108,7 +112,7 @@ export default function Posts({
                             <ImgTag src={"../img/pen.png"} />
                         </DivTag2>
                         <DivTag2>
-                            <div>첫 번째 글을 작성해보는 것은 어떨까요?</div>
+                            <p>첫 번째 글을 작성해보는 것은 어떨까요?</p>
                         </DivTag2>
                     </DivTag>
                 ) : (
