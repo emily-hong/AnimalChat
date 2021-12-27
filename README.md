@@ -20,3 +20,13 @@
 
 
 ![stack2](https://ifh.cc/g/TZWGzw.jpg)
+
+## Architecture
+
+### Client flow chart
+
+<img src="https://i.imgur.com/fiP44OY.jpg" title="animal-chat-flowchart.jpg"/>
+
+### Server flow chart
+
+![Mind Map](https://user-images.githubusercontent.com/79859412/147437298-426cf59d-8f11-43bb-85df-357bd9ced222.jpg)
