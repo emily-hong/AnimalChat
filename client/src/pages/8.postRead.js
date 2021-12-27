@@ -221,7 +221,7 @@ const PhotoBoxZone = styled.img`
 
 const url =
     process.env.REACT_APP_URL ||
-    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+    "http://ec2-54-180-101-141.ap-northeast-2.compute.amazonaws.com"
 
 export default function PostRead(props) {
     const history = useHistory()
@@ -324,6 +324,7 @@ export default function PostRead(props) {
                 // 추후 수정 필요 12/06
                 history.push("/mainpage")
                 history.goBack()
+                console.log(res);
             })
         }
     }
