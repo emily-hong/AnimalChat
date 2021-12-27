@@ -14,6 +14,8 @@ const url =
     process.env.API_URL ||
     "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
 
+
+    
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
