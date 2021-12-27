@@ -11,7 +11,8 @@ const multer = require("multer")
 const logger = require("morgan")
 
 const url =
-    process.env.API_URL ||
+    // process.env.API_URL ||
+    "http://localhost:80" ||
     "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
 
 
