@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { useHistory } from "react-router-dom"
 import React, { useState, useEffect } from "react"
 import styled from "styled-components"
@@ -6,598 +7,420 @@ import Header from "../components/Header"
 import Navigation from "../components/Navigation"
 
 const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #feefd5;
-  width: 100vw;
-  height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff9ee;
+    width: 100%;
+    height: 100vh;
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        height: 100%;
+    }
 `
 
 const ContentBox = styled.div`
-  padding: 2rem;
-  width: 90vw;
-  height: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // border: 1px solid blue;
+    background-color: #fff9ee;
+    padding: 2rem;
+    width: 80vw;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+`
+
+//사진업로드 배경div
+const PhotoUploadSection = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 1080px) {
+        width: 50%;
+        margin-left: 10%;
+        margin-top: 2%;
+    }
 `
 
 const PhotoBox = styled.div`
-  min-width: 300px;
-  width: 30vh;
-  height: 30vh;
-  background-color: #ececec;
-  font-size: 30px;
-  color: palevioletred;
-  border: 1px solid #b5b5b5;
+    min-width: 300px;
+    width: 30vh;
+    height: 30vh;
+    background-color: #ececec;
+    font-size: 30px;
+    color: palevioletred;
+    border: 1px solid #b5b5b5;
+    @media screen and (max-width: 1080px) {
+        width: 90%;
+        height: 205px;
+    }
 `
 
+const PhotoBoxZone = styled.img`
+    max-width: 100%;
+    @media screen and (max-width: 1080px) {
+        width: 90%;
+        height: 205px;
+        margin-left: 5%;
+    }
+`
+//PhotoUploadWarning
 const PhotoBoxDiv = styled.div`
-  margin-top: 200px;
-  background-color: #ececec;
-  font-size: 30px;
-  text-align: center;
-  color: palevioletred;
+    margin-top: 200px;
+    background-color: #ececec;
+    font-size: 30px;
+    text-align: center;
+    color: palevioletred;
+`
+
+//사진 업로드 버튼 div
+const PhotoUploadButtons = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    padding: 1rem;
+    @media screen and (max-width: 1080px) {
+        width: 120%;
+        margin-top: 0.2px;
+        height: 2.2rem;
+    }
+`
+
+//파일선택버튼
+const PhotoSelectBtn = styled.input`
+    text-align: center;
+    font-size: 1.2rem;
+    width: 17rem;
+    height: 3rem;
+    margin-top: 1rem;
+    @media screen and (max-width: 1080px) {
+        width: 80%;
+        font-size: 1rem;
+    }
+`
+
+//사진 재업로드 버튼
+const PhotoUpLoadBtn = styled.button`
+    color: white;
+    font-weight: bold;
+    border-radius: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+    width: 7vw;
+    background-color: #9fd9f4;
+    padding: 1rem;
+    &:hover {
+        background-color: #95e4fe;
+    }
+    @media screen and (max-width: 1080px) {
+        width: 40%;
+        font-size: 1rem;
+        height: 0.55rem;
+        padding-top: 0.5rem;
+    }
 `
 
 const TitlePostDiv = styled.div`
-  margin: 3rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 40vw;
-  height: 35vh;
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 35vh;
+    @media screen and (max-width: 1080px) {
+        margin-top: 3%;
+        margin-left: 10%;
+        padding: 0.5rem;
+    }
 `
 
-// 사진 업로드 버튼들
-const TitlePostDiv2 = styled.div`
-  // border: 1px solid yellow;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffb83e;
-  margin-top: 5rem;
-`
-const TitlePostDiv3 = styled.form`
-  // border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`
-
-const TitlePostDiv4 = styled.div`
-  text-align: center;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: #ffb83e;
-  margin-top: 5rem;
-`
-const PhotoSelectBtn = styled.input`
-  text-align: center;
-  font-size: 20px;
-  width: 200px;
-  height: 60px;
-  background-color: #ffe2cd;
-  color: palevioletred;
-`
-
-// here
-const PhotoSelectBtnMargin = styled.div`
-  /* border: 1px solid gray; */
-  /* margin-top: 15px; */
-  text-align: center;
-  font-size: 20px;
-  width: 200px;
-  color: black;
-`
-const PhotoUpLoadBtn = styled.button`
-  font-size: 20px;
-  color: palevioletred;
-  /* margin-top: 15px; */
-
-  text-align: center;
-  width: 200px;
-  background-color: #419300;
-  padding: 1rem;
-`
-
+//제목
 const TitleBox = styled.input`
-  border: 1px solid #b5b5b5;
-  margin-bottom: 40px;
-  width: inherit;
-  height: 50px;
-  background-color: #ececec;
-  font-size: 30px;
-  color: palevioletred;
-  text-align: center;
-  padding: 0.5rem;
+    border: 1px solid #b5b5b5;
+    margin-bottom: 40px;
+    width: inherit;
+    height: 50px;
+    background-color: #ececec;
+    font-size: 1.9rem;
+    color: palevioletred;
+    text-align: center;
+    padding: 0.5rem;
+    @media screen and (max-width: 1080px) {
+        width: 250px;
+        margin-left: 13%;
+        font-size: 1rem;
+        margin-top: 0.3rem;
+        height: 20px;
+    }
 `
-
+//글
 const PostBox = styled.textarea`
-  border: 1px solid #b5b5b5;
-  width: inherit;
-  height: 400px;
-  background-color: #ececec;
-  color: palevioletred;
-  font-size: 30px;
-  padding: 0.5rem;
+    border: 1px solid #b5b5b5;
+    width: inherit;
+    height: 400px;
+    background-color: #ececec;
+    font-size: 1.8rem;
+    color: palevioletred;
+    padding: 0.5rem;
+    text-align: center;
+    @media screen and (max-width: 1080px) {
+        width: 250px;
+        margin-left: 13%;
+        font-size: 1rem;
+        height: 500px;
+    }
 `
 
-const PostUploadBtn = styled.div`
-  // border: 1px solid gray;
-  // width: 250px;
-  // height: 60px;
-  // background-color: #ffe2cd;
-  // font-size: 20px;
-  // color: palevioletred;
+//수정 취소 버튼div
+const TitlePostButtons = styled.div`
+    margin: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    @media screen and (max-width: 1080px) {
+        width: 100%;
+        margin-left: 25%;
+        margin-top: 1%;
+        margin-bottom: 0.1rem;
+    }
 `
 
-const CancelBtn = styled.div`
-  // border: 1px solid gray;
-  // width: 250px;
-  // height: 60px;
-  // background-color: #ffe2cd;
-  // font-size: 20px;
-  // color: palevioletred;
+//수정버튼
+const PostCompletionBtnMargin = styled.button`
+    text-align: center;
+    background-color: white;
+    color: #588156;
+    padding: 1rem 3rem;
+    margin: 0.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 2rem;
+    &:hover {
+        background-color: #ffbc57;
+        color: white;
+    }
+    @media screen and (max-width: 1080px) {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 0.5rem;
+    }
 `
 
-const PostCompletionBtnMargin = styled.div`
-  text-align: center;
-  background-color: #4876bf;
-  color: white;
-  padding: 0.5rem 8rem;
-  margin: auto 1rem;
-`
-
-const PostCancelBtnMargin = styled.div`
-  text-align: center;
-  background-color: #e00000;
-  color: white;
-  padding: 0.5rem 2rem;
+//취소버튼
+const PostCancelBtnMargin = styled.button`
+    text-align: center;
+    background-color: #588156;
+    color: white;
+    padding: 1rem 3rem;
+    margin: 0.2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 2rem;
+    &:hover {
+        background-color: #e55432;
+        color: #006300;
+    }
+    @media screen and (max-width: 1080px) {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 0.5rem;
+    }
 `
 
 const url =
-  process.env.REACT_APP_URL ||
-  "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
+    process.env.REACT_APP_URL ||
+    "http://ec2-54-180-102-202.ap-northeast-2.compute.amazonaws.com"
 
 export const PostEdit = (props) => {
-  console.log(props)
-  const history = useHistory()
-
-  // 1. input title, content
-  // 2. 제목과 내용 필수, 사진은 선택으로 함
-  const [inputTitle, setInputTitle] = useState("")
-  const [inputContent, setInputContent] = useState("")
-  const [photo, setPhoto] = useState("")
-  const [uploadedImg, setUploadedImg] = useState({
-    fileName: null,
-    filePath: null,
-  })
-  const [photoChange, setPhotoChange] = useState(false)
-  ////////////////////////////////
-  useEffect(() => {
-    setUploadedImg({
-      fileName: props.curPost.post_img,
-      filePath: `${url}${props.curPost.post_img}`,
+    const history = useHistory()
+    // 1. input title, content
+    // 2. 제목과 내용 필수, 사진은 선택으로 함
+    const [inputTitle, setInputTitle] = useState("")
+    const [inputContent, setInputContent] = useState("")
+    const [photo, setPhoto] = useState("")
+    const [uploadedImg, setUploadedImg] = useState({
+        fileName: null,
+        filePath: null,
     })
-    setInputTitle(props.curPost.post_title)
-    setInputContent(props.curPost.post_content)
-  }, [])
+    const [photoChange, setPhotoChange] = useState(false)
 
-  // const [inputImg, setInputImg] = useState() // 사진 수정했을때
-
-  // 작성되어지는 제목, 내용
-  const handleInputValue = (e) => {
-    if (e.target.name === "title") {
-      setInputTitle(e.target.value)
-    } else if (e.target.name === "content") {
-      setInputContent(e.target.value)
-    }
-    console.log(e.target.value)
-  }
-
-  // 작성 버튼
-  // 수정된 게시물 정보 -> 서버로
-  // 수정 페이지 postread에서 보여야함
-  const postSendButton = () => {
-    //사진바꿨을경우
-    if (
-      inputTitle.length > 0 &&
-      inputContent.length > 0 &&
-      uploadedImg.fileName &&
-      photoChange
-    ) {
-      // 제목, 내용 작성했을 때
-      console.log("사진을 변경함")
-      axios({
-        url: url + "/postedit",
-        method: "post",
-        data: {
-          user_id: props.userinfo.user_id,
-          post_id: props.curPost.id,
-          post_title: inputTitle,
-          post_content: inputContent,
-          post_img: "/img/" + uploadedImg.fileName,
-          animalcategory: props.curAnimal,
-        },
-        withCredentials: true,
-      })
-        .then(() => {
-          alert("수정 완료(사진수정포함)")
-          // 작성 완료
-          history.push("/mainpage")
+    useEffect(() => {
+        setUploadedImg({
+            fileName: props.curPost.post_img,
+            filePath: `${url}${props.curPost.post_img}`,
         })
-        .catch((err) => console.log(err))
+        setInputTitle(props.curPost.post_title)
+        setInputContent(props.curPost.post_content)
+    }, [])
+
+    // 작성되어지는 제목, 내용
+    const handleInputValue = (e) => {
+        if (e.target.name === "title") {
+            setInputTitle(e.target.value)
+        } else if (e.target.name === "content") {
+            setInputContent(e.target.value)
+        }
     }
-    //사진은안바꾸고 제목과 내용만 변경
-    else if (inputTitle.length > 0 && inputContent.length > 0 && !photoChange) {
-      console.log("사진은안바꿈")
-      axios({
-        url: url + "/postedit",
-        method: "post",
-        data: {
-          user_id: props.userinfo.user_id,
-          post_id: props.curPost.id,
-          post_title: inputTitle,
-          post_content: inputContent,
-          post_img: props.curPost.post_img,
-          animalcategory: props.curAnimal,
-        },
-        withCredentials: true,
-      })
-        .then(() => {
-          alert("작성 완료")
-          // 작성 완료
-          history.push("/mainpage")
-        })
-        .catch((err) => console.log(err))
-    } else {
-      alert("제목과 내용은 필수사항 입니다.")
+
+    // 작성 버튼
+    // 수정된 게시물 정보 -> 서버로
+    // 수정 페이지 postread에서 보여야함
+    const postSendButton = () => {
+        if (
+            inputTitle.length > 0 &&
+            inputContent.length > 0 &&
+            uploadedImg.fileName &&
+            photoChange
+        ) {
+            axios({
+                url: url + "/editpost",
+                method: "patch",
+                data: {
+                    user_id: props.userinfo.user_id,
+                    post_id: props.curPost.id,
+                    post_title: inputTitle,
+                    post_content: inputContent,
+                    post_img: "/img/" + uploadedImg.fileName,
+                    animalcategory: props.curAnimal,
+                },
+                withCredentials: true,
+            })
+                .then(() => {
+                    alert("수정 완료(사진수정포함)")
+                    // 작성 완료
+                    history.push("/mainpage")
+                })
+                .catch((err) => console.log(err))
+        }
+        //사진은 안바꾸고 제목과 내용만 변경
+        else if (
+            inputTitle.length > 0 &&
+            inputContent.length > 0 &&
+            !photoChange
+        ) {
+            axios({
+                url: url + "/editpost",
+                method: "patch",
+                data: {
+                    user_id: props.userinfo.user_id,
+                    post_id: props.curPost.id,
+                    post_title: inputTitle,
+                    post_content: inputContent,
+                    post_img: props.curPost.post_img,
+                    animalcategory: props.curAnimal,
+                },
+                withCredentials: true,
+            })
+                .then(() => {
+                    alert("작성 완료")
+                    // 작성 완료
+                    history.push("/mainpage")
+                })
+                .catch((err) => console.log(err))
+        } else {
+            alert("제목과 내용은 필수사항 입니다.")
+        }
     }
-  }
-  // 취소 버튼
-  const cancleButton = () => {
-    // 해당 동물의 게시판으로 가야함
-    history.goBack()
-  }
-  ///////////////////여기서부터 사진업로드 기능구현////////////////
+    // 취소 버튼
+    const cancleButton = () => {
+        history.goBack()
+    }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData()
-    formData.append("img", photo)
-    setPhotoChange(true)
-    console.log(formData)
-    axios
-      .post(url + "/postedit", formData, {
-        "Content-Type": "application/json",
-        withCredentials: true,
-      })
-      .then((res) => {
-        const { fileName } = res.data
-        setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
-        alert("사진을 성공적으로 업로드 하였습니다.")
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+    const onSubmit = (e) => {
+        e.preventDefault()
 
-  const addFile = (e) => {
-    console.log(e.target.files[0])
-    setPhoto(e.target.files[0])
-  }
+        const formData = new FormData()
+        formData.append("img", photo)
+        setPhotoChange(true)
 
-  return (
-    <Body>
-      <Header />
-      <Navigation />
-      <ContentBox>
-        {/* /////////////////// */}
-        <TitlePostDiv3 onSubmit={onSubmit}>
-          <PhotoBox>
-            {uploadedImg ? (
-              <>
-                <img src={uploadedImg.filePath} alt="" />
-                {/* <h3>{uploadedImg.fileName}</h3> */}
-              </>
-            ) : (
-              <PhotoBoxDiv>아래 파일 추가를 눌러주세요.</PhotoBoxDiv>
-            )}
-          </PhotoBox>
-          <TitlePostDiv2>
-            <PhotoSelectBtn type="file" onChange={addFile} />
-            {/* <PhotoSelectBtnMargin>파일추가</PhotoSelectBtnMargin> */}
-            <PhotoUpLoadBtn type="submit">
-              <PhotoSelectBtnMargin>사진수정 버튼</PhotoSelectBtnMargin>
-            </PhotoUpLoadBtn>
-          </TitlePostDiv2>
-        </TitlePostDiv3>
-        {/* /////////////////// */}
-        <TitlePostDiv>
-          <TitleBox
-            value={inputTitle}
-            type="text"
-            name="title"
-            onChange={handleInputValue}
-            // 수정 전의 제목이 들어와야함
-          />
-          <PostBox
-            placeholder="글을 적으세요."
-            type="text"
-            name="content"
-            onChange={handleInputValue}
-            value={inputContent}
-          />
-          <TitlePostDiv4>
-            <PostUploadBtn>
-              <PostCompletionBtnMargin onClick={postSendButton}>
-                수정
-              </PostCompletionBtnMargin>
-            </PostUploadBtn>
-            <CancelBtn>
-              <PostCancelBtnMargin onClick={cancleButton}>
-                취소
-              </PostCancelBtnMargin>
-            </CancelBtn>
-          </TitlePostDiv4>
-        </TitlePostDiv>
-      </ContentBox>
-    </Body>
-  )
+        axios
+            .post(url + "/animalphoto", formData, {
+                "Content-Type": "multipart/form-data",
+                withCredentials: true,
+            })
+            .then((res) => {
+                const { fileName } = res.data
+                setUploadedImg({ fileName, filePath: `${url}/img/${fileName}` })
+                alert("사진을 성공적으로 업로드 하였습니다.")
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+    }
+
+    const addFile = (e) => {
+        setPhoto(e.target.files[0])
+    }
+
+    return (
+        <Body>
+            <Header
+                setIsLogin={props.setIsLogin}
+                setUserinfo={props.setUserinfo}
+            />
+            <Navigation />
+            <ContentBox>
+                <PhotoUploadSection onSubmit={onSubmit}>
+                    <PhotoBox>
+                        {uploadedImg ? (
+                            <div className="uploadedImage">
+                                <PhotoBoxZone
+                                    src={uploadedImg.filePath}
+                                    alt=""
+                                />
+                            </div>
+                        ) : (
+                            <PhotoBoxDiv className="photoUploadWarning">
+                                아래 파일 추가를 눌러주세요.
+                            </PhotoBoxDiv>
+                        )}
+                    </PhotoBox>
+
+                    <PhotoUploadButtons className="photoSelectButtons">
+                        <PhotoSelectBtn
+                            type="file"
+                            className="photoButton"
+                            onChange={addFile}
+                        />
+                        <PhotoUpLoadBtn type="submit">재업로드</PhotoUpLoadBtn>
+                    </PhotoUploadButtons>
+                </PhotoUploadSection>
+
+                <TitlePostDiv>
+                    <TitleBox
+                        value={inputTitle}
+                        type="text"
+                        name="title"
+                        onChange={handleInputValue}
+                    />
+                    <PostBox
+                        type="text"
+                        name="content"
+                        onChange={handleInputValue}
+                        value={inputContent}
+                    />
+                    <TitlePostButtons>
+                        <PostCompletionBtnMargin onClick={postSendButton}>
+                            수정
+                        </PostCompletionBtnMargin>
+                        <PostCancelBtnMargin onClick={cancleButton}>
+                            취소
+                        </PostCancelBtnMargin>
+                    </TitlePostButtons>
+                </TitlePostDiv>
+            </ContentBox>
+        </Body>
+    )
 }
 
 export default PostEdit
-
-// import { useHistory } from "react-router-dom"
-// import React, { useState } from "react"
-// import styled from "styled-components"
-// import axios from "axios"
-
-// const Body = styled.div`
-//   box-sizing: border-box;
-//   width: 1920px;
-//   height: 1080px;
-//   background-color: #ffe2cd;
-//   // border: 1px solid gray;
-// `
-
-// const Header = styled.div`
-//   padding-bottom: 0.5em;
-//   padding-left: 0.5em;
-//   padding-top: 0.5em;
-//   font-size: 6em;
-//   text-align: left;
-//   color: palevioletred;
-//   background: #fdf7c5;
-//   // border: 1px solid gray;
-// `
-
-// const ContentBox = styled.div`
-//   margin: 60px;
-//   margin-left: 300px;
-//   width: 1320px;
-//   height: 750px;
-//   background-color: #fdf7c5;
-//   // border: 1px solid red;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-around;
-// `
-// const PhotoBox = styled.div`
-//   // border: 1px solid gray;
-//   width: 450px;
-//   height: 450px;
-//   background-color: #ececec;
-//   font-size: 30px;
-//   color: palevioletred;
-// `
-// const PhotoBoxDiv = styled.div`
-//   // border: 1px solid gray;
-//   margin-top: 200px;
-//   background-color: #ececec;
-//   font-size: 30px;
-//   text-align: center;
-//   color: palevioletred;
-// `
-// const TitlePostDiv = styled.div`
-//   // border: 1px solid gray;
-//   display: flex;
-//   flex-direction: column;
-//   // justify-content: space-around;
-//   // align-items: flex-end;
-// `
-// const TitlePostDiv2 = styled.div`
-//   // border: 1px solid gray;
-//   margin-top: 25px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-//   // align-items: flex-end;
-// `
-// const TitlePostDiv3 = styled.div`
-//   // border: 1px solid gray;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-// `
-// const TitlePostDiv4 = styled.div`
-//   // border: 1px solid gray;
-//   text-align: center;
-//   margin-top: 25px;
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-around;
-// `
-// const PhotoSelectBtn = styled.div`
-//   text-align: center;
-//   font-size: 20px;
-//   width: 200px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-//   color: palevioletred;
-// `
-// const PhotoSelectBtnMargin = styled.div`
-//   // border: 1px solid gray;
-//   margin-top: 15px;
-//   text-align: center;
-//   // width: 200px;
-//   // height: 60px;
-//   // background-color: #ffe2cd;
-// `
-// const PhotoUpLoadBtn = styled.div`
-//   font-size: 20px;
-//   color: palevioletred;
-
-//   text-align: center;
-//   width: 200px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-// `
-// const TitleBox = styled.input`
-//   border: 1px solid #ececec;
-//   margin-bottom: 40px;
-//   width: 650px;
-//   height: 50px;
-//   background-color: #ececec;
-//   font-size: 30px;
-//   color: palevioletred;
-//   text-align: center;
-// `
-// const PostBox = styled.textarea`
-//   border: 1px solid #ececec;
-//   width: 650px;
-//   height: 350px;
-//   background-color: #ececec;
-//   font-size: 30px;
-//   color: palevioletred;
-//   text-align: center;
-// `
-
-// const PostUploadBtn = styled.div`
-//   // border: 1px solid gray;
-//   width: 250px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-//   font-size: 20px;
-//   color: palevioletred;
-// `
-// const CancelBtn = styled.div`
-//   // border: 1px solid gray;
-//   width: 250px;
-//   height: 60px;
-//   background-color: #ffe2cd;
-//   font-size: 20px;
-//   color: palevioletred;
-// `
-// const PostCompletionBtnMargin = styled.div`
-//   // border: 1px solid gray;
-//   margin-top: 15px;
-//   text-align: center;
-//   // width: 200px;
-//   // height: 60px;
-//   // background-color: #ffe2cd;
-// `
-// const PostCancelBtnMargin = styled.div`
-//   // border: 1px solid gray;
-//   margin-top: 15px;
-//   text-align: center;
-//   // width: 200px;
-//   // height: 60px;
-//   // background-color: #ffe2cd;
-// `
-
-// const url =
-//   process.env.REACT_APP_URL ||
-//   'http://ec2-3-34-2-204.ap-northeast-2.compute.amazonaws.com'
-
-// export const PostEdit = (props) => {
-//   const history = useHistory()
-
-//   const [inputTitle, setInputTitle] = useState('')
-//   const [inputContent, setInputContent] = useState('')
-//   // const [inputImg, setInputImg] = useState() // 사진 수정했을때
-
-//   // 수정되어지는 제목, 내용
-//   const handleInputValue = (e) => {
-//     if(e.target.name === 'title'){
-//       setInputTitle(e.target.value)
-//     }else if(e.target.name === 'content'){
-//       setInputContent(e.target.value)
-//     }
-//     console.log(e.target.value);
-//   };
-
-//   // 수정 버튼
-//   const editDoneButton = () => {
-//     if(inputTitle.length > 0 && inputContent.length > 0){
-//       alert('수정하시겠습니까?')
-//       axios({
-//         url: url + '/postedit',
-//         method: 'post',
-//         data: {
-
-//           post_title: inputTitle,
-//           post_content: inputContent,
-//           // post_img: inputImg,
-//         },
-//         withCredentials: true,
-//       })
-//       .then(() => {
-//         console.log('수정성공')
-//         history.goBack()  // 뒤로가기해도 업데이트된 게시물이 보여야함
-//         // history.push('/postread')
-//       })
-//       .catch(err => console.log(err))
-//     }else{
-//       alert('제목과 내용은 필수사항 입니다.')
-//     }
-//   }
-
-//   // 취소 버튼
-//   const cancleButton = () => {
-//     history.goBack()
-//   }
-
-//   return (
-//     <Body>
-//       <Header>Animal Chat🐣</Header>
-//       <ContentBox>
-//         <TitlePostDiv3>
-//           <PhotoBox>
-//             <PhotoBoxDiv>아래 파일 변경을 눌러 수정해주세요.</PhotoBoxDiv>
-//           </PhotoBox>
-//           <TitlePostDiv2>
-//             <PhotoSelectBtn>
-//               <PhotoSelectBtnMargin>파일변경</PhotoSelectBtnMargin>
-//             </PhotoSelectBtn>
-//             <PhotoUpLoadBtn>
-//               <PhotoSelectBtnMargin>업로드 버튼</PhotoSelectBtnMargin>
-//             </PhotoUpLoadBtn>
-//           </TitlePostDiv2>
-//         </TitlePostDiv3>
-//         <TitlePostDiv>
-//           {/* defaultValue 에 기존 게시물 내용이 들어가야할듯함.. */}
-//           <TitleBox placeholder="제목을 수정하세요." type="text" name='title' defaultValue={props.title} onChange={handleInputValue}/>
-//           <PostBox placeholder="글을 수정하세요." type="text" name='content' defaultValue={props.content} onChange={handleInputValue}/>
-//           <TitlePostDiv4>
-//             <PostUploadBtn>
-//               <PostCompletionBtnMargin onClick={editDoneButton}>수정</PostCompletionBtnMargin>
-//             </PostUploadBtn>
-//             <CancelBtn>
-//               <PostCancelBtnMargin onClick={cancleButton}>취소</PostCancelBtnMargin>
-//             </CancelBtn>
-//           </TitlePostDiv4>
-//         </TitlePostDiv>
-//       </ContentBox>
-//     </Body>
-//   )
-// }
-
-// export default PostEdit
