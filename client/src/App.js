@@ -21,7 +21,7 @@ import "./App.css"
 
 const url =
     process.env.REACT_APP_URL ||
-    "http://ec2-13-125-49-143.ap-northeast-2.compute.amazonaws.com"
+    "http://ec2-54-180-202-229.ap-northeast-2.compute.amazonaws.com"
 
 function App() {
     const [isLogin, setIsLogin] = useState(false)
