@@ -76,7 +76,7 @@ app.delete("/deletepost", controllers.deletepost)
 app.delete("/removeuser", controllers.removeuser) 
 app.delete("/deleteanimal", controllers.deleteanimal) 
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 8080
+const HTTPS_PORT = process.env.HTTPS_PORT || 80
 
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
