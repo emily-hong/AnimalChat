@@ -76,6 +76,7 @@ app.delete("/deleteanimal", controllers.deleteanimal)
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 8080
 
+
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
     // https 프로토콜 사용 시
