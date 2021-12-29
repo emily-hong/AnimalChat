@@ -10,15 +10,16 @@ const controllers = require("./controllers")
 const multer = require("multer")
 const logger = require("morgan")
 
-const url =
-    process.env.API_URL ||
-    "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
-
+// const url =
+//     process.env.API_URL ||
+//     "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
+    
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
     cors({
-        origin: [url],
+        origin: process.env.API_URL ||
+        "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com",
         credentials: true,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     })
@@ -39,7 +40,7 @@ const upload = multer({
 })
 
 app.get("/", (req, res) => {
-    res.send("Hello World!")
+    res.send("Hello World!~~")
 })
 
 //get
