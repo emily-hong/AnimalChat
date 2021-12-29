@@ -5,10 +5,12 @@ import Navigation from "../components/Navigation"
 import React, { useEffect } from "react"
 import axios from "axios"
 import Footer from "../components/Footer"
-const url =
-    process.env.REACT_APP_API_URL ||
-    "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+
+let url = process.env.REACT_APP_API_URL
 export default function Chick(props) {
+    if(!url) {
+        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+    }
     useEffect(() => {
         props.curAnimalChange("chick")
         axios({

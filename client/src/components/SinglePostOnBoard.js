@@ -2,10 +2,6 @@ import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 import React from "react"
 
-const url =
-    process.env.REACT_APP_API_URL ||
-    "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
-
 const StyledSinglePost = styled.div`
     display: grid;
     place-items: center center;
@@ -115,8 +111,12 @@ const ImgvTag = styled.img`
     height: 100%;
     border-radius: 50%;
 `
+let url = process.env.REACT_APP_API_URL
 
 export default function SinglePostOnBoard({ mockBgColor, post, curPostRead }) {
+    if(!url) {
+        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+    }
     const history = useHistory()
 
     function postRead() {
