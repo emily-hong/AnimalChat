@@ -46,7 +46,6 @@ app.get("/", (req, res) => {
 app.get("/auth", controllers.auth)
 app.get("/postlist", controllers.postlist)
 app.get("/userinfo", controllers.userinfo) 
-app.get("/firstpage", controllers.userinfo) 
 
 //post
 app.post("/sendcomment", controllers.sendcomment)

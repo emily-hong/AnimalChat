@@ -2,7 +2,6 @@ module.exports = {
   auth: require("./users/auth"),
   postlist: require("./users/postlist"),
   userinfo: require("./users/userinfo"),
-  firstpage: require("./users/firstpage"),
 
   sendcomment: require("./users/sendcomment"),
   like: require("./users/like"),
