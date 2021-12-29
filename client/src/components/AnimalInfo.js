@@ -99,11 +99,13 @@ const ButtonSpace = styled.div`
 const Button = styled.button`
     margin: 1rem;
 `
-const url =
-    process.env.REACT_APP_API_URL ||
-    "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+
+let url = process.env.REACT_APP_API_URL
 
 export default function AnimalInfo(props) {
+    if(!url) {
+        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+    }
     const history = useHistory()
 
     const deleteButtonHandler = () => {
