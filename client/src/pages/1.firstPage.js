@@ -215,7 +215,7 @@ const IconPhoto2 = styled.img`
     width: 50px;
     margin-left: 5px;
 `
-
+    
 axios.defaults.withCredentials = true
 const url =
     process.env.REACT_APP_API_URL ||
