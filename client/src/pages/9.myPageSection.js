@@ -11,7 +11,7 @@ const Outer = styled.div`
     height: 100%;
     padding: 5% 0;
 `
-
+    
 const IdDisplay = styled.div`
     box-sizing: content-box;
     padding: 1rem;
