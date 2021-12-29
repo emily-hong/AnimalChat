@@ -15,7 +15,7 @@ const Outer = styled.div`
 `
 const url =
     process.env.REACT_APP_URL ||
-    "http://ec2-52-79-218-114.ap-northeast-2.compute.amazonaws.com"
+    "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
 
 export default function MainPage(props) {
     useEffect(() => {
