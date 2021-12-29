@@ -98,11 +98,9 @@ const CheckCurPwBtn = styled.button`
 `
 
 let url = process.env.REACT_APP_API_URL
+if(!url) url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
 
 export default function PasswordChange() {
-    if(!url) {
-        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
-    }
     const history = useHistory()
     const [valid, setValid] = useState("")
     const [curPwd, setCurPwd] = useState("")

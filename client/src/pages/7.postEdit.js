@@ -238,11 +238,9 @@ const PostCancelBtnMargin = styled.button`
 `
 
 let url = process.env.REACT_APP_API_URL
+if(!url) url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
 
 export const PostEdit = (props) => {
-    if(!url) {
-        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
-    }
     const history = useHistory()
     // 1. input title, content
     // 2. 제목과 내용 필수, 사진은 선택으로 함
