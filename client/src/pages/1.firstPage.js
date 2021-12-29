@@ -215,7 +215,7 @@ const IconPhoto2 = styled.img`
     width: 50px;
     margin-left: 5px;
 `
-
+    
 axios.defaults.withCredentials = true
 const url =
     process.env.REACT_APP_API_URL ||
@@ -260,7 +260,7 @@ export const FirstPage = (props) => {
                     props.loginFunc()
 
                     alert("로그인 완료")
-                    history.push("/mainpage")
+                    history.push("/")
                 })
                 .catch((err) => {
                     setErrMessage("아이디 또는 비밀번호를 확인하세요")
