@@ -224,11 +224,12 @@ const PostCancelBtnMargin = styled.button`
      }
 `
 
-const url =
-    process.env.REACT_APP_API_URL ||
-    "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+let url = process.env.REACT_APP_API_URL
 
 export const Post = (props) => {
+    if(!url) {
+        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
+    }
     const history = useHistory()
 
     // 1. input title, content
