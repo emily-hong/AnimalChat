@@ -13,9 +13,7 @@ const logger = require("morgan")
 const url =
     process.env.API_URL ||
     "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
-
-
-    
+ 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
@@ -76,7 +74,7 @@ app.delete("/deletepost", controllers.deletepost)
 app.delete("/removeuser", controllers.removeuser) 
 app.delete("/deleteanimal", controllers.deleteanimal) 
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 80
+const HTTPS_PORT = process.env.HTTPS_PORT || 8080
 
 let server
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
