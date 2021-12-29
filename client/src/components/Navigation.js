@@ -66,6 +66,7 @@ export default function Navigation() {
     return (
         <Outer className="navigation">
             <ButtonsArea>
+                {/* <HomeButtonArea></HomeButtonArea> */}
                 <div className="boardButtonsSpace">
                     <Link to="/mainpage">
                         <button className="homeButton">전체</button>

@@ -113,12 +113,9 @@ const ButtonsArea = styled.div`
 `
 
 let url = process.env.REACT_APP_API_URL
+if(!url) url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
 
-export default function Signup(props) {
-    if(!url) {
-        url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
-    }
-    
+export default function Signup(props) {    
     const history = useHistory()
     const [userInfo, setUserInfo] = useState({
         userId: "",

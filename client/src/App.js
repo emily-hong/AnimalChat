@@ -24,6 +24,7 @@ function App() {
     if(!url) {
         url = "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
     }
+
     const [isLogin, setIsLogin] = useState(false)
     const [curAnimal, setCurAnimal] = useState("home")
     const [userinfo, setUserinfo] = useState("")
