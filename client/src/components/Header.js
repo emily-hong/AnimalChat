@@ -72,7 +72,7 @@ const IconPhoto = styled.img`
 `
 
 const url =
-    process.env.REACT_APP_URL ||
+    process.env.REACT_APP_API_URL ||
     "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
 
 export default function Header(props) {
