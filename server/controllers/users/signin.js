@@ -4,7 +4,6 @@ const { generateAccessToken, sendAccessToken } = require("../tokenFunc")
 const bcrypt = require('bcrypt')
 
 module.exports = (req, res) => {
-    console.log(req.body);
     let accessToken = null
     user.findOne({
         where: {
