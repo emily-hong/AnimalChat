@@ -16,9 +16,8 @@ import PostRead from "./pages/8.postRead"
 import MyPage from "./pages/9.myPage"
 import GlobalStyle from "./components/GlobalStyle"
 import PwdEditPage from "./pages/11-1.pwdEdit"
-
 import "./App.css"
-
+    
 const url =
     process.env.REACT_APP_URL ||
     "http://ec2-3-35-9-246.ap-northeast-2.compute.amazonaws.com"
