@@ -3,7 +3,7 @@ const { sign, verify } = require("jsonwebtoken")
 
 module.exports = {
     generateAccessToken: (data) => {
-        return sign(data, process.env.ACCESS_SECRET, { expiresIn: "1days" })
+        return sign(data, process.env.ACCESS_SECRET, { expiresIn: "2days" })
     },
 
     sendAccessToken: (res, accessToken, data) => {
