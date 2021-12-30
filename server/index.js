@@ -10,15 +10,22 @@ const controllers = require("./controllers")
 const multer = require("multer")
 const logger = require("morgan")
 
+<<<<<<< HEAD
 // const url =
 //     process.env.API_URL ||
 //     "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
     
+=======
+const url =
+    process.env.API_URL ||
+    "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"
+
+>>>>>>> Dev
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
     cors({
-        origin: ["http://localhost:3000", "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"],
+        origin: [url],
         credentials: true,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     })
