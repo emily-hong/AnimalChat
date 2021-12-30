@@ -18,8 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
     cors({
-        origin: process.env.API_URL ||
-        "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com",
+        origin: ["http://localhost:3000", "http://animalchat-client.s3-website.ap-northeast-2.amazonaws.com"],
         credentials: true,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     })
