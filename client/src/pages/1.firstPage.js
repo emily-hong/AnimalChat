@@ -224,6 +224,7 @@ axios.defaults.withCredentials = true
 let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
 
 export const FirstPage = (props) => {
+    console.log("firstpage의 url : ", surl);
     const [isOpen, setIsOpen] = useState(false)
     const [loginInfo, setLoginInfo] = useState({ id: "", password: "" })
     const [errMessage, setErrMessage] = useState(false)
