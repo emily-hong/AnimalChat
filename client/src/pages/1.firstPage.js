@@ -224,7 +224,7 @@ if(!url) url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
 // let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
 
 export const FirstPage = (props) => {
-    console.log("firstpage의 url : ", surl);
+    console.log("firstpage의 url : ", url);
     const [isOpen, setIsOpen] = useState(false)
     const [loginInfo, setLoginInfo] = useState({ id: "", password: "" })
     const [errMessage, setErrMessage] = useState(false)
