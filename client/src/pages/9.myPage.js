@@ -5,9 +5,9 @@ import React from "react"
 import axios from "axios"
 import Footer from "../components/Footer"
 
-// let url = process.env.REACT_APP_API_URL
-// if(!url) url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
-let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
+let url = process.env.REACT_APP_API_URL
+if(!url) url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
+// let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
 
 export default function MyPage({
     userinfo,

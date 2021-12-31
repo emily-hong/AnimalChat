@@ -39,9 +39,9 @@ const CommentContainer = styled.li`
     }
 `
 
-// let url = process.env.REACT_APP_API_URL
-// if(!url) url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
-let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
+let url = process.env.REACT_APP_API_URL
+if(!url) url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
+// let url = "http://ec2-54-180-104-66.ap-northeast-2.compute.amazonaws.com"
 
 const Comment = ({ content, deleteComment, userinfo }) => {
 
