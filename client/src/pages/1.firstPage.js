@@ -222,6 +222,7 @@ let url = process.env.REACT_APP_API_URL
 if(!url) url = "http://ec2-13-125-84-11.ap-northeast-2.compute.amazonaws.com"
 
 export const FirstPage = (props) => {
+
     console.log("firstpage의 url가 제대로 들어오남?: ", url);
     const [isOpen, setIsOpen] = useState(false)
     const [loginInfo, setLoginInfo] = useState({ id: "", password: "" })
