@@ -256,6 +256,7 @@ export const FirstPage = (props) => {
                 withCredentials: true,
             })
                 .then((res) => {
+                    console.log("then안에 url 들어오는지? : ", url);
                     localStorage.setItem(
                         "accessToken",
                         JSON.stringify(res.data.accessToken)
